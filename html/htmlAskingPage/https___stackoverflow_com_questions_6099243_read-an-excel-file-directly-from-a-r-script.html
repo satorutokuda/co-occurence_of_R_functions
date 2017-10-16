@@ -1,0 +1,2802 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/QAPage">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Read an Excel file directly from a R script - Stack Overflow</title>
+<link rel="shortcut icon" href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+<link rel="apple-touch-icon image_src" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+<link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="/opensearch.xml">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:domain" content="stackoverflow.com">
+<meta property="og:image" itemprop="image primaryImageOfPage" content="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded">
+<meta name="twitter:title" property="og:title" itemprop="title name" content="Read an Excel file directly from a R script">
+<meta name="twitter:description" property="og:description" itemprop="description" content="How can I read an Excel file directly into R? Or should I first export the data to a text- or CSV file and import that file into R?">
+<meta property="og:url" content="https://stackoverflow.com/questions/6099243/read-an-excel-file-directly-from-a-r-script">
+<link rel="canonical" href="https://stackoverflow.com/questions/6099243/read-an-excel-file-directly-from-a-r-script">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script><script src="https://cdn.sstatic.net/Js/stub.en.js?v=488af1c63e24"></script><link rel="stylesheet" type="text/css" href="https://cdn.sstatic.net/Sites/stackoverflow/all.css?v=e32bd0ed8f3d">
+<link rel="alternate" type="application/atom+xml" title="Feed for question 'Read an Excel file directly from a R script'" href="/feeds/question/6099243">
+<meta name="twitter:app:country" content="US">
+<meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+<meta name="twitter:app:id:iphone" content="871299723">
+<meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/6099243/read-an-excel-file-directly-from-a-r-script">
+<meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+<meta name="twitter:app:id:ipad" content="871299723">
+<meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/6099243/read-an-excel-file-directly-from-a-r-script">
+<meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+<meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/6099243/read-an-excel-file-directly-from-a-r-script">
+<meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+<script>
+        
+            StackExchange.ready(function () {
+                                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:9,shownCommentCount:5,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:6099243});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '6099243');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text', true); });
+
+            });
+        </script><script>
+        StackExchange.init({"locale":"en","serverTime":1508128849,"routeName":"Questions/Show","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"childUrl":"https://meta.stackoverflow.com","enableSocialMediaInSharePopup":true,"protocol":"https"},"user":{"fkey":"3fbe17c969abd7bd85ae0c8423437465","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true,"canSeeNewHeaderDesign":true},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"story":{"minCompleteBodyLength":75,"likedTagsMaxLength":300,"dislikedTagsMaxLength":300},"jobPreferences":{"maxNumDeveloperRoles":2,"maxNumIndustries":4}}, {"site":{"allowImageUploads":true,"enableUserHovercards":true,"styleCode":true,"enableImgurHttps":true,"forceHttpsImages":true},"comments":{},"userProfile":{"openGraphAPIKey":"58740831ad23540e00c58987"},"tags":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true},"flags":{"allowRetractingFlags":true},"topBar":{"showNewFeatureNotice":true},"snippets":{"snippetsEnabled":true,"renderDomain":"stacksnippets.net"},"markdown":{"asteriskIntraWordEmphasis":true},"monitoring":{"clientTimingsAbsoluteTimeout":30000,"clientTimingsDebounceTimeout":1000}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"82df5476ff5e","js/moderator.en.js":"443faeebba5b","js/full-anon.en.js":"51fdc705af4d","js/full.en.js":"753996d5103d","js/wmd.en.js":"4ddd2413a296","js/third-party/jquery.autocomplete.min.js":"d3b8fa7fdf74","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"28e4c54a5378","js/help.en.js":"a56fdf9b9ff2","js/tageditor.en.js":"248fce004255","js/tageditornew.en.js":"ac8f784e112e","js/inline-tag-editing.en.js":"3e63a01fd39b","js/revisions.en.js":"7bea350562aa","js/review.en.js":"eb16e0be07b1","js/tagsuggestions.en.js":"b278f9a0b23b","js/post-validation.en.js":"4c792759c8f4","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"290bed8a1174","js/keyboard-shortcuts.en.js":"f6606752d1e8","js/external-editor.en.js":"ae2d26085224","js/adops.en.js":"9a6a7812a212","js/external-editor.en.js":"ae2d26085224","js/snippet-javascript.en.js":"4ceca4bd1d0a","js/snippet-javascript-codemirror.en.js":"9a2effee39fe"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script><script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script><noscript id="noscript-css"><style>body,.top-bar{margin-top:1.9em}</style></noscript>
+</head>
+<body class="question-page new-topbar">
+            <script async src="https://js-sec.indexww.com/ht/p/185901-159836282584097.js"></script><div id="notify-container"></div>
+    <div id="custom-header"></div>
+
+
+
+
+<header class="top-bar js-top-bar _fixed"><div class="-container">
+        <div class="-main">
+            
+                <a href="https://stackoverflow.com" class="-logo js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:8})">
+                   <span class="-img">Stack Overflow</span>
+                </a>
+
+                    <a class="-feature-notice
+                       unread-feature-notice
+                       " href="#" data-unread-class="unread-feature-notice" data-campaign="2017-09-19.DevSalaryCalculator" data-cookie="topbar-new-dsc" data-location="2" data-autopopup="true" data-end-date="1508410800000">
+                        <span>new</span>
+                    </a>
+                    <div class="topbar-dialog feature-notice-dialog js-feature-notice-dialog dno">
+                        <div class="dialog-content">
+                            <h4 class="bold">Stack Overflow Salary Calculator</h4>
+                            <p>Find out what developers like you are earning.</p>
+                            <a class="btn-secondary js-cta-button js-gps-track" href="/jobs/salary/?utm_source=so-owned&amp;utm_medium=hero&amp;utm_campaign=sal-calc" data-gps-track="new_feature.click({campaign: '2017-09-19.DevSalaryCalculator', location: 2, action: 2})">Calculate your salary now</a>
+                            <a class="icon-close js-close-button js-gps-track" title="Close and permanently remove this popup" data-gps-track="new_feature.click({campaign: '2017-09-19.DevSalaryCalculator', location: 2, action: 1})"><svg aria-hidden="true" class="svg-icon iconClear" width="18" height="18" viewbox="0 0 18 18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9z"></path></svg></a>
+                        </div>
+                    </div>
+            <nav class="navigation" role="navigation" aria-label="site navigation"><ol class="-list">
+<li class="-item _current">
+        <a id="nav-questions" href="/questions" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:true, location:2, destination:1})">Questions</a>
+    </li>
+    <li class="-item">
+        <a id="nav-jobs" href="/jobs?med=site-ui&amp;ref=jobs-tab" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:6})">Developer Jobs</a>
+    </li>
+    <li class="-item">
+        <a id="nav-tags" href="/tags" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:2})">Tags</a>
+    </li>
+    <li class="-item">
+        <a id="nav-users" href="/users" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:3})">Users</a>
+    </li>
+                </ol></nav>
+</div>
+        
+            <form id="search" action="/search" method="get" class="searchbar" autocomplete="off" role="search">
+                <input name="q" type="text" placeholder="SearchÅc" value="" tabindex="1" autocomplete="off" maxlength="240" class="f-input js-search-field"><button type="submit" aria-label="Search..." class="btn-topbar-primary js-search-submit"><svg aria-hidden="true" class="svg-icon iconSearch" width="18" height="18" viewbox="0 0 18 18"><path d="M12.86 11.32L18 16.5 16.5 18l-5.18-5.14v-.35a7 7 0 1 1 1.19-1.19h.35zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path></svg></button>
+            </form>
+
+        
+
+
+    
+
+<div class="-actions">
+    <nav class="secondary-nav"><div class="-dialog-container js-topbar-dialog-corral">
+
+
+    <div class="topbar-dialog siteSwitcher-dialog dno">
+        <div class="header">
+            <h3>
+<a href="https://stackoverflow.com">current community</a>
+            </h3>
+        </div>
+        <div class="modal-content current-site-container">
+            <ul class="current-site">
+<li>
+                            <div class="related-links">
+            <a href="https://stackoverflow.com/help" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:14 })">help</a>
+                    <a href="https://chat.stackoverflow.com" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+    <a href="https://stackoverflow.com" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="site_switcher.click({ item_type:3 })">
+        <div class="favicon favicon-stackoverflow site-icon" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                    </li>
+                    <li class="related-site">
+                            <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                        
+    <a href="https://meta.stackoverflow.com" class="site-link js-gps-track" data-id="552" data-gps-track="site.switch({ target_site:552, item_type:3 }),site_switcher.click({ item_type:4 })">
+        <div class="favicon favicon-stackoverflowmeta site-icon" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                    </li>
+            </ul>
+</div>
+
+        <div class="header" id="your-communities-header">
+            <h3>
+your communities            </h3>
+
+        </div>
+        <div class="modal-content" id="your-communities-section">
+
+                <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;amp;utm_source=stackoverflow.com&amp;amp;utm_medium=dev-story&amp;amp;utm_campaign=signup-redirect" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f6099243%2fread-an-excel-file-directly-from-a-r-script" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+                </div>
+        </div>
+
+        <div class="header">
+            <h3>
+<a href="https://stackexchange.com/sites">more stack exchange communities</a>
+            </h3>
+            <a href="https://stackoverflow.blog" class="fr">company blog</a>
+        </div>
+        <div class="modal-content">
+                <div class="child-content"></div>
+        </div>        
+    </div>
+                <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+<li>
+                        <a href="/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                        <li>
+                            <a href="https://meta.stackoverflow.com" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                                Meta
+                                <span class="item-summary">
+                                    Discuss the workings and policies of this site
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                                About Us
+                                <span class="item-summary">
+                                    Learn more about Stack Overflow the company
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.stackoverflowbusiness.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                                Business
+                                <span class="item-summary">
+                                    Learn more about hiring developers or posting ads with us
+                                </span>
+                            </a>
+                        </li>
+            </ul>
+</div>
+    </div>
+
+        </div>
+        <ol class="-list">
+<li class="-item"><a href="#" class="-link js-help-button" title="Help Center and other resources">
+        <svg aria-hidden="true" class="svg-icon iconHelp" width="18" height="18" viewbox="0 0 18 18"><path d="M9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1zm.81 12.13c-.02.71-.55 1.15-1.24 1.13-.66-.02-1.17-.49-1.15-1.2.02-.72.56-1.18 1.22-1.16.7.03 1.2.51 1.17 1.23zM11.77 8a5.8 5.8 0 0 1-1.02.91l-.53.37c-.26.2-.42.43-.5.69a4 4 0 0 0-.09.75c0 .05-.03.16-.18.16H7.88c-.16 0-.18-.1-.18-.15.03-.66.12-1.21.4-1.66a5.29 5.29 0 0 1 1.43-1.22c.16-.12.28-.25.38-.39a1.34 1.34 0 0 0 .02-1.71c-.24-.31-.51-.46-1.03-.46-.51 0-.8.26-1.02.6-.21.33-.18.73-.18 1.1H5.75c0-1.38.35-2.25 1.1-2.76.52-.35 1.17-.5 1.93-.5 1 0 1.79.18 2.49.71.64.5.98 1.18.98 2.12 0 .57-.2 1.05-.48 1.44z"></path></svg></a></li>
+                <li class="-item">
+        <a href="https://stackexchange.com" class="-link js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 171 Stack Exchange sites">
+            <svg aria-hidden="true" class="svg-icon iconStackExchange" width="18" height="18" viewbox="0 0 18 18"><path d="M1 13c0 1.1.9 2 2 2h8v3l3-3h1a2 2 0 0 0 2-2v-2H1v2zM15 1H3a2 2 0 0 0-2 2v2h16V3a2 2 0 0 0-2-2zM1 6h16v4H1V6z"></path></svg></a>
+    </li>
+
+        </ol></nav><div class="-ctas">
+                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f6099243%2fread-an-excel-file-directly-from-a-r-script" class="login-link btn-clear" rel="nofollow">Log In</a>
+                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;utm_source=stackoverflow.com&amp;utm_medium=dev-story&amp;utm_campaign=signup-redirect" class="login-link btn-topbar-primary" rel="nofollow">Sign Up</a>
+
+        </div>
+</div>
+    </div>
+</header><script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+        StackExchange.scrollPadding.setPaddingTop(60, 10);     </script><div class="container _full ">
+        
+
+
+        <div id="content" class="snippet-hidden">
+
+
+
+
+            
+
+<div itemscope itemtype="http://schema.org/Question">
+    <link itemprop="image" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+<div class="s-hero hero-container">
+    <div class="-container g-row jc-sp-between ai-center">
+        <div class="g-col6">
+            <h1 class="-title">Learn, Share, Build</h1>
+            <p class="-paragraph">Each month, over 50 million developers come to Stack Overflow to learn, share their knowledge, and build their careers.</p>
+            <p class="-paragraph">Join the worldÅfs largest developer community.</p>
+        </div>
+        
+        <div class="s-signup _hero g-col5">
+
+            <div id="openid-buttons" class="-social">
+                    <div class="major-provider btn _block _medium _google" data-provider="google" data-oauthserver="https://accounts.google.com/o/oauth2/auth" data-oauthversion="2.0">Google</div>
+                    <div class="major-provider btn _block _medium _facebook" data-provider="facebook" data-oauthserver="https://www.facebook.com/v2.0/dialog/oauth" data-oauthversion="2.0">Facebook</div>
+                            </div>
+
+
+            <small class="-divider text-centered">or</small>
+
+            <form id="login-form" action="/users/signup?ssrc=hero&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f6099243%2fread-an-excel-file-directly-from-a-r-script" method="POST">
+        
+                <input type="hidden" name="fkey" value="3fbe17c969abd7bd85ae0c8423437465"><input type="hidden" name="ssrc" value=""><input type="hidden" id="oauth_version" name="oauth_version"><input type="hidden" id="oauth_server" name="oauth_server"><div id="se-login-fields">
+
+                        <input type="hidden" name="legalLinksShown" value="1"><div class="input-group">
+                            <div class="g-row">
+                                <label for="display-name" class="g-col -fill">Display name</label>
+                                <div class="g-col">
+                                    <input id="display-name" name="inline-display-name" type="text" class="f-input" placeholder="J. Doe" data-error-my="right top" data-error-at="left center">
+</div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="g-row">
+                                <label for="email" class="g-col -fill">Email address</label>
+                                <div class="g-col">
+                                    <input id="email" name="inline-email" type="email" maxlength="100" class="f-input" placeholder="you@example.com" data-error-my="right top" data-error-at="left center">
+</div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="g-row">
+                                <label for="password" class="g-col -fill">Password</label>
+                                <div class="g-col">
+                                    <input id="password" name="inline-password" type="password" class="js-inline-signup f-input" placeholder="********" data-error-my="right top" data-error-at="left center">
+</div>
+                            </div>
+                        </div>
+
+                        <div class="button-group g-row ai-center jc-sp-between">
+                            <input id="submit-button" name="submit-button" class="btn-outlined -white _medium _block" type="button" value="Sign Up"><small class="g-col -policy js-terms">By registering, you agree to the <a href="https://stackexchange.com/legal/privacy-policy" name="privacy" target="_blank" class="-link">privacy policy</a> and <a href="https://stackexchange.com/legal/terms-of-service" name="tos" target="_blank" class="-link">terms of service</a>.</small>
+                        </div>
+                    </div>
+            </form>
+            <script>
+                StackExchange.ready(function () {
+                    StackExchange.InlineAuth.init();
+                })
+            </script>
+</div>
+
+            <a id="close" href="#" class="js-dismiss -dismiss" title="dismiss"><svg aria-hidden="true" class="svg-icon iconClear" width="18" height="18" viewbox="0 0 18 18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9z"></path></svg></a>
+    </div>
+</div>
+<script>
+    StackExchange.ready(function () {
+
+        var location = 0;
+        if ($("body").hasClass("questions-page")) {
+            location = 7;
+        } else if ($("body").hasClass("question-page")) {
+            location = 7;
+        } else if ($("body").hasClass("faq-page")) {
+            location = 5;
+        } else if ($("body").hasClass("home-page")) {
+            location = 6;
+        }
+        
+        $('#tell-me-more').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+            });
+        });
+        
+        $('.hero-container #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "minimize", location: location }, true);
+            });
+            
+            $.cookie("hero", "mini", { path: "/", expires: 365 });
+            $.ajax({
+                url: "/hero-mini",
+                success: function (data) {
+                    $(".hero-container").fadeOut("fast", function () {
+                        $(".hero-container").replaceWith(data);
+                        $("#herobox-mini").fadeIn("fast");
+                    });
+                }
+            });
+            return false;
+        });
+    });
+
+</script><div class="inner-content">
+        <div id="question-header">
+                <h1 itemprop="name"><a href="/questions/6099243/read-an-excel-file-directly-from-a-r-script" class="question-hyperlink">Read an Excel file directly from a R script</a></h1>
+
+            
+<div class="aside-cta" role="navigation" aria-label="ask new question">
+    <a href="/questions/ask" class="btn-outlined">Ask Question</a>
+</div>
+        </div>
+            <div id="mainbar" role="main" aria-label="question and answers">
+
+            
+
+<div class="question" data-questionid="6099243" id="question">
+
+    <div id="dfp-tlb" class="everyonelovesstackoverflow"></div>    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="6099243"><a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">75</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#">favorite</a>
+        <div class="favoritecount"><b>48</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>How can I read an Excel file directly into R? Or should I first export the data to a text- or CSV file and import that file into R?</p>
+    </div>
+    <div class="post-taglist">
+        <a href="/questions/tagged/excel" class="post-tag" title="show questions tagged 'excel'" rel="tag">excel</a> <a href="/questions/tagged/r" class="post-tag" title="show questions tagged 'r'" rel="tag">r</a> <a href="/questions/tagged/r-faq" class="post-tag" title="show questions tagged 'r-faq'" rel="tag">r-faq</a> 
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/q/6099243" title="short permalink to this question" class="short-link" id="link-post-6099243">share</a><span class="lsep">|</span><a href="/posts/6099243/edit" class="suggest-edit-post" title="">improve this question</a>
+</div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/6099243/revisions" title="show all edits to this post">edited <span title="2013-08-02 22:10:42Z" class="relativetime">Aug 2 '13 at 22:10</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info user-hover">
+    <div class="user-action-time">
+        asked <span title="2011-05-23 15:18:08Z" class="relativetime">May 23 '11 at 15:18</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/293843/waanders"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/nVTxg.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/293843/waanders">waanders</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">3,107</span><span title="17 gold badges"><span class="badge1"></span><span class="badgecount">17</span></span><span title="54 silver badges"><span class="badge2"></span><span class="badgecount">54</span></span><span title="87 bronze badges"><span class="badge3"></span><span class="badgecount">87</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</div>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-6099243" class="comments ">
+		    <table><tbody data-remaining-comments-count="4" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-7070946" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Sacha Epskamp : with xlsReadWrite, you don't even need to install Perl.</span>
+                    <U+2013><U+00A0><a href="/users/428790/joris-meys" title="68,841 reputation" class="comment-user">Joris Meys</a>
+                <span class="comment-date" dir="ltr"><span title="2011-05-23 15:42:27Z" class="relativetime-clean">May 23 '11 at 15:42</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-7071077" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">related : <a href="http://stackoverflow.com/questions/1848331/whats-a-robust-method-in-r-for-importing-from-and-exporting-data-to-excel" title="whats a robust method in r for importing from and exporting data to excel">stackoverflow.com/questions/1848331/Åc</a></span>
+                    <U+2013><U+00A0><a href="/users/428790/joris-meys" title="68,841 reputation" class="comment-user">Joris Meys</a>
+                <span class="comment-date" dir="ltr"><span title="2011-05-23 15:48:46Z" class="relativetime-clean">May 23 '11 at 15:48</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-7082497" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Not tested but there are also <a href="http://cran.r-project.org/package=xlsx" rel="nofollow noreferrer">xlsx</a> (based on Java) and <a href="http://cran.r-project.org/package=WriteXLS" rel="nofollow noreferrer">WriteXLS</a> (based on Perl) packages.</span>
+                    <U+2013><U+00A0><a href="/users/168747/marek" title="33,566 reputation" class="comment-user">Marek</a>
+                <span class="comment-date" dir="ltr"><span title="2011-05-24 08:19:10Z" class="relativetime-clean">May 24 '11 at 8:19</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-13507563" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy"><code>gdata</code> version 2.8.2 reads <code>xlsx</code> files with the <code>read.xls</code> function</span>
+                    <U+2013><U+00A0><a href="/users/1036500/ben" title="26,561 reputation" class="comment-user">Ben</a>
+                <span class="comment-date" dir="ltr"><span title="2012-05-05 05:47:18Z" class="relativetime-clean">May 5 '12 at 5:47</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-56592475" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">"I never see a reason not to export to a text file first". How about this: When I export to CSV, one of the fields I need doesn't get written. It seems like some kind of DRM but since I didn't write the spreadsheet I don't know.</span>
+                    <U+2013><U+00A0><a href="/users/479490/nate-reed" title="2,142 reputation" class="comment-user">Nate Reed</a>
+                <span class="comment-date" dir="ltr"><span title="2015-12-22 22:28:25Z" class="relativetime-clean">Dec 22 '15 at 22:28</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-6099243" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments."></a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>4</b> more comments</a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+            <div id="answers">
+
+                <a name="tab-top"></a>
+                <div id="answers-header">
+                    <div class="subheader answers-subheader">
+                        <h2>
+                                11 Answers
+                                <span style="display:none;" itemprop="answerCount">11</span>
+                        </h2>
+                        <div>
+                            <div id="tabs">
+        <a href="/questions/6099243/read-an-excel-file-directly-from-a-r-script?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+            active</a>
+        <a href="/questions/6099243/read-an-excel-file-directly-from-a-r-script?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+            oldest</a>
+        <a class="youarehere" href="/questions/6099243/read-an-excel-file-directly-from-a-r-script?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+            votes</a>
+</div>
+                        </div>
+                    </div>    
+                </div>    
+
+
+
+
+  
+<a name="6099308"></a>
+<div id="answer-6099308" class="answer accepted-answer" data-answerid="6099308" itemscope itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="6099308"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">36</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Yes. See <a href="http://en.wikibooks.org/wiki/R_Programming/Importing_and_exporting_data#Excel_.28xls.2Cxlsx.29" rel="noreferrer">the relevant page on the R wiki</a>.  Short answer: <code>read.xls</code> from the <code>gdata</code> package works most of the time (although you need to have Perl installed on your system -- usually already true on MacOS and Linux, but takes an extra step on Windows, i.e. see <a href="http://strawberryperl.com/" rel="noreferrer">http://strawberryperl.com/</a>). There are various caveats, and alternatives, listed on the R wiki page.</p>
+
+<p>The only reason I see not to do this directly is that you may want to examine the spreadsheet to see if it has glitches (weird headers, multiple worksheets [you can only read one at a time, although you can obviously loop over them all], included plots, etc.).  But for a well-formed, rectangular spreadsheet with plain numbers and character data (i.e., not comma-formatted numbers, dates, formulas with divide-by-zero errors, missing values, etc. etc. ..) I generally have no problem with this process.</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/6099308" title="short permalink to this answer" class="short-link" id="link-post-6099308">share</a><span class="lsep">|</span><a href="/posts/6099308/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/6099308/revisions" title="show all edits to this post">edited <span title="2014-09-03 23:56:56Z" class="relativetime">Sep 3 '14 at 23:56</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/199217/david-lebauer"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/ef067cf09ffd3cc8f069bacec73c8202?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/199217/david-lebauer">David LeBauer</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 13,364" dir="ltr">13.4k</span><span title="15 gold badges"><span class="badge1"></span><span class="badgecount">15</span></span><span title="83 silver badges"><span class="badge2"></span><span class="badgecount">83</span></span><span title="154 bronze badges"><span class="badge3"></span><span class="badgecount">154</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2011-05-23 15:22:54Z" class="relativetime">May 23 '11 at 15:22</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/190277/ben-bolker"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/dcf9672c1893e4b7c5d86ca1bc2bf88f?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/190277/ben-bolker">Ben Bolker</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 113,057" dir="ltr">113k</span><span title="8 gold badges"><span class="badge1"></span><span class="badgecount">8</span></span><span title="176 silver badges"><span class="badge2"></span><span class="badgecount">176</span></span><span title="272 bronze badges"><span class="badge3"></span><span class="badgecount">272</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-6099308" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-7072411" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">4</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">There are a lot of potential problems to consider that I've run into personally. Fields with numbers with comma's need to be stripped and converted to numeric in R. Fields with "-" need to be recoded to NA. Overall recommendation is to really look at your numbers in Excel and ensure that they are being translated correctly into R.</span>
+                    <U+2013><U+00A0><a href="/users/170352/brandon-bertelsen" title="22,003 reputation" class="comment-user">Brandon Bertelsen</a>
+                <span class="comment-date" dir="ltr"><span title="2011-05-23 17:06:13Z" class="relativetime-clean">May 23 '11 at 17:06</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-7073618" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Can't argue with "you really need to look at your numbers" ... what is the issue with "-" fields?  does <code>na.strings="-"</code> address the problem? How many of these issues are generic and how many of them (e.g. numeric fields with commas) can be addressed with other tools such as XLConnect ...?</span>
+                    <U+2013><U+00A0><a href="/users/190277/ben-bolker" title="113,057 reputation" class="comment-user">Ben Bolker</a>
+                <span class="comment-date" dir="ltr"><span title="2011-05-23 18:26:21Z" class="relativetime-clean">May 23 '11 at 18:26</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-7073795" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">That comment was directed to the OP, not at you Ben, my fault for bad placement.</span>
+                    <U+2013><U+00A0><a href="/users/170352/brandon-bertelsen" title="22,003 reputation" class="comment-user">Brandon Bertelsen</a>
+                <span class="comment-date" dir="ltr"><span title="2011-05-23 18:39:54Z" class="relativetime-clean">May 23 '11 at 18:39</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-37697858" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Relevant anecdote: <code>read.xls</code> succeeding in reading a very large sheet from an Excel file where both <code>XLConnect</code> and <code>xlsx</code> failed (I believe because they both rely on <a href="http://poi.apache.org/" rel="nofollow noreferrer">Apache POI</a>)</span>
+                    <U+2013><U+00A0><a href="/users/143319/matt-parker" title="16,137 reputation" class="comment-user">Matt Parker</a>
+                <span class="comment-date" dir="ltr"><span title="2014-06-23 23:50:25Z" class="relativetime-clean">Jun 23 '14 at 23:50</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-61480421" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">That R wiki is sorely outdated...</span>
+                    <U+2013><U+00A0><a href="/users/3576984/michaelchirico" title="14,797 reputation" class="comment-user">MichaelChirico</a>
+                <span class="comment-date" dir="ltr"><span title="2016-05-01 00:34:26Z" class="relativetime-clean">May 1 '16 at 0:34</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-6099308" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+<div id="dfp-mlb" class="everyonelovesstackoverflow"></div>
+  
+<a name="6100369"></a>
+<div id="answer-6100369" class="answer" data-answerid="6100369" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="6100369"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">47</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Let me reiterate what @Chase recommended: Use <a href="http://cran.r-project.org/web/packages/XLConnect/index.html" rel="noreferrer">XLConnect</a>. </p>
+
+<p>The reasons for using XLConnect are, in my opinion:</p>
+
+<ol>
+<li>Cross platform. XLConnect is written in Java and, thus, will run on Win, Linux, Mac with no change of your R code (except possibly path strings)</li>
+<li>Nothing else to load. Just install XLConnect and get on with life. </li>
+<li>You only mentioned reading Excel files, but XLConnect will also write Excel files, including changing cell formatting. And it will do this from Linux or Mac, not just Win. </li>
+</ol>
+<p>XLConnect is somewhat new compared to other solutions so it is less frequently mentioned in blog posts and reference docs. For me it's been very useful. </p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/6100369" title="short permalink to this answer" class="short-link" id="link-post-6100369">share</a><span class="lsep">|</span><a href="/posts/6100369/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2011-05-23 16:51:33Z" class="relativetime">May 23 '11 at 16:51</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/37751/jd-long"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/GiarY.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/37751/jd-long">JD Long</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 32,628" dir="ltr">32.6k</span><span title="40 gold badges"><span class="badge1"></span><span class="badgecount">40</span></span><span title="160 silver badges"><span class="badge2"></span><span class="badgecount">160</span></span><span title="235 bronze badges"><span class="badge3"></span><span class="badgecount">235</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-6100369" class="comments  dno">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr>
+<td></td>
+<td></td>
+</tr></tbody></table>
+</div>
+
+        <div id="comments-link-6100369" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="14456281"></a>
+<div id="answer-14456281" class="answer" data-answerid="14456281" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="14456281"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">27</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p><strong>EDIT 2015-October:</strong> As others have commented here the <a href="https://cran.r-project.org/web/packages/openxlsx/" rel="noreferrer"><code>openxlsx</code></a> and <a href="https://cran.r-project.org/web/packages/readxl/index.html" rel="noreferrer"><code>readxl</code></a> packages are by far faster than the <code>xlsx</code> package and actually manage to open larger Excel files (&gt;1500 rows &amp; &gt; 120 columns). @MichaelChirico demonstrates that <code>readxl</code> is better when speed is preferred and <code>openxlsx</code> replaces the functionality provided by the <code>xlsx</code> package. If you are looking for a package to read, write, and modify Excel files in 2015, pick the <code>openxlsx</code> instead of <code>xlsx</code>.</p>
+
+<p><strong>Pre-2015:</strong> I have used <a href="http://cran.r-project.org/web/packages/xlsx/index.html" rel="noreferrer"><code>xlsx</code>package</a>. It changed my workflow with Excel and R. No more annoying pop-ups asking, if I am sure that I want to save my Excel sheet in .txt format. The package also writes Excel files.</p>
+
+<p>However, I find <code>read.xlsx</code> function slow, when opening large Excel files. <code>read.xlsx2</code> function is considerably faster, but does not quess the vector class of data.frame columns. You have to use <code>colClasses</code> command to specify desired column classes, if you use <code>read.xlsx2</code> function. Here is a practical example:</p>
+
+<p><code>read.xlsx("filename.xlsx", 1)</code> reads your file and makes the data.frame column classes nearly useful, but is very slow for large data sets. Works also for <code>.xls</code> files.</p>
+
+<p><code>read.xlsx2("filename.xlsx", 1)</code> is faster, but you will have to define column classes manually. A shortcut is to run the command twice (see the example below). <code>character</code> specification converts your columns to factors. Use <code>Date</code>and <code>POSIXct</code> options for time.</p>
+
+<pre><code>coln &lt;- function(x){y &lt;- rbind(seq(1,ncol(x))); colnames(y) &lt;- colnames(x)
+rownames(y) &lt;- "col.number"; return(y)} # A function to see column numbers
+
+data &lt;- read.xlsx2("filename.xlsx", 1) # Open the file 
+
+coln(data)    # Check the column numbers you want to have as factors
+
+x &lt;- 3 # Say you want columns 1-3 as factors, the rest numeric
+
+data &lt;- read.xlsx2("filename.xlsx", 1, colClasses= c(rep("character", x),
+rep("numeric", ncol(data)-x+1)))
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/14456281" title="short permalink to this answer" class="short-link" id="link-post-14456281">share</a><span class="lsep">|</span><a href="/posts/14456281/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/14456281/revisions" title="show all edits to this post">edited <span title="2015-10-26 16:07:12Z" class="relativetime">Oct 26 '15 at 16:07</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2013-01-22 10:23:01Z" class="relativetime">Jan 22 '13 at 10:23</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1082004/mikko"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/IonTz.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1082004/mikko">Mikko</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">3,157</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="28 silver badges"><span class="badge2"></span><span class="badgecount">28</span></span><span title="60 bronze badges"><span class="badge3"></span><span class="badgecount">60</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-14456281" class="comments  dno">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr>
+<td></td>
+<td></td>
+</tr></tbody></table>
+</div>
+
+        <div id="comments-link-14456281" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="29108475"></a>
+<div id="answer-29108475" class="answer" data-answerid="29108475" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="29108475"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">25</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>And now there is <a href="https://github.com/hadley/readxl" rel="noreferrer">readxl</a>:</p>
+
+<blockquote>
+  <p>The readxl package makes it easy to get data out of Excel and into R.
+  Compared to the existing packages (e.g. gdata, xlsx, xlsReadWrite etc)
+  readxl has no external dependencies so it's easy to install and use on
+  all operating systems. It is designed to work with tabular data stored
+  in a single sheet.</p>
+  
+  <p>readxl is built on top of the libxls C library, which abstracts away
+  many of the complexities of the underlying binary format.</p>
+  
+  <p>It supports both the legacy .xls format and .xlsx</p>
+  
+  <p>readxl is available from CRAN, or you can install it from github with:</p>
+</blockquote>
+
+<pre><code># install.packages("devtools")
+devtools::install_github("hadley/readxl")
+</code></pre>
+
+<p>Usage</p>
+
+<pre><code>library(readxl)
+
+# read_excel reads both xls and xlsx files
+read_excel("my-old-spreadsheet.xls")
+read_excel("my-new-spreadsheet.xlsx")
+
+# Specify sheet with a number or name
+read_excel("my-spreadsheet.xls", sheet = "data")
+read_excel("my-spreadsheet.xls", sheet = 2)
+
+# If NAs are represented by something other than blank cells,
+# set the na argument
+read_excel("my-spreadsheet.xls", na = "NA")
+</code></pre>
+
+<p>Note that while the description says 'no external dependencies', it does require the <a href="http://cran.r-project.org/web/packages/Rcpp/" rel="noreferrer"><code>Rcpp</code> package</a>, which in turn requires Rtools (for Windows) or Xcode (for OSX), which <em>are</em> dependencies external to R. Though many people have them installed for other reasons.</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/29108475" title="short permalink to this answer" class="short-link" id="link-post-29108475">share</a><span class="lsep">|</span><a href="/posts/29108475/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/29108475/revisions" title="show all edits to this post">edited <span title="2015-04-30 02:53:49Z" class="relativetime">Apr 30 '15 at 2:53</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-03-17 19:54:32Z" class="relativetime">Mar 17 '15 at 19:54</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1036500/ben"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/wUrRD.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1036500/ben">Ben</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 26,561" dir="ltr">26.6k</span><span title="8 gold badges"><span class="badge1"></span><span class="badgecount">8</span></span><span title="73 silver badges"><span class="badge2"></span><span class="badgecount">73</span></span><span title="144 bronze badges"><span class="badge3"></span><span class="badgecount">144</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-29108475" class="comments ">
+		    <table><tbody data-remaining-comments-count="3" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-48761952" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Much faster than xlsx.  Read time are like read.xlsx2, but it infers types.</span>
+                    <U+2013><U+00A0><a href="/users/40744/steve-rowe" title="16,000 reputation" class="comment-user">Steve Rowe</a>
+                <span class="comment-date" dir="ltr"><span title="2015-05-19 18:45:06Z" class="relativetime-clean">May 19 '15 at 18:45</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-51403852" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@SteveRowe see new answer for some (attempted) objective benchmarks confirming this</span>
+                    <U+2013><U+00A0><a href="/users/3576984/michaelchirico" title="14,797 reputation" class="comment-user">MichaelChirico</a>
+                <span class="comment-date" dir="ltr"><span title="2015-07-30 21:18:16Z" class="relativetime-clean">Jul 30 '15 at 21:18</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-52148313" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Is there a way to read strings as factors using <code>read_excel</code>? I like the speed compared to <code>read.xlsx</code>, but having to then manually convert columns from characters to factors defeats the purpose.</span>
+                    <U+2013><U+00A0><a href="/users/4342901/coip" title="410 reputation" class="comment-user">coip</a>
+                <span class="comment-date" dir="ltr"><span title="2015-08-20 21:15:43Z" class="relativetime-clean">Aug 20 '15 at 21:15</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-52764400" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">+1 for the fact that it has no dependencies. I hate to have to install java. And I have tried it and it works very well for me.</span>
+                    <U+2013><U+00A0><a href="/users/1075374/bastian" title="1,655 reputation" class="comment-user">Bastian</a>
+                <span class="comment-date" dir="ltr"><span title="2015-09-08 06:43:36Z" class="relativetime-clean">Sep 8 '15 at 6:43</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-54119676" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">readxl and openxlsx are the best.   readxl is faster but it doesn't allow to write.  Anyway, none of them works well when trying to specify column classes/types.</span>
+                    <U+2013><U+00A0><a href="/users/425895/skan" title="2,184 reputation" class="comment-user">skan</a>
+                <span class="comment-date" dir="ltr"><span title="2015-10-15 17:55:51Z" class="relativetime-clean">Oct 15 '15 at 17:55</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-29108475" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh."></a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>3</b> more comments</a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="6099497"></a>
+<div id="answer-6099497" class="answer" data-answerid="6099497" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="6099497"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">19</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I've had good luck with <code>XLConnect</code>: <a href="http://cran.r-project.org/web/packages/XLConnect/index.html">http://cran.r-project.org/web/packages/XLConnect/index.html</a></p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/6099497" title="short permalink to this answer" class="short-link" id="link-post-6099497">share</a><span class="lsep">|</span><a href="/posts/6099497/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2011-05-23 15:39:56Z" class="relativetime">May 23 '11 at 15:39</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/415635/chase"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/86e267b09860368c0b4dea7ba7ee2f57?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/415635/chase">Chase</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 42,736" dir="ltr">42.7k</span><span title="9 gold badges"><span class="badge1"></span><span class="badgecount">9</span></span><span title="103 silver badges"><span class="badge2"></span><span class="badgecount">103</span></span><span title="145 bronze badges"><span class="badge3"></span><span class="badgecount">145</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-6099497" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr id="comment-69398321" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">In other SE networks this answer would be closed for being link-only.</span>
+                    <U+2013><U+00A0><a href="/users/3585386/luchonacho" title="914 reputation" class="comment-user">luchonacho</a>
+                <span class="comment-date" dir="ltr"><span title="2016-12-12 08:45:42Z" class="relativetime-clean">Dec 12 '16 at 8:45</span></span>
+                                                                            </div>
+                    </td>
+    </tr></tbody></table>
+</div>
+
+        <div id="comments-link-6099497" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="31734198"></a>
+<div id="answer-31734198" class="answer" data-answerid="31734198" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="31734198"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">17</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Given the proliferation of different ways to read an Excel file in <code>R</code> and the plethora of answers here, I thought I'd try to shed some light on which of the options mentioned here perform the best (in a few simple situations).</p>
+
+<p>I myself have been using <code>xlsx</code> since I started using <code>R</code>, for inertia if nothing else, and I recently noticed there doesn't seem to be any objective information about which package works better.</p>
+
+<p>Any benchmarking exercise is fraught with difficulties as some packages are sure to handle certain situations better than others, and a waterfall of other caveats.</p>
+
+<p>That said, I'm using a (reproducible) data set that I think is in a pretty common format (8 string fields, 3 numeric, 1 integer, 3 dates):</p>
+
+<pre><code>set.seed(51423)
+data.frame(
+  str1 = sample(sprintf("%010d", 1:NN)), #ID field 1
+  str2 = sample(sprintf("%09d", 1:NN)),  #ID field 2
+  #varying length string field--think names/addresses, etc.
+  str3 = 
+    replicate(NN, paste0(sample(LETTERS, sample(10:30, 1L), TRUE),
+                         collapse = "")),
+  #factor-like string field with 50 "levels"
+  str4 = sprintf("%05d", sample(sample(1e5, 50L), NN, TRUE)),
+  #factor-like string field with 17 levels, varying length
+  str5 = 
+    sample(replicate(17L, paste0(sample(LETTERS, sample(15:25, 1L), TRUE),
+                                 collapse = "")), NN, TRUE),
+  #lognormally distributed numeric
+  num1 = round(exp(rnorm(NN, mean = 6.5, sd = 1.5)), 2L),
+  #3 binary strings
+  str6 = sample(c("Y","N"), NN, TRUE),
+  str7 = sample(c("M","F"), NN, TRUE),
+  str8 = sample(c("B","W"), NN, TRUE),
+  #right-skewed integer
+  int1 = ceiling(rexp(NN)),
+  #dates by month
+  dat1 = 
+    sample(seq(from = as.Date("2005-12-31"), 
+               to = as.Date("2015-12-31"), by = "month"),
+           NN, TRUE),
+  dat2 = 
+    sample(seq(from = as.Date("2005-12-31"), 
+               to = as.Date("2015-12-31"), by = "month"),
+           NN, TRUE),
+  num2 = round(exp(rnorm(NN, mean = 6, sd = 1.5)), 2L),
+  #date by day
+  dat3 = 
+    sample(seq(from = as.Date("2015-06-01"), 
+               to = as.Date("2015-07-15"), by = "day"),
+           NN, TRUE),
+  #lognormal numeric that can be positive or negative
+  num3 = 
+    (-1) ^ sample(2, NN, TRUE) * round(exp(rnorm(NN, mean = 6, sd = 1.5)), 2L)
+)
+</code></pre>
+
+<p>I then wrote this to csv and opened in LibreOffice and saved it as an .xlsx file, then benchmarked 4 of the packages mentioned in this thread: <code>xlsx</code>, <code>openxlsx</code>, <code>readxl</code>, and <code>gdata</code>, using the default options (I also tried a version of whether or not I specify column types, but this didn't change the rankings).</p>
+
+<p>I'm excluding <code>RODBC</code> because I'm on Linux; <code>XLConnect</code> because it seems its primary purpose is not reading in single Excel sheets but importing entire Excel workbooks, so to put its horse in the race on only its reading capabilities seems unfair; and <code>xlsReadWrite</code> because it is no longer compatible with my version of <code>R</code> (seems to have been phased out).</p>
+
+<p>I then ran benchmarks with <code>NN=1000L</code> and <code>NN=25000L</code> (resetting the seed before each declaration of the <code>data.frame</code> above) to allow for differences with respect to Excel file size. Without further ado, here are the results I found:</p>
+
+<h2>1,000-Row Excel File</h2>
+
+<pre><code>benchmark1k &lt;-
+  microbenchmark(times = 100L,
+                 xlsx = {xlsx::read.xlsx2(fl, sheetIndex=1); invisible(gc())},
+                 openxlsx = {openxlsx::read.xlsx(fl); invisible(gc())},
+                 readxl = {readxl::read_excel(fl); invisible(gc())},
+                 gdata = {gdata::read.xls(fl); invisible(gc())})
+
+# Unit: milliseconds
+#      expr       min        lq      mean    median        uq       max neval
+#      xlsx  194.1958  199.2662  214.1512  201.9063  212.7563  354.0327   100
+#  openxlsx  142.2074  142.9028  151.9127  143.7239  148.0940  255.0124   100
+#    readxl  122.0238  122.8448  132.4021  123.6964  130.2881  214.5138   100
+#     gdata 2004.4745 2042.0732 2087.8724 2062.5259 2116.7795 2425.6345   100
+</code></pre>
+
+<p>So <code>readxl</code> is the winner, with <code>openxlsx</code> competitive and <code>gdata</code> a clear loser. Taking each measure relative to the column minimum:</p>
+
+<pre><code>#       expr   min    lq  mean median    uq   max
+# 1     xlsx  1.59  1.62  1.62   1.63  1.63  1.65
+# 2 openxlsx  1.17  1.16  1.15   1.16  1.14  1.19
+# 3   readxl  1.00  1.00  1.00   1.00  1.00  1.00
+# 4    gdata 16.43 16.62 15.77  16.67 16.25 11.31
+</code></pre>
+
+<p>We see my own favorite, <code>xlsx</code> is 60% slower than <code>readxl</code>.</p>
+
+<h2>25,000-Row Excel File</h2>
+
+<p>Due to the amount of time it takes, I only did 20 repetitions on the larger file, otherwise the commands were identical. Here's the raw data:</p>
+
+<pre><code># Unit: milliseconds
+#      expr        min         lq       mean     median         uq        max neval
+#      xlsx  4451.9553  4539.4599  4738.6366  4762.1768  4941.2331  5091.0057    20
+#  openxlsx   962.1579   981.0613   988.5006   986.1091   992.6017  1040.4158    20
+#    readxl   341.0006   344.8904   347.0779   346.4518   348.9273   360.1808    20
+#     gdata 43860.4013 44375.6340 44848.7797 44991.2208 45251.4441 45652.0826    20
+</code></pre>
+
+<p>Here's the relative data:</p>
+
+<pre><code>#       expr    min     lq   mean median     uq    max
+# 1     xlsx  13.06  13.16  13.65  13.75  14.16  14.13
+# 2 openxlsx   2.82   2.84   2.85   2.85   2.84   2.89
+# 3   readxl   1.00   1.00   1.00   1.00   1.00   1.00
+# 4    gdata 128.62 128.67 129.22 129.86 129.69 126.75
+</code></pre>
+
+<p>So <code>readxl</code> is the clear winner when it comes to speed. <code>gdata</code> better have something else going for it, as it's painfully slow in reading Excel files, and this problem is only exacerbated for larger tables.</p>
+
+<p>Two draws of <code>openxlsx</code> are 1) its extensive other methods (<code>readxl</code> is designed to do <em>only</em> one thing, which is probably part of why it's so fast), especially its <code>write.xlsx</code> function, and 2) (more of a drawback for <code>readxl</code>) the <code>col_types</code> argument in <code>readxl</code> only (as of this writing) accepts some nonstandard <code>R</code>: <code>"text"</code> instead of <code>"character"</code> and <code>"date"</code> instead of <code>"Date"</code>.</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/31734198" title="short permalink to this answer" class="short-link" id="link-post-31734198">share</a><span class="lsep">|</span><a href="/posts/31734198/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/31734198/revisions" title="show all edits to this post">edited <span title="2016-07-26 20:38:41Z" class="relativetime">Jul 26 '16 at 20:38</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2015-07-30 21:16:06Z" class="relativetime">Jul 30 '15 at 21:16</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/3576984/michaelchirico"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/HRCYl.png?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/3576984/michaelchirico">MichaelChirico</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 14,797" dir="ltr">14.8k</span><span title="6 gold badges"><span class="badge1"></span><span class="badgecount">6</span></span><span title="44 silver badges"><span class="badge2"></span><span class="badgecount">44</span></span><span title="88 bronze badges"><span class="badge3"></span><span class="badgecount">88</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-31734198" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-53021367" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">It would be great if you also add the benchmark for XLConnect. Also comment that readxl it's not able to write. xlsx and openxlsx don't work properly with the col_types or colClasses option.</span>
+                    <U+2013><U+00A0><a href="/users/425895/skan" title="2,184 reputation" class="comment-user">skan</a>
+                <span class="comment-date" dir="ltr"><span title="2015-09-15 10:36:53Z" class="relativetime-clean">Sep 15 '15 at 10:36</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-53027995" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@skan I initially ran some tests with <code>XLConnect</code> but it is very slow; I believe <code>readxl</code>'s drawbacks were sufficiently covered in my final paragraph; and I have no similar experience to yours with <code>xlsx</code> or <code>openxlsx</code> as I regularly use both to specify types.</span>
+                    <U+2013><U+00A0><a href="/users/3576984/michaelchirico" title="14,797 reputation" class="comment-user">MichaelChirico</a>
+                <span class="comment-date" dir="ltr"><span title="2015-09-15 13:21:06Z" class="relativetime-clean">Sep 15 '15 at 13:21</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-31734198" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="6099934"></a>
+<div id="answer-6099934" class="answer" data-answerid="6099934" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="6099934"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">13</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<pre><code>library(RODBC)
+file.name &lt;- "file.xls"
+sheet.name &lt;- "Sheet Name"
+
+## Connect to Excel File Pull and Format Data
+excel.connect &lt;- odbcConnectExcel(file.name)
+dat &lt;- sqlFetch(excel.connect, sheet.name, na.strings=c("","-"))
+odbcClose(excel.connect)
+</code></pre>
+
+<p>Personally, I like RODBC and can recommend it.</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/6099934" title="short permalink to this answer" class="short-link" id="link-post-6099934">share</a><span class="lsep">|</span><a href="/posts/6099934/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2011-05-23 16:12:12Z" class="relativetime">May 23 '11 at 16:12</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/170352/brandon-bertelsen"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/TFkh5.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/170352/brandon-bertelsen">Brandon Bertelsen</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 22,003" dir="ltr">22k</span><span title="23 gold badges"><span class="badge1"></span><span class="badgecount">23</span></span><span title="103 silver badges"><span class="badge2"></span><span class="badgecount">103</span></span><span title="198 bronze badges"><span class="badge3"></span><span class="badgecount">198</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-6099934" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-7072205" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">7</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Caveat: ODBC can sometimes be tricky to get running on platforms other than Windows.</span>
+                    <U+2013><U+00A0><a href="/users/37751/jd-long" title="32,628 reputation" class="comment-user">JD Long</a>
+                <span class="comment-date" dir="ltr"><span title="2011-05-23 16:52:20Z" class="relativetime-clean">May 23 '11 at 16:52</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-8447744" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@JD Long and even on windows it's a PITA. No sexy time for me and ODBC on 64 bit W7...</span>
+                    <U+2013><U+00A0><a href="/users/322912/roman-lu%c5%a1trik" title="41,948 reputation" class="comment-user">Roman Lu<U+0161>trik</a>
+                <span class="comment-date" dir="ltr"><span title="2011-08-15 07:38:10Z" class="relativetime-clean">Aug 15 '11 at 7:38</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-28442623" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Loading required package: RODBC Error in odbcConnectExcel(file.name) :    odbcConnectExcel is only usable with 32-bit Windows</span>
+                    <U+2013><U+00A0><a href="/users/182378/andrekos" title="1,418 reputation" class="comment-user">andrekos</a>
+                <span class="comment-date" dir="ltr"><span title="2013-10-07 07:20:29Z" class="relativetime-clean">Oct 7 '13 at 7:20</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-6099934" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="28352769"></a>
+<div id="answer-28352769" class="answer" data-answerid="28352769" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="28352769"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">7</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Just gave the package <code>openxlsx</code> a try today. It worked really well (and fast). </p>
+
+<p><a href="http://cran.r-project.org/web/packages/openxlsx/index.html" rel="noreferrer">http://cran.r-project.org/web/packages/openxlsx/index.html</a></p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/28352769" title="short permalink to this answer" class="short-link" id="link-post-28352769">share</a><span class="lsep">|</span><a href="/posts/28352769/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2015-02-05 19:49:28Z" class="relativetime">Feb 5 '15 at 19:49</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/2478949/chris"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/n8zv4.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/2478949/chris">Chris</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1,431</span><span title="5 gold badges"><span class="badge1"></span><span class="badgecount">5</span></span><span title="19 silver badges"><span class="badge2"></span><span class="badgecount">19</span></span><span title="36 bronze badges"><span class="badge3"></span><span class="badgecount">36</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-28352769" class="comments  dno">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr>
+<td></td>
+<td></td>
+</tr></tbody></table>
+</div>
+
+        <div id="comments-link-28352769" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="6099571"></a>
+<div id="answer-6099571" class="answer" data-answerid="6099571" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="6099571"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">5</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Another solution is the <a href="http://cran.r-project.org/web/packages/xlsReadWrite/index.html" rel="nofollow"><code>xlsReadWrite</code></a> package, which doesn't require additional installs but does require you download the additional shlib before you use it the first time by :</p>
+
+<pre><code>require(xlsReadWrite)
+xls.getshlib()
+</code></pre>
+
+<p>Forgetting this can cause utter frustration. Been there and all that...</p>
+
+<p>On a sidenote : You might want to consider converting to a text-based format (eg csv) and read in from there. This for a number of reasons :</p>
+
+<ul>
+<li><p>whatever your solution (RODBC, gdata, xlsReadWrite) some strange things can happen when your data gets converted. Especially dates can be rather cumbersome. The <code>HFWutils</code> package has some tools to deal with EXCEL dates (per @Ben Bolker's comment).</p></li>
+<li><p>if you have large sheets, reading in text files is faster than reading in from EXCEL.</p></li>
+<li><p>for .xls and .xlsx files, different solutions might be necessary. EG the xlsReadWrite package currently does not support .xlsx AFAIK. <code>gdata</code> requires you to install additional perl libraries for .xlsx support. <a href="http://cran.r-project.org/web/packages/xlsx/index.html" rel="nofollow"><code>xlsx</code></a> package can handle extensions of the same name.</p></li>
+</ul>
+</div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/6099571" title="short permalink to this answer" class="short-link" id="link-post-6099571">share</a><span class="lsep">|</span><a href="/posts/6099571/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/6099571/revisions" title="show all edits to this post">edited <span title="2012-04-17 08:22:39Z" class="relativetime">Apr 17 '12 at 8:22</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/322912/roman-lu%c5%a1trik"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/ao2Pm.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/322912/roman-lu%c5%a1trik">Roman Lu<U+0161>trik</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 41,948" dir="ltr">41.9k</span><span title="15 gold badges"><span class="badge1"></span><span class="badgecount">15</span></span><span title="88 silver badges"><span class="badge2"></span><span class="badgecount">88</span></span><span title="140 bronze badges"><span class="badge3"></span><span class="badgecount">140</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2011-05-23 15:44:16Z" class="relativetime">May 23 '11 at 15:44</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/428790/joris-meys"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/5e9efaa7a55e807aa53acfe40b68be46?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/428790/joris-meys">Joris Meys</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 68,841" dir="ltr">68.8k</span><span title="18 gold badges"><span class="badge1"></span><span class="badgecount">18</span></span><span title="160 silver badges"><span class="badge2"></span><span class="badgecount">160</span></span><span title="222 bronze badges"><span class="badge3"></span><span class="badgecount">222</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-6099571" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-7073669" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">the <code>HFWutils</code> package has some tools for dealing with Excel date formats ...</span>
+                    <U+2013><U+00A0><a href="/users/190277/ben-bolker" title="113,057 reputation" class="comment-user">Ben Bolker</a>
+                <span class="comment-date" dir="ltr"><span title="2011-05-23 18:30:39Z" class="relativetime-clean">May 23 '11 at 18:30</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-7075993" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Ben Thx for the tip, I'll include it in my answer. I didn't try to be complete though, as the wiki page the accepted answer links to is already rather complete. But it doesn't mention the HFWutils package.</span>
+                    <U+2013><U+00A0><a href="/users/428790/joris-meys" title="68,841 reputation" class="comment-user">Joris Meys</a>
+                <span class="comment-date" dir="ltr"><span title="2011-05-23 21:00:43Z" class="relativetime-clean">May 23 '11 at 21:00</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-41205711" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">-1; See my answer.  TL:DR:  Excel does not save a full precision dataset to csv (or the clipboard).  Only the visible values are retained.</span>
+                    <U+2013><U+00A0><a href="/users/169095/russellpierce" title="1,963 reputation" class="comment-user">russellpierce</a>
+                <span class="comment-date" dir="ltr"><span title="2014-10-08 20:03:23Z" class="relativetime-clean">Oct 8 '14 at 20:03</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-6099571" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="26265428"></a>
+<div id="answer-26265428" class="answer" data-answerid="26265428" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="26265428"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">4</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>As noted above in many of the other answers, there are many good packages that connect to the XLS/X file and get the data in a reasonable way.  However, you should be warned that under no circumstances should you use the clipboard (or a .csv) file to retrieve data from Excel.  To see why, enter <code>=1/3</code> into a cell in excel.  Now, reduce the number of decimal points visible to you to two.  Then copy and paste the data into R.  Now save the CSV.  You'll notice in both cases Excel has helpfully only kept the data that was visible to you through the interface and you've lost all of the precision in your actual source data.</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/26265428" title="short permalink to this answer" class="short-link" id="link-post-26265428">share</a><span class="lsep">|</span><a href="/posts/26265428/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2014-10-08 20:02:10Z" class="relativetime">Oct 8 '14 at 20:02</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/169095/russellpierce"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/9Z5y3.png?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/169095/russellpierce">russellpierce</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1,963</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="16 silver badges"><span class="badge2"></span><span class="badgecount">16</span></span><span title="33 bronze badges"><span class="badge3"></span><span class="badgecount">33</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-26265428" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-51739332" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I'd love to know who thought numeric fidelity wasn't relevant/important.</span>
+                    <U+2013><U+00A0><a href="/users/169095/russellpierce" title="1,963 reputation" class="comment-user">russellpierce</a>
+                <span class="comment-date" dir="ltr"><span title="2015-08-10 06:40:43Z" class="relativetime-clean">Aug 10 '15 at 6:40</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-69759845" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Good warning. However it depends on the package you use. some are not falling into this trap.</span>
+                    <U+2013><U+00A0><a href="/users/482711/rockscience" title="5,245 reputation" class="comment-user">RockScience</a>
+                <span class="comment-date" dir="ltr"><span title="2016-12-22 08:55:28Z" class="relativetime-clean">Dec 22 '16 at 8:55</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-69778091" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@RocketScience This is a fundamental design choice in the CSV export by Excel. Do you have an example of a package that uses the clipboard that doesn't have this issue? Packages directly parsing the xls xlsx file would be prone to not fall into this trap. Thus, the specific scoping of my warning.</span>
+                    <U+2013><U+00A0><a href="/users/169095/russellpierce" title="1,963 reputation" class="comment-user">russellpierce</a>
+                <span class="comment-date" dir="ltr"><span title="2016-12-22 16:43:56Z" class="relativetime-clean">Dec 22 '16 at 16:43</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-69791254" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">on Unix you can try <code>gnumeric::read.gnumeric.sheet</code>. On Windows I am not 100% sure but I think <code>gdata::read.xls</code> should also work well (need to install perl though)</span>
+                    <U+2013><U+00A0><a href="/users/482711/rockscience" title="5,245 reputation" class="comment-user">RockScience</a>
+                <span class="comment-date" dir="ltr"><span title="2016-12-23 02:07:48Z" class="relativetime-clean">Dec 23 '16 at 2:07</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-69791324" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@RockScience Respectfully, gdata::read.xls doesn't operate on clipboard data (unless you go out of your way) and gnumeric isn't Excel.  So, absent extraordinary proof, my warning stands.  There are so many other good options in response to this question - let's hope that people use those instead.</span>
+                    <U+2013><U+00A0><a href="/users/169095/russellpierce" title="1,963 reputation" class="comment-user">russellpierce</a>
+                <span class="comment-date" dir="ltr"><span title="2016-12-23 02:14:12Z" class="relativetime-clean">Dec 23 '16 at 2:14</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-26265428" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="26609662"></a>
+<div id="answer-26609662" class="answer" data-answerid="26609662" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="26609662"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Expanding on the answer provided by @Mikko you can use a neat trick to speed things up without having to "know" your column classes ahead of time. Simply use <code>read.xlsx</code> to grab a limited number of records to determine the classes and then followed it up with <code>read.xlsx2</code></p>
+
+<p><strong>Example</strong></p>
+
+<pre><code># just the first 50 rows should do...
+df.temp &lt;- read.xlsx("filename.xlsx", 1, startRow=1, endRow=50) 
+df.real &lt;- read.xlsx2("filename.xlsx", 1, 
+                      colClasses=as.vector(sapply(df.temp, mode)))
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/26609662" title="short permalink to this answer" class="short-link" id="link-post-26609662">share</a><span class="lsep">|</span><a href="/posts/26609662/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2014-10-28 13:31:36Z" class="relativetime">Oct 28 '14 at 13:31</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/2572423/jasonaizkalns"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/7565b54f884852b2394640051e8332e9?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/2572423/jasonaizkalns">JasonAizkalns</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">8,236</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="21 silver badges"><span class="badge2"></span><span class="badgecount">21</span></span><span title="62 bronze badges"><span class="badge3"></span><span class="badgecount">62</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-26609662" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-43006015" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">"Error: object 'read.xlsx' not found". Nice answer.</span>
+                    <U+2013><U+00A0><a href="/users/150050/aaa90210" title="2,754 reputation" class="comment-user">aaa90210</a>
+                <span class="comment-date" dir="ltr"><span title="2014-12-03 09:08:32Z" class="relativetime-clean">Dec 3 '14 at 9:08</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-50829152" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Your solution returns <code>numeric</code> for <code>factors</code> on my computer. <code>read.xlsx</code> uses <code>character</code> in <code>readColumns</code> function to specify factors. I am sure there is a more elegant way of getting factors as characters, but here is a modified version of your function that works: <code>df.real &lt;- read.xlsx2("filename.xlsx", 1, colClasses=gsub("factor", "character", as.vector(sapply(df.temp, class))))</code>.</span>
+                    <U+2013><U+00A0><a href="/users/1082004/mikko" title="3,157 reputation" class="comment-user">Mikko</a>
+                <span class="comment-date" dir="ltr"><span title="2015-07-15 11:42:33Z" class="relativetime-clean">Jul 15 '15 at 11:42</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-77255666" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This only works to the extent that column type can be adequately determined by the first row.  Usually one parses more than the first row to make that determination.  The answer could be improved to address aaa90210's comment by naming the package these functions come from.</span>
+                    <U+2013><U+00A0><a href="/users/169095/russellpierce" title="1,963 reputation" class="comment-user">russellpierce</a>
+                <span class="comment-date" dir="ltr"><span title="2017-07-17 11:51:08Z" class="relativetime-clean">Jul 17 at 11:51</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-26609662" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+                    <div class="question-status">
+        <h2>                    <b>protected</b> by <a href="/users/19679/brad-larson">Brad Larson</a><span class="mod-flair" title="moderator"><U+2666></span> <span dir="ltr"><span title="2016-07-26 17:53:13Z" class="relativetime">Jul 26 '16 at 17:53</span></span>
+</h2>
+        <p>
+Thank you for your interest in this question. 
+Because it has attracted low-quality or spam answers that had to be removed, posting an answer now requires 10 <a href="/help/whats-reputation">reputation</a> on this site (the <a href="/help/privileges/new-user">association bonus does not count</a>).
+<br><br>
+Would you like to answer one of these <a href="/unanswered?fromProtectedNotice=true">unanswered questions</a> instead?
+</p>
+    </div>
+
+
+
+
+
+                        <h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?                            Browse other questions tagged <a href="/questions/tagged/excel" class="post-tag" title="show questions tagged 'excel'" rel="tag">excel</a> <a href="/questions/tagged/r" class="post-tag" title="show questions tagged 'r'" rel="tag">r</a> <a href="/questions/tagged/r-faq" class="post-tag" title="show questions tagged 'r-faq'" rel="tag">r-faq</a>  or <a href="/questions/ask">ask your own question</a>.                        </h2>
+            </div>
+        </div>
+                <div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">
+                            <div class="module question-stats">
+                    <table id="qinfo">
+<tr>
+<td>
+                                <p class="label-key">asked</p>
+                            </td>
+                            <td style="padding-left: 10px">
+                                <p class="label-key" title="2011-05-23 15:18:08Z"><b>6 years, 4 months ago</b></p>
+                            </td>
+                        </tr>
+<tr>
+<td>
+                                <p class="label-key">viewed</p>
+                            </td>
+
+                            <td style="padding-left: 10px">
+                                <p class="label-key">
+                                    <b>131,619 times</b>
+                                </p>
+                            </td>
+                        </tr>
+<tr>
+<td>
+                                    <p class="label-key">active</p>
+                                </td>
+                                <td style="padding-left: 10px">
+                                    <p class="label-key"><b><a href="?lastactivity" class="lastactivity-link" title="2017-09-08 18:15:21Z">1 month ago</a></b></p>
+                                </td>
+                            </tr>
+</table>
+</div>
+                        
+            <div id="dfp-tsb" class="everyonelovesstackoverflow"></div>
+            <div id="hireme"></div>
+                <script>var clc={options:{svc:'dfp'}};</script><script>;window.clc=window.clc||{},window.clc.init=window.clc.init||function(a){var b=window,c=b.document;try{if("function"!=typeof[].indexOf||!window.addEventListener||!a.allowed)return;var d=new RegExp(a.allowed);if(!d.test(location.hostname))return;if(b.clc.options)for(var e in b.clc.options)a[e]=b.clc.options[e];b.clc.cmd="undefined"==typeof b.clc.cmd?[]:b.clc.cmd,b.clc.autoload=b.clc.autoload||function(){"function"==typeof b.clc.load?b.clc.load():b.clc.cmd.push(function(a){a.load()})};var f=a.wv;if(c.hidden&&f)return void c.addEventListener("visibilitychange",function b(){c.hidden||(window.clc.init(a),c.removeEventListener("visibilitychange",b))});b.clc.options=a,a.al&&b.clc.autoload();var g=c.createElement("script");g.async=!0,g.src=a.lib,c.body.appendChild(g)}catch(a){}},window.clc.loadDisplayAds=window.clc.loadDisplayAds||function(){function a(b){b.style.height=b.style.maxHeight=b.style.minHeight="auto",b.style.display="IFRAME"===b.tagName?"none":"block",[].forEach.call(b.children,a)}function b(a){new Image().src="https://"+e+"/stalled.gif?"+a}var c=window,d=c.document,e="clc.stackoverflow.com",f={slots:{lb:[[728,90]],mlb:[[728,90]],sb:[[300,250],[300,600]],"tag-sponsorship":[[730,135]]},ids:{"dfp-tlb":"lb","dfp-mlb":"mlb","dfp-tsb":"sb","dfp-tag":"tag-sponsorship","clc-tlb":"lb","clc-mlb":"mlb","clc-tsb":"sb"}},g=/^\/tags\//.test(location.pathname)||/^\/questions\/tagged\//.test(location.pathname)?"tag-pages":"question-pages",h=location.hostname;/^clc\./.test(location.hostname)&&(h="test/dev.stackoverflow.com");return function(e){var i=(e&&0<e.length?e:Object.keys(f.ids)).map(function(a){return d.getElementById(a)}).filter(function(a){return!!a&&/^\s*$/.test(a.innerHTML)}).map(function(a){return a.id});if(0!==i.length){c.googletag=c.googletag||{},c.googletag.cmd=c.googletag.cmd||[],c.googletag.cmd.push(function(){var e=c.googletag,j=d.createElement("div");j.className="adsbox",j.id="clc-abd",j.style.position="absolute",j.style.pointerEvents="none",j.innerHTML="&nbsp;",d.body.appendChild(j);var k=e.pubads();k.enableSingleRequest(),k.addEventListener("slotRenderEnded",function(c){var e=c.serviceName,f=c.slot,g=c.lineItemId;try{var h=f.getSlotElementId(),i=[];h||i.push("id=0");var j=d.getElementById(h);if(!h||j?j.hasAttribute("data-clc-stalled")&&i.push("st=1"):i.push("el=0"),0!==i.length)return void b(i.join("&"));-1===[4385506061,4386578282,4386579572].indexOf(g)?j.setAttribute("data-clc-prefilled","true"):a(j),j.setAttribute("data-clc-ready","true")}catch(a){var k=d.getElementById("dfp-tsb")||d.getElementById("clc-tsb");k&&k.setAttribute("data-clc-ready","true"),b("e=1")}});var l=c.dfp_targeting||{};l&&Object.keys(l).forEach(function(a){e.pubads().setTargeting(a,l[a])});for(var m=0,n=i;m<n.length;m++){var o=n[m],p=f.ids[o],q=f.slots[p],r="/"+"248424177"+"/"+h+"/"+p+"/"+g,s=e.defineSlot(r,q,o);("tag-sponsorship"===p||"sb"==p)&&s.setCollapseEmptyDiv(!0,!0),s.addService(k),!1}e.enableServices();for(var o,t=0,u=i;t<u.length;t++)o=u[t],e.display(o)});var j=d.createElement("script");j.async=!0,j.src="https://www.googletagservices.com/tag/js/gpt.js",document.body.appendChild(j)}}}(),window.clc.init.call(null, {"lib":"https://cdn.sstatic.net/clc/clc.min.js?v=f7d8d49c545b","u":"https://clc.stackoverflow.com/markup.js","wa":true,"kt":2000,"tto":true,"h":"clc.stackoverflow.com","allowed":"^(((talent\\.)?stackoverflow)|(blog\\.codinghorror)|(serverfault|askubuntu)|([^\\.]+\\.stackexchange))\\.com$","wv":true,"al":false});</script><script>
+window.clc_request='AseIdBNQFNUIAAAAACsRXQACAAAAAgAAAAAPAAAAfGV4Y2VsfHJ8ci1mYXF8AMPKMgpeJBdFCNs';                    clc.autoload();
+                var dfp_targeting={Registered:['false'],'so-tag':['excel','r','r-faq']};                                    clc.loadDisplayAds();
+            </script><div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+
+<div class="spacer">
+	<a href="/q/19840123" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">-3</div>
+	</a>
+	<a href="/questions/19840123/reading-a-column-of-an-excel-file-line-by-line?noredirect=1" class="question-hyperlink">reading a column of an excel file line by line</a>
+</div>
+<div class="spacer">
+	<a href="/q/13019567" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="/questions/13019567/what-kind-of-files-is-suitable-to-be-read-in-r?noredirect=1" class="question-hyperlink">what kind of files is suitable to be read in R</a>
+</div>
+<div class="spacer">
+	<a href="/q/27681635" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">-1</div>
+	</a>
+	<a href="/questions/27681635/how-can-i-load-my-excel-dataset-into-r?noredirect=1" class="question-hyperlink">How can I load my Excel dataset into R</a>
+</div>
+<div class="spacer">
+	<a href="/q/40637403" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="/questions/40637403/why-can-i-not-load-a-xlsx-file-in-rstudio?noredirect=1" class="question-hyperlink">Why can I not load a .xlsx file in Rstudio?</a>
+</div>
+<div class="spacer">
+	<a href="/q/41550162" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="/questions/41550162/signaling-pathway-impact-analysis-spia-package-for-r?noredirect=1" class="question-hyperlink">Signaling Pathway Impact Analysis (SPIA) package for R</a>
+</div>
+<div class="spacer">
+	<a href="/q/7049272" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">64</div>
+	</a>
+	<a href="/questions/7049272/importing-excel-files-into-r-xlsx-or-xls?noredirect=1" class="question-hyperlink">Importing Excel files into R, xlsx or xls</a>
+</div>
+<div class="spacer">
+	<a href="/q/3445316" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">87</div>
+	</a>
+	<a href="/questions/3445316/factors-in-r-more-than-an-annoyance?noredirect=1" class="question-hyperlink">Factors in R: more than an annoyance?</a>
+</div>
+<div class="spacer">
+	<a href="/q/19147884" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">47</div>
+	</a>
+	<a href="/questions/19147884/importing-a-big-xlsx-file-into-r?noredirect=1" class="question-hyperlink">Importing a big xlsx file into R?</a>
+</div>
+<div class="spacer">
+	<a href="/q/5568847" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">12</div>
+	</a>
+	<a href="/questions/5568847/how-to-open-csv-file-in-r-when-r-says-no-such-file-or-directory?noredirect=1" class="question-hyperlink">How to open CSV file in R when R says Ågno such file or directoryÅh?</a>
+</div>
+<div class="spacer">
+	<a href="/q/12625481" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">12</div>
+	</a>
+	<a href="/questions/12625481/memoryerror-in-r-while-read-xlsx?noredirect=1" class="question-hyperlink">MemoryError in R while read.xlsx</a>
+</div>					<div class="spacer more">
+				<a href="/questions/linked/6099243">see more linked questionsÅc</a>
+			</div>
+	</div>
+</div>
+
+                <div class="module sidebar-related">
+                    <h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer">
+<a href="/q/151005" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">1388</div></a><a href="/questions/151005/create-excel-xls-and-xlsx-file-from-c-sharp" class="question-hyperlink">Create Excel (.XLS and .XLSX) file from C#</a>
+</div>
+<div class="spacer">
+<a href="/q/1299871" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">781</div></a><a href="/questions/1299871/how-to-join-merge-data-frames-inner-outer-left-right" class="question-hyperlink">How to join (merge) data frames (inner, outer, left, right)?</a>
+</div>
+<div class="spacer">
+<a href="/q/1474081" title="Vote score (upvotes - downvotes)"><div class="answer-votes large">274</div></a><a href="/questions/1474081/how-do-i-install-an-r-package-from-source" class="question-hyperlink">How do I install an R package from source?</a>
+</div>
+<div class="spacer">
+<a href="/q/1727772" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">394</div></a><a href="/questions/1727772/quickly-reading-very-large-tables-as-dataframes-in-r" class="question-hyperlink">Quickly reading very large tables as dataframes in R</a>
+</div>
+<div class="spacer">
+<a href="/q/2564258" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">395</div></a><a href="/questions/2564258/plot-two-graphs-in-same-plot-in-r" class="question-hyperlink">Plot two graphs in same plot in R</a>
+</div>
+<div class="spacer">
+<a href="/q/3505701" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">815</div></a><a href="/questions/3505701/grouping-functions-tapply-by-aggregate-and-the-apply-family" class="question-hyperlink">Grouping functions (tapply, by, aggregate) and the *apply family</a>
+</div>
+<div class="spacer">
+<a href="/q/4605206" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">560</div></a><a href="/questions/4605206/drop-data-frame-columns-by-name" class="question-hyperlink">Drop data frame columns by name</a>
+</div>
+<div class="spacer">
+<a href="/q/4862178" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">516</div></a><a href="/questions/4862178/remove-rows-with-nas-missing-values-in-data-frame" class="question-hyperlink">Remove rows with NAs (missing values) in data.frame</a>
+</div>
+<div class="spacer">
+<a href="/q/5963269" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">1996</div></a><a href="/questions/5963269/how-to-make-a-great-r-reproducible-example" class="question-hyperlink">How to make a great R reproducible example?</a>
+</div>
+<div class="spacer">
+<a href="/q/19414605" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">16</div></a><a href="/questions/19414605/export-data-from-r-to-excel" class="question-hyperlink">Export data from R to Excel</a>
+</div>
+                    </div>
+                </div>
+
+<div id="hot-network-questions" class="module tex2jax_ignore">
+    <h4>
+        <a href="https://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+<li>
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div>
+<a href="https://worldbuilding.stackexchange.com/questions/94950/a-fruit-that-electrocutes-you" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    A fruit that electrocutes you
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-gamedev" title="Game Development Stack Exchange"></div>
+<a href="https://gamedev.stackexchange.com/questions/149541/when-is-the-time-to-consider-performance" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:53 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When is the time to consider performance?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div>
+<a href="https://academia.stackexchange.com/questions/97383/appropriateness-of-dedicating-my-thesis-to-a-jewish-mathematician-who-died-in-a" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Appropriateness of dedicating my thesis to a Jewish mathematician who died in a concentration camp
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div>
+<a href="https://mathematica.stackexchange.com/questions/157865/how-can-i-code-a-smart-version-of-chop" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can I code a "smart" version of Chop?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div>
+<a href="https://academia.stackexchange.com/questions/97334/should-one-avoid-using-the-phrase-note-that-in-math-writings" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Should one avoid using the phrase "note that" in math writings?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div>
+<a href="https://physics.stackexchange.com/questions/361679/why-do-ballpoint-pens-write-better-on-pages-that-have-pages-below-them" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why do ballpoint pens write better on pages that have pages below them?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-history" title="History Stack Exchange"></div>
+<a href="https://history.stackexchange.com/questions/41021/avoid-sleeping-on-your-back-breathe-in-toilet-smells-were-seen-as-precauti" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:324 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    ÅeAvoid sleeping on your backÅf &amp; Åebreathe in toilet smellsÅf were seen as precautions against the Black Death. Why did doctors think these would work?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-expatriates" title="Expatriates Stack Exchange"></div>
+<a href="https://expatriates.stackexchange.com/questions/12401/is-holding-a-third-citizenship-allowed" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:546 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is holding a third citizenship allowed?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div>
+<a href="https://workplace.stackexchange.com/questions/100608/how-do-i-tell-management-that-i-cant-work-with-my-spouse-anymore" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do I tell management that I can't work with my spouse anymore?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div>
+<a href="https://english.stackexchange.com/questions/414434/term-for-lending-an-item-to-a-store-so-they-can-sell-it-on-your-behalf-for-a-fe" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Term for lending an item to a store so they can sell it on your behalf, for a fee
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div>
+<a href="https://aviation.stackexchange.com/questions/44717/when-using-the-phonetic-alphabet-for-airways-should-we-say-uniform-or-upper" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When using the phonetic alphabet, for airways, should we say Uniform or Upper?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div>
+<a href="https://physics.stackexchange.com/questions/362780/how-were-the-navier-stokes-equations-found-in-the-first-place-if-we-cant-solve" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How were the Navier-Stokes equations found in the first place if we can't solve them?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div>
+<a href="https://codegolf.stackexchange.com/questions/145371/number-of-distinct-non-empty-subsequences-of-binary-expansion" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Number of distinct non-empty subsequences of binary expansion
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-german" title="German Language Stack Exchange"></div>
+<a href="https://german.stackexchange.com/questions/39682/when-asked-arbeitest-du-morgen-how-can-one-know-if-hes-asked-about-the-day" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:253 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When asked "Arbeitest du morgen?", how can one know if he's asked about the day or the action
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div>
+<a href="https://english.stackexchange.com/questions/414239/is-there-a-name-for-a-window-without-glass" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there a name for a window without glass?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div>
+<a href="https://math.stackexchange.com/questions/2473466/cantor-set-hausdorff" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Cantor Set (Hausdorff)
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div>
+<a href="https://math.stackexchange.com/questions/2472789/is-there-a-simple-example-showing-that-uncorrelated-random-variables-need-not" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there a *simple* example showing that uncorrelated random variables need not be independent?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div>
+<a href="https://codereview.stackexchange.com/questions/177971/pong-game-written-on-c-using-sdl" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Pong game written on C++ using SDL
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div>
+<a href="https://academia.stackexchange.com/questions/97349/can-a-phd-supervisor-take-unpublished-ideas-from-a-students-dissertation" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can a PhD supervisor take unpublished ideas from a student's dissertation?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-politics" title="Politics Stack Exchange"></div>
+<a href="https://politics.stackexchange.com/questions/25290/what-is-the-alt-left" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:475 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is the Alt-Left?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div>
+<a href="https://scifi.stackexchange.com/questions/171892/in-harry-potter-can-a-boggart-really-hurt-you" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    In Harry Potter, can a boggart really hurt you?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div>
+<a href="https://rpg.stackexchange.com/questions/108383/how-important-is-it-increase-primary-ability-scores-quickly-to-20-to-remain-at" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How important is it increase primary ability scores quickly to 20 to remain at "party level"?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-space" title="Space Exploration Stack Exchange"></div>
+<a href="https://space.stackexchange.com/questions/23396/how-much-thrust-needed-to-move-6-000kg-from-leo-to-lunar-orbit" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:508 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How much thrust needed to move 6,000KG from LEO to Lunar Orbit?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div>
+<a href="https://english.stackexchange.com/questions/413534/is-there-a-word-phrase-to-describe-somebody-who-has-devoted-their-life-to-pract" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there a word/ phrase to describe somebody who has devoted their life to practising something but is still not very good at it?
+                </a>
+
+            </li>
+    </ul>
+<a href="#" class="show-more js-show-more js-gps-track" data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+            more hot questions
+        </a>
+</div>
+        </div>
+    
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="/feeds/question/6099243" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>    </div>
+<script>
+StackExchange.ready(function(){$.get('/posts/6099243/ivc/9b16');});
+</script><noscript>
+    <div><img src="/posts/6099243/ivc/9b16" class="dno" alt="" width="0" height="0"></div>
+</noscript>
+<div style="display:none" id="prettify-lang">lang-r</div>
+</div>
+
+
+        </div>
+    </div>
+
+    <footer id="footer" class="s-footer js-footer" role="contentinfo"><div class="-container">
+            <div class="g-row">
+                    <div class="-logo">
+
+                        <a href="https://stackoverflow.com"><svg aria-hidden="true" class="svg-icon native iconLogo" width="150" height="30" viewbox="0 0 150 30"><g><path d="M33.9 18.6l-1.7-.2c-1.3-.1-1.9-.6-1.9-1.6 0-1.1.8-1.8 2.4-1.8 1.1 0 2.1.3 2.8.8l1-1c-1-.8-2.3-1.1-3.8-1.1-2.3 0-3.9 1.2-3.9 3.1 0 1.8 1.1 2.7 3.2 2.9l1.8.2c1.2.1 1.8.6 1.8 1.6 0 1.3-1.1 1.9-2.8 1.9-1.3 0-2.5-.3-3.3-1.2l-1 1c1.2 1.1 2.6 1.5 4.4 1.5 2.6 0 4.3-1.2 4.3-3.2-.2-2-1.5-2.7-3.3-2.9zm13.3-4.8c-1.7 0-2.8.3-3.7 1.5l1 1c.6-.9 1.3-1.2 2.7-1.2 1.9 0 2.7.8 2.7 2.3v1h-3.2c-2.4 0-3.7 1.2-3.7 3.1 0 .8.3 1.6.8 2.2.7.7 1.5 1 3 1 1.4 0 2.2-.3 3.1-1.1v1h1.6v-7.2c-.1-2.4-1.5-3.6-4.3-3.6zm2.7 7c0 .9-.2 1.5-.5 1.8-.7.6-1.5.7-2.4.7-1.7 0-2.4-.6-2.4-1.8 0-1.2.8-1.9 2.4-1.9h3l-.1 1.2zm7.6-5.6c1 0 1.6.3 2.4 1.2l1-1c-1.1-1.2-2-1.6-3.5-1.6-2.7 0-4.7 1.8-4.7 5.5 0 3.6 2 5.5 4.7 5.5 1.5 0 2.4-.4 3.5-1.6l-1.1-1c-.8.9-1.4 1.2-2.4 1.2s-1.9-.4-2.5-1.2c-.5-.7-.7-1.5-.7-2.9 0-1.3.2-2.2.7-2.9.7-.8 1.6-1.2 2.6-1.2zm13.4-1.3H69l-4.8 4.7V9.1h-1.6v15.4h1.6v-3.9l1.9-1.9 3.6 5.8h1.9l-4.4-6.9 3.7-3.7zm7.3-.33c-1.6 0-2.7.6-3.4 1.4-1 1-1.3 2.3-1.3 4.3s.3 3.3 1.3 4.3c.7.7 1.8 1.4 3.4 1.4 1.6 0 2.8-.6 3.4-1.4 1-1 1.3-2.3 1.3-4.3s-.3-3.3-1.3-4.3c-.6-.8-1.7-1.4-3.4-1.4zm1.3 8.3c-.3.3-.7.5-1.3.5-.6 0-1-.2-1.3-.5-.6-.6-.6-1.6-.6-2.7 0-1.2.1-2.1.6-2.7.3-.3.7-.5 1.3-.5.6 0 1 .2 1.3.5.6.6.6 1.5.6 2.7.1 1.2 0 2.2-.6 2.7zm10.8-8.2l-2.2 6.9-2.3-6.9h-2.9l4.1 11.1h2.2l4.1-11.1h-3zm7.6-.1c-2.9 0-4.8 2-4.8 5.7 0 4.5 2.5 5.7 5.1 5.7 2 0 3.1-.6 4.2-1.7l-1.7-1.6c-.7.7-1.3 1-2.5 1-1.6 0-2.4-1-2.4-2.5h6.9v-1.2c0-3.2-1.7-5.4-4.8-5.4zm-2.1 4.6c0-.5.1-.8.3-1.2.3-.7.9-1.2 1.9-1.2.9 0 1.6.5 1.9 1.2.2.4.2.7.3 1.2h-4.4zm11-3.4v-1.1h-2.7v11.1h2.8v-6.7c0-1.4.9-2 1.8-2 .7 0 1 .2 1.5.7l2.1-2.1c-.8-.8-1.5-1-2.6-1-1.3-.1-2.3.4-2.9 1.1zm6.3-2.3v12.3h2.8v-8.8h2v-2.1h-2v-1.2c0-.6.3-1 1-1h1.1v-2.3h-1.6c-2.3 0-3.3 1.6-3.3 3.1zm16.2 1.1c-1.6 0-2.7.6-3.4 1.4-1 1-1.3 2.3-1.3 4.3s.3 3.3 1.3 4.3c.7.7 1.8 1.4 3.4 1.4 1.6 0 2.8-.6 3.4-1.4 1-1 1.3-2.3 1.3-4.3s-.3-3.3-1.3-4.3c-.6-.8-1.8-1.4-3.4-1.4zm1.3 8.3c-.3.3-.7.5-1.3.5-.6 0-1-.2-1.3-.5-.6-.6-.6-1.6-.6-2.7 0-1.2.1-2.1.6-2.7.3-.3.7-.5 1.3-.5.6 0 1 .2 1.3.5.6.6.6 1.5.6 2.7 0 1.2 0 2.2-.6 2.7zm16.5-8.2l-1.8 6.9-2.3-6.9h-2l-2.3 6.9-1.8-6.9H134l3.4 11.1h2.3l2.3-7 2.3 7h2.3l3.4-11.1h-2.9zm-25.1 7.7V9.27h-2.8v12.3c0 1.6 1 3.2 3.2 3.2h1.6v-2.3h-1c-.7 0-1-.4-1-1.1zM41.3 15.6l1.4-1.4h-3v-3.5h-1.6v11.1c0 1.6.9 2.9 2.7 2.9h1.1v-1.3h-.8c-1 0-1.5-.6-1.5-1.6v-6.1h1.7v-.1z" fill="#222426"></path><path fill="#BCBBBB" d="M21 27v-8h3v11H0V19h3v8z"></path><path d="M5.4 19.1l13.56 1.96.17-2.38-13.26-2.55-.47 2.97zm1.8-6.8l12 5.6 1.1-2.4-12-5.6-1.1 2.4zm3.4-5.9l10.2 8.5 1.7-2-10.2-8.5-1.7 2zM17.1.2L15 1.8l7.9 10.6 2.1-1.6L17.1.2zM5 25h14v-3H5v3z" fill="#F48024"></path></g></svg></a>
+                    </div>
+                
+                    <nav class="-nav js-category _visible" data-name="default"><h5 class="-title"><a href="https://stackoverflow.com" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 15})">Stack Overflow</a></h5>
+                        <ul class="-list">
+<li class="-item"><a href="/questions" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 16})">Questions</a></li>
+                                <li class="-item"><a href="https://stackoverflow.com/jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 17})">Jobs</a></li>
+                                <li class="-item"><a href="https://stackoverflow.com/jobs/directory/developer-jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 11})">Developer Jobs Directory</a></li>
+                                     <li class="-item"><a href="https://stackoverflow.com/jobs/salary" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 28})">Salary Calculator</a></li>
+                                                            <li class="-item"><a href="/help" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 3 })">Help</a></li>
+                                <li class="-item"><a onclick='StackExchange.switchMobile("on")' class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 12 })">Mobile</a></li>
+                        </ul></nav><nav class="-nav js-category _visible" data-name="default"><h5 class="-title"><a href="https://www.stackoverflowbusiness.com/?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-business-category" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 19 })">Stack Overflow<br> Business</a></h5>
+                        <ul class="-list">
+<li class="-item"><a href="https://www.stackoverflowbusiness.com/talent?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-talent" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 20 })">Talent</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/advertise?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-advertise" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 21 })">Ads</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/enterprise?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-enterprise" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 22 })">Enterprise</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/insights?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-insights" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 23 })">Insights</a></li>
+                        </ul></nav><nav class="-nav js-category _visible" data-name="default"><h5 class="-title"><a class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">Company</a></h5>
+                    <ul class="-list">
+<li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">About</a></li>
+                                                <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 27 })" href="https://stackoverflow.com/company/press">Press</a></li>
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 9 })" href="https://stackoverflow.com/company/work-here">Work Here</a></li>
+                        <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 7 })" href="https://stackexchange.com/legal">Legal</a></li>
+                        <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 8 })" href="https://stackexchange.com/legal/privacy-policy">Privacy Policy</a></li>
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 13 })" href="https://stackoverflow.com/company/contact">Contact Us</a></li>
+                    </ul></nav><div class="-network g-row">
+                    <a href="#" class="-back-trigger js-back"><svg aria-hidden="true" class="svg-icon iconArrowLeftAlt" width="18" height="18" viewbox="0 0 18 18"><path d="M10.58 16L12 14.59 6.4 9 12 3.41 10.57 2l-7 7z"></path></svg></a>
+                    <div>
+                        <h5 class="-title"><a href="https://stackexchange.com">Stack Exchange<br> Network</a></h5>
+                        <ul class="-list">
+<li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Technology">Technology</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Life / Arts">Life / Arts</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Culture / Recreation">Culture / Recreation</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Science">Science</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Other">Other</a></li>
+
+                        </ul>
+</div>
+                </div>
+                <nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                <li class="-item"><a href="https://serverfault.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="system and network administrators">Server Fault</a></li>
+                <li class="-item"><a href="https://superuser.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="computer enthusiasts and power users">Super User</a></li>
+                <li class="-item"><a href="https://webapps.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="power users of web applications">Web Applications</a></li>
+                <li class="-item"><a href="https://askubuntu.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                <li class="-item"><a href="https://webmasters.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="pro webmasters">Webmasters</a></li>
+                <li class="-item"><a href="https://gamedev.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and independent game developers">Game Development</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://tex.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                <li class="-item"><a href="https://softwareengineering.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professionals, academics, and students working within the systems development life cycle">Software Engineering</a></li>
+                <li class="-item"><a href="https://unix.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                <li class="-item"><a href="https://apple.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                <li class="-item"><a href="https://wordpress.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="WordPress developers and administrators">WordPress Development</a></li>
+                <li class="-item"><a href="https://gis.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                <li class="-item"><a href="https://electronics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://android.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                <li class="-item"><a href="https://security.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="information security professionals">Information Security</a></li>
+                <li class="-item"><a href="https://bitcoin.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Bitcoin crypto-currency enthusiasts">Bitcoin</a></li>
+                <li class="-item"><a href="https://dba.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                <li class="-item"><a href="https://drupal.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Drupal developers and administrators">Drupal Answers</a></li>
+                <li class="-item"><a href="https://sharepoint.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="SharePoint enthusiasts">SharePoint</a></li>
+                <li class="-item"><a href="https://ux.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="user experience researchers and experts">User Experience</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://mathematica.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Wolfram Mathematica">Mathematica</a></li>
+                <li class="-item"><a href="https://salesforce.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                <li class="-item"><a href="https://expressionengine.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="administrators, end users, developers and designers for ExpressionEngineR CMS">ExpressionEngineR Answers</a></li>
+                <li class="-item"><a href="https://pt.stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programadores profissionais e entusiastas">Stack Overflow em Portugues</a></li>
+                <li class="-item"><a href="https://blender.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who use Blender to create 3D graphics, animations, or games">Blender</a></li>
+                <li class="-item"><a href="https://networkengineering.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="network engineers">Network Engineering</a></li>
+                <li class="-item"><a href="https://crypto.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="software developers, mathematicians and others interested in cryptography">Cryptography</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://codereview.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="peer programmer code reviews">Code Review</a></li>
+                <li class="-item"><a href="https://magento.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of the Magento e-Commerce platform">Magento</a></li>
+                <li class="-item"><a href="https://softwarerecs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people seeking specific software recommendations">Software Recommendations</a></li>
+                <li class="-item"><a href="https://dsp.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="practitioners of the art and science of signal, image and video processing">Signal Processing</a></li>
+                <li class="-item"><a href="https://emacs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those using, extending or developing Emacs">Emacs</a></li>
+                <li class="-item"><a href="https://raspberrypi.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users and developers of hardware and software for Raspberry Pi">Raspberry Pi</a></li>
+                <li class="-item"><a href="https://ru.stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="ÑÅÑÇÑÄÑsÑÇÑpÑ}Ñ}ÑyÑÉÑÑÑÄÑr">Stack Overflow Ñ~Ñp ÑÇÑÖÑÉÑÉÑ{ÑÄÑ}</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://codegolf.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programming puzzle enthusiasts and code golfers">Programming Puzzles &amp; Code Golf</a></li>
+                <li class="-item"><a href="https://es.stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programadores y profesionales de la informatica">Stack Overflow en espanol</a></li>
+                <li class="-item"><a href="https://ethereum.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Ethereum, the decentralized application platform and smart contract enabled blockchain">Ethereum</a></li>
+                <li class="-item"><a href="https://datascience.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Data science professionals, Machine Learning specialists, and those interested in learning more about the field">Data Science</a></li>
+                <li class="-item"><a href="https://arduino.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="developers of open-source hardware and software that is compatible with Arduino">Arduino</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#technology" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (26)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Life / Arts"><ul class="-list">
+<li class="-item"><a href="https://photo.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                <li class="-item"><a href="https://scifi.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                <li class="-item"><a href="https://graphicdesign.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                <li class="-item"><a href="https://movies.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                <li class="-item"><a href="https://music.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="musicians, students, and enthusiasts">Music: Practice &amp; Theory</a></li>
+                <li class="-item"><a href="https://worldbuilding.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="writers/artists using science, geography and culture to construct imaginary worlds and settings">Worldbuilding</a></li>
+                <li class="-item"><a href="https://cooking.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Life / Arts"><ul class="-list">
+<li class="-item"><a href="https://diy.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="contractors and serious DIYers">Home Improvement</a></li>
+                <li class="-item"><a href="https://money.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                <li class="-item"><a href="https://academia.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="academics and those enrolled in higher education">Academia</a></li>
+                <li class="-item"><a href="https://law.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="legal professionals, students, and others with experience or interest in law">Law</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#lifearts" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (17)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Culture / Recreation"><ul class="-list">
+<li class="-item"><a href="https://english.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                <li class="-item"><a href="https://skeptics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="scientific skepticism">Skeptics</a></li>
+                <li class="-item"><a href="https://judaism.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                <li class="-item"><a href="https://travel.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="road warriors and seasoned travelers">Travel</a></li>
+                <li class="-item"><a href="https://christianity.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                <li class="-item"><a href="https://ell.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="speakers of other languages learning English">English Language Learners</a></li>
+                <li class="-item"><a href="https://japanese.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students, teachers, and linguists wanting to discuss the finer points of the Japanese language">Japanese Language</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Culture / Recreation"><ul class="-list">
+<li class="-item"><a href="https://gaming.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                <li class="-item"><a href="https://bicycles.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                <li class="-item"><a href="https://rpg.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                <li class="-item"><a href="https://anime.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="anime and manga fans">Anime &amp; Manga</a></li>
+                <li class="-item"><a href="https://puzzling.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those who create, solve, and study puzzles">Puzzling</a></li>
+                <li class="-item"><a href="https://mechanics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="mechanics and DIY enthusiast owners of cars, trucks, and motorcycles">Motor Vehicle Maintenance &amp; Repair</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#culturerecreation" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (32)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Science"><ul class="-list">
+<li class="-item"><a href="https://mathoverflow.net" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional mathematicians">MathOverflow</a></li>
+                <li class="-item"><a href="https://math.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                <li class="-item"><a href="https://stats.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                <li class="-item"><a href="https://cstheory.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                <li class="-item"><a href="https://physics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="active researchers, academics and students of physics">Physics</a></li>
+                <li class="-item"><a href="https://chemistry.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="scientists, academics, teachers and students">Chemistry</a></li>
+                <li class="-item"><a href="https://biology.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="biology researchers, academics, and students">Biology</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Science"><ul class="-list">
+<li class="-item"><a href="https://cs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students, researchers and practitioners of computer science">Computer Science</a></li>
+                <li class="-item"><a href="https://philosophy.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those interested in the study of the fundamental nature of knowledge, reality, and existence">Philosophy</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#science" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (10)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Other"><ul class="-list">
+<li class="-item"><a href="https://meta.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                <li class="-item"><a href="https://stackapps.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                <li class="-item"><a href="https://api.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programmatic interaction with Stack Exchange sites">API</a></li>
+                <li class="-item"><a href="https://data.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="querying Stack Exchange data using SQL">Data</a></li>
+                <li class="-item"><a href="https://area51.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                    </ul></nav><div class="-copyright g-row jc-end">
+                    <div class="g-column jc-sp-between">
+                        <ul class="-list">
+<li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link:4 })" href="https://stackoverflow.blog?blb=1">Blog</a></li>
+                            <li class="-item"><a href="https://www.facebook.com/officialstackoverflow/" class="-link">Facebook</a></li>
+                            <li class="-item"><a href="https://twitter.com/stackoverflow" class="-link">Twitter</a></li>
+                            <li class="-item"><a href="https://linkedin.com/company/stack-overflow" class="-link">LinkedIn</a></li>
+                        </ul>
+<div>
+                            <p>
+                                site design / logo c 2017 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license" class="-link">cc by-sa 3.0</a>
+                                with <a href="https://stackoverflow.blog/2009/06/25/attribution-required/" rel="license" class="-link">attribution required</a>.
+                                <span id="svnrev">rev 2017.10.15.27439</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                    </div>
+    </footer><noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled
+            <img src="https://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno">
+</div>
+    </noscript>
+        <script> setTimeout(function() { $("#adzerk-user-match").remove(); }, 2000);</script><script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-5620270-1');
+                ga('create', 'UA-5620270-59', {name: 'pageData', sampleRate: 5 });
+                ga('set', 'dimension2', '|excel|r|r-faq|');
+                ga('pageData.set', 'dimension2', '|excel|r|r-faq|');
+                ga('send', 'pageview');
+                ga('pageData.send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+                qc.async = true;
+                qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                s.parentNode.insertBefore(qc, s);
+                _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+                            var sc=document.createElement('script');
+                sc.async=true;
+                sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+                s.parentNode.insertBefore(sc, s);
+                _comscore.push({ c1: "2", c2: "17440561" });
+        })();
+
+    </script><script type="text/javascript">
+                
+                (function(appendChild) {
+                    Node.prototype.appendChild = function() {
+                        var parent = this;
+                        var newNode = arguments[0];
+                        if (parent.nodeName === 'HEAD'
+                            && newNode
+                            && newNode.nodeName === 'SCRIPT'
+                            && newNode.src) {
+                            
+                            window.setTimeout(function() {
+                                var result = newNode.src.match(/^https:\/\/maps\.googleapis\.com\/maps\/api\/place\/js\/(\w+)Service\./i) || [];
+                                var service = result[1];
+                                if (service) {
+                                    if (service === 'Autocompletion') service =  2;
+                                    else if (service === 'Place') service = 1;
+                                    else service = 0;
+                                    StackExchange.using('gps', function() {
+                                        StackExchange.gps.track('google_maps_places_api.call', { service: service });
+                                    });
+                                }
+                            }, 0);
+                        }
+                        return appendChild.apply(this, arguments);
+                    };
+                })(Node.prototype.appendChild);
+            </script>
+</body>
+</html>
+

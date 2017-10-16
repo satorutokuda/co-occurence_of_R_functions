@@ -1,0 +1,2685 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/QAPage">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>r - Convert data.frame columns from factors to characters - Stack Overflow</title>
+<link rel="shortcut icon" href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+<link rel="apple-touch-icon image_src" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+<link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="/opensearch.xml">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:domain" content="stackoverflow.com">
+<meta property="og:image" itemprop="image primaryImageOfPage" content="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded">
+<meta name="twitter:title" property="og:title" itemprop="title name" content="Convert data.frame columns from factors to characters">
+<meta name="twitter:description" property="og:description" itemprop="description" content="I have a data frame. Let's call him bob:
+
+&amp;gt; head(bob)
+                 phenotype                         exclusion
+GSM399350 3- 4- 8- 25- 44+ 11b- 11c- 19- NK1.1- Gr1- TER119-
+GSM399351 3- 4- 8-...">
+<meta property="og:url" content="https://stackoverflow.com/questions/2851015/convert-data-frame-columns-from-factors-to-characters">
+<link rel="canonical" href="https://stackoverflow.com/questions/2851015/convert-data-frame-columns-from-factors-to-characters">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script><script src="https://cdn.sstatic.net/Js/stub.en.js?v=488af1c63e24"></script><link rel="stylesheet" type="text/css" href="https://cdn.sstatic.net/Sites/stackoverflow/all.css?v=e32bd0ed8f3d">
+<link rel="alternate" type="application/atom+xml" title="Feed for question 'Convert data.frame columns from factors to characters'" href="/feeds/question/2851015">
+<meta name="twitter:app:country" content="US">
+<meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+<meta name="twitter:app:id:iphone" content="871299723">
+<meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/2851015/convert-data-frame-columns-from-factors-to-characters">
+<meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+<meta name="twitter:app:id:ipad" content="871299723">
+<meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/2851015/convert-data-frame-columns-from-factors-to-characters">
+<meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+<meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/2851015/convert-data-frame-columns-from-factors-to-characters">
+<meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+<script>
+        
+            StackExchange.ready(function () {
+                                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:1,shownCommentCount:1,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:2851015});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '2851015');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text', true); });
+
+            });
+        </script><script>
+        StackExchange.init({"locale":"en","serverTime":1508128795,"routeName":"Questions/Show","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"childUrl":"https://meta.stackoverflow.com","enableSocialMediaInSharePopup":true,"protocol":"https"},"user":{"fkey":"3fbe17c969abd7bd85ae0c8423437465","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true,"canSeeNewHeaderDesign":true},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"story":{"minCompleteBodyLength":75,"likedTagsMaxLength":300,"dislikedTagsMaxLength":300},"jobPreferences":{"maxNumDeveloperRoles":2,"maxNumIndustries":4}}, {"site":{"allowImageUploads":true,"enableUserHovercards":true,"styleCode":true,"enableImgurHttps":true,"forceHttpsImages":true},"comments":{},"userProfile":{"openGraphAPIKey":"58740831ad23540e00c58987"},"tags":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true},"flags":{"allowRetractingFlags":true},"topBar":{"showNewFeatureNotice":true},"snippets":{"snippetsEnabled":true,"renderDomain":"stacksnippets.net"},"markdown":{"asteriskIntraWordEmphasis":true},"monitoring":{"clientTimingsAbsoluteTimeout":30000,"clientTimingsDebounceTimeout":1000}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"82df5476ff5e","js/moderator.en.js":"443faeebba5b","js/full-anon.en.js":"51fdc705af4d","js/full.en.js":"753996d5103d","js/wmd.en.js":"4ddd2413a296","js/third-party/jquery.autocomplete.min.js":"d3b8fa7fdf74","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"28e4c54a5378","js/help.en.js":"a56fdf9b9ff2","js/tageditor.en.js":"248fce004255","js/tageditornew.en.js":"ac8f784e112e","js/inline-tag-editing.en.js":"3e63a01fd39b","js/revisions.en.js":"7bea350562aa","js/review.en.js":"eb16e0be07b1","js/tagsuggestions.en.js":"b278f9a0b23b","js/post-validation.en.js":"4c792759c8f4","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"290bed8a1174","js/keyboard-shortcuts.en.js":"f6606752d1e8","js/external-editor.en.js":"ae2d26085224","js/adops.en.js":"9a6a7812a212","js/external-editor.en.js":"ae2d26085224","js/snippet-javascript.en.js":"4ceca4bd1d0a","js/snippet-javascript-codemirror.en.js":"9a2effee39fe"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script><script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script><noscript id="noscript-css"><style>body,.top-bar{margin-top:1.9em}</style></noscript>
+</head>
+<body class="question-page new-topbar">
+            <script async src="https://js-sec.indexww.com/ht/p/185901-159836282584097.js"></script><div id="notify-container"></div>
+    <div id="custom-header"></div>
+
+
+
+
+<header class="top-bar js-top-bar _fixed"><div class="-container">
+        <div class="-main">
+            
+                <a href="https://stackoverflow.com" class="-logo js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:8})">
+                   <span class="-img">Stack Overflow</span>
+                </a>
+
+                    <a class="-feature-notice
+                       unread-feature-notice
+                       " href="#" data-unread-class="unread-feature-notice" data-campaign="2017-09-19.DevSalaryCalculator" data-cookie="topbar-new-dsc" data-location="2" data-autopopup="true" data-end-date="1508410800000">
+                        <span>new</span>
+                    </a>
+                    <div class="topbar-dialog feature-notice-dialog js-feature-notice-dialog dno">
+                        <div class="dialog-content">
+                            <h4 class="bold">Stack Overflow Salary Calculator</h4>
+                            <p>Find out what developers like you are earning.</p>
+                            <a class="btn-secondary js-cta-button js-gps-track" href="/jobs/salary/?utm_source=so-owned&amp;utm_medium=hero&amp;utm_campaign=sal-calc" data-gps-track="new_feature.click({campaign: '2017-09-19.DevSalaryCalculator', location: 2, action: 2})">Calculate your salary now</a>
+                            <a class="icon-close js-close-button js-gps-track" title="Close and permanently remove this popup" data-gps-track="new_feature.click({campaign: '2017-09-19.DevSalaryCalculator', location: 2, action: 1})"><svg aria-hidden="true" class="svg-icon iconClear" width="18" height="18" viewbox="0 0 18 18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9z"></path></svg></a>
+                        </div>
+                    </div>
+            <nav class="navigation" role="navigation" aria-label="site navigation"><ol class="-list">
+<li class="-item _current">
+        <a id="nav-questions" href="/questions" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:true, location:2, destination:1})">Questions</a>
+    </li>
+    <li class="-item">
+        <a id="nav-jobs" href="/jobs?med=site-ui&amp;ref=jobs-tab" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:6})">Developer Jobs</a>
+    </li>
+    <li class="-item">
+        <a id="nav-tags" href="/tags" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:2})">Tags</a>
+    </li>
+    <li class="-item">
+        <a id="nav-users" href="/users" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:3})">Users</a>
+    </li>
+                </ol></nav>
+</div>
+        
+            <form id="search" action="/search" method="get" class="searchbar" autocomplete="off" role="search">
+                <input name="q" type="text" placeholder="SearchÅc" value="" tabindex="1" autocomplete="off" maxlength="240" class="f-input js-search-field"><button type="submit" aria-label="Search..." class="btn-topbar-primary js-search-submit"><svg aria-hidden="true" class="svg-icon iconSearch" width="18" height="18" viewbox="0 0 18 18"><path d="M12.86 11.32L18 16.5 16.5 18l-5.18-5.14v-.35a7 7 0 1 1 1.19-1.19h.35zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path></svg></button>
+            </form>
+
+        
+
+
+    
+
+<div class="-actions">
+    <nav class="secondary-nav"><div class="-dialog-container js-topbar-dialog-corral">
+
+
+    <div class="topbar-dialog siteSwitcher-dialog dno">
+        <div class="header">
+            <h3>
+<a href="https://stackoverflow.com">current community</a>
+            </h3>
+        </div>
+        <div class="modal-content current-site-container">
+            <ul class="current-site">
+<li>
+                            <div class="related-links">
+            <a href="https://stackoverflow.com/help" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:14 })">help</a>
+                    <a href="https://chat.stackoverflow.com" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+    <a href="https://stackoverflow.com" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="site_switcher.click({ item_type:3 })">
+        <div class="favicon favicon-stackoverflow site-icon" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                    </li>
+                    <li class="related-site">
+                            <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                        
+    <a href="https://meta.stackoverflow.com" class="site-link js-gps-track" data-id="552" data-gps-track="site.switch({ target_site:552, item_type:3 }),site_switcher.click({ item_type:4 })">
+        <div class="favicon favicon-stackoverflowmeta site-icon" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                    </li>
+            </ul>
+</div>
+
+        <div class="header" id="your-communities-header">
+            <h3>
+your communities            </h3>
+
+        </div>
+        <div class="modal-content" id="your-communities-section">
+
+                <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;amp;utm_source=stackoverflow.com&amp;amp;utm_medium=dev-story&amp;amp;utm_campaign=signup-redirect" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f2851015%2fconvert-data-frame-columns-from-factors-to-characters" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+                </div>
+        </div>
+
+        <div class="header">
+            <h3>
+<a href="https://stackexchange.com/sites">more stack exchange communities</a>
+            </h3>
+            <a href="https://stackoverflow.blog" class="fr">company blog</a>
+        </div>
+        <div class="modal-content">
+                <div class="child-content"></div>
+        </div>        
+    </div>
+                <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+<li>
+                        <a href="/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                        <li>
+                            <a href="https://meta.stackoverflow.com" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                                Meta
+                                <span class="item-summary">
+                                    Discuss the workings and policies of this site
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                                About Us
+                                <span class="item-summary">
+                                    Learn more about Stack Overflow the company
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.stackoverflowbusiness.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                                Business
+                                <span class="item-summary">
+                                    Learn more about hiring developers or posting ads with us
+                                </span>
+                            </a>
+                        </li>
+            </ul>
+</div>
+    </div>
+
+        </div>
+        <ol class="-list">
+<li class="-item"><a href="#" class="-link js-help-button" title="Help Center and other resources">
+        <svg aria-hidden="true" class="svg-icon iconHelp" width="18" height="18" viewbox="0 0 18 18"><path d="M9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1zm.81 12.13c-.02.71-.55 1.15-1.24 1.13-.66-.02-1.17-.49-1.15-1.2.02-.72.56-1.18 1.22-1.16.7.03 1.2.51 1.17 1.23zM11.77 8a5.8 5.8 0 0 1-1.02.91l-.53.37c-.26.2-.42.43-.5.69a4 4 0 0 0-.09.75c0 .05-.03.16-.18.16H7.88c-.16 0-.18-.1-.18-.15.03-.66.12-1.21.4-1.66a5.29 5.29 0 0 1 1.43-1.22c.16-.12.28-.25.38-.39a1.34 1.34 0 0 0 .02-1.71c-.24-.31-.51-.46-1.03-.46-.51 0-.8.26-1.02.6-.21.33-.18.73-.18 1.1H5.75c0-1.38.35-2.25 1.1-2.76.52-.35 1.17-.5 1.93-.5 1 0 1.79.18 2.49.71.64.5.98 1.18.98 2.12 0 .57-.2 1.05-.48 1.44z"></path></svg></a></li>
+                <li class="-item">
+        <a href="https://stackexchange.com" class="-link js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 171 Stack Exchange sites">
+            <svg aria-hidden="true" class="svg-icon iconStackExchange" width="18" height="18" viewbox="0 0 18 18"><path d="M1 13c0 1.1.9 2 2 2h8v3l3-3h1a2 2 0 0 0 2-2v-2H1v2zM15 1H3a2 2 0 0 0-2 2v2h16V3a2 2 0 0 0-2-2zM1 6h16v4H1V6z"></path></svg></a>
+    </li>
+
+        </ol></nav><div class="-ctas">
+                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f2851015%2fconvert-data-frame-columns-from-factors-to-characters" class="login-link btn-clear" rel="nofollow">Log In</a>
+                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;utm_source=stackoverflow.com&amp;utm_medium=dev-story&amp;utm_campaign=signup-redirect" class="login-link btn-topbar-primary" rel="nofollow">Sign Up</a>
+
+        </div>
+</div>
+    </div>
+</header><script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+        StackExchange.scrollPadding.setPaddingTop(60, 10);     </script><div class="container _full ">
+        
+
+
+        <div id="content" class="snippet-hidden">
+
+
+
+
+            
+
+<div itemscope itemtype="http://schema.org/Question">
+    <link itemprop="image" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+<div class="s-hero hero-container">
+    <div class="-container g-row jc-sp-between ai-center">
+        <div class="g-col6">
+            <h1 class="-title">Learn, Share, Build</h1>
+            <p class="-paragraph">Each month, over 50 million developers come to Stack Overflow to learn, share their knowledge, and build their careers.</p>
+            <p class="-paragraph">Join the worldÅfs largest developer community.</p>
+        </div>
+        
+        <div class="s-signup _hero g-col5">
+
+            <div id="openid-buttons" class="-social">
+                    <div class="major-provider btn _block _medium _google" data-provider="google" data-oauthserver="https://accounts.google.com/o/oauth2/auth" data-oauthversion="2.0">Google</div>
+                    <div class="major-provider btn _block _medium _facebook" data-provider="facebook" data-oauthserver="https://www.facebook.com/v2.0/dialog/oauth" data-oauthversion="2.0">Facebook</div>
+                            </div>
+
+
+            <small class="-divider text-centered">or</small>
+
+            <form id="login-form" action="/users/signup?ssrc=hero&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f2851015%2fconvert-data-frame-columns-from-factors-to-characters" method="POST">
+        
+                <input type="hidden" name="fkey" value="3fbe17c969abd7bd85ae0c8423437465"><input type="hidden" name="ssrc" value=""><input type="hidden" id="oauth_version" name="oauth_version"><input type="hidden" id="oauth_server" name="oauth_server"><div id="se-login-fields">
+
+                        <input type="hidden" name="legalLinksShown" value="1"><div class="input-group">
+                            <div class="g-row">
+                                <label for="display-name" class="g-col -fill">Display name</label>
+                                <div class="g-col">
+                                    <input id="display-name" name="inline-display-name" type="text" class="f-input" placeholder="J. Doe" data-error-my="right top" data-error-at="left center">
+</div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="g-row">
+                                <label for="email" class="g-col -fill">Email address</label>
+                                <div class="g-col">
+                                    <input id="email" name="inline-email" type="email" maxlength="100" class="f-input" placeholder="you@example.com" data-error-my="right top" data-error-at="left center">
+</div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="g-row">
+                                <label for="password" class="g-col -fill">Password</label>
+                                <div class="g-col">
+                                    <input id="password" name="inline-password" type="password" class="js-inline-signup f-input" placeholder="********" data-error-my="right top" data-error-at="left center">
+</div>
+                            </div>
+                        </div>
+
+                        <div class="button-group g-row ai-center jc-sp-between">
+                            <input id="submit-button" name="submit-button" class="btn-outlined -white _medium _block" type="button" value="Sign Up"><small class="g-col -policy js-terms">By registering, you agree to the <a href="https://stackexchange.com/legal/privacy-policy" name="privacy" target="_blank" class="-link">privacy policy</a> and <a href="https://stackexchange.com/legal/terms-of-service" name="tos" target="_blank" class="-link">terms of service</a>.</small>
+                        </div>
+                    </div>
+            </form>
+            <script>
+                StackExchange.ready(function () {
+                    StackExchange.InlineAuth.init();
+                })
+            </script>
+</div>
+
+            <a id="close" href="#" class="js-dismiss -dismiss" title="dismiss"><svg aria-hidden="true" class="svg-icon iconClear" width="18" height="18" viewbox="0 0 18 18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9z"></path></svg></a>
+    </div>
+</div>
+<script>
+    StackExchange.ready(function () {
+
+        var location = 0;
+        if ($("body").hasClass("questions-page")) {
+            location = 7;
+        } else if ($("body").hasClass("question-page")) {
+            location = 7;
+        } else if ($("body").hasClass("faq-page")) {
+            location = 5;
+        } else if ($("body").hasClass("home-page")) {
+            location = 6;
+        }
+        
+        $('#tell-me-more').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+            });
+        });
+        
+        $('.hero-container #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "minimize", location: location }, true);
+            });
+            
+            $.cookie("hero", "mini", { path: "/", expires: 365 });
+            $.ajax({
+                url: "/hero-mini",
+                success: function (data) {
+                    $(".hero-container").fadeOut("fast", function () {
+                        $(".hero-container").replaceWith(data);
+                        $("#herobox-mini").fadeIn("fast");
+                    });
+                }
+            });
+            return false;
+        });
+    });
+
+</script><div class="inner-content">
+        <div id="question-header">
+                <h1 itemprop="name"><a href="/questions/2851015/convert-data-frame-columns-from-factors-to-characters" class="question-hyperlink">Convert data.frame columns from factors to characters</a></h1>
+
+            
+<div class="aside-cta" role="navigation" aria-label="ask new question">
+    <a href="/questions/ask" class="btn-outlined">Ask Question</a>
+</div>
+        </div>
+            <div id="mainbar" role="main" aria-label="question and answers">
+
+            
+
+<div class="question" data-questionid="2851015" id="question">
+
+    <div id="dfp-tlb" class="everyonelovesstackoverflow"></div>    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="2851015"><a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">233</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#">favorite</a>
+        <div class="favoritecount"><b>109</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>I have a data frame. Let's call him <code>bob</code>:</p>
+
+<pre><code>&gt; head(bob)
+                 phenotype                         exclusion
+GSM399350 3- 4- 8- 25- 44+ 11b- 11c- 19- NK1.1- Gr1- TER119-
+GSM399351 3- 4- 8- 25- 44+ 11b- 11c- 19- NK1.1- Gr1- TER119-
+GSM399352 3- 4- 8- 25- 44+ 11b- 11c- 19- NK1.1- Gr1- TER119-
+GSM399353 3- 4- 8- 25+ 44+ 11b- 11c- 19- NK1.1- Gr1- TER119-
+GSM399354 3- 4- 8- 25+ 44+ 11b- 11c- 19- NK1.1- Gr1- TER119-
+GSM399355 3- 4- 8- 25+ 44+ 11b- 11c- 19- NK1.1- Gr1- TER119-
+</code></pre>
+
+<p>I'd like to concatenate the rows of this data frame (this will be another question). But look:</p>
+
+<pre><code>&gt; class(bob$phenotype)
+[1] "factor"
+</code></pre>
+
+<p><code>Bob</code>'s columns are factors. So, for example:</p>
+
+<pre><code>&gt; as.character(head(bob))
+[1] "c(3, 3, 3, 6, 6, 6)"       "c(3, 3, 3, 3, 3, 3)"      
+[3] "c(29, 29, 29, 30, 30, 30)"
+</code></pre>
+
+<p>I don't begin to understand this, but I guess these are indices into the levels of the factors of the columns (of the court of king caractacus) of <code>bob</code>? Not what I need.</p>
+
+<p>Strangely I can go through the columns of <code>bob</code> by hand, and do</p>
+
+<pre><code>bob$phenotype &lt;- as.character(bob$phenotype)
+</code></pre>
+
+<p>which works fine. And, after some typing, I can get a data.frame whose columns are characters rather than factors. So my question is: how can I do this automatically? How do I convert a data.frame with factor columns into a data.frame with character columns without having to manually go through each column? </p>
+
+<p>Bonus question: why does the manual approach work?</p>
+    </div>
+    <div class="post-taglist">
+        <a href="/questions/tagged/r" class="post-tag" title="show questions tagged 'r'" rel="tag">r</a> <a href="/questions/tagged/dataframe" class="post-tag" title="show questions tagged 'dataframe'" rel="tag">dataframe</a> 
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/q/2851015" title="short permalink to this question" class="short-link" id="link-post-2851015">share</a><span class="lsep">|</span><a href="/posts/2851015/edit" class="suggest-edit-post" title="">improve this question</a>
+</div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/2851015/revisions" title="show all edits to this post">edited <span title="2013-01-10 22:26:57Z" class="relativetime">Jan 10 '13 at 22:26</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/967840/gsee"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/8e41bf3985c22c879d518ef7311a0654?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/967840/gsee">GSee</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 33,268" dir="ltr">33.3k</span><span title="7 gold badges"><span class="badge1"></span><span class="badgecount">7</span></span><span title="83 silver badges"><span class="badge2"></span><span class="badgecount">83</span></span><span title="108 bronze badges"><span class="badge3"></span><span class="badgecount">108</span></span>
+        </div>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2010-05-17 16:52:02Z" class="relativetime">May 17 '10 at 16:52</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/270572/mike-dewar"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/614f65ff1221a12c6e6b6a1b5496b2c8?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/270572/mike-dewar">Mike Dewar</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">4,342</span><span title="12 gold badges"><span class="badge1"></span><span class="badgecount">12</span></span><span title="38 silver badges"><span class="badge2"></span><span class="badgecount">38</span></span><span title="54 bronze badges"><span class="badge3"></span><span class="badgecount">54</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</div>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-2851015" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr id="comment-56113916" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">would be nice if you would make the question reproducible, so include the structure of <code>bob</code>.</span>
+                    <U+2013><U+00A0><a href="/users/2490497/jangorecki" title="6,509 reputation" class="comment-user">jangorecki</a>
+                <span class="comment-date" dir="ltr"><span title="2015-12-09 16:25:25Z" class="relativetime-clean">Dec 9 '15 at 16:25</span></span>
+                                                                            </div>
+                    </td>
+    </tr></tbody></table>
+</div>
+
+        <div id="comments-link-2851015" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+            <div id="answers">
+
+                <a name="tab-top"></a>
+                <div id="answers-header">
+                    <div class="subheader answers-subheader">
+                        <h2>
+                                12 Answers
+                                <span style="display:none;" itemprop="answerCount">12</span>
+                        </h2>
+                        <div>
+                            <div id="tabs">
+        <a href="/questions/2851015/convert-data-frame-columns-from-factors-to-characters?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+            active</a>
+        <a href="/questions/2851015/convert-data-frame-columns-from-factors-to-characters?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+            oldest</a>
+        <a class="youarehere" href="/questions/2851015/convert-data-frame-columns-from-factors-to-characters?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+            votes</a>
+</div>
+                        </div>
+                    </div>    
+                </div>    
+
+
+
+
+  
+<a name="2851213"></a>
+<div id="answer-2851213" class="answer accepted-answer" data-answerid="2851213" itemscope itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="2851213"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">259</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Just following on Matt and Dirk.  If you want to recreate your existing data frame without changing the global option, you can recreate it with an apply statement:</p>
+
+<pre><code>bob &lt;- data.frame(lapply(bob, as.character), stringsAsFactors=FALSE)
+</code></pre>
+
+<p>This will convert all variables to class "character", if you want to only convert factors, see <a href="https://stackoverflow.com/a/2853231/180892">Marek's solution below</a>.</p>
+
+<p>As @hadley points out, the following is more concise. </p>
+
+<pre><code>bob[] &lt;- lapply(bob, as.character)
+</code></pre>
+
+<p>In both cases, <code>lapply</code> outputs a list; however, owing to the magical properties of R, the use of <code>[]</code> in the second case keeps the data.frame class of the <code>bob</code> object, thereby eliminating the need to convert back to a data.frame using <code>as.data.frame</code> with the argument <code>stringsAsFactors = FALSE</code>.</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/2851213" title="short permalink to this answer" class="short-link" id="link-post-2851213">share</a><span class="lsep">|</span><a href="/posts/2851213/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/2851213/revisions" title="show all edits to this post">edited <span title="2017-05-23 12:18:25Z" class="relativetime">May 23 at 12:18</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/-1/community"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/a007be5a61f6aa8f3e85ae2fc18dd66e?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/-1/community">Community</a><span class="mod-flair" title="moderator"><U+2666></span>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2010-05-17 17:21:06Z" class="relativetime">May 17 '10 at 17:21</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/163053/shane"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/0cee97ffd90277bf4ac753331d50af60?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/163053/shane">Shane</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 68,854" dir="ltr">68.9k</span><span title="25 gold badges"><span class="badge1"></span><span class="badgecount">25</span></span><span title="184 silver badges"><span class="badge2"></span><span class="badgecount">184</span></span><span title="203 bronze badges"><span class="badge3"></span><span class="badgecount">203</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-2851213" class="comments ">
+		    <table><tbody data-remaining-comments-count="2" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-2894961" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">13</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Shane, that'll also turn numerical columns into character.</span>
+                    <U+2013><U+00A0><a href="/users/143305/dirk-eddelbuettel" title="241,470 reputation" class="comment-user">Dirk Eddelbuettel</a>
+                <span class="comment-date" dir="ltr"><span title="2010-05-17 18:38:07Z" class="relativetime-clean">May 17 '10 at 18:38</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-2895123" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Dirk: That's true, although it isn't clear whether that's a problem here.  Clearly, creating things correctly up front is the best solution.  I don't think that it's <i>easy</i> to automatically convert data types across a data frame.  One option is to use the above but then use <code>type.convert</code> after casting everything to <code>character</code>, then recast <code>factors</code> back to <code>character</code> again.</span>
+                    <U+2013><U+00A0><a href="/users/163053/shane" title="68,854 reputation" class="comment-user">Shane</a>
+                <span class="comment-date" dir="ltr"><span title="2010-05-17 18:56:54Z" class="relativetime-clean">May 17 '10 at 18:56</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-25957168" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This seems to discard row names.</span>
+                    <U+2013><U+00A0><a href="/users/345345/piccolbo" title="987 reputation" class="comment-user">piccolbo</a>
+                <span class="comment-date" dir="ltr"><span title="2013-07-22 17:04:38Z" class="relativetime-clean">Jul 22 '13 at 17:04</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-35738164" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">To better understand <code>lapply()</code> and friends, you may want to see this <a href="http://stackoverflow.com/q/3505701/181638">useful summary</a></span>
+                    <U+2013><U+00A0><a href="/users/181638/assad-ebrahim" title="3,517 reputation" class="comment-user">Assad Ebrahim</a>
+                <span class="comment-date" dir="ltr"><span title="2014-04-28 10:18:52Z" class="relativetime-clean">Apr 28 '14 at 10:18</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-43307219" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@piccolbo did you use <code>bob[] &lt;- </code> in the example or <code>bob &lt;- </code>?; the first keeps the data.frame; the second changes the data.frame to a list, dropping the rownames. I will update the answer</span>
+                    <U+2013><U+00A0><a href="/users/199217/david-lebauer" title="13,364 reputation" class="comment-user">David LeBauer</a>
+                <span class="comment-date" dir="ltr"><span title="2014-12-11 21:51:36Z" class="relativetime-clean">Dec 11 '14 at 21:51</span></span>
+                        <span class="edited-yes" title="this comment was edited 2 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-2851213" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh."></a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>2</b> more comments</a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+<div id="dfp-mlb" class="everyonelovesstackoverflow"></div>
+  
+<a name="2853231"></a>
+<div id="answer-2853231" class="answer" data-answerid="2853231" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="2853231"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">206</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>To replace only factors:</p>
+
+<pre><code>i &lt;- sapply(bob, is.factor)
+bob[i] &lt;- lapply(bob[i], as.character)
+</code></pre>
+
+<p>In package dplyr <a href="https://github.com/hadley/dplyr/blob/master/NEWS.md#dplyr-050" rel="noreferrer">in version 0.5.0 new function <code>mutate_if</code> was introduced</a>:</p>
+
+<pre><code>library(dplyr)
+bob %&gt;% mutate_if(is.factor, as.character) -&gt; bob
+</code></pre>
+
+<p><a href="http://blog.rstudio.org/2015/09/29/purrr-0-1-0/" rel="noreferrer">Package purrr from RStudio</a> gives another alternative:</p>
+
+<pre><code>library(purrr)
+library(dplyr)
+bob %&gt;% map_if(is.factor, as.character) %&gt;% as_data_frame -&gt; bob
+</code></pre>
+
+<p>(keep in mind it's fresh package)</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/2853231" title="short permalink to this answer" class="short-link" id="link-post-2853231">share</a><span class="lsep">|</span><a href="/posts/2853231/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/2853231/revisions" title="show all edits to this post">edited <span title="2016-08-16 15:55:22Z" class="relativetime">Aug 16 '16 at 15:55</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2010-05-17 22:08:48Z" class="relativetime">May 17 '10 at 22:08</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/168747/marek"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/b03df38616f732d566331162aa7f3c5a?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/168747/marek">Marek</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 33,566" dir="ltr">33.6k</span><span title="9 gold badges"><span class="badge1"></span><span class="badgecount">9</span></span><span title="60 silver badges"><span class="badge2"></span><span class="badgecount">60</span></span><span title="95 bronze badges"><span class="badge3"></span><span class="badgecount">95</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-2853231" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-14986505" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">That's some really useful code that can be quickly converted to a one-liner....</span>
+                    <U+2013><U+00A0><a href="/users/1270695/a5c1d2h2i1m1n2o1r2t1" title="133,475 reputation" class="comment-user">A5C1D2H2I1M1N2O1R2T1</a>
+                <span class="comment-date" dir="ltr"><span title="2012-07-07 07:31:42Z" class="relativetime-clean">Jul 7 '12 at 7:31</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-28092262" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">+1 Nicely preserves int while changing those pesky factors</span>
+                    <U+2013><U+00A0><a href="/users/236247/demongolem" title="5,941 reputation" class="comment-user">demongolem</a>
+                <span class="comment-date" dir="ltr"><span title="2013-09-25 19:33:36Z" class="relativetime-clean">Sep 25 '13 at 19:33</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-38548937" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Not working for me, sadly. Don't know why. Probably because I have colnames?</span>
+                    <U+2013><U+00A0><a href="/users/170300/doctor-mohawk" title="2,205 reputation" class="comment-user">Doctor Mohawk</a>
+                <span class="comment-date" dir="ltr"><span title="2014-07-18 16:32:16Z" class="relativetime-clean">Jul 18 '14 at 16:32</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-38597385" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@mohawkjohn Shouldn't be issue. You got error or results not as you expected?</span>
+                    <U+2013><U+00A0><a href="/users/168747/marek" title="33,566 reputation" class="comment-user">Marek</a>
+                <span class="comment-date" dir="ltr"><span title="2014-07-20 21:51:22Z" class="relativetime-clean">Jul 20 '14 at 21:51</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-65271050" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Note: The <code>purrr</code> line returns a list, not a <code>data.frame</code>!</span>
+                    <U+2013><U+00A0><a href="/users/1291563/royalts" title="2,700 reputation" class="comment-user">RoyalTS</a>
+                <span class="comment-date" dir="ltr"><span title="2016-08-15 15:49:17Z" class="relativetime-clean">Aug 15 '16 at 15:49</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-2853231" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="2851092"></a>
+<div id="answer-2851092" class="answer" data-answerid="2851092" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="2851092"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">33</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>The global option</p>
+
+<blockquote>
+  <p>stringsAsFactors:
+      The default setting for arguments of data.frame and read.table.</p>
+</blockquote>
+
+<p>may be something you want to set to <code>FALSE</code> in your startup files (e.g. ~/.Rprofile). Please see <code>help(options)</code>.</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/2851092" title="short permalink to this answer" class="short-link" id="link-post-2851092">share</a><span class="lsep">|</span><a href="/posts/2851092/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/2851092/revisions" title="show all edits to this post">edited <span title="2017-02-06 12:15:21Z" class="relativetime">Feb 6 at 12:15</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/4606130/micstr"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/343d4fbd72bc47b7ca8db0947a45b122?s=32&amp;d=identicon&amp;r=PG&amp;f=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/4606130/micstr">micstr</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">2,191</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="23 silver badges"><span class="badge2"></span><span class="badgecount">23</span></span><span title="53 bronze badges"><span class="badge3"></span><span class="badgecount">53</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2010-05-17 17:02:36Z" class="relativetime">May 17 '10 at 17:02</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/143305/dirk-eddelbuettel"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/ND9qC.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/143305/dirk-eddelbuettel">Dirk Eddelbuettel</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 241,470" dir="ltr">241k</span><span title="29 gold badges"><span class="badge1"></span><span class="badgecount">29</span></span><span title="447 silver badges"><span class="badge2"></span><span class="badgecount">447</span></span><span title="554 bronze badges"><span class="badge3"></span><span class="badgecount">554</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-2851092" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-2894717" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">thanks for this! Things like this are constantly biting me as I scrabble up the R learning curve!</span>
+                    <U+2013><U+00A0><a href="/users/270572/mike-dewar" title="4,342 reputation" class="comment-user owner">Mike Dewar</a>
+                <span class="comment-date" dir="ltr"><span title="2010-05-17 18:09:47Z" class="relativetime-clean">May 17 '10 at 18:09</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-44042434" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">3</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">The problem with this is that when you execute your code in an environment where that .Rprofile file is missing you'll get bugs!</span>
+                    <U+2013><U+00A0><a href="/users/1229040/wannymahoots" title="648 reputation" class="comment-user">wannymahoots</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-07 11:20:49Z" class="relativetime-clean">Jan 7 '15 at 11:20</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-48368891" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I tend to call it at the beginning of scripts rather than setting is in the .Rprofile.</span>
+                    <U+2013><U+00A0><a href="/users/843419/gregmacfarlane" title="894 reputation" class="comment-user">gregmacfarlane</a>
+                <span class="comment-date" dir="ltr"><span title="2015-05-08 17:22:25Z" class="relativetime-clean">May 8 '15 at 17:22</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-2851092" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="15554451"></a>
+<div id="answer-15554451" class="answer" data-answerid="15554451" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="15554451"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">14</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I know this answer is a bit late, but if you understand how factors are stored, you can avoid using apply-based functions to accomplish this. Which isn't at all to imply that the apply solutions don't work well.</p>
+
+<p>Factors are structured as numeric indices tied to a list of 'levels'. This can be seen if you convert a factor to numeric. So:</p>
+
+<pre><code>&gt; fact &lt;- as.factor(c("a","b","a","d")
+&gt; fact
+[1] a b a d
+Levels: a b d
+
+&gt; as.numeric(fact)
+[1] 1 2 1 3
+</code></pre>
+
+<p>The numbers returned in the last line correspond to the levels of the factor.</p>
+
+<pre><code>&gt; levels(fact)
+[1] "a" "b" "d"
+</code></pre>
+
+<p>Notice that <code>levels()</code> returns an array of characters. You can use this fact to easily and compactly convert factors to strings or numerics like this:</p>
+
+<pre><code>&gt; fact_character &lt;- levels(fact)[as.numeric(fact)]
+&gt; fact_character
+[1] "a" "b" "a" "d"
+</code></pre>
+
+<p>This also works for numeric values, provided you wrap your expression in <code>as.numeric()</code>.</p>
+
+<pre><code>&gt; num_fact &lt;- factor(c(1,2,3,6,5,4))
+&gt; num_fact
+[1] 1 2 3 6 5 4
+Levels: 1 2 3 4 5 6
+&gt; num_num &lt;- as.numeric(levels(num_fact)[as.numeric(num_fact)])
+&gt; num_num
+[1] 1 2 3 6 5 4
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/15554451" title="short permalink to this answer" class="short-link" id="link-post-15554451">share</a><span class="lsep">|</span><a href="/posts/15554451/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/15554451/revisions" title="show all edits to this post">edited <span title="2013-03-21 17:55:56Z" class="relativetime">Mar 21 '13 at 17:55</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-03-21 17:40:06Z" class="relativetime">Mar 21 '13 at 17:40</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1552971/kikapp"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/56b761d72730973ae75dc49962eb0199?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1552971/kikapp">Kikapp</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">853</span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="6 bronze badges"><span class="badge3"></span><span class="badgecount">6</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-15554451" class="comments  dno">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr>
+<td></td>
+<td></td>
+</tr></tbody></table>
+</div>
+
+        <div id="comments-link-15554451" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="8738342"></a>
+<div id="answer-8738342" class="answer" data-answerid="8738342" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="8738342"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">12</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>If you want a new data frame <code>bobc</code> where <em>every</em> factor vector in <code>bobf</code> is converted to a character vector, try this:</p>
+
+<pre><code>bobc &lt;- rapply(bobf, as.character, classes="factor", how="replace")
+</code></pre>
+
+<p>If you then want to convert it back, you can create a logical vector of which columns are factors, and use that to selectively apply factor</p>
+
+<pre><code>f &lt;- sapply(bobf, class) == "factor"
+bobc[,f] &lt;- lapply(bobc[,f], factor)
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/8738342" title="short permalink to this answer" class="short-link" id="link-post-8738342">share</a><span class="lsep">|</span><a href="/posts/8738342/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/8738342/revisions" title="show all edits to this post">edited <span title="2012-01-05 07:37:05Z" class="relativetime">Jan 5 '12 at 7:37</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-01-05 06:04:58Z" class="relativetime">Jan 5 '12 at 6:04</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1106621/scentoni"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/29c7c7615bc78e0230b0577b1a9b392b?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1106621/scentoni">scentoni</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">459</span><span title="5 silver badges"><span class="badge2"></span><span class="badgecount">5</span></span><span title="4 bronze badges"><span class="badge3"></span><span class="badgecount">4</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-8738342" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-26329755" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">+1 for doing only what was necessary (i.e. not converting the entire data.frame to character). This solution is robust to a data.frame that contains mixed types.</span>
+                    <U+2013><U+00A0><a href="/users/271616/joshua-ulrich" title="122,026 reputation" class="comment-user">Joshua Ulrich</a>
+                <span class="comment-date" dir="ltr"><span title="2013-08-01 21:42:53Z" class="relativetime-clean">Aug 1 '13 at 21:42</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-26335050" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This example should be in the `Examples' section for rapply, like at: <a href="http://stat.ethz.ch/R-manual/R-devel/library/base/html/rapply.html" rel="nofollow noreferrer">stat.ethz.ch/R-manual/R-devel/library/base/html/rapply.html</a> .  Anyone know how to request that that be so?</span>
+                    <U+2013><U+00A0><a href="/users/1022967/mpettis" title="909 reputation" class="comment-user">mpettis</a>
+                <span class="comment-date" dir="ltr"><span title="2013-08-02 03:13:08Z" class="relativetime-clean">Aug 2 '13 at 3:13</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-60438795" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">If you want to end up with a data frame, simple wrap the rapply in a data.frame call (using the stringsAsFactors set to FALSE argument)</span>
+                    <U+2013><U+00A0><a href="/users/666516/taylored-web-sites" title="612 reputation" class="comment-user">Taylored Web Sites</a>
+                <span class="comment-date" dir="ltr"><span title="2016-04-04 19:44:11Z" class="relativetime-clean">Apr 4 '16 at 19:44</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-8738342" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="14268396"></a>
+<div id="answer-14268396" class="answer" data-answerid="14268396" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="14268396"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">9</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I typically make this function apart of all my projects. Quick and easy.</p>
+
+<pre><code>unfactorize &lt;- function(df){
+  for(i in which(sapply(df, class) == "factor")) df[[i]] = as.character(df[[i]])
+  return(df)
+}
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/14268396" title="short permalink to this answer" class="short-link" id="link-post-14268396">share</a><span class="lsep">|</span><a href="/posts/14268396/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-01-10 22:25:09Z" class="relativetime">Jan 10 '13 at 22:25</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1312519/by0"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/91zhU.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1312519/by0">by0</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">4,674</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="37 silver badges"><span class="badge2"></span><span class="badgecount">37</span></span><span title="62 bronze badges"><span class="badge3"></span><span class="badgecount">62</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-14268396" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr id="comment-58631838" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I like this. Easy and easy to understand. For loops in R don't get enough love IMO</span>
+                    <U+2013><U+00A0><a href="/users/2278001/tim-k" title="170 reputation" class="comment-user">Tim_K</a>
+                <span class="comment-date" dir="ltr"><span title="2016-02-17 21:30:06Z" class="relativetime-clean">Feb 17 '16 at 21:30</span></span>
+                                                                            </div>
+                    </td>
+    </tr></tbody></table>
+</div>
+
+        <div id="comments-link-14268396" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="2851169"></a>
+<div id="answer-2851169" class="answer" data-answerid="2851169" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="2851169"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">6</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Another way is to convert it using apply</p>
+
+<pre><code>bob2 &lt;- apply(bob,2,as.character)
+</code></pre>
+
+<p>And a better one (the previous is of class 'matrix')</p>
+
+<pre><code>bob2 &lt;- as.data.frame(as.matrix(bob),stringsAsFactors=F)
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/2851169" title="short permalink to this answer" class="short-link" id="link-post-2851169">share</a><span class="lsep">|</span><a href="/posts/2851169/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/2851169/revisions" title="show all edits to this post">edited <span title="2010-05-17 17:58:36Z" class="relativetime">May 17 '10 at 17:58</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2010-05-17 17:15:18Z" class="relativetime">May 17 '10 at 17:15</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/170792/george-dontas"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/AKJb7.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/170792/george-dontas">George Dontas</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 19,063" dir="ltr">19.1k</span><span title="12 gold badges"><span class="badge1"></span><span class="badgecount">12</span></span><span title="73 silver badges"><span class="badge2"></span><span class="badgecount">73</span></span><span title="113 bronze badges"><span class="badge3"></span><span class="badgecount">113</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-2851169" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr id="comment-2894707" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Following @Shane's comment: in order to get data.frame, do <code>as.data.frame(lapply(...</code></span>
+                    <U+2013><U+00A0><a href="/users/457898/al3xa" title="19,603 reputation" class="comment-user">aL3xa</a>
+                <span class="comment-date" dir="ltr"><span title="2010-05-17 18:08:44Z" class="relativetime-clean">May 17 '10 at 18:08</span></span>
+                                                                            </div>
+                    </td>
+    </tr></tbody></table>
+</div>
+
+        <div id="comments-link-2851169" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="2851409"></a>
+<div id="answer-2851409" class="answer" data-answerid="2851409" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="2851409"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">5</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Or you can try <code>transform</code>:</p>
+
+<pre><code>newbob &lt;- transform(bob, phenotype = as.character(phenotype))
+</code></pre>
+
+<p>Just be sure to put every factor you'd like to convert to character.</p>
+
+<p>Or you can do something like this and kill all the pests with one blow:</p>
+
+<pre><code>newbob_char &lt;- as.data.frame(lapply(bob[sapply(bob, is.factor)], as.character), stringsAsFactors = FALSE)
+newbob_rest &lt;- bob[!(sapply(bob, is.factor))]
+newbob &lt;- cbind(newbob_char, newbob_rest)
+</code></pre>
+
+<p>It's <strong><em>not</em></strong> good idea to shove the data in code like this, I could do the <code>sapply</code> part separately (actually, it's much easier to do it like that), but you get the point... I haven't checked the code, 'cause I'm not at home, so I hope it works! =)</p>
+
+<p>This approach, however, has a downside... you must reorganize columns afterwards, while with <code>transform</code> you can do whatever you like, but at cost of <em>"pedestrian-style-code-writting"</em>...</p>
+
+<p>So there... =)</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/2851409" title="short permalink to this answer" class="short-link" id="link-post-2851409">share</a><span class="lsep">|</span><a href="/posts/2851409/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2010-05-17 17:49:17Z" class="relativetime">May 17 '10 at 17:49</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/457898/al3xa"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/efe6e4ed1258078a62684c7c71038552?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/457898/al3xa">aL3xa</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 19,603" dir="ltr">19.6k</span><span title="13 gold badges"><span class="badge1"></span><span class="badgecount">13</span></span><span title="57 silver badges"><span class="badge2"></span><span class="badgecount">57</span></span><span title="100 bronze badges"><span class="badge3"></span><span class="badgecount">100</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-2851409" class="comments  dno">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr>
+<td></td>
+<td></td>
+</tr></tbody></table>
+</div>
+
+        <div id="comments-link-2851409" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="2851070"></a>
+<div id="answer-2851070" class="answer" data-answerid="2851070" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="2851070"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">4</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p><strong>Update: Here's an example of something that doesn't work.  I thought it would, but I think that the stringsAsFactors option only works on character strings - it leaves the factors alone.</strong></p>
+
+<p>Try this:</p>
+
+<pre><code>bob2 &lt;- data.frame(bob, stringsAsFactors = FALSE)
+</code></pre>
+
+<p>Generally speaking, whenever you're having problems with factors that should be characters, there's a <code>stringsAsFactors</code> setting somewhere to help you (including a global setting).</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/2851070" title="short permalink to this answer" class="short-link" id="link-post-2851070">share</a><span class="lsep">|</span><a href="/posts/2851070/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/2851070/revisions" title="show all edits to this post">edited <span title="2010-05-17 17:07:27Z" class="relativetime">May 17 '10 at 17:07</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2010-05-17 17:00:21Z" class="relativetime">May 17 '10 at 17:00</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/143319/matt-parker"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/62uiV.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/143319/matt-parker">Matt Parker</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 16,137" dir="ltr">16.1k</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="41 silver badges"><span class="badge2"></span><span class="badgecount">41</span></span><span title="64 bronze badges"><span class="badge3"></span><span class="badgecount">64</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-2851070" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-2894354" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This does work, if he sets it when creating <code>bob</code> to begin with (but not after the fact).</span>
+                    <U+2013><U+00A0><a href="/users/163053/shane" title="68,854 reputation" class="comment-user">Shane</a>
+                <span class="comment-date" dir="ltr"><span title="2010-05-17 17:18:35Z" class="relativetime-clean">May 17 '10 at 17:18</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-2894471" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Right.  Just wanted to be clear that this doesn't solve the problem, per se - but thanks for noting that it does prevent it.</span>
+                    <U+2013><U+00A0><a href="/users/143319/matt-parker" title="16,137 reputation" class="comment-user">Matt Parker</a>
+                <span class="comment-date" dir="ltr"><span title="2010-05-17 17:34:06Z" class="relativetime-clean">May 17 '10 at 17:34</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-2851070" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="34828624"></a>
+<div id="answer-34828624" class="answer" data-answerid="34828624" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="34828624"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>At the beginning of your data frame include <code>stringsAsFactors = FALSE</code> to ignore all misunderstandings. </p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/34828624" title="short permalink to this answer" class="short-link" id="link-post-34828624">share</a><span class="lsep">|</span><a href="/posts/34828624/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2016-01-16 15:21:54Z" class="relativetime">Jan 16 '16 at 15:21</span>
+    </div>
+    <div class="user-gravatar32">
+        <span class="anonymous-gravatar"></span>
+    </div>
+    <div class="user-details">
+        user5462317
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-34828624" class="comments  dno">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr>
+<td></td>
+<td></td>
+</tr></tbody></table>
+</div>
+
+        <div id="comments-link-34828624" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="26551731"></a>
+<div id="answer-26551731" class="answer" data-answerid="26551731" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="26551731"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>This works for me - I finally figured a one liner</p>
+
+<pre><code>df &lt;- as.data.frame(lapply(df,function (y) if(class(y)=="factor" ) as.character(y) else y),stringsAsFactors=F)
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/26551731" title="short permalink to this answer" class="short-link" id="link-post-26551731">share</a><span class="lsep">|</span><a href="/posts/26551731/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2014-10-24 16:00:22Z" class="relativetime">Oct 24 '14 at 16:00</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1617979/user1617979"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/a7b1491fc233ba095a22e281b58fa738?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1617979/user1617979">user1617979</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">938</span><span title="12 silver badges"><span class="badge2"></span><span class="badgecount">12</span></span><span title="22 bronze badges"><span class="badge3"></span><span class="badgecount">22</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-26551731" class="comments  dno">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr>
+<td></td>
+<td></td>
+</tr></tbody></table>
+</div>
+
+        <div id="comments-link-26551731" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="34188802"></a>
+<div id="answer-34188802" class="answer" data-answerid="34188802" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="34188802"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>If you would use <code>data.table</code> package for the operations on data.frame then the problem is not present.  </p>
+
+<p></p>
+
+<pre><code>library(data.table)
+dt = data.table(col1 = c("a","b","c"), col2 = 1:3)
+sapply(dt, class)
+#       col1        col2 
+#"character"   "integer" 
+</code></pre>
+
+<p>If you have a factor columns in you dataset already and you want to convert them to character you can do the following.  </p>
+
+<pre><code>library(data.table)
+dt = data.table(col1 = factor(c("a","b","c")), col2 = 1:3)
+sapply(dt, class)
+#     col1      col2 
+# "factor" "integer" 
+upd.cols = sapply(dt, is.factor)
+dt[, names(dt)[upd.cols] := lapply(.SD, as.character), .SDcols = upd.cols]
+sapply(dt, class)
+#       col1        col2 
+#"character"   "integer" 
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/34188802" title="short permalink to this answer" class="short-link" id="link-post-34188802">share</a><span class="lsep">|</span><a href="/posts/34188802/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-12-09 20:55:52Z" class="relativetime">Dec 9 '15 at 20:55</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/2490497/jangorecki"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/8UW7x.png?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/2490497/jangorecki">jangorecki</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">6,509</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="23 silver badges"><span class="badge2"></span><span class="badgecount">23</span></span><span title="77 bronze badges"><span class="badge3"></span><span class="badgecount">77</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-34188802" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr id="comment-64874745" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">DT circumvents the sapply fix proposed by Marek: <code>In [&lt;-.data.table(*tmp*, sapply(bob, is.factor),  :   Coerced 'character' RHS to 'double' to match the column's type. Either change the target column to 'character' first (by creating a new 'character' vector length 1234 (nrows of entire table) and assign that; i.e. 'replace' column), or coerce RHS to 'double' (e.g. 1L, NA_[real|integer]_, as.*, etc) to make your intent clear and for speed. Or, set the column type correctly up front when you create the table and stick to it, please.</code> It's easier to fix the DF and recreate the DT.</span>
+                    <U+2013><U+00A0><a href="/users/638445/matt-chambers" title="1,053 reputation" class="comment-user">Matt Chambers</a>
+                <span class="comment-date" dir="ltr"><span title="2016-08-03 17:49:18Z" class="relativetime-clean">Aug 3 '16 at 17:49</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr></tbody></table>
+</div>
+
+        <div id="comments-link-34188802" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+                    <div class="question-status">
+        <h2>                    <b>protected</b> by <a href="/users/-1/community">Community</a><span class="mod-flair" title="moderator"><U+2666></span> <span dir="ltr"><span title="2016-02-03 14:03:26Z" class="relativetime">Feb 3 '16 at 14:03</span></span>
+</h2>
+        <p>
+Thank you for your interest in this question. 
+Because it has attracted low-quality or spam answers that had to be removed, posting an answer now requires 10 <a href="/help/whats-reputation">reputation</a> on this site (the <a href="/help/privileges/new-user">association bonus does not count</a>).
+<br><br>
+Would you like to answer one of these <a href="/unanswered?fromProtectedNotice=true">unanswered questions</a> instead?
+</p>
+    </div>
+
+
+
+
+
+                        <h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?                            Browse other questions tagged <a href="/questions/tagged/r" class="post-tag" title="show questions tagged 'r'" rel="tag">r</a> <a href="/questions/tagged/dataframe" class="post-tag" title="show questions tagged 'dataframe'" rel="tag">dataframe</a>  or <a href="/questions/ask">ask your own question</a>.                        </h2>
+            </div>
+        </div>
+                <div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">
+                            <div class="module question-stats">
+                    <table id="qinfo">
+<tr>
+<td>
+                                <p class="label-key">asked</p>
+                            </td>
+                            <td style="padding-left: 10px">
+                                <p class="label-key" title="2010-05-17 16:52:02Z"><b>7 years, 5 months ago</b></p>
+                            </td>
+                        </tr>
+<tr>
+<td>
+                                <p class="label-key">viewed</p>
+                            </td>
+
+                            <td style="padding-left: 10px">
+                                <p class="label-key">
+                                    <b>337,582 times</b>
+                                </p>
+                            </td>
+                        </tr>
+<tr>
+<td>
+                                    <p class="label-key">active</p>
+                                </td>
+                                <td style="padding-left: 10px">
+                                    <p class="label-key"><b><a href="?lastactivity" class="lastactivity-link" title="2017-02-06 12:15:21Z">8 months ago</a></b></p>
+                                </td>
+                            </tr>
+</table>
+</div>
+                        
+            <div id="dfp-tsb" class="everyonelovesstackoverflow"></div>
+            <div id="hireme"></div>
+                <script>var clc={options:{svc:'dfp'}};</script><script>;window.clc=window.clc||{},window.clc.init=window.clc.init||function(a){var b=window,c=b.document;try{if("function"!=typeof[].indexOf||!window.addEventListener||!a.allowed)return;var d=new RegExp(a.allowed);if(!d.test(location.hostname))return;if(b.clc.options)for(var e in b.clc.options)a[e]=b.clc.options[e];b.clc.cmd="undefined"==typeof b.clc.cmd?[]:b.clc.cmd,b.clc.autoload=b.clc.autoload||function(){"function"==typeof b.clc.load?b.clc.load():b.clc.cmd.push(function(a){a.load()})};var f=a.wv;if(c.hidden&&f)return void c.addEventListener("visibilitychange",function b(){c.hidden||(window.clc.init(a),c.removeEventListener("visibilitychange",b))});b.clc.options=a,a.al&&b.clc.autoload();var g=c.createElement("script");g.async=!0,g.src=a.lib,c.body.appendChild(g)}catch(a){}},window.clc.loadDisplayAds=window.clc.loadDisplayAds||function(){function a(b){b.style.height=b.style.maxHeight=b.style.minHeight="auto",b.style.display="IFRAME"===b.tagName?"none":"block",[].forEach.call(b.children,a)}function b(a){new Image().src="https://"+e+"/stalled.gif?"+a}var c=window,d=c.document,e="clc.stackoverflow.com",f={slots:{lb:[[728,90]],mlb:[[728,90]],sb:[[300,250],[300,600]],"tag-sponsorship":[[730,135]]},ids:{"dfp-tlb":"lb","dfp-mlb":"mlb","dfp-tsb":"sb","dfp-tag":"tag-sponsorship","clc-tlb":"lb","clc-mlb":"mlb","clc-tsb":"sb"}},g=/^\/tags\//.test(location.pathname)||/^\/questions\/tagged\//.test(location.pathname)?"tag-pages":"question-pages",h=location.hostname;/^clc\./.test(location.hostname)&&(h="test/dev.stackoverflow.com");return function(e){var i=(e&&0<e.length?e:Object.keys(f.ids)).map(function(a){return d.getElementById(a)}).filter(function(a){return!!a&&/^\s*$/.test(a.innerHTML)}).map(function(a){return a.id});if(0!==i.length){c.googletag=c.googletag||{},c.googletag.cmd=c.googletag.cmd||[],c.googletag.cmd.push(function(){var e=c.googletag,j=d.createElement("div");j.className="adsbox",j.id="clc-abd",j.style.position="absolute",j.style.pointerEvents="none",j.innerHTML="&nbsp;",d.body.appendChild(j);var k=e.pubads();k.enableSingleRequest(),k.addEventListener("slotRenderEnded",function(c){var e=c.serviceName,f=c.slot,g=c.lineItemId;try{var h=f.getSlotElementId(),i=[];h||i.push("id=0");var j=d.getElementById(h);if(!h||j?j.hasAttribute("data-clc-stalled")&&i.push("st=1"):i.push("el=0"),0!==i.length)return void b(i.join("&"));-1===[4385506061,4386578282,4386579572].indexOf(g)?j.setAttribute("data-clc-prefilled","true"):a(j),j.setAttribute("data-clc-ready","true")}catch(a){var k=d.getElementById("dfp-tsb")||d.getElementById("clc-tsb");k&&k.setAttribute("data-clc-ready","true"),b("e=1")}});var l=c.dfp_targeting||{};l&&Object.keys(l).forEach(function(a){e.pubads().setTargeting(a,l[a])});for(var m=0,n=i;m<n.length;m++){var o=n[m],p=f.ids[o],q=f.slots[p],r="/"+"248424177"+"/"+h+"/"+p+"/"+g,s=e.defineSlot(r,q,o);("tag-sponsorship"===p||"sb"==p)&&s.setCollapseEmptyDiv(!0,!0),s.addService(k),!1}e.enableServices();for(var o,t=0,u=i;t<u.length;t++)o=u[t],e.display(o)});var j=d.createElement("script");j.async=!0,j.src="https://www.googletagservices.com/tag/js/gpt.js",document.body.appendChild(j)}}}(),window.clc.init.call(null, {"lib":"https://cdn.sstatic.net/clc/clc.min.js?v=f7d8d49c545b","u":"https://clc.stackoverflow.com/markup.js","wa":true,"kt":2000,"tto":true,"h":"clc.stackoverflow.com","allowed":"^(((talent\\.)?stackoverflow)|(blog\\.codinghorror)|(serverfault|askubuntu)|([^\\.]+\\.stackexchange))\\.com$","wv":true,"al":false});</script><script>
+window.clc_request='Ahv9_PJPFNUIAAAAAMeAKwACAAAAAgAAAAANAAAAfHJ8ZGF0YWZyYW1lfADX_JNiV8sbblrX';                    clc.autoload();
+                var dfp_targeting={Registered:['false'],'so-tag':['r','dataframe']};                                    clc.loadDisplayAds();
+            </script><div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+
+<div class="spacer">
+	<a href="/q/13475145" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">-3</div>
+	</a>
+	<a href="/questions/13475145/converting-a-file-from-factor-to-character-in-r?noredirect=1" class="question-hyperlink">Converting a file from factor to character in R</a>
+</div>
+<div class="spacer">
+	<a href="/q/18005071" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="/questions/18005071/how-do-you-remove-factors-from-a-matrix-vector-etc?noredirect=1" class="question-hyperlink">How do you remove factors from a matrix, vector, etc.?</a>
+</div>
+<div class="spacer">
+	<a href="/q/31426560" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">-4</div>
+	</a>
+	<a href="/questions/31426560/subsetting-columns-from-the-data-frame-in-r?noredirect=1" class="question-hyperlink">Subsetting columns from the data frame in R</a>
+</div>
+<div class="spacer">
+	<a href="/q/3505701" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted large">815</div>
+	</a>
+	<a href="/questions/3505701/grouping-functions-tapply-by-aggregate-and-the-apply-family?noredirect=1" class="question-hyperlink">Grouping functions (tapply, by, aggregate) and the *apply family</a>
+</div>
+<div class="spacer">
+	<a href="/q/7813578" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">73</div>
+	</a>
+	<a href="/questions/7813578/convert-column-classes-in-data-table?noredirect=1" class="question-hyperlink">Convert column classes in data.table</a>
+</div>
+<div class="spacer">
+	<a href="/q/11538532" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">14</div>
+	</a>
+	<a href="/questions/11538532/change-stringsasfactors-settings-for-data-frame?noredirect=1" class="question-hyperlink">Change stringsAsFactors settings for data.frame</a>
+</div>
+<div class="spacer">
+	<a href="/q/30280692" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">6</div>
+	</a>
+	<a href="/questions/30280692/r-converting-column-values-into-their-own-binary-encoded-columns-dummy-variabl?noredirect=1" class="question-hyperlink">R: Converting Column Values into Their Own Binary Encoded Columns (Dummy Variables)</a>
+</div>
+<div class="spacer">
+	<a href="/q/27879121" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">10</div>
+	</a>
+	<a href="/questions/27879121/handling-factor-variables-in-dplyr?noredirect=1" class="question-hyperlink">Handling factor variables in dplyr</a>
+</div>
+<div class="spacer">
+	<a href="/q/36345915" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">1</div>
+	</a>
+	<a href="/questions/36345915/matching-two-columns-in-r?noredirect=1" class="question-hyperlink">Matching two Columns in R</a>
+</div>
+<div class="spacer">
+	<a href="/q/14862141" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="/questions/14862141/create-a-function-converting-every-character-column-of-a-data-frame-into-a-facto?noredirect=1" class="question-hyperlink">Create a function converting every character column of a data frame into a factor one</a>
+</div>					<div class="spacer more">
+				<a href="/questions/linked/2851015">see more linked questionsÅc</a>
+			</div>
+	</div>
+</div>
+
+                <div class="module sidebar-related">
+                    <h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer">
+<a href="/q/1296646" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">969</div></a><a href="/questions/1296646/how-to-sort-a-dataframe-by-columns" class="question-hyperlink">How to sort a dataframe by column(s)?</a>
+</div>
+<div class="spacer">
+<a href="/q/4605206" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">560</div></a><a href="/questions/4605206/drop-data-frame-columns-by-name" class="question-hyperlink">Drop data frame columns by name</a>
+</div>
+<div class="spacer">
+<a href="/q/4862178" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">516</div></a><a href="/questions/4862178/remove-rows-with-nas-missing-values-in-data-frame" class="question-hyperlink">Remove rows with NAs (missing values) in data.frame</a>
+</div>
+<div class="spacer">
+<a href="/q/9251326" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">84</div></a><a href="/questions/9251326/convert-data-frame-column-format-from-character-to-factor" class="question-hyperlink">convert data.frame column format from character to factor</a>
+</div>
+<div class="spacer">
+<a href="/q/10689055" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">291</div></a><a href="/questions/10689055/create-an-empty-data-frame" class="question-hyperlink">Create an empty data.frame</a>
+</div>
+<div class="spacer">
+<a href="/q/11346283" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">779</div></a><a href="/questions/11346283/renaming-columns-in-pandas" class="question-hyperlink">Renaming columns in pandas</a>
+</div>
+<div class="spacer">
+<a href="/q/11950923" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="/questions/11950923/refactor-data-frame-column-values" class="question-hyperlink">refactor data.frame column values</a>
+</div>
+<div class="spacer">
+<a href="/q/12481426" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="/questions/12481426/how-to-create-a-data-frame-with-3-factors" class="question-hyperlink">How to create a data.frame with 3 factors?</a>
+</div>
+<div class="spacer">
+<a href="/q/34734880" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">1</div></a><a href="/questions/34734880/join-on-two-separate-columns-in-a-data-frame-with-a-simple-code" class="question-hyperlink">Join on two separate columns in a data.frame with a simple code</a>
+</div>
+<div class="spacer">
+<a href="/q/37109989" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="/questions/37109989/sorting-columns-from-lowest-to-highest-values-i-e-1-2-3-etc-not-1-10-11" class="question-hyperlink">sorting columns from lowest to highest values (i.e. 1, 2, 3 etc, not 1, 10, 11Åc2, 20, 21Åc etc)</a>
+</div>
+                    </div>
+                </div>
+
+<div id="hot-network-questions" class="module tex2jax_ignore">
+    <h4>
+        <a href="https://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+<li>
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div>
+<a href="https://travel.stackexchange.com/questions/103662/how-to-survive-a-timeshare-promotional-trip" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to survive a timeshare promotional trip?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-interpersonal" title="Interpersonal Skills Stack Exchange"></div>
+<a href="https://interpersonal.stackexchange.com/questions/5203/how-should-my-wife-handle-an-engaged-admirer-and-his-fiancee" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:680 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How should my wife handle an engaged admirer and his fiancee?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div>
+<a href="https://mathematica.stackexchange.com/questions/157865/how-can-i-code-a-smart-version-of-chop" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can I code a "smart" version of Chop?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-german" title="German Language Stack Exchange"></div>
+<a href="https://german.stackexchange.com/questions/39682/when-asked-arbeitest-du-morgen-how-can-one-know-if-hes-asked-about-the-day" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:253 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When asked "Arbeitest du morgen?", how can one know if he's asked about the day or the action
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div>
+<a href="https://worldbuilding.stackexchange.com/questions/94993/how-could-mushroom-fungi-forests-be-possible" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How could mushroom/fungi forests be possible?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-matheducators" title="Mathematics Educators Stack Exchange"></div>
+<a href="https://matheducators.stackexchange.com/questions/12984/examples-of-basic-non-commutative-rings" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:548 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Examples of basic non-commutative rings
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div>
+<a href="https://math.stackexchange.com/questions/2474093/are-there-any-crazy-totally-ordered-rings-without-infinities-infinitesimals" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are there any "crazy" totally ordered rings without infinities/infinitesimals?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div>
+<a href="https://tex.stackexchange.com/questions/396358/checking-for-empty-argument-in-meta-command" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    checking for empty argument in meta-command
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div>
+<a href="https://academia.stackexchange.com/questions/97334/should-one-avoid-using-the-phrase-note-that-in-math-writings" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Should one avoid using the phrase "note that" in math writings?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div>
+<a href="https://english.stackexchange.com/questions/414440/a-single-word-for-non-domesticated-animals-that-live-among-humans" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    A single-word for non-domesticated animals that live among humans?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-askubuntu" title="Ask Ubuntu"></div>
+<a href="https://askubuntu.com/questions/964877/how-would-a-local-government-make-the-switch-from-windows-to-ubuntu" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:89 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How would a local government make the switch from Windows to Ubuntu?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-chess" title="Chess Stack Exchange"></div>
+<a href="https://chess.stackexchange.com/questions/18866/best-opening-in-blind-simultaneous-chess" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:435 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Best opening in blind simultaneous chess
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div>
+<a href="https://unix.stackexchange.com/questions/398219/is-a-device-driver-in-linux-a-program-process-or-is-it-just-a-library" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is a device driver in Linux a program/process or is it just a library?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-gamedev" title="Game Development Stack Exchange"></div>
+<a href="https://gamedev.stackexchange.com/questions/149541/when-is-the-time-to-consider-performance" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:53 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When is the time to consider performance?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-ethereum" title="Ethereum Stack Exchange"></div>
+<a href="https://ethereum.stackexchange.com/questions/28542/please-help-me-understand-beginner-data" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:642 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Please help me understand beginner data
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-chemistry" title="Chemistry Stack Exchange"></div>
+<a href="https://chemistry.stackexchange.com/questions/84242/do-non-ergodic-chemical-reactions-exist" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:431 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Do non-ergodic chemical reactions exist?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-chemistry" title="Chemistry Stack Exchange"></div>
+<a href="https://chemistry.stackexchange.com/questions/84229/how-does-water-evaporate-completely-when-at-room-temperature" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:431 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How does water evaporate completely when at room temperature?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div>
+<a href="https://physics.stackexchange.com/questions/361679/why-do-ballpoint-pens-write-better-on-pages-that-have-pages-below-them" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why do ballpoint pens write better on pages that have pages below them?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-space" title="Space Exploration Stack Exchange"></div>
+<a href="https://space.stackexchange.com/questions/23396/how-much-thrust-needed-to-move-6-000kg-from-leo-to-lunar-orbit" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:508 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How much thrust needed to move 6,000KG from LEO to Lunar Orbit?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-bicycles" title="Bicycles Stack Exchange"></div>
+<a href="https://bicycles.stackexchange.com/questions/50551/what-is-the-foam-tube-on-the-top-of-bmx-frame-for" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:126 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is the foam tube on the top of bmx frame for?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div>
+<a href="https://scifi.stackexchange.com/questions/171905/where-did-fred-and-george-live-after-they-left-hogwarts-and-started-their-busine" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Where did Fred and George live after they left Hogwarts and started their business?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div>
+<a href="https://worldbuilding.stackexchange.com/questions/94900/how-fast-could-earth-orbit-the-sun-without-its-orbit-changing" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How fast could earth orbit the sun without its orbit changing?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div>
+<a href="https://worldbuilding.stackexchange.com/questions/94994/how-could-time-actually-be-speeding-up" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How could time actually be speeding up?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div>
+<a href="https://math.stackexchange.com/questions/2472789/is-there-a-simple-example-showing-that-uncorrelated-random-variables-need-not" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there a *simple* example showing that uncorrelated random variables need not be independent?
+                </a>
+
+            </li>
+    </ul>
+<a href="#" class="show-more js-show-more js-gps-track" data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+            more hot questions
+        </a>
+</div>
+        </div>
+    
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="/feeds/question/2851015" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>    </div>
+<script>
+StackExchange.ready(function(){$.get('/posts/2851015/ivc/9b16');});
+</script><noscript>
+    <div><img src="/posts/2851015/ivc/9b16" class="dno" alt="" width="0" height="0"></div>
+</noscript>
+<div style="display:none" id="prettify-lang">lang-r</div>
+</div>
+
+
+        </div>
+    </div>
+
+    <footer id="footer" class="s-footer js-footer" role="contentinfo"><div class="-container">
+            <div class="g-row">
+                    <div class="-logo">
+
+                        <a href="https://stackoverflow.com"><svg aria-hidden="true" class="svg-icon native iconLogo" width="150" height="30" viewbox="0 0 150 30"><g><path d="M33.9 18.6l-1.7-.2c-1.3-.1-1.9-.6-1.9-1.6 0-1.1.8-1.8 2.4-1.8 1.1 0 2.1.3 2.8.8l1-1c-1-.8-2.3-1.1-3.8-1.1-2.3 0-3.9 1.2-3.9 3.1 0 1.8 1.1 2.7 3.2 2.9l1.8.2c1.2.1 1.8.6 1.8 1.6 0 1.3-1.1 1.9-2.8 1.9-1.3 0-2.5-.3-3.3-1.2l-1 1c1.2 1.1 2.6 1.5 4.4 1.5 2.6 0 4.3-1.2 4.3-3.2-.2-2-1.5-2.7-3.3-2.9zm13.3-4.8c-1.7 0-2.8.3-3.7 1.5l1 1c.6-.9 1.3-1.2 2.7-1.2 1.9 0 2.7.8 2.7 2.3v1h-3.2c-2.4 0-3.7 1.2-3.7 3.1 0 .8.3 1.6.8 2.2.7.7 1.5 1 3 1 1.4 0 2.2-.3 3.1-1.1v1h1.6v-7.2c-.1-2.4-1.5-3.6-4.3-3.6zm2.7 7c0 .9-.2 1.5-.5 1.8-.7.6-1.5.7-2.4.7-1.7 0-2.4-.6-2.4-1.8 0-1.2.8-1.9 2.4-1.9h3l-.1 1.2zm7.6-5.6c1 0 1.6.3 2.4 1.2l1-1c-1.1-1.2-2-1.6-3.5-1.6-2.7 0-4.7 1.8-4.7 5.5 0 3.6 2 5.5 4.7 5.5 1.5 0 2.4-.4 3.5-1.6l-1.1-1c-.8.9-1.4 1.2-2.4 1.2s-1.9-.4-2.5-1.2c-.5-.7-.7-1.5-.7-2.9 0-1.3.2-2.2.7-2.9.7-.8 1.6-1.2 2.6-1.2zm13.4-1.3H69l-4.8 4.7V9.1h-1.6v15.4h1.6v-3.9l1.9-1.9 3.6 5.8h1.9l-4.4-6.9 3.7-3.7zm7.3-.33c-1.6 0-2.7.6-3.4 1.4-1 1-1.3 2.3-1.3 4.3s.3 3.3 1.3 4.3c.7.7 1.8 1.4 3.4 1.4 1.6 0 2.8-.6 3.4-1.4 1-1 1.3-2.3 1.3-4.3s-.3-3.3-1.3-4.3c-.6-.8-1.7-1.4-3.4-1.4zm1.3 8.3c-.3.3-.7.5-1.3.5-.6 0-1-.2-1.3-.5-.6-.6-.6-1.6-.6-2.7 0-1.2.1-2.1.6-2.7.3-.3.7-.5 1.3-.5.6 0 1 .2 1.3.5.6.6.6 1.5.6 2.7.1 1.2 0 2.2-.6 2.7zm10.8-8.2l-2.2 6.9-2.3-6.9h-2.9l4.1 11.1h2.2l4.1-11.1h-3zm7.6-.1c-2.9 0-4.8 2-4.8 5.7 0 4.5 2.5 5.7 5.1 5.7 2 0 3.1-.6 4.2-1.7l-1.7-1.6c-.7.7-1.3 1-2.5 1-1.6 0-2.4-1-2.4-2.5h6.9v-1.2c0-3.2-1.7-5.4-4.8-5.4zm-2.1 4.6c0-.5.1-.8.3-1.2.3-.7.9-1.2 1.9-1.2.9 0 1.6.5 1.9 1.2.2.4.2.7.3 1.2h-4.4zm11-3.4v-1.1h-2.7v11.1h2.8v-6.7c0-1.4.9-2 1.8-2 .7 0 1 .2 1.5.7l2.1-2.1c-.8-.8-1.5-1-2.6-1-1.3-.1-2.3.4-2.9 1.1zm6.3-2.3v12.3h2.8v-8.8h2v-2.1h-2v-1.2c0-.6.3-1 1-1h1.1v-2.3h-1.6c-2.3 0-3.3 1.6-3.3 3.1zm16.2 1.1c-1.6 0-2.7.6-3.4 1.4-1 1-1.3 2.3-1.3 4.3s.3 3.3 1.3 4.3c.7.7 1.8 1.4 3.4 1.4 1.6 0 2.8-.6 3.4-1.4 1-1 1.3-2.3 1.3-4.3s-.3-3.3-1.3-4.3c-.6-.8-1.8-1.4-3.4-1.4zm1.3 8.3c-.3.3-.7.5-1.3.5-.6 0-1-.2-1.3-.5-.6-.6-.6-1.6-.6-2.7 0-1.2.1-2.1.6-2.7.3-.3.7-.5 1.3-.5.6 0 1 .2 1.3.5.6.6.6 1.5.6 2.7 0 1.2 0 2.2-.6 2.7zm16.5-8.2l-1.8 6.9-2.3-6.9h-2l-2.3 6.9-1.8-6.9H134l3.4 11.1h2.3l2.3-7 2.3 7h2.3l3.4-11.1h-2.9zm-25.1 7.7V9.27h-2.8v12.3c0 1.6 1 3.2 3.2 3.2h1.6v-2.3h-1c-.7 0-1-.4-1-1.1zM41.3 15.6l1.4-1.4h-3v-3.5h-1.6v11.1c0 1.6.9 2.9 2.7 2.9h1.1v-1.3h-.8c-1 0-1.5-.6-1.5-1.6v-6.1h1.7v-.1z" fill="#222426"></path><path fill="#BCBBBB" d="M21 27v-8h3v11H0V19h3v8z"></path><path d="M5.4 19.1l13.56 1.96.17-2.38-13.26-2.55-.47 2.97zm1.8-6.8l12 5.6 1.1-2.4-12-5.6-1.1 2.4zm3.4-5.9l10.2 8.5 1.7-2-10.2-8.5-1.7 2zM17.1.2L15 1.8l7.9 10.6 2.1-1.6L17.1.2zM5 25h14v-3H5v3z" fill="#F48024"></path></g></svg></a>
+                    </div>
+                
+                    <nav class="-nav js-category _visible" data-name="default"><h5 class="-title"><a href="https://stackoverflow.com" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 15})">Stack Overflow</a></h5>
+                        <ul class="-list">
+<li class="-item"><a href="/questions" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 16})">Questions</a></li>
+                                <li class="-item"><a href="https://stackoverflow.com/jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 17})">Jobs</a></li>
+                                <li class="-item"><a href="https://stackoverflow.com/jobs/directory/developer-jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 11})">Developer Jobs Directory</a></li>
+                                     <li class="-item"><a href="https://stackoverflow.com/jobs/salary" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 28})">Salary Calculator</a></li>
+                                                            <li class="-item"><a href="/help" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 3 })">Help</a></li>
+                                <li class="-item"><a onclick='StackExchange.switchMobile("on")' class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 12 })">Mobile</a></li>
+                        </ul></nav><nav class="-nav js-category _visible" data-name="default"><h5 class="-title"><a href="https://www.stackoverflowbusiness.com/?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-business-category" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 19 })">Stack Overflow<br> Business</a></h5>
+                        <ul class="-list">
+<li class="-item"><a href="https://www.stackoverflowbusiness.com/talent?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-talent" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 20 })">Talent</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/advertise?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-advertise" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 21 })">Ads</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/enterprise?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-enterprise" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 22 })">Enterprise</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/insights?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-insights" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 23 })">Insights</a></li>
+                        </ul></nav><nav class="-nav js-category _visible" data-name="default"><h5 class="-title"><a class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">Company</a></h5>
+                    <ul class="-list">
+<li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">About</a></li>
+                                                <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 27 })" href="https://stackoverflow.com/company/press">Press</a></li>
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 9 })" href="https://stackoverflow.com/company/work-here">Work Here</a></li>
+                        <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 7 })" href="https://stackexchange.com/legal">Legal</a></li>
+                        <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 8 })" href="https://stackexchange.com/legal/privacy-policy">Privacy Policy</a></li>
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 13 })" href="https://stackoverflow.com/company/contact">Contact Us</a></li>
+                    </ul></nav><div class="-network g-row">
+                    <a href="#" class="-back-trigger js-back"><svg aria-hidden="true" class="svg-icon iconArrowLeftAlt" width="18" height="18" viewbox="0 0 18 18"><path d="M10.58 16L12 14.59 6.4 9 12 3.41 10.57 2l-7 7z"></path></svg></a>
+                    <div>
+                        <h5 class="-title"><a href="https://stackexchange.com">Stack Exchange<br> Network</a></h5>
+                        <ul class="-list">
+<li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Technology">Technology</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Life / Arts">Life / Arts</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Culture / Recreation">Culture / Recreation</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Science">Science</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Other">Other</a></li>
+
+                        </ul>
+</div>
+                </div>
+                <nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                <li class="-item"><a href="https://serverfault.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="system and network administrators">Server Fault</a></li>
+                <li class="-item"><a href="https://superuser.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="computer enthusiasts and power users">Super User</a></li>
+                <li class="-item"><a href="https://webapps.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="power users of web applications">Web Applications</a></li>
+                <li class="-item"><a href="https://askubuntu.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                <li class="-item"><a href="https://webmasters.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="pro webmasters">Webmasters</a></li>
+                <li class="-item"><a href="https://gamedev.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and independent game developers">Game Development</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://tex.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                <li class="-item"><a href="https://softwareengineering.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professionals, academics, and students working within the systems development life cycle">Software Engineering</a></li>
+                <li class="-item"><a href="https://unix.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                <li class="-item"><a href="https://apple.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                <li class="-item"><a href="https://wordpress.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="WordPress developers and administrators">WordPress Development</a></li>
+                <li class="-item"><a href="https://gis.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                <li class="-item"><a href="https://electronics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://android.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                <li class="-item"><a href="https://security.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="information security professionals">Information Security</a></li>
+                <li class="-item"><a href="https://bitcoin.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Bitcoin crypto-currency enthusiasts">Bitcoin</a></li>
+                <li class="-item"><a href="https://dba.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                <li class="-item"><a href="https://drupal.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Drupal developers and administrators">Drupal Answers</a></li>
+                <li class="-item"><a href="https://sharepoint.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="SharePoint enthusiasts">SharePoint</a></li>
+                <li class="-item"><a href="https://ux.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="user experience researchers and experts">User Experience</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://mathematica.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Wolfram Mathematica">Mathematica</a></li>
+                <li class="-item"><a href="https://salesforce.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                <li class="-item"><a href="https://expressionengine.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="administrators, end users, developers and designers for ExpressionEngineR CMS">ExpressionEngineR Answers</a></li>
+                <li class="-item"><a href="https://pt.stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programadores profissionais e entusiastas">Stack Overflow em Portugues</a></li>
+                <li class="-item"><a href="https://blender.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who use Blender to create 3D graphics, animations, or games">Blender</a></li>
+                <li class="-item"><a href="https://networkengineering.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="network engineers">Network Engineering</a></li>
+                <li class="-item"><a href="https://crypto.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="software developers, mathematicians and others interested in cryptography">Cryptography</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://codereview.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="peer programmer code reviews">Code Review</a></li>
+                <li class="-item"><a href="https://magento.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of the Magento e-Commerce platform">Magento</a></li>
+                <li class="-item"><a href="https://softwarerecs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people seeking specific software recommendations">Software Recommendations</a></li>
+                <li class="-item"><a href="https://dsp.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="practitioners of the art and science of signal, image and video processing">Signal Processing</a></li>
+                <li class="-item"><a href="https://emacs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those using, extending or developing Emacs">Emacs</a></li>
+                <li class="-item"><a href="https://raspberrypi.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users and developers of hardware and software for Raspberry Pi">Raspberry Pi</a></li>
+                <li class="-item"><a href="https://ru.stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="ÑÅÑÇÑÄÑsÑÇÑpÑ}Ñ}ÑyÑÉÑÑÑÄÑr">Stack Overflow Ñ~Ñp ÑÇÑÖÑÉÑÉÑ{ÑÄÑ}</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://codegolf.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programming puzzle enthusiasts and code golfers">Programming Puzzles &amp; Code Golf</a></li>
+                <li class="-item"><a href="https://es.stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programadores y profesionales de la informatica">Stack Overflow en espanol</a></li>
+                <li class="-item"><a href="https://ethereum.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Ethereum, the decentralized application platform and smart contract enabled blockchain">Ethereum</a></li>
+                <li class="-item"><a href="https://datascience.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Data science professionals, Machine Learning specialists, and those interested in learning more about the field">Data Science</a></li>
+                <li class="-item"><a href="https://arduino.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="developers of open-source hardware and software that is compatible with Arduino">Arduino</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#technology" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (26)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Life / Arts"><ul class="-list">
+<li class="-item"><a href="https://photo.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                <li class="-item"><a href="https://scifi.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                <li class="-item"><a href="https://graphicdesign.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                <li class="-item"><a href="https://movies.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                <li class="-item"><a href="https://music.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="musicians, students, and enthusiasts">Music: Practice &amp; Theory</a></li>
+                <li class="-item"><a href="https://worldbuilding.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="writers/artists using science, geography and culture to construct imaginary worlds and settings">Worldbuilding</a></li>
+                <li class="-item"><a href="https://cooking.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Life / Arts"><ul class="-list">
+<li class="-item"><a href="https://diy.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="contractors and serious DIYers">Home Improvement</a></li>
+                <li class="-item"><a href="https://money.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                <li class="-item"><a href="https://academia.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="academics and those enrolled in higher education">Academia</a></li>
+                <li class="-item"><a href="https://law.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="legal professionals, students, and others with experience or interest in law">Law</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#lifearts" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (17)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Culture / Recreation"><ul class="-list">
+<li class="-item"><a href="https://english.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                <li class="-item"><a href="https://skeptics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="scientific skepticism">Skeptics</a></li>
+                <li class="-item"><a href="https://judaism.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                <li class="-item"><a href="https://travel.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="road warriors and seasoned travelers">Travel</a></li>
+                <li class="-item"><a href="https://christianity.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                <li class="-item"><a href="https://ell.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="speakers of other languages learning English">English Language Learners</a></li>
+                <li class="-item"><a href="https://japanese.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students, teachers, and linguists wanting to discuss the finer points of the Japanese language">Japanese Language</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Culture / Recreation"><ul class="-list">
+<li class="-item"><a href="https://gaming.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                <li class="-item"><a href="https://bicycles.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                <li class="-item"><a href="https://rpg.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                <li class="-item"><a href="https://anime.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="anime and manga fans">Anime &amp; Manga</a></li>
+                <li class="-item"><a href="https://puzzling.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those who create, solve, and study puzzles">Puzzling</a></li>
+                <li class="-item"><a href="https://mechanics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="mechanics and DIY enthusiast owners of cars, trucks, and motorcycles">Motor Vehicle Maintenance &amp; Repair</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#culturerecreation" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (32)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Science"><ul class="-list">
+<li class="-item"><a href="https://mathoverflow.net" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional mathematicians">MathOverflow</a></li>
+                <li class="-item"><a href="https://math.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                <li class="-item"><a href="https://stats.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                <li class="-item"><a href="https://cstheory.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                <li class="-item"><a href="https://physics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="active researchers, academics and students of physics">Physics</a></li>
+                <li class="-item"><a href="https://chemistry.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="scientists, academics, teachers and students">Chemistry</a></li>
+                <li class="-item"><a href="https://biology.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="biology researchers, academics, and students">Biology</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Science"><ul class="-list">
+<li class="-item"><a href="https://cs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students, researchers and practitioners of computer science">Computer Science</a></li>
+                <li class="-item"><a href="https://philosophy.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those interested in the study of the fundamental nature of knowledge, reality, and existence">Philosophy</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#science" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (10)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Other"><ul class="-list">
+<li class="-item"><a href="https://meta.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                <li class="-item"><a href="https://stackapps.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                <li class="-item"><a href="https://api.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programmatic interaction with Stack Exchange sites">API</a></li>
+                <li class="-item"><a href="https://data.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="querying Stack Exchange data using SQL">Data</a></li>
+                <li class="-item"><a href="https://area51.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                    </ul></nav><div class="-copyright g-row jc-end">
+                    <div class="g-column jc-sp-between">
+                        <ul class="-list">
+<li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link:4 })" href="https://stackoverflow.blog?blb=1">Blog</a></li>
+                            <li class="-item"><a href="https://www.facebook.com/officialstackoverflow/" class="-link">Facebook</a></li>
+                            <li class="-item"><a href="https://twitter.com/stackoverflow" class="-link">Twitter</a></li>
+                            <li class="-item"><a href="https://linkedin.com/company/stack-overflow" class="-link">LinkedIn</a></li>
+                        </ul>
+<div>
+                            <p>
+                                site design / logo c 2017 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license" class="-link">cc by-sa 3.0</a>
+                                with <a href="https://stackoverflow.blog/2009/06/25/attribution-required/" rel="license" class="-link">attribution required</a>.
+                                <span id="svnrev">rev 2017.10.15.27439</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                    </div>
+    </footer><noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled
+            <img src="https://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno">
+</div>
+    </noscript>
+        <script> setTimeout(function() { $("#adzerk-user-match").remove(); }, 2000);</script><script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-5620270-1');
+                ga('create', 'UA-5620270-59', {name: 'pageData', sampleRate: 5 });
+                ga('set', 'dimension2', '|r|dataframe|');
+                ga('pageData.set', 'dimension2', '|r|dataframe|');
+                ga('send', 'pageview');
+                ga('pageData.send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+                qc.async = true;
+                qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                s.parentNode.insertBefore(qc, s);
+                _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+                            var sc=document.createElement('script');
+                sc.async=true;
+                sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+                s.parentNode.insertBefore(sc, s);
+                _comscore.push({ c1: "2", c2: "17440561" });
+        })();
+
+    </script><script type="text/javascript">
+                
+                (function(appendChild) {
+                    Node.prototype.appendChild = function() {
+                        var parent = this;
+                        var newNode = arguments[0];
+                        if (parent.nodeName === 'HEAD'
+                            && newNode
+                            && newNode.nodeName === 'SCRIPT'
+                            && newNode.src) {
+                            
+                            window.setTimeout(function() {
+                                var result = newNode.src.match(/^https:\/\/maps\.googleapis\.com\/maps\/api\/place\/js\/(\w+)Service\./i) || [];
+                                var service = result[1];
+                                if (service) {
+                                    if (service === 'Autocompletion') service =  2;
+                                    else if (service === 'Place') service = 1;
+                                    else service = 0;
+                                    StackExchange.using('gps', function() {
+                                        StackExchange.gps.track('google_maps_places_api.call', { service: service });
+                                    });
+                                }
+                            }, 0);
+                        }
+                        return appendChild.apply(this, arguments);
+                    };
+                })(Node.prototype.appendChild);
+            </script>
+</body>
+</html>
+

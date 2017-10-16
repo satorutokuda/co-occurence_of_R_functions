@@ -1,0 +1,2921 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/QAPage">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>r - Plot with 2 y axes, one y axis on the left, and another y axis on the right - Stack Overflow</title>
+<link rel="shortcut icon" href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+<link rel="apple-touch-icon image_src" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+<link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="/opensearch.xml">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:domain" content="stackoverflow.com">
+<meta property="og:image" itemprop="image primaryImageOfPage" content="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded">
+<meta name="twitter:title" property="og:title" itemprop="title name" content="Plot with 2 y axes, one y axis on the left, and another y axis on the right">
+<meta name="twitter:description" property="og:description" itemprop="description" content="I need to plot a bar chart showing counts and a line chart showing rate all in one chart, I can do both of them separately, but when I put them together, I scale of the first layer (i.e. the geom_b...">
+<meta property="og:url" content="https://stackoverflow.com/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right">
+<link rel="canonical" href="https://stackoverflow.com/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script><script src="https://cdn.sstatic.net/Js/stub.en.js?v=488af1c63e24"></script><link rel="stylesheet" type="text/css" href="https://cdn.sstatic.net/Sites/stackoverflow/all.css?v=e32bd0ed8f3d">
+<link rel="alternate" type="application/atom+xml" title="Feed for question 'Plot with 2 y axes, one y axis on the left, and another y axis on the right'" href="/feeds/question/3099219">
+<meta name="twitter:app:country" content="US">
+<meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+<meta name="twitter:app:id:iphone" content="871299723">
+<meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right">
+<meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+<meta name="twitter:app:id:ipad" content="871299723">
+<meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right">
+<meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+<meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right">
+<meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+<script>
+        
+            StackExchange.ready(function () {
+                                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:2,shownCommentCount:2,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:3099219});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '3099219');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text', true); });
+
+            });
+        </script><script>
+        StackExchange.init({"locale":"en","serverTime":1508128609,"routeName":"Questions/Show","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"childUrl":"https://meta.stackoverflow.com","enableSocialMediaInSharePopup":true,"protocol":"https"},"user":{"fkey":"3fbe17c969abd7bd85ae0c8423437465","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true,"canSeeNewHeaderDesign":true},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"story":{"minCompleteBodyLength":75,"likedTagsMaxLength":300,"dislikedTagsMaxLength":300},"jobPreferences":{"maxNumDeveloperRoles":2,"maxNumIndustries":4}}, {"site":{"allowImageUploads":true,"enableUserHovercards":true,"styleCode":true,"enableImgurHttps":true,"forceHttpsImages":true},"comments":{},"userProfile":{"openGraphAPIKey":"58740831ad23540e00c58987"},"tags":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true},"flags":{"allowRetractingFlags":true},"topBar":{"showNewFeatureNotice":true},"snippets":{"snippetsEnabled":true,"renderDomain":"stacksnippets.net"},"markdown":{"asteriskIntraWordEmphasis":true},"monitoring":{"clientTimingsAbsoluteTimeout":30000,"clientTimingsDebounceTimeout":1000}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"82df5476ff5e","js/moderator.en.js":"443faeebba5b","js/full-anon.en.js":"51fdc705af4d","js/full.en.js":"753996d5103d","js/wmd.en.js":"4ddd2413a296","js/third-party/jquery.autocomplete.min.js":"d3b8fa7fdf74","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"28e4c54a5378","js/help.en.js":"a56fdf9b9ff2","js/tageditor.en.js":"248fce004255","js/tageditornew.en.js":"ac8f784e112e","js/inline-tag-editing.en.js":"3e63a01fd39b","js/revisions.en.js":"7bea350562aa","js/review.en.js":"eb16e0be07b1","js/tagsuggestions.en.js":"b278f9a0b23b","js/post-validation.en.js":"4c792759c8f4","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"290bed8a1174","js/keyboard-shortcuts.en.js":"f6606752d1e8","js/external-editor.en.js":"ae2d26085224","js/adops.en.js":"9a6a7812a212","js/external-editor.en.js":"ae2d26085224","js/snippet-javascript.en.js":"4ceca4bd1d0a","js/snippet-javascript-codemirror.en.js":"9a2effee39fe"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script><script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script><noscript id="noscript-css"><style>body,.top-bar{margin-top:1.9em}</style></noscript>
+</head>
+<body class="question-page new-topbar">
+            <script async src="https://js-sec.indexww.com/ht/p/185901-159836282584097.js"></script><div id="notify-container"></div>
+    <div id="custom-header"></div>
+
+
+
+
+<header class="top-bar js-top-bar _fixed"><div class="-container">
+        <div class="-main">
+            
+                <a href="https://stackoverflow.com" class="-logo js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:8})">
+                   <span class="-img">Stack Overflow</span>
+                </a>
+
+                    <a class="-feature-notice
+                       unread-feature-notice
+                       " href="#" data-unread-class="unread-feature-notice" data-campaign="2017-09-19.DevSalaryCalculator" data-cookie="topbar-new-dsc" data-location="2" data-autopopup="true" data-end-date="1508410800000">
+                        <span>new</span>
+                    </a>
+                    <div class="topbar-dialog feature-notice-dialog js-feature-notice-dialog dno">
+                        <div class="dialog-content">
+                            <h4 class="bold">Stack Overflow Salary Calculator</h4>
+                            <p>Find out what developers like you are earning.</p>
+                            <a class="btn-secondary js-cta-button js-gps-track" href="/jobs/salary/?utm_source=so-owned&amp;utm_medium=hero&amp;utm_campaign=sal-calc" data-gps-track="new_feature.click({campaign: '2017-09-19.DevSalaryCalculator', location: 2, action: 2})">Calculate your salary now</a>
+                            <a class="icon-close js-close-button js-gps-track" title="Close and permanently remove this popup" data-gps-track="new_feature.click({campaign: '2017-09-19.DevSalaryCalculator', location: 2, action: 1})"><svg aria-hidden="true" class="svg-icon iconClear" width="18" height="18" viewbox="0 0 18 18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9z"></path></svg></a>
+                        </div>
+                    </div>
+            <nav class="navigation" role="navigation" aria-label="site navigation"><ol class="-list">
+<li class="-item _current">
+        <a id="nav-questions" href="/questions" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:true, location:2, destination:1})">Questions</a>
+    </li>
+    <li class="-item">
+        <a id="nav-jobs" href="/jobs?med=site-ui&amp;ref=jobs-tab" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:6})">Developer Jobs</a>
+    </li>
+    <li class="-item">
+        <a id="nav-tags" href="/tags" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:2})">Tags</a>
+    </li>
+    <li class="-item">
+        <a id="nav-users" href="/users" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:3})">Users</a>
+    </li>
+                </ol></nav>
+</div>
+        
+            <form id="search" action="/search" method="get" class="searchbar" autocomplete="off" role="search">
+                <input name="q" type="text" placeholder="SearchÅc" value="" tabindex="1" autocomplete="off" maxlength="240" class="f-input js-search-field"><button type="submit" aria-label="Search..." class="btn-topbar-primary js-search-submit"><svg aria-hidden="true" class="svg-icon iconSearch" width="18" height="18" viewbox="0 0 18 18"><path d="M12.86 11.32L18 16.5 16.5 18l-5.18-5.14v-.35a7 7 0 1 1 1.19-1.19h.35zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path></svg></button>
+            </form>
+
+        
+
+
+    
+
+<div class="-actions">
+    <nav class="secondary-nav"><div class="-dialog-container js-topbar-dialog-corral">
+
+
+    <div class="topbar-dialog siteSwitcher-dialog dno">
+        <div class="header">
+            <h3>
+<a href="https://stackoverflow.com">current community</a>
+            </h3>
+        </div>
+        <div class="modal-content current-site-container">
+            <ul class="current-site">
+<li>
+                            <div class="related-links">
+            <a href="https://stackoverflow.com/help" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:14 })">help</a>
+                    <a href="https://chat.stackoverflow.com" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+    <a href="https://stackoverflow.com" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="site_switcher.click({ item_type:3 })">
+        <div class="favicon favicon-stackoverflow site-icon" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                    </li>
+                    <li class="related-site">
+                            <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                        
+    <a href="https://meta.stackoverflow.com" class="site-link js-gps-track" data-id="552" data-gps-track="site.switch({ target_site:552, item_type:3 }),site_switcher.click({ item_type:4 })">
+        <div class="favicon favicon-stackoverflowmeta site-icon" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                    </li>
+            </ul>
+</div>
+
+        <div class="header" id="your-communities-header">
+            <h3>
+your communities            </h3>
+
+        </div>
+        <div class="modal-content" id="your-communities-section">
+
+                <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;amp;utm_source=stackoverflow.com&amp;amp;utm_medium=dev-story&amp;amp;utm_campaign=signup-redirect" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f3099219%2fplot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+                </div>
+        </div>
+
+        <div class="header">
+            <h3>
+<a href="https://stackexchange.com/sites">more stack exchange communities</a>
+            </h3>
+            <a href="https://stackoverflow.blog" class="fr">company blog</a>
+        </div>
+        <div class="modal-content">
+                <div class="child-content"></div>
+        </div>        
+    </div>
+                <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+<li>
+                        <a href="/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                        <li>
+                            <a href="https://meta.stackoverflow.com" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                                Meta
+                                <span class="item-summary">
+                                    Discuss the workings and policies of this site
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                                About Us
+                                <span class="item-summary">
+                                    Learn more about Stack Overflow the company
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.stackoverflowbusiness.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                                Business
+                                <span class="item-summary">
+                                    Learn more about hiring developers or posting ads with us
+                                </span>
+                            </a>
+                        </li>
+            </ul>
+</div>
+    </div>
+
+        </div>
+        <ol class="-list">
+<li class="-item"><a href="#" class="-link js-help-button" title="Help Center and other resources">
+        <svg aria-hidden="true" class="svg-icon iconHelp" width="18" height="18" viewbox="0 0 18 18"><path d="M9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1zm.81 12.13c-.02.71-.55 1.15-1.24 1.13-.66-.02-1.17-.49-1.15-1.2.02-.72.56-1.18 1.22-1.16.7.03 1.2.51 1.17 1.23zM11.77 8a5.8 5.8 0 0 1-1.02.91l-.53.37c-.26.2-.42.43-.5.69a4 4 0 0 0-.09.75c0 .05-.03.16-.18.16H7.88c-.16 0-.18-.1-.18-.15.03-.66.12-1.21.4-1.66a5.29 5.29 0 0 1 1.43-1.22c.16-.12.28-.25.38-.39a1.34 1.34 0 0 0 .02-1.71c-.24-.31-.51-.46-1.03-.46-.51 0-.8.26-1.02.6-.21.33-.18.73-.18 1.1H5.75c0-1.38.35-2.25 1.1-2.76.52-.35 1.17-.5 1.93-.5 1 0 1.79.18 2.49.71.64.5.98 1.18.98 2.12 0 .57-.2 1.05-.48 1.44z"></path></svg></a></li>
+                <li class="-item">
+        <a href="https://stackexchange.com" class="-link js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 171 Stack Exchange sites">
+            <svg aria-hidden="true" class="svg-icon iconStackExchange" width="18" height="18" viewbox="0 0 18 18"><path d="M1 13c0 1.1.9 2 2 2h8v3l3-3h1a2 2 0 0 0 2-2v-2H1v2zM15 1H3a2 2 0 0 0-2 2v2h16V3a2 2 0 0 0-2-2zM1 6h16v4H1V6z"></path></svg></a>
+    </li>
+
+        </ol></nav><div class="-ctas">
+                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f3099219%2fplot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right" class="login-link btn-clear" rel="nofollow">Log In</a>
+                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;utm_source=stackoverflow.com&amp;utm_medium=dev-story&amp;utm_campaign=signup-redirect" class="login-link btn-topbar-primary" rel="nofollow">Sign Up</a>
+
+        </div>
+</div>
+    </div>
+</header><script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+        StackExchange.scrollPadding.setPaddingTop(60, 10);     </script><div class="container _full ">
+        
+
+
+        <div id="content" class="snippet-hidden">
+
+
+
+
+            
+
+<div itemscope itemtype="http://schema.org/Question">
+    <link itemprop="image" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+<div class="s-hero hero-container">
+    <div class="-container g-row jc-sp-between ai-center">
+        <div class="g-col6">
+            <h1 class="-title">Learn, Share, Build</h1>
+            <p class="-paragraph">Each month, over 50 million developers come to Stack Overflow to learn, share their knowledge, and build their careers.</p>
+            <p class="-paragraph">Join the worldÅfs largest developer community.</p>
+        </div>
+        
+        <div class="s-signup _hero g-col5">
+
+            <div id="openid-buttons" class="-social">
+                    <div class="major-provider btn _block _medium _google" data-provider="google" data-oauthserver="https://accounts.google.com/o/oauth2/auth" data-oauthversion="2.0">Google</div>
+                    <div class="major-provider btn _block _medium _facebook" data-provider="facebook" data-oauthserver="https://www.facebook.com/v2.0/dialog/oauth" data-oauthversion="2.0">Facebook</div>
+                            </div>
+
+
+            <small class="-divider text-centered">or</small>
+
+            <form id="login-form" action="/users/signup?ssrc=hero&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f3099219%2fplot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right" method="POST">
+        
+                <input type="hidden" name="fkey" value="3fbe17c969abd7bd85ae0c8423437465"><input type="hidden" name="ssrc" value=""><input type="hidden" id="oauth_version" name="oauth_version"><input type="hidden" id="oauth_server" name="oauth_server"><div id="se-login-fields">
+
+                        <input type="hidden" name="legalLinksShown" value="1"><div class="input-group">
+                            <div class="g-row">
+                                <label for="display-name" class="g-col -fill">Display name</label>
+                                <div class="g-col">
+                                    <input id="display-name" name="inline-display-name" type="text" class="f-input" placeholder="J. Doe" data-error-my="right top" data-error-at="left center">
+</div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="g-row">
+                                <label for="email" class="g-col -fill">Email address</label>
+                                <div class="g-col">
+                                    <input id="email" name="inline-email" type="email" maxlength="100" class="f-input" placeholder="you@example.com" data-error-my="right top" data-error-at="left center">
+</div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="g-row">
+                                <label for="password" class="g-col -fill">Password</label>
+                                <div class="g-col">
+                                    <input id="password" name="inline-password" type="password" class="js-inline-signup f-input" placeholder="********" data-error-my="right top" data-error-at="left center">
+</div>
+                            </div>
+                        </div>
+
+                        <div class="button-group g-row ai-center jc-sp-between">
+                            <input id="submit-button" name="submit-button" class="btn-outlined -white _medium _block" type="button" value="Sign Up"><small class="g-col -policy js-terms">By registering, you agree to the <a href="https://stackexchange.com/legal/privacy-policy" name="privacy" target="_blank" class="-link">privacy policy</a> and <a href="https://stackexchange.com/legal/terms-of-service" name="tos" target="_blank" class="-link">terms of service</a>.</small>
+                        </div>
+                    </div>
+            </form>
+            <script>
+                StackExchange.ready(function () {
+                    StackExchange.InlineAuth.init();
+                })
+            </script>
+</div>
+
+            <a id="close" href="#" class="js-dismiss -dismiss" title="dismiss"><svg aria-hidden="true" class="svg-icon iconClear" width="18" height="18" viewbox="0 0 18 18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9z"></path></svg></a>
+    </div>
+</div>
+<script>
+    StackExchange.ready(function () {
+
+        var location = 0;
+        if ($("body").hasClass("questions-page")) {
+            location = 7;
+        } else if ($("body").hasClass("question-page")) {
+            location = 7;
+        } else if ($("body").hasClass("faq-page")) {
+            location = 5;
+        } else if ($("body").hasClass("home-page")) {
+            location = 6;
+        }
+        
+        $('#tell-me-more').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+            });
+        });
+        
+        $('.hero-container #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "minimize", location: location }, true);
+            });
+            
+            $.cookie("hero", "mini", { path: "/", expires: 365 });
+            $.ajax({
+                url: "/hero-mini",
+                success: function (data) {
+                    $(".hero-container").fadeOut("fast", function () {
+                        $(".hero-container").replaceWith(data);
+                        $("#herobox-mini").fadeIn("fast");
+                    });
+                }
+            });
+            return false;
+        });
+    });
+
+</script><div class="inner-content">
+        <div id="question-header">
+                <h1 itemprop="name"><a href="/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right" class="question-hyperlink">Plot with 2 y axes, one y axis on the left, and another y axis on the right</a></h1>
+
+            
+<div class="aside-cta" role="navigation" aria-label="ask new question">
+    <a href="/questions/ask" class="btn-outlined">Ask Question</a>
+</div>
+        </div>
+            <div id="mainbar" role="main" aria-label="question and answers">
+
+            
+
+<div class="question" data-questionid="3099219" id="question">
+
+    <div id="dfp-tlb" class="everyonelovesstackoverflow"></div>    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="3099219"><a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">131</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#">favorite</a>
+        <div class="favoritecount"><b>55</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>I need to plot a bar chart showing counts and a line chart showing rate all in one chart, I can do both of them separately, but when I put them together, I scale of the first layer (i.e. the <code>geom_bar</code>) is overlapped by the second layer (i.e. the <code>geom_line</code>).</p>
+
+<p>Can I move the axis of the <code>geom_line</code> to the right?</p>
+    </div>
+    <div class="post-taglist">
+        <a href="/questions/tagged/r" class="post-tag" title="show questions tagged 'r'" rel="tag">r</a> <a href="/questions/tagged/ggplot2" class="post-tag" title="show questions tagged 'ggplot2'" rel="tag">ggplot2</a> 
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/q/3099219" title="short permalink to this question" class="short-link" id="link-post-3099219">share</a><span class="lsep">|</span><a href="/posts/3099219/edit" class="suggest-edit-post" title="">improve this question</a>
+</div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/3099219/revisions" title="show all edits to this post">edited <span title="2015-10-01 08:38:33Z" class="relativetime">Oct 1 '15 at 8:38</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/680068/zx8754"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/73fd13cfacc3a0a0fc0a8c95f50d8a3f?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/680068/zx8754">zx8754</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 21,418" dir="ltr">21.4k</span><span title="6 gold badges"><span class="badge1"></span><span class="badgecount">6</span></span><span title="47 silver badges"><span class="badge2"></span><span class="badgecount">47</span></span><span title="85 bronze badges"><span class="badge3"></span><span class="badgecount">85</span></span>
+        </div>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2010-06-23 05:52:19Z" class="relativetime">Jun 23 '10 at 5:52</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/373908/lokheart"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/3e3303f1a856408290a6664ea292b69e?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/373908/lokheart">lokheart</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">7,328</span><span title="17 gold badges"><span class="badge1"></span><span class="badgecount">17</span></span><span title="62 silver badges"><span class="badge2"></span><span class="badgecount">62</span></span><span title="124 bronze badges"><span class="badge3"></span><span class="badgecount">124</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</div>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-3099219" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-52000945" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">3</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Could you use an approach as shwon here, <a href="http://rpubs.com/kohske/dual_axis_in_ggplot2" rel="nofollow noreferrer">rpubs.com/kohske/dual_axis_in_ggplot2</a> ?</span>
+                    <U+2013><U+00A0><a href="/users/1887645/tom-wenseleers" title="2,208 reputation" class="comment-user">Tom Wenseleers</a>
+                <span class="comment-date" dir="ltr"><span title="2015-08-17 12:49:54Z" class="relativetime-clean">Aug 17 '15 at 12:49</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-71852813" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy"><a href="http://stackoverflow.com/questions/26917689/how-to-use-facets-with-a-dual-y-axis-ggplot/40746716#40746716">related</a></span>
+                    <U+2013><U+00A0><a href="/users/4341440/axeman" title="13,581 reputation" class="comment-user">Axeman</a>
+                <span class="comment-date" dir="ltr"><span title="2017-02-20 17:37:56Z" class="relativetime-clean">Feb 20 at 17:37</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-3099219" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+            <div id="answers">
+
+                <a name="tab-top"></a>
+                <div id="answers-header">
+                    <div class="subheader answers-subheader">
+                        <h2>
+                                10 Answers
+                                <span style="display:none;" itemprop="answerCount">10</span>
+                        </h2>
+                        <div>
+                            <div id="tabs">
+        <a href="/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+            active</a>
+        <a href="/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+            oldest</a>
+        <a class="youarehere" href="/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+            votes</a>
+</div>
+                        </div>
+                    </div>    
+                </div>    
+
+
+
+
+  
+<a name="3117319"></a>
+<div id="answer-3117319" class="answer accepted-answer" data-answerid="3117319" itemscope itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="3117319"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">74</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p><code>&lt;rant&gt;</code>
+Sometimes a client wants two y scales. Giving them the "flawed" speech is often pointless. But I do like the ggplot2 insistence on doing things the right way. I am sure that ggplot is in fact educating the average user about proper visualization techniques.
+<code>&lt;/rant&gt;</code></p>
+
+<p>Maybe you can use faceting and scale free to compare the two data series? - e.g. look here: <a href="https://github.com/hadley/ggplot2/wiki/Align-two-plots-on-a-page" rel="noreferrer">https://github.com/hadley/ggplot2/wiki/Align-two-plots-on-a-page</a>      </p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/3117319" title="short permalink to this answer" class="short-link" id="link-post-3117319">share</a><span class="lsep">|</span><a href="/posts/3117319/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/3117319/revisions" title="show all edits to this post">edited <span title="2015-03-03 16:56:29Z" class="relativetime">Mar 3 '15 at 16:56</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/9435/oneself"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/cb70e8f4f71602cc39528b6e75c64d89?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/9435/oneself">oneself</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 11,253" dir="ltr">11.3k</span><span title="21 gold badges"><span class="badge1"></span><span class="badgecount">21</span></span><span title="67 silver badges"><span class="badge2"></span><span class="badgecount">67</span></span><span title="97 bronze badges"><span class="badge3"></span><span class="badgecount">97</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2010-06-25 10:40:51Z" class="relativetime">Jun 25 '10 at 10:40</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/162832/andreas"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/65b7c325289bbe37c6d82946d1b7867d?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/162832/andreas">Andreas</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">3,002</span><span title="9 gold badges"><span class="badge1"></span><span class="badgecount">9</span></span><span title="37 silver badges"><span class="badge2"></span><span class="badgecount">37</span></span><span title="60 bronze badges"><span class="badge3"></span><span class="badgecount">60</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-3117319" class="comments ">
+		    <table><tbody data-remaining-comments-count="1" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-14118479" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">14</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I concur with Andreas - sometimes (such as now, for me) a client wants two sets of data on the same plot, and does not want to hear me talk about Plotting Theory.  I either have to convince them to not want that anymore (not always a battle I want to wage), or tell them "the plotting package I'm using doesn't support that."  So I'm switching away from ggplot today for this particular project. =(</span>
+                    <U+2013><U+00A0><a href="/users/169947/ken-williams" title="10,641 reputation" class="comment-user">Ken Williams</a>
+                <span class="comment-date" dir="ltr"><span title="2012-05-31 22:14:41Z" class="relativetime-clean">May 31 '12 at 22:14</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-42571869" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">13</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">why does a plotting package need to insert its own personal opinions into how it operates? No thank you.</span>
+                    <U+2013><U+00A0><a href="/users/2777850/colin" title="850 reputation" class="comment-user">colin</a>
+                <span class="comment-date" dir="ltr"><span title="2014-11-19 18:15:22Z" class="relativetime-clean">Nov 19 '14 at 18:15</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-45290573" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Your link rotted away.  Could you edit your answer and post a summary of what it used to say?</span>
+                    <U+2013><U+00A0><a href="/users/345660/zach" title="12,269 reputation" class="comment-user">Zach</a>
+                <span class="comment-date" dir="ltr"><span title="2015-02-12 17:48:26Z" class="relativetime-clean">Feb 12 '15 at 17:48</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-58394072" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">5</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Cannot agree with this comment (re rant). It is very (!) common to condense information as much as possible, e.g. given the strict restrictions imposed by scientific journals etc., in order to bring across the message quickly. Hence, adding a second y axis is being done anyway, and ggplot should, in my opinion, help in doing so.</span>
+                    <U+2013><U+00A0><a href="/users/1090848/stingery" title="193 reputation" class="comment-user">Stingery</a>
+                <span class="comment-date" dir="ltr"><span title="2016-02-11 15:33:49Z" class="relativetime-clean">Feb 11 '16 at 15:33</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-78716895" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Amazing how unquestioningly words like "flawed" and "right way" are thrown about as if they weren't based on a theory that is itself actually quite opinionated and dogmatic, but is unthinkingly accepted by far too many people, as can be seen by the fact that this completely unhelpful answer (which throws a link-bone) has 72 upvotes at time of writing.   Whe <i>comparing</i> time series, for example, it can be invaluable to have both on the same chart, because correlation of differences is much easier to spot. Just ask the thousands of highly educated finance pros who do this all day every day.</span>
+                    <U+2013><U+00A0><a href="/users/122792/thomas-browne" title="5,172 reputation" class="comment-user">Thomas Browne</a>
+                <span class="comment-date" dir="ltr"><span title="2017-08-25 10:24:32Z" class="relativetime-clean">Aug 25 at 10:24</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-3117319" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh."></a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>1</b> more comment</a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+<div id="dfp-mlb" class="everyonelovesstackoverflow"></div>
+  
+<a name="3101876"></a>
+<div id="answer-3101876" class="answer" data-answerid="3101876" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="3101876"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">92</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>It's not possible in ggplot2 because I believe plots with separate y scales (not y-scales that are transformations of each other) are fundamentally flawed.  Some problems:</p>
+
+<ul>
+<li><p>The are not invertible: given a point on the plot space, you can not uniquely map it back to a point in the data space.</p></li>
+<li><p>They are relatively hard to read correctly compared to other options. See <a href="https://www.lri.fr/~isenberg/publications/papers/Isenberg_2011_ASO.pdf" rel="noreferrer">A Study on Dual-Scale Data Charts</a> by Petra Isenberg, Anastasia Bezerianos, Pierre Dragicevic, and Jean-Daniel Fekete for details.</p></li>
+<li><p>They are easily manipulated to mislead: there is no unique way to specify the relative scales of the axes, leaving them open to manipulation.  Two examples from the Junkcharts blog: <a href="http://junkcharts.typepad.com/junk_charts/2006/06/illusion_of_suc.html" rel="noreferrer">one</a>, <a href="http://junkcharts.typepad.com/junk_charts/2006/05/the_crossover_l.html" rel="noreferrer">two</a></p></li>
+<li><p>They are arbitrary: why have only 2 scales, not 3, 4 or ten?</p></li>
+</ul>
+<p>You also might want to read Stephen Few's lengthy discussion on the topic <a href="http://www.perceptualedge.com/articles/visual_business_intelligence/dual-scaled_axes.pdf" rel="noreferrer">Dual-Scaled Axes in Graphs Are They Ever the Best Solution?</a>.</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/3101876" title="short permalink to this answer" class="short-link" id="link-post-3101876">share</a><span class="lsep">|</span><a href="/posts/3101876/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/3101876/revisions" title="show all edits to this post">edited <span title="2013-11-05 12:40:10Z" class="relativetime">Nov 5 '13 at 12:40</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2010-06-23 13:10:56Z" class="relativetime">Jun 23 '10 at 13:10</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/16632/hadley"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/7ba164f40a50bc23dbb2aa825fb7bc16?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/16632/hadley">hadley</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 66,061" dir="ltr">66.1k</span><span title="17 gold badges"><span class="badge1"></span><span class="badgecount">17</span></span><span title="131 silver badges"><span class="badge2"></span><span class="badgecount">131</span></span><span title="196 bronze badges"><span class="badge3"></span><span class="badgecount">196</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-3101876" class="comments ">
+		    <table><tbody data-remaining-comments-count="33" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-3622446" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="hot">24</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Would you mind elaborate Your opinion?  Not beeing enlightened , I think its a rather compact way of plotting two independent variables.  It is also a feature that seems to be asked for, and it's beein used widely.</span>
+                    <U+2013><U+00A0><a href="/users/92018/karlp" title="4,036 reputation" class="comment-user">KarlP</a>
+                <span class="comment-date" dir="ltr"><span title="2010-08-12 20:37:18Z" class="relativetime-clean">Aug 12 '10 at 20:37</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-3738348" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="supernova">46</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@hadley: Mostly I agree, but there is a genuine use for multiple y scales - the use of 2 different units for the same data, e.g., Celsius and Fahrenheit scales on temperature time series.</span>
+                    <U+2013><U+00A0><a href="/users/134830/richie-cotton" title="67,756 reputation" class="comment-user">Richie Cotton</a>
+                <span class="comment-date" dir="ltr"><span title="2010-08-25 13:08:21Z" class="relativetime-clean">Aug 25 '10 at 13:08</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-7131368" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="supernova">77</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">this answer isn't very helpful without any explanation of what you mean by "fundamentally flawed".  If it is well documented then cite the documentation</span>
+                    <U+2013><U+00A0><a href="/users/686481/kennypeanuts" title="2,578 reputation" class="comment-user">KennyPeanuts</a>
+                <span class="comment-date" dir="ltr"><span title="2011-05-26 17:17:23Z" class="relativetime-clean">May 26 '11 at 17:17</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-46747811" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="supernova">67</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">A graphics package forcing an opinion on its users is fundamentally flawed.</span>
+                    <U+2013><U+00A0><a href="/users/425359/rolo" title="3,686 reputation" class="comment-user">ROLO</a>
+                <span class="comment-date" dir="ltr"><span title="2015-03-26 08:52:34Z" class="relativetime-clean">Mar 26 '15 at 8:52</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-58445023" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="hot">19</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@ROLO No, thatÅfs nonsense. IÅfm appalled at the number of upvotes this comment has received, because it shows a fundamental misunderstanding of API design: <b>every great API is opinionated</b>. That said, I agree that having dual x-axes can (very rarely!) be useful.</span>
+                    <U+2013><U+00A0><a href="/users/1968/konrad-rudolph" title="355,540 reputation" class="comment-user">Konrad Rudolph</a>
+                <span class="comment-date" dir="ltr"><span title="2016-02-12 18:17:48Z" class="relativetime-clean">Feb 12 '16 at 18:17</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-3101876" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh."></a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>33</b> more comments</a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="39805869"></a>
+<div id="answer-39805869" class="answer" data-answerid="39805869" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="39805869"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">46</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Starting with ggplot2 2.2.0 you can add a secondary axis like this (taken from the <a href="https://blog.rstudio.org/2016/09/30/ggplot2-2-2-0-coming-soon/" rel="noreferrer">ggplot2 2.2.0 announcement</a>):</p>
+
+<pre><code>ggplot(mpg, aes(displ, hwy)) + 
+  geom_point() + 
+  scale_y_continuous(
+    "mpg (US)", 
+    <b>sec.axis = sec_axis(~ . * 1.20, name = "mpg (UK)")</b>
+  )</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/39805869" title="short permalink to this answer" class="short-link" id="link-post-39805869">share</a><span class="lsep">|</span><a href="/posts/39805869/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2016-10-01 11:09:39Z" class="relativetime">Oct 1 '16 at 11:09</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/73299/tstenner"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/ae887ea49a5c212e2ab407d90eba4c8c?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/73299/tstenner">tstenner</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">5,432</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="40 silver badges"><span class="badge2"></span><span class="badgecount">40</span></span><span title="73 bronze badges"><span class="badge3"></span><span class="badgecount">73</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-39805869" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-67812635" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">5</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">The downside is, it only can use some formula transformation of current axes not a new variable, for example.</span>
+                    <U+2013><U+00A0><a href="/users/476907/discipulus" title="1,182 reputation" class="comment-user">discipulus</a>
+                <span class="comment-date" dir="ltr"><span title="2016-10-27 05:41:12Z" class="relativetime-clean">Oct 27 '16 at 5:41</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-68560292" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">12</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">It protects us all from ourselves.</span>
+                    <U+2013><U+00A0><a href="/users/5596534/boshek" title="792 reputation" class="comment-user">boshek</a>
+                <span class="comment-date" dir="ltr"><span title="2016-11-17 20:40:10Z" class="relativetime-clean">Nov 17 '16 at 20:40</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-70870205" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">does not solve the dual y axis problem unfortunately</span>
+                    <U+2013><U+00A0><a href="/users/1609428/%e2%84%95%ca%98%ca%98%e1%b8%86%e1%b8%bd%e1%b8%98" title="4,645 reputation" class="comment-user"><U+2115><U+0298><U+0298><U+1E06><U+1E3D><U+1E18></a>
+                <span class="comment-date" dir="ltr"><span title="2017-01-25 03:01:08Z" class="relativetime-clean">Jan 25 at 3:01</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-71362559" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">4</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">It solves the problem very well. And also keeping with the spirit the author believes in.</span>
+                    <U+2013><U+00A0><a href="/users/4564247/fortune-p" title="22,673 reputation" class="comment-user">fortune_p</a>
+                <span class="comment-date" dir="ltr"><span title="2017-02-07 17:19:31Z" class="relativetime-clean">Feb 7 at 17:19</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-75551578" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">It's useful for some use cases. But @PierreLafortune it neither solves "very well" nor - jimho - is it keeping with that "spirit". However, authors have their rights and we do respect them.</span>
+                    <U+2013><U+00A0><a href="/users/1397919/dinesh" title="2,248 reputation" class="comment-user">Dinesh</a>
+                <span class="comment-date" dir="ltr"><span title="2017-05-30 20:57:28Z" class="relativetime-clean">May 30 at 20:57</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-39805869" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="36113674"></a>
+<div id="answer-36113674" class="answer" data-answerid="36113674" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="36113674"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">11</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>The technical backbone to the solution of this challenge has been provided by <em>Kohske</em> some 3 years ago [<a href="https://rpubs.com/kohske/dual_axis_in_ggplot2" rel="noreferrer">KOHSKE</a>]. The topic and the technicalities around its solution have been discussed on several instances here on Stackoverflow [IDs: 18989001, 29235405, 21026598]. So i shall only provide a specific variation and some explanatory walkthrough, using above solutions.</p>
+
+<p>Let us assume we do have some data <em>y1</em> in group <em>G1</em> to which some data <em>y2</em> in group <em>G2</em> is related in some way, e.g. range/scale transformed or with some noise added. So one wants to plot the data together on one plot with the scale of <em>y1</em> on the left and <em>y2</em> on the right. </p>
+
+<pre><code>  df &lt;- data.frame(item=LETTERS[1:n],  y1=c(-0.8684, 4.2242, -0.3181, 0.5797, -0.4875), y2=c(-5.719, 205.184, 4.781, 41.952, 9.911 )) # made up!
+
+&gt; df
+  item      y1         y2
+1    A -0.8684 -19.154567
+2    B  4.2242 219.092499
+3    C -0.3181  18.849686
+4    D  0.5797  46.945161
+5    E -0.4875  -4.721973
+</code></pre>
+
+<p>If we now plot our data together with something like</p>
+
+<pre><code>ggplot(data=df, aes(label=item)) +
+  theme_bw() + 
+  geom_segment(aes(x='G1', xend='G2', y=y1, yend=y2), color='grey')+
+  geom_text(aes(x='G1', y=y1), color='blue') +
+  geom_text(aes(x='G2', y=y2), color='red') +
+  theme(legend.position='none', panel.grid=element_blank())
+</code></pre>
+
+<p>it doesnt align nicely as the smaller scale <em>y1</em> obviosuly gets collapsed by larger scale <em>y2</em>. </p>
+
+<p><strong>The trick here to meet the challenge is to techncially plot <em>both</em> data sets against the first scale <em>y1</em> but report the second against a secondary axis with labels showing the original scale <em>y2</em>.</strong> </p>
+
+<p>So we build a first helper function <em>CalcFudgeAxis</em> which calculates and collects features of the new axis to be shown. The function can be amended to ayones liking (this one just maps <em>y2</em> onto the range of <em>y1</em>).</p>
+
+<pre><code>CalcFudgeAxis = function( y1, y2=y1) {
+  Cast2To1 = function(x) ((ylim1[2]-ylim1[1])/(ylim2[2]-ylim2[1])*x) # x gets mapped to range of ylim2
+  ylim1 &lt;- c(min(y1),max(y1))
+  ylim2 &lt;- c(min(y2),max(y2))    
+  yf &lt;- Cast2To1(y2)
+  labelsyf &lt;- pretty(y2)  
+  return(list(
+    yf=yf,
+    labels=labelsyf,
+    breaks=Cast2To1(labelsyf)
+  ))
+}
+</code></pre>
+
+<p>what yields some:</p>
+
+<pre><code>&gt; FudgeAxis &lt;- CalcFudgeAxis( df$y1, df$y2 )
+
+&gt; FudgeAxis
+$yf
+[1] -0.4094344  4.6831656  0.4029175  1.0034664 -0.1009335
+
+$labels
+[1] -50   0  50 100 150 200 250
+
+$breaks
+[1] -1.068764  0.000000  1.068764  2.137529  3.206293  4.275058  5.343822
+
+
+&gt; cbind(df, FudgeAxis$yf)
+  item      y1         y2 FudgeAxis$yf
+1    A -0.8684 -19.154567   -0.4094344
+2    B  4.2242 219.092499    4.6831656
+3    C -0.3181  18.849686    0.4029175
+4    D  0.5797  46.945161    1.0034664
+5    E -0.4875  -4.721973   -0.1009335
+</code></pre>
+
+<p>Now I wraped <em>Kohske's</em> solution in the second helper function <em>PlotWithFudgeAxis</em>  (into which we throw the ggplot object and helper object of the new axis):</p>
+
+<pre><code>library(gtable)
+library(grid)
+
+PlotWithFudgeAxis = function( plot1, FudgeAxis) {
+  # based on: https://rpubs.com/kohske/dual_axis_in_ggplot2
+  plot2 &lt;- plot1 + with(FudgeAxis, scale_y_continuous( breaks=breaks, labels=labels))
+
+  #extract gtable
+  g1&lt;-ggplot_gtable(ggplot_build(plot1))
+  g2&lt;-ggplot_gtable(ggplot_build(plot2))
+
+  #overlap the panel of the 2nd plot on that of the 1st plot
+  pp&lt;-c(subset(g1$layout, name=="panel", se=t:r))
+  g&lt;-gtable_add_grob(g1, g2$grobs[[which(g2$layout$name=="panel")]], pp$t, pp$l, pp$b,pp$l)
+
+  ia &lt;- which(g2$layout$name == "axis-l")
+  ga &lt;- g2$grobs[[ia]]
+  ax &lt;- ga$children[[2]]
+  ax$widths &lt;- rev(ax$widths)
+  ax$grobs &lt;- rev(ax$grobs)
+  ax$grobs[[1]]$x &lt;- ax$grobs[[1]]$x - unit(1, "npc") + unit(0.15, "cm")
+  g &lt;- gtable_add_cols(g, g2$widths[g2$layout[ia, ]$l], length(g$widths) - 1)
+  g &lt;- gtable_add_grob(g, ax, pp$t, length(g$widths) - 1, pp$b)
+
+  grid.draw(g)
+}
+</code></pre>
+
+<p>Now all can be put together: <strong>Below code shows, how the proposed solution could be used in a day-to-day environment</strong>. The plot call now doesnt plot the original data <em>y2</em> anymore but a cloned version <em>yf</em> (held inside the pre-calculated helper object <em>FudgeAxis</em>), which runs of the scale of <em>y1</em>. The original ggplot objet is then manipulated with <em>Kohske's</em> helper function <em>PlotWithFudgeAxis</em> to add a second axis preserving the scales of <em>y2</em>. It plots as well the manipulated plot.</p>
+
+<pre><code>FudgeAxis &lt;- CalcFudgeAxis( df$y1, df$y2 )
+
+tmpPlot &lt;- ggplot(data=df, aes(label=item)) +
+      theme_bw() + 
+      geom_segment(aes(x='G1', xend='G2', y=y1, yend=FudgeAxis$yf), color='grey')+
+      geom_text(aes(x='G1', y=y1), color='blue') +
+      geom_text(aes(x='G2', y=FudgeAxis$yf), color='red') +
+      theme(legend.position='none', panel.grid=element_blank())
+
+PlotWithFudgeAxis(tmpPlot, FudgeAxis)
+</code></pre>
+
+<p><strong>This now plots as desired with two axis, <em>y1</em> on the left and <em>y2</em> on the right</strong> </p>
+
+<p><a href="https://i.stack.imgur.com/NEsUT.png" rel="noreferrer"><img src="https://i.stack.imgur.com/NEsUT.png" alt="2 axes"></a></p>
+
+<p>Above solution is, to put it straight, a limited shaky hack. As it plays with the ggplot kernel it will throw some warnings that we exchange post-the-fact scales, etc. It has to be handled with care and may produce some undesired behaviour in another setting. As well one may need to fiddle around with the helper functions to get the layout as desired. The placement of the legend is such an issue (it would be placed between the panel and the new axis; this is why I droped it). The scaling / alignment of the 2 axis is as well a bit challenging: The code above works nicely when both scales contain the "0", else one axis gets shifted. So definetly with some opportunities to improve...</p>
+
+<p>In case on wants to save the pic one has to wrap the call into device open / close:</p>
+
+<pre><code>png(...)
+PlotWithFudgeAxis(tmpPlot, FudgeAxis)
+dev.off()
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/36113674" title="short permalink to this answer" class="short-link" id="link-post-36113674">share</a><span class="lsep">|</span><a href="/posts/36113674/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/36113674/revisions" title="show all edits to this post">edited <span title="2016-05-14 13:59:57Z" class="relativetime">May 14 '16 at 13:59</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2016-03-20 12:26:20Z" class="relativetime">Mar 20 '16 at 12:26</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/6081065/c-k"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/bda59b97fd16a3a881ca95993b1aedd2?s=32&amp;d=identicon&amp;r=PG&amp;f=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/6081065/c-k">C.K</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">136</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="5 bronze badges"><span class="badge3"></span><span class="badgecount">5</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-36113674" class="comments  dno">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr>
+<td></td>
+<td></td>
+</tr></tbody></table>
+</div>
+
+        <div id="comments-link-36113674" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="30159465"></a>
+<div id="answer-30159465" class="answer" data-answerid="30159465" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="30159465"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">8</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>The following article helped me to combine two plots generated by ggplot2 on a single row:</p>
+
+<p><a href="http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/" rel="noreferrer">Multiple graphs on one page (ggplot2) by Cookbook for R</a></p>
+
+<p>And here is what the code may look like in this case:</p>
+
+<pre><code>p1 &lt;- 
+  ggplot() + aes(mns)+ geom_histogram(aes(y=..density..), binwidth=0.01, colour="black", fill="white") + geom_vline(aes(xintercept=mean(mns, na.rm=T)), color="red", linetype="dashed", size=1) +  geom_density(alpha=.2)
+
+p2 &lt;- 
+  ggplot() + aes(mns)+ geom_histogram( binwidth=0.01, colour="black", fill="white") + geom_vline(aes(xintercept=mean(mns, na.rm=T)), color="red", linetype="dashed", size=1)  
+
+multiplot(p1,p2,cols=2)
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/30159465" title="short permalink to this answer" class="short-link" id="link-post-30159465">share</a><span class="lsep">|</span><a href="/posts/30159465/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-05-11 04:00:32Z" class="relativetime">May 11 '15 at 4:00</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/4548848/stas-prihodco"><div class="gravatar-wrapper-32"><img src="https://graph.facebook.com/10204959163412094/picture?type=large" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/4548848/stas-prihodco">Stas Prihod'co</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">469</span><span title="6 silver badges"><span class="badge2"></span><span class="badgecount">6</span></span><span title="10 bronze badges"><span class="badge3"></span><span class="badgecount">10</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-30159465" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-76780195" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">What happened to the multiplot function? I get an error that the function could not be found, despite of the fact that i have ggplot2 library installled and loaded.</span>
+                    <U+2013><U+00A0><a href="/users/6119375/danka" title="85 reputation" class="comment-user">Danka</a>
+                <span class="comment-date" dir="ltr"><span title="2017-07-04 09:00:10Z" class="relativetime-clean">Jul 4 at 9:00</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-77430012" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Danka The multiplot function is a custom function (at the bottom of the linked page).</span>
+                    <U+2013><U+00A0><a href="/users/249845/dribbel" title="1,425 reputation" class="comment-user">Dribbel</a>
+                <span class="comment-date" dir="ltr"><span title="2017-07-21 08:01:29Z" class="relativetime-clean">Jul 21 at 8:01</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-30159465" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="43161700"></a>
+<div id="answer-43161700" class="answer" data-answerid="43161700" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="43161700"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>For me the tricky part was figuring out the transformation function between the two axis. I used <a href="https://www.mycurvefit.com/" rel="nofollow noreferrer">myCurveFit</a> for that.</p>
+
+<pre><code>&gt; dput(combined_80_8192 %&gt;% filter (time &gt; 270, time &lt; 280))
+structure(list(run = c(268L, 268L, 268L, 268L, 268L, 268L, 268L, 
+268L, 268L, 268L, 263L, 263L, 263L, 263L, 263L, 263L, 263L, 263L, 
+263L, 263L, 269L, 269L, 269L, 269L, 269L, 269L, 269L, 269L, 269L, 
+269L, 261L, 261L, 261L, 261L, 261L, 261L, 261L, 261L, 261L, 261L, 
+267L, 267L, 267L, 267L, 267L, 267L, 267L, 267L, 267L, 267L, 265L, 
+265L, 265L, 265L, 265L, 265L, 265L, 265L, 265L, 265L, 266L, 266L, 
+266L, 266L, 266L, 266L, 266L, 266L, 266L, 266L, 262L, 262L, 262L, 
+262L, 262L, 262L, 262L, 262L, 262L, 262L, 264L, 264L, 264L, 264L, 
+264L, 264L, 264L, 264L, 264L, 264L, 260L, 260L, 260L, 260L, 260L, 
+260L, 260L, 260L, 260L, 260L), repetition = c(8L, 8L, 8L, 8L, 
+8L, 8L, 8L, 8L, 8L, 8L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 
+9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 9L, 1L, 1L, 1L, 1L, 1L, 1L, 
+1L, 1L, 1L, 1L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 7L, 5L, 5L, 
+5L, 5L, 5L, 5L, 5L, 5L, 5L, 5L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 6L, 
+6L, 6L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 4L, 4L, 4L, 4L, 
+4L, 4L, 4L, 4L, 4L, 4L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L
+), module = structure(c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L), .Label = "scenario.node[0].nicVLCTail.phyVLC", class = "factor"), 
+    configname = structure(c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+    1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+    1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+    1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+    1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+    1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+    1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 
+    1L, 1L), .Label = "Road-Vlc", class = "factor"), packetByteLength = c(8192L, 
+    8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 
+    8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 
+    8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 
+    8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 
+    8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 
+    8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 
+    8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 
+    8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 
+    8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 
+    8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 
+    8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L, 8192L
+    ), numVehicles = c(2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 
+    2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 
+    2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 
+    2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 
+    2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 
+    2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 
+    2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L
+    ), dDistance = c(80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 
+    80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 
+    80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 
+    80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 
+    80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 
+    80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 
+    80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 
+    80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L, 
+    80L, 80L, 80L, 80L, 80L, 80L, 80L, 80L), time = c(270.166006903445, 
+    271.173853699836, 272.175873251122, 273.177524313334, 274.182946177105, 
+    275.188959464989, 276.189675339937, 277.198250244799, 278.204619457189, 
+    279.212562800009, 270.164199199177, 271.168527215152, 272.173072994958, 
+    273.179210429715, 274.184351047337, 275.18980754378, 276.194816792995, 
+    277.198598277809, 278.202398083519, 279.210634593917, 270.210674322891, 
+    271.212395107473, 272.218871923292, 273.219060500457, 274.220486359614, 
+    275.22401452372, 276.229646658839, 277.231060448138, 278.240407241942, 
+    279.2437126347, 270.283554249858, 271.293168593832, 272.298574288769, 
+    273.304413221348, 274.306272082517, 275.309023049011, 276.317805897347, 
+    277.324403550028, 278.332855848701, 279.334046374594, 270.118608539613, 
+    271.127947700074, 272.133887145863, 273.135726000491, 274.135994529981, 
+    275.136563912708, 276.140120735361, 277.144298344151, 278.146885137621, 
+    279.147552358659, 270.206015567272, 271.214618077209, 272.216566814903, 
+    273.225435592582, 274.234014573683, 275.242949179958, 276.248417809711, 
+    277.248800670023, 278.249750333404, 279.252926560188, 270.217182684494, 
+    271.218357511397, 272.224698488895, 273.231112784327, 274.238740508457, 
+    275.242715184122, 276.249053562718, 277.250325509798, 278.258488063493, 
+    279.261141590137, 270.282904173953, 271.284689544638, 272.294220723234, 
+    273.299749415592, 274.30628880553, 275.312075103126, 276.31579134717, 
+    277.321905523606, 278.326305136748, 279.333056502253, 270.258991527456, 
+    271.260224091407, 272.270076810133, 273.27052037648, 274.274119348094, 
+    275.280808254502, 276.286353887245, 277.287064312339, 278.294444793276, 
+    279.296772014594, 270.333066283904, 271.33877455992, 272.345842319903, 
+    273.350858180493, 274.353972278505, 275.360454510107, 276.365088896161, 
+    277.369166956941, 278.372571708911, 279.38017503079), distanceToTx = c(80.255266401689, 
+    80.156059067023, 79.98823695539, 79.826647129071, 79.76678667135, 
+    79.788239825292, 79.734539327997, 79.74766421514, 79.801243848241, 
+    79.765920888341, 80.255266401689, 80.15850240049, 79.98823695539, 
+    79.826647129071, 79.76678667135, 79.788239825292, 79.735078924078, 
+    79.74766421514, 79.801243848241, 79.764622734914, 80.251248121732, 
+    80.146436869316, 79.984682320466, 79.82292012342, 79.761908518748, 
+    79.796988776281, 79.736920997657, 79.745038376718, 79.802638836686, 
+    79.770029970452, 80.243475525691, 80.127918207499, 79.978303140866, 
+    79.816259117883, 79.749322030693, 79.809916018889, 79.744456560867, 
+    79.738655068783, 79.788697533211, 79.784288359619, 80.260412958482, 
+    80.168426829066, 79.992034911214, 79.830845773284, 79.7756751763, 
+    79.778156038931, 79.732399593756, 79.752769548846, 79.799967731078, 
+    79.757585110481, 80.251248121732, 80.146436869316, 79.984682320466, 
+    79.822062073459, 79.75884601899, 79.801590491435, 79.738335109094, 
+    79.74347007248, 79.803215965043, 79.771471198955, 80.250257298678, 
+    80.146436869316, 79.983831684476, 79.822062073459, 79.75884601899, 
+    79.801590491435, 79.738335109094, 79.74347007248, 79.803849157574, 
+    79.771471198955, 80.243475525691, 80.130180105198, 79.978303140866, 
+    79.816881283718, 79.749322030693, 79.80984572883, 79.744456560867, 
+    79.738655068783, 79.790548644175, 79.784288359619, 80.246349000313, 
+    80.137056554491, 79.980581246037, 79.818924707937, 79.753176142361, 
+    79.808777040341, 79.741609845588, 79.740770913572, 79.796316397253, 
+    79.777593733292, 80.238796415443, 80.119021911134, 79.974810568944, 
+    79.814065350562, 79.743657315504, 79.810146783217, 79.749945098869, 
+    79.737122584544, 79.781650522348, 79.791554933936), headerNoError = c(0.99999999989702, 
+    0.9999999999981, 0.99999999999946, 0.9999999928026, 0.99999873265475, 
+    0.77080141574964, 0.99007491438593, 0.99994396605059, 0.45588747062284, 
+    0.93484381262491, 0.99999999989702, 0.99999999999816, 0.99999999999946, 
+    0.9999999928026, 0.99999873265475, 0.77080141574964, 0.99008458785106, 
+    0.99994396605059, 0.45588747062284, 0.93480223051707, 0.99999999989735, 
+    0.99999999999789, 0.99999999999946, 0.99999999287551, 0.99999876302649, 
+    0.46903147501117, 0.98835168988253, 0.99994427085086, 0.45235035271542, 
+    0.93496741877335, 0.99999999989803, 0.99999999999781, 0.99999999999948, 
+    0.99999999318224, 0.99994254156311, 0.46891362282273, 0.93382613917348, 
+    0.99994594904099, 0.93002915596843, 0.93569767251247, 0.99999999989658, 
+    0.99999999998074, 0.99999999999946, 0.99999999272802, 0.99999871586781, 
+    0.76935240919896, 0.99002587758346, 0.99999881589732, 0.46179415706093, 
+    0.93417422376389, 0.99999999989735, 0.99999999999789, 0.99999999999946, 
+    0.99999999289347, 0.99999876940486, 0.46930769326427, 0.98837353639905, 
+    0.99994447154714, 0.16313586712094, 0.93500824170148, 0.99999999989744, 
+    0.99999999999789, 0.99999999999946, 0.99999999289347, 0.99999876940486, 
+    0.46930769326427, 0.98837353639905, 0.99994447154714, 0.16330039178981, 
+    0.93500824170148, 0.99999999989803, 0.99999999999781, 0.99999999999948, 
+    0.99999999316541, 0.99994254156311, 0.46794586553266, 0.93382613917348, 
+    0.99994594904099, 0.9303627789484, 0.93569767251247, 0.99999999989778, 
+    0.9999999999978, 0.99999999999948, 0.99999999311433, 0.99999878195152, 
+    0.47101897739483, 0.93368891853679, 0.99994556595217, 0.7571113417265, 
+    0.93553999975802, 0.99999999998191, 0.99999999999784, 0.99999999999971, 
+    0.99999891129658, 0.99994309267792, 0.46510628979591, 0.93442584181035, 
+    0.99894450514543, 0.99890078483692, 0.76933812306423), receivedPower_dbm = c(-93.023492290586, 
+    -92.388378035287, -92.205716340607, -93.816400586752, -95.023489422885, 
+    -100.86308557253, -98.464763536915, -96.175707680373, -102.06189538385, 
+    -99.716653422746, -93.023492290586, -92.384760627397, -92.205716340607, 
+    -93.816400586752, -95.023489422885, -100.86308557253, -98.464201120719, 
+    -96.175707680373, -102.06189538385, -99.717150021506, -93.022927803442, 
+    -92.404017215549, -92.204561341714, -93.814319484729, -95.016990717792, 
+    -102.01669022332, -98.558088145955, -96.173817001483, -102.07406915124, 
+    -99.71517574876, -93.021813165972, -92.409586309743, -92.20229160243, 
+    -93.805335867418, -96.184419849593, -102.01709540787, -99.728735187547, 
+    -96.163233028048, -99.772547164798, -99.706399753853, -93.024204617071, 
+    -92.745813384859, -92.206884754512, -93.818508150122, -95.027018807793, 
+    -100.87000577258, -98.467607232407, -95.005311380324, -102.04157607608, 
+    -99.724619517, -93.022927803442, -92.404017215549, -92.204561341714, 
+    -93.813803344588, -95.015606885523, -102.0157405687, -98.556982278361, 
+    -96.172566862738, -103.21871579865, -99.714687230796, -93.022787428238, 
+    -92.404017215549, -92.204274688493, -93.813803344588, -95.015606885523, 
+    -102.0157405687, -98.556982278361, -96.172566862738, -103.21784988098, 
+    -99.714687230796, -93.021813165972, -92.409950613665, -92.20229160243, 
+    -93.805838770576, -96.184419849593, -102.02042267497, -99.728735187547, 
+    -96.163233028048, -99.768774335378, -99.706399753853, -93.022228914406, 
+    -92.411048503835, -92.203136463155, -93.807357409082, -95.012865008237, 
+    -102.00985717796, -99.730352912911, -96.165675535906, -100.92744056572, 
+    -99.708301333236, -92.735781110993, -92.408137395049, -92.119533319039, 
+    -94.982938427575, -96.181073124017, -102.03018610927, -99.721633629806, 
+    -97.32940323644, -97.347613268692, -100.87007386786), snr = c(49.848348091678, 
+    57.698190927109, 60.17669971462, 41.529809724535, 31.452202106925, 
+    8.1976890851341, 14.240447804094, 24.122884195464, 6.2202875499406, 
+    10.674183333671, 49.848348091678, 57.746270018264, 60.17669971462, 
+    41.529809724535, 31.452202106925, 8.1976890851341, 14.242292077376, 
+    24.122884195464, 6.2202875499406, 10.672962852322, 49.854827699773, 
+    57.49079026127, 60.192705735317, 41.549715223147, 31.499301851462, 
+    6.2853718719014, 13.937702343688, 24.133388256416, 6.2028757927148, 
+    10.677815810561, 49.867624820879, 57.417115267867, 60.224172277442, 
+    41.635752021705, 24.074540962859, 6.2847854917092, 10.644529778044, 
+    24.19227425387, 10.537686730745, 10.699414795917, 49.84017267426, 
+    53.139646558768, 60.160512118809, 41.509660845114, 31.42665220053, 
+    8.1846370024428, 14.231126423354, 31.584125885363, 6.2494585568733, 
+    10.654622041348, 49.854827699773, 57.49079026127, 60.192705735317, 
+    41.55465351989, 31.509340361646, 6.2867464196657, 13.941251828322, 
+    24.140336174865, 4.765718874642, 10.679016976694, 49.856439162736, 
+    57.49079026127, 60.196678846453, 41.55465351989, 31.509340361646, 
+    6.2867464196657, 13.941251828322, 24.140336174865, 4.7666691818074, 
+    10.679016976694, 49.867624820879, 57.412299088098, 60.224172277442, 
+    41.630930975211, 24.074540962859, 6.279972363168, 10.644529778044, 
+    24.19227425387, 10.546845071479, 10.699414795917, 49.862851240855, 
+    57.397787176282, 60.212457625018, 41.61637603957, 31.529239767749, 
+    6.2952688513108, 10.640565481982, 24.178672145334, 8.0771089950663, 
+    10.694731030907, 53.262541905639, 57.43627424514, 61.382796189332, 
+    31.747253311549, 24.093100244121, 6.2658701281075, 10.661949889074, 
+    18.495227442305, 18.417839037171, 8.1845086722809), frameId = c(15051, 
+    15106, 15165, 15220, 15279, 15330, 15385, 15452, 15511, 15566, 
+    15019, 15074, 15129, 15184, 15239, 15298, 15353, 15412, 15471, 
+    15526, 14947, 14994, 15057, 15112, 15171, 15226, 15281, 15332, 
+    15391, 15442, 14971, 15030, 15085, 15144, 15203, 15262, 15321, 
+    15380, 15435, 15490, 14915, 14978, 15033, 15092, 15147, 15198, 
+    15257, 15312, 15371, 15430, 14975, 15034, 15089, 15140, 15195, 
+    15254, 15313, 15368, 15427, 15478, 14987, 15046, 15105, 15160, 
+    15215, 15274, 15329, 15384, 15447, 15506, 14943, 15002, 15061, 
+    15116, 15171, 15230, 15285, 15344, 15399, 15454, 14971, 15026, 
+    15081, 15136, 15195, 15258, 15313, 15368, 15423, 15478, 15039, 
+    15094, 15149, 15204, 15263, 15314, 15369, 15428, 15487, 15546
+    ), packetOkSinr = c(0.99999999314881, 0.9999999998736, 0.99999999996428, 
+    0.99999952114066, 0.99991568416005, 3.00628034688444e-08, 
+    0.51497487795954, 0.99627877136019, 0, 0.011303253101957, 
+    0.99999999314881, 0.99999999987726, 0.99999999996428, 0.99999952114066, 
+    0.99991568416005, 3.00628034688444e-08, 0.51530974419663, 
+    0.99627877136019, 0, 0.011269851265775, 0.9999999931708, 
+    0.99999999985986, 0.99999999996428, 0.99999952599145, 0.99991770469509, 
+    0, 0.45861812482641, 0.99629897628155, 0, 0.011403119534097, 
+    0.99999999321568, 0.99999999985437, 0.99999999996519, 0.99999954639936, 
+    0.99618434878558, 0, 0.010513119213425, 0.99641022914441, 
+    0.00801687746446111, 0.012011103529927, 0.9999999931195, 
+    0.99999999871861, 0.99999999996428, 0.99999951617905, 0.99991456738049, 
+    2.6525298291169e-08, 0.51328066587104, 0.9999212220316, 0, 
+    0.010777054258914, 0.9999999931708, 0.99999999985986, 0.99999999996428, 
+    0.99999952718674, 0.99991812902805, 0, 0.45929307038653, 
+    0.99631228046814, 0, 0.011436292559188, 0.99999999317629, 
+    0.99999999985986, 0.99999999996428, 0.99999952718674, 0.99991812902805, 
+    0, 0.45929307038653, 0.99631228046814, 0, 0.011436292559188, 
+    0.99999999321568, 0.99999999985437, 0.99999999996519, 0.99999954527918, 
+    0.99618434878558, 0, 0.010513119213425, 0.99641022914441, 
+    0.00821047996950475, 0.012011103529927, 0.99999999319919, 
+    0.99999999985345, 0.99999999996519, 0.99999954188106, 0.99991896371849, 
+    0, 0.010410830482692, 0.996384831822, 9.12484388049251e-09, 
+    0.011877185067536, 0.99999999879646, 0.9999999998562, 0.99999999998077, 
+    0.99992756868677, 0.9962208785486, 0, 0.010971897073662, 
+    0.93214999078663, 0.92943956665979, 2.64925478221656e-08), 
+    snir = c(49.848348091678, 57.698190927109, 60.17669971462, 
+    41.529809724535, 31.452202106925, 8.1976890851341, 14.240447804094, 
+    24.122884195464, 6.2202875499406, 10.674183333671, 49.848348091678, 
+    57.746270018264, 60.17669971462, 41.529809724535, 31.452202106925, 
+    8.1976890851341, 14.242292077376, 24.122884195464, 6.2202875499406, 
+    10.672962852322, 49.854827699773, 57.49079026127, 60.192705735317, 
+    41.549715223147, 31.499301851462, 6.2853718719014, 13.937702343688, 
+    24.133388256416, 6.2028757927148, 10.677815810561, 49.867624820879, 
+    57.417115267867, 60.224172277442, 41.635752021705, 24.074540962859, 
+    6.2847854917092, 10.644529778044, 24.19227425387, 10.537686730745, 
+    10.699414795917, 49.84017267426, 53.139646558768, 60.160512118809, 
+    41.509660845114, 31.42665220053, 8.1846370024428, 14.231126423354, 
+    31.584125885363, 6.2494585568733, 10.654622041348, 49.854827699773, 
+    57.49079026127, 60.192705735317, 41.55465351989, 31.509340361646, 
+    6.2867464196657, 13.941251828322, 24.140336174865, 4.765718874642, 
+    10.679016976694, 49.856439162736, 57.49079026127, 60.196678846453, 
+    41.55465351989, 31.509340361646, 6.2867464196657, 13.941251828322, 
+    24.140336174865, 4.7666691818074, 10.679016976694, 49.867624820879, 
+    57.412299088098, 60.224172277442, 41.630930975211, 24.074540962859, 
+    6.279972363168, 10.644529778044, 24.19227425387, 10.546845071479, 
+    10.699414795917, 49.862851240855, 57.397787176282, 60.212457625018, 
+    41.61637603957, 31.529239767749, 6.2952688513108, 10.640565481982, 
+    24.178672145334, 8.0771089950663, 10.694731030907, 53.262541905639, 
+    57.43627424514, 61.382796189332, 31.747253311549, 24.093100244121, 
+    6.2658701281075, 10.661949889074, 18.495227442305, 18.417839037171, 
+    8.1845086722809), ookSnirBer = c(8.8808636558081e-24, 3.2219795637026e-27, 
+    2.6468895519653e-28, 3.9807779074715e-20, 1.0849324265615e-15, 
+    2.5705217057696e-05, 4.7313805615763e-08, 1.8800438086075e-12, 
+    0.00021005320203921, 1.9147343768384e-06, 8.8808636558081e-24, 
+    3.0694773489537e-27, 2.6468895519653e-28, 3.9807779074715e-20, 
+    1.0849324265615e-15, 2.5705217057696e-05, 4.7223753038869e-08, 
+    1.8800438086075e-12, 0.00021005320203921, 1.9171738578051e-06, 
+    8.8229427230445e-24, 3.9715925056443e-27, 2.6045198111088e-28, 
+    3.9014083702734e-20, 1.0342658440386e-15, 0.00019591630514278, 
+    6.4692014108683e-08, 1.8600094209271e-12, 0.0002140067535655, 
+    1.9074922485477e-06, 8.7096574467175e-24, 4.2779443633862e-27, 
+    2.5231916788231e-28, 3.5761615214425e-20, 1.9750692814982e-12, 
+    0.0001960392878411, 1.9748966344895e-06, 1.7515881895994e-12, 
+    2.2078334799411e-06, 1.8649940680806e-06, 8.954486301678e-24, 
+    3.2021085732779e-25, 2.690441113724e-28, 4.0627628846548e-20, 
+    1.1134484878561e-15, 2.6061691733331e-05, 4.777159157954e-08, 
+    9.4891388749738e-16, 0.00020359398491544, 1.9542110660398e-06, 
+    8.8229427230445e-24, 3.9715925056443e-27, 2.6045198111088e-28, 
+    3.8819641115984e-20, 1.0237769828158e-15, 0.00019562832342849, 
+    6.4455095380046e-08, 1.8468752030971e-12, 0.0010099091367628, 
+    1.9051035165106e-06, 8.8085966897635e-24, 3.9715925056443e-27, 
+    2.594108048185e-28, 3.8819641115984e-20, 1.0237769828158e-15, 
+    0.00019562832342849, 6.4455095380046e-08, 1.8468752030971e-12, 
+    0.0010088638355194, 1.9051035165106e-06, 8.7096574467175e-24, 
+    4.2987746909572e-27, 2.5231916788231e-28, 3.593647329558e-20, 
+    1.9750692814982e-12, 0.00019705170257492, 1.9748966344895e-06, 
+    1.7515881895994e-12, 2.1868296425817e-06, 1.8649940680806e-06, 
+    8.7517439682173e-24, 4.3621551072316e-27, 2.553168170837e-28, 
+    3.6469582463164e-20, 1.0032983660212e-15, 0.00019385229409318, 
+    1.9830820164805e-06, 1.7760568361323e-12, 2.919419915209e-05, 
+    1.8741284335866e-06, 2.8285944348148e-25, 4.1960751547207e-27, 
+    7.8468215407139e-29, 8.0407329049747e-16, 1.9380328071065e-12, 
+    0.00020004849911333, 1.9393279417733e-06, 5.9354475879597e-10, 
+    6.4258355913627e-10, 2.6065221215415e-05), ookSnrBer = c(8.8808636558081e-24, 
+    3.2219795637026e-27, 2.6468895519653e-28, 3.9807779074715e-20, 
+    1.0849324265615e-15, 2.5705217057696e-05, 4.7313805615763e-08, 
+    1.8800438086075e-12, 0.00021005320203921, 1.9147343768384e-06, 
+    8.8808636558081e-24, 3.0694773489537e-27, 2.6468895519653e-28, 
+    3.9807779074715e-20, 1.0849324265615e-15, 2.5705217057696e-05, 
+    4.7223753038869e-08, 1.8800438086075e-12, 0.00021005320203921, 
+    1.9171738578051e-06, 8.8229427230445e-24, 3.9715925056443e-27, 
+    2.6045198111088e-28, 3.9014083702734e-20, 1.0342658440386e-15, 
+    0.00019591630514278, 6.4692014108683e-08, 1.8600094209271e-12, 
+    0.0002140067535655, 1.9074922485477e-06, 8.7096574467175e-24, 
+    4.2779443633862e-27, 2.5231916788231e-28, 3.5761615214425e-20, 
+    1.9750692814982e-12, 0.0001960392878411, 1.9748966344895e-06, 
+    1.7515881895994e-12, 2.2078334799411e-06, 1.8649940680806e-06, 
+    8.954486301678e-24, 3.2021085732779e-25, 2.690441113724e-28, 
+    4.0627628846548e-20, 1.1134484878561e-15, 2.6061691733331e-05, 
+    4.777159157954e-08, 9.4891388749738e-16, 0.00020359398491544, 
+    1.9542110660398e-06, 8.8229427230445e-24, 3.9715925056443e-27, 
+    2.6045198111088e-28, 3.8819641115984e-20, 1.0237769828158e-15, 
+    0.00019562832342849, 6.4455095380046e-08, 1.8468752030971e-12, 
+    0.0010099091367628, 1.9051035165106e-06, 8.8085966897635e-24, 
+    3.9715925056443e-27, 2.594108048185e-28, 3.8819641115984e-20, 
+    1.0237769828158e-15, 0.00019562832342849, 6.4455095380046e-08, 
+    1.8468752030971e-12, 0.0010088638355194, 1.9051035165106e-06, 
+    8.7096574467175e-24, 4.2987746909572e-27, 2.5231916788231e-28, 
+    3.593647329558e-20, 1.9750692814982e-12, 0.00019705170257492, 
+    1.9748966344895e-06, 1.7515881895994e-12, 2.1868296425817e-06, 
+    1.8649940680806e-06, 8.7517439682173e-24, 4.3621551072316e-27, 
+    2.553168170837e-28, 3.6469582463164e-20, 1.0032983660212e-15, 
+    0.00019385229409318, 1.9830820164805e-06, 1.7760568361323e-12, 
+    2.919419915209e-05, 1.8741284335866e-06, 2.8285944348148e-25, 
+    4.1960751547207e-27, 7.8468215407139e-29, 8.0407329049747e-16, 
+    1.9380328071065e-12, 0.00020004849911333, 1.9393279417733e-06, 
+    5.9354475879597e-10, 6.4258355913627e-10, 2.6065221215415e-05
+    )), class = "data.frame", row.names = c(NA, -100L), .Names = c("run", 
+"repetition", "module", "configname", "packetByteLength", "numVehicles", 
+"dDistance", "time", "distanceToTx", "headerNoError", "receivedPower_dbm", 
+"snr", "frameId", "packetOkSinr", "snir", "ookSnirBer", "ookSnrBer"
+))
+</code></pre>
+
+<hr>
+<p><strong>Finding the transformation function</strong></p>
+
+<ol>
+<li>
+<em>y1 --&gt; y2</em>
+This function is used to transform the data of the secondary y axis to be "normalized" according to the first y axis</li>
+</ol>
+<p><a href="https://i.stack.imgur.com/rukrP.png" rel="nofollow noreferrer"><img src="https://i.stack.imgur.com/rukrP.png" alt="enter image description here"></a></p>
+
+<p>transformation function: <code>f(y1) = 0.025*x + 2.75</code></p>
+
+<hr>
+<ol start="2">
+<li>
+<em>y2 --&gt; y1</em>
+This function is used to transform the break points of the first y axis to the values of the second y axis. Note that the axis are swapped now.</li>
+</ol>
+<p><a href="https://i.stack.imgur.com/F1OVB.png" rel="nofollow noreferrer"><img src="https://i.stack.imgur.com/F1OVB.png" alt="enter image description here"></a></p>
+
+<p>transformation function: <code>f(y1) = 40*x - 110</code></p>
+
+<hr>
+<p><strong>Plotting</strong></p>
+
+<p>Note how the transformation functions are used in the <code>ggplot</code> call to transform the data "on-the-fly"</p>
+
+<pre><code>ggplot(data=combined_80_8192 %&gt;% filter (time &gt; 270, time &lt; 280), aes(x=time) ) +
+  stat_summary(aes(y=receivedPower_dbm ), fun.y=mean, geom="line", colour="black") +
+  stat_summary(aes(y=packetOkSinr*40 - 110 ), fun.y=mean, geom="line", colour="black", position = position_dodge(width=10)) +
+  scale_x_continuous() +
+  scale_y_continuous(breaks = seq(-0,-110,-10), "y_first", sec.axis=sec_axis(~.*0.025+2.75, name="y_second") ) 
+</code></pre>
+
+<p>The first <code>stat_summary</code> call is the one that sets the base for the first y axis.
+The second <code>stat_summary</code> call is called  to transform the data. Remember that all of the data will take as base the first y axis. So that data needs to be normalized for the first y axis. To do that I use the transformation function on the data: <code>y=packetOkSinr*40 - 110</code></p>
+
+<p>Now to transform the second axis I use the opposite function within the <code>scale_y_continuous</code> call: <code>sec.axis=sec_axis(~.*0.025+2.75, name="y_second")</code>.</p>
+
+<p><a href="https://i.stack.imgur.com/UyF42.png" rel="nofollow noreferrer"><img src="https://i.stack.imgur.com/UyF42.png" alt="enter image description here"></a></p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/43161700" title="short permalink to this answer" class="short-link" id="link-post-43161700">share</a><span class="lsep">|</span><a href="/posts/43161700/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2017-04-01 20:31:15Z" class="relativetime">Apr 1 at 20:31</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/4786271/user4786271"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/fd121447bed041136af416d31980d080?s=32&amp;d=identicon&amp;r=PG&amp;f=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/4786271/user4786271">user4786271</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1,092</span><span title="5 silver badges"><span class="badge2"></span><span class="badgecount">5</span></span><span title="15 bronze badges"><span class="badge3"></span><span class="badgecount">15</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-43161700" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-73399302" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">R can do this sort of thing, <code>coef(lm(c(-70, -110) ~ c(1,0)))</code> and <code>coef(lm(c(1,0) ~ c(-70, -110)))</code>. You could define a helper function such as  <code>equationise &lt;- function(range = c(-70, -110), target = c(1,0)){   c = coef(lm(target ~ range))     as.formula(substitute(~ a*. + b, list(a=c[[2]], b=c[[1]]))) }</code></span>
+                    <U+2013><U+00A0><a href="/users/471093/baptiste" title="49,315 reputation" class="comment-user">baptiste</a>
+                <span class="comment-date" dir="ltr"><span title="2017-04-01 21:36:53Z" class="relativetime-clean">Apr 1 at 21:36</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-73413752" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">yeap, I know... just thought the site would be more intuitive</span>
+                    <U+2013><U+00A0><a href="/users/4786271/user4786271" title="1,092 reputation" class="comment-user">user4786271</a>
+                <span class="comment-date" dir="ltr"><span title="2017-04-02 15:25:40Z" class="relativetime-clean">Apr 2 at 15:25</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-43161700" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="43241154"></a>
+<div id="answer-43241154" class="answer" data-answerid="43241154" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="43241154"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>We definitely could build a plot with dual Y-axises using base R funtion <code>plot</code>.     </p>
+
+<pre><code># pseudo dataset
+df &lt;- data.frame(x = seq(1, 1000, 1), y1 = sample.int(100, 1000, replace=T), y2 = sample(50, 1000, replace = T))
+
+# plot first plot 
+with(df, plot(y1 ~ x, col = "red"))
+
+# set new plot
+par(new = T) 
+
+# plot second plot, but without axis
+with(df, plot(y2 ~ x, type = "l", xaxt = "n", yaxt = "n", xlab = "", ylab = ""))
+
+# define y-axis and put y-labs
+axis(4)
+with(df, mtext("y2", side = 4))
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/43241154" title="short permalink to this answer" class="short-link" id="link-post-43241154">share</a><span class="lsep">|</span><a href="/posts/43241154/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2017-04-05 20:37:05Z" class="relativetime">Apr 5 at 20:37</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/4663963/white-big"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/818b613fa503ddd1eaa60af64c0bba2e?s=32&amp;d=identicon&amp;r=PG&amp;f=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/4663963/white-big">White Big</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">120</span><span title="10 bronze badges"><span class="badge3"></span><span class="badgecount">10</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-43241154" class="comments  dno">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr>
+<td></td>
+<td></td>
+</tr></tbody></table>
+</div>
+
+        <div id="comments-link-43241154" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="32804699"></a>
+<div id="answer-32804699" class="answer" data-answerid="32804699" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="32804699"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>You can use <code>facet_wrap(~ variable, ncol= )</code> on a variable to create a new comparison.  It's not on the same axis, but it is similar.</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/32804699" title="short permalink to this answer" class="short-link" id="link-post-32804699">share</a><span class="lsep">|</span><a href="/posts/32804699/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/32804699/revisions" title="show all edits to this post">edited <span title="2015-11-26 09:04:10Z" class="relativetime">Nov 26 '15 at 9:04</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/3001626/david-arenburg"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/PNguN.png?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/3001626/david-arenburg">David Arenburg</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 70,704" dir="ltr">70.7k</span><span title="8 gold badges"><span class="badge1"></span><span class="badgecount">8</span></span><span title="78 silver badges"><span class="badge2"></span><span class="badgecount">78</span></span><span title="144 bronze badges"><span class="badge3"></span><span class="badgecount">144</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-09-27 04:51:43Z" class="relativetime">Sep 27 '15 at 4:51</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/5380809/jchaykow"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/73aed6088300f0a2d6ed1ecc5d4f1343?s=32&amp;d=identicon&amp;r=PG&amp;f=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/5380809/jchaykow">jchaykow</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">229</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="11 bronze badges"><span class="badge3"></span><span class="badgecount">11</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-32804699" class="comments  dno">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr>
+<td></td>
+<td></td>
+</tr></tbody></table>
+</div>
+
+        <div id="comments-link-32804699" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="42496777"></a>
+<div id="answer-42496777" class="answer" data-answerid="42496777" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="42496777"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p><a href="https://stackoverflow.com/a/3101876/">The answer by Hadley</a> gives an interesting reference to Stephen Few's report <a href="http://www.perceptualedge.com/articles/visual_business_intelligence/dual-scaled_axes.pdf" rel="nofollow noreferrer">Dual-Scaled Axes in Graphs Are They Ever the Best Solution?</a>.</p>
+
+<p>I do not know what the OP means with "counts" and "rate" but a quick search gives me <a href="http://health.utah.gov/opha/IBIShelp/compute_rate2.htm" rel="nofollow noreferrer">Counts and Rates</a>, so I get some data about Accidents in North American Mountaineering<sup>1</sup>:</p>
+
+<pre><code>Years&lt;-c("1998","1999","2000","2001","2002","2003","2004")
+Persons.Involved&lt;-c(281,248,301,276,295,231,311)
+Fatalities&lt;-c(20,17,24,16,34,18,35)
+rate=100*Fatalities/Persons.Involved
+df&lt;-data.frame(Years=Years,Persons.Involved=Persons.Involved,Fatalities=Fatalities,rate=rate)
+print(df,row.names = FALSE)
+
+ Years Persons.Involved Fatalities      rate
+  1998              281         20  7.117438
+  1999              248         17  6.854839
+  2000              301         24  7.973422
+  2001              276         16  5.797101
+  2002              295         34 11.525424
+  2003              231         18  7.792208
+  2004              311         35 11.254019
+</code></pre>
+
+<p>And then I tried to do the graph as Few suggested at page 7 of the aforementioned report (and following the request of OP to graph the counts as a bar chart and the rates as a line chart) :</p>
+
+<blockquote>
+  <p>The other less obvious solution, which works only for time series, is
+  to convert all sets of values to a common quantitative scale by
+  displaying percentage differences between each value and a reference
+  (or index) value. For instance, select a particular point in time,
+  such as the first interval that appears in the graph, and express
+  each subsequent value as the percentage difference between it and the
+  initial value. This is done by dividing the value at each point in
+  time by the value for the initial point in time and then multiplying
+  it by 100 to convert the rate to a percentage, as illustrated below.</p>
+</blockquote>
+
+<pre><code>df2&lt;-df
+df2$Persons.Involved &lt;- 100*df$Persons.Involved/df$Persons.Involved[1]
+df2$rate &lt;- 100*df$rate/df$rate[1]
+plot(ggplot(df2)+
+  geom_bar(aes(x=Years,weight=Persons.Involved))+
+  geom_line(aes(x=Years,y=rate,group=1))+
+  theme(text = element_text(size=30))
+  )
+</code></pre>
+
+<p>And this is the result:
+<a href="https://i.stack.imgur.com/mBDDN.png" rel="nofollow noreferrer"><img src="https://i.stack.imgur.com/mBDDN.png" alt="enter image description here"></a></p>
+
+<p>But I do not like it a lot and I am not able to easily put a legend on it...</p>
+
+<p>1
+<sub>
+WILLIAMSON, Jed, et al. <em>Accidents in North American Mountaineering 2005.</em> The Mountaineers Books, 2005.
+</sub></p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/42496777" title="short permalink to this answer" class="short-link" id="link-post-42496777">share</a><span class="lsep">|</span><a href="/posts/42496777/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/42496777/revisions" title="show all edits to this post">edited <span title="2017-05-23 12:18:01Z" class="relativetime">May 23 at 12:18</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/-1/community"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/a007be5a61f6aa8f3e85ae2fc18dd66e?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/-1/community">Community</a><span class="mod-flair" title="moderator"><U+2666></span>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2017-02-27 22:15:47Z" class="relativetime">Feb 27 at 22:15</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/15485/alessandro-jacopson"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/NoiuG.png?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/15485/alessandro-jacopson">Alessandro Jacopson</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">9,054</span><span title="6 gold badges"><span class="badge1"></span><span class="badgecount">6</span></span><span title="59 silver badges"><span class="badge2"></span><span class="badgecount">59</span></span><span title="109 bronze badges"><span class="badge3"></span><span class="badgecount">109</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-42496777" class="comments  dno">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr>
+<td></td>
+<td></td>
+</tr></tbody></table>
+</div>
+
+        <div id="comments-link-42496777" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="46470532"></a>
+<div id="answer-46470532" class="answer" data-answerid="46470532" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="46470532"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I acknowledge and agree with <a href="https://stackoverflow.com/a/3101876/1053612">hadley</a> (and others), that separate y-scales are "fundamentally flawed". Having said that <U+2013> I often wish <code>ggplot2</code> had the feature <U+2013> particularly, when the data is in <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data#Wide" rel="nofollow noreferrer">wide-format</a> and I quickly want to visualise or check the data (i.e. for personal use only).</p>
+
+<p>While the <code>tidyverse</code> library makes it fairly easy to convert the data to long-format (such that <code>facet_grid()</code> will work), the process is still not trivial, as seen below:</p>
+
+<pre><code>library(tidyverse)
+df.wide %&gt;%
+    # Select only the columns you need for the plot.
+    select(date, column1, column2, column3) %&gt;%
+    # Create an id column <U+2013> needed in the `gather()` function.
+    mutate(id = n()) %&gt;%
+    # The `gather()` function converts to long-format. 
+    # In which the `type` column will contain three factors (column1, column2, column3),
+    # and the `value` column will contain the respective values.
+    # All the while we retain the `id` and `date` columns.
+    gather(type, value, -id, -date) %&gt;%
+    # Create the plot according to your specifications
+    ggplot(aes(x = date, y = value)) +
+        geom_line() +
+        # Create a panel for each `type` (ie. column1, column2, column3).
+        # If the types have different scales, you can use the `scales="free"` option.
+        facet_grid(type~., scales = "free")
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/46470532" title="short permalink to this answer" class="short-link" id="link-post-46470532">share</a><span class="lsep">|</span><a href="/posts/46470532/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2017-09-28 13:35:26Z" class="relativetime">Sep 28 at 13:35</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1053612/bonna"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/1aeab9431492e53647ef30caf6897634?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1053612/bonna">bonna</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">440</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="5 silver badges"><span class="badge2"></span><span class="badgecount">5</span></span><span title="19 bronze badges"><span class="badge3"></span><span class="badgecount">19</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-46470532" class="comments  dno">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr>
+<td></td>
+<td></td>
+</tr></tbody></table>
+</div>
+
+        <div id="comments-link-46470532" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+                    <div class="question-status">
+        <h2>                    <b>protected</b> by <a href="/users/680068/zx8754">zx8754</a> <span dir="ltr"><span title="2016-11-19 21:38:12Z" class="relativetime">Nov 19 '16 at 21:38</span></span>
+</h2>
+        <p>
+Thank you for your interest in this question. 
+Because it has attracted low-quality or spam answers that had to be removed, posting an answer now requires 10 <a href="/help/whats-reputation">reputation</a> on this site (the <a href="/help/privileges/new-user">association bonus does not count</a>).
+<br><br>
+Would you like to answer one of these <a href="/unanswered?fromProtectedNotice=true">unanswered questions</a> instead?
+</p>
+    </div>
+
+
+
+
+
+                        <h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?                            Browse other questions tagged <a href="/questions/tagged/r" class="post-tag" title="show questions tagged 'r'" rel="tag">r</a> <a href="/questions/tagged/ggplot2" class="post-tag" title="show questions tagged 'ggplot2'" rel="tag">ggplot2</a>  or <a href="/questions/ask">ask your own question</a>.                        </h2>
+            </div>
+        </div>
+                <div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">
+                            <div class="module question-stats">
+                    <table id="qinfo">
+<tr>
+<td>
+                                <p class="label-key">asked</p>
+                            </td>
+                            <td style="padding-left: 10px">
+                                <p class="label-key" title="2010-06-23 05:52:19Z"><b>7 years, 3 months ago</b></p>
+                            </td>
+                        </tr>
+<tr>
+<td>
+                                <p class="label-key">viewed</p>
+                            </td>
+
+                            <td style="padding-left: 10px">
+                                <p class="label-key">
+                                    <b>135,071 times</b>
+                                </p>
+                            </td>
+                        </tr>
+<tr>
+<td>
+                                    <p class="label-key">active</p>
+                                </td>
+                                <td style="padding-left: 10px">
+                                    <p class="label-key"><b><a href="?lastactivity" class="lastactivity-link" title="2017-09-28 13:35:26Z">17 days ago</a></b></p>
+                                </td>
+                            </tr>
+</table>
+</div>
+                        
+            <div id="dfp-tsb" class="everyonelovesstackoverflow"></div>
+            <div id="hireme"></div>
+                <script>var clc={options:{svc:'dfp'}};</script><script>;window.clc=window.clc||{},window.clc.init=window.clc.init||function(a){var b=window,c=b.document;try{if("function"!=typeof[].indexOf||!window.addEventListener||!a.allowed)return;var d=new RegExp(a.allowed);if(!d.test(location.hostname))return;if(b.clc.options)for(var e in b.clc.options)a[e]=b.clc.options[e];b.clc.cmd="undefined"==typeof b.clc.cmd?[]:b.clc.cmd,b.clc.autoload=b.clc.autoload||function(){"function"==typeof b.clc.load?b.clc.load():b.clc.cmd.push(function(a){a.load()})};var f=a.wv;if(c.hidden&&f)return void c.addEventListener("visibilitychange",function b(){c.hidden||(window.clc.init(a),c.removeEventListener("visibilitychange",b))});b.clc.options=a,a.al&&b.clc.autoload();var g=c.createElement("script");g.async=!0,g.src=a.lib,c.body.appendChild(g)}catch(a){}},window.clc.loadDisplayAds=window.clc.loadDisplayAds||function(){function a(b){b.style.height=b.style.maxHeight=b.style.minHeight="auto",b.style.display="IFRAME"===b.tagName?"none":"block",[].forEach.call(b.children,a)}function b(a){new Image().src="https://"+e+"/stalled.gif?"+a}var c=window,d=c.document,e="clc.stackoverflow.com",f={slots:{lb:[[728,90]],mlb:[[728,90]],sb:[[300,250],[300,600]],"tag-sponsorship":[[730,135]]},ids:{"dfp-tlb":"lb","dfp-mlb":"mlb","dfp-tsb":"sb","dfp-tag":"tag-sponsorship","clc-tlb":"lb","clc-mlb":"mlb","clc-tsb":"sb"}},g=/^\/tags\//.test(location.pathname)||/^\/questions\/tagged\//.test(location.pathname)?"tag-pages":"question-pages",h=location.hostname;/^clc\./.test(location.hostname)&&(h="test/dev.stackoverflow.com");return function(e){var i=(e&&0<e.length?e:Object.keys(f.ids)).map(function(a){return d.getElementById(a)}).filter(function(a){return!!a&&/^\s*$/.test(a.innerHTML)}).map(function(a){return a.id});if(0!==i.length){c.googletag=c.googletag||{},c.googletag.cmd=c.googletag.cmd||[],c.googletag.cmd.push(function(){var e=c.googletag,j=d.createElement("div");j.className="adsbox",j.id="clc-abd",j.style.position="absolute",j.style.pointerEvents="none",j.innerHTML="&nbsp;",d.body.appendChild(j);var k=e.pubads();k.enableSingleRequest(),k.addEventListener("slotRenderEnded",function(c){var e=c.serviceName,f=c.slot,g=c.lineItemId;try{var h=f.getSlotElementId(),i=[];h||i.push("id=0");var j=d.getElementById(h);if(!h||j?j.hasAttribute("data-clc-stalled")&&i.push("st=1"):i.push("el=0"),0!==i.length)return void b(i.join("&"));-1===[4385506061,4386578282,4386579572].indexOf(g)?j.setAttribute("data-clc-prefilled","true"):a(j),j.setAttribute("data-clc-ready","true")}catch(a){var k=d.getElementById("dfp-tsb")||d.getElementById("clc-tsb");k&&k.setAttribute("data-clc-ready","true"),b("e=1")}});var l=c.dfp_targeting||{};l&&Object.keys(l).forEach(function(a){e.pubads().setTargeting(a,l[a])});for(var m=0,n=i;m<n.length;m++){var o=n[m],p=f.ids[o],q=f.slots[p],r="/"+"248424177"+"/"+h+"/"+p+"/"+g,s=e.defineSlot(r,q,o);("tag-sponsorship"===p||"sb"==p)&&s.setCollapseEmptyDiv(!0,!0),s.addService(k),!1}e.enableServices();for(var o,t=0,u=i;t<u.length;t++)o=u[t],e.display(o)});var j=d.createElement("script");j.async=!0,j.src="https://www.googletagservices.com/tag/js/gpt.js",document.body.appendChild(j)}}}(),window.clc.init.call(null, {"lib":"https://cdn.sstatic.net/clc/clc.min.js?v=f7d8d49c545b","u":"https://clc.stackoverflow.com/markup.js","wa":true,"kt":2000,"tto":true,"h":"clc.stackoverflow.com","allowed":"^(((talent\\.)?stackoverflow)|(blog\\.codinghorror)|(serverfault|askubuntu)|([^\\.]+\\.stackexchange))\\.com$","wv":true,"al":false});</script><script>
+window.clc_request='AiUSBoRPFNUIAAAAAFNKLwACAAAAAgAAAAALAAAAfHJ8Z2dwbG90MnwA6fNGOUYE9YsVqw';                    clc.autoload();
+                var dfp_targeting={Registered:['false'],'so-tag':['r','ggplot2']};                                    clc.loadDisplayAds();
+            </script><div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+
+<div class="spacer">
+	<a href="/q/22091092" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">1</div>
+	</a>
+	<a href="/questions/22091092/display-y-axis-for-both-ends-of-faceted-plot?noredirect=1" class="question-hyperlink">Display y-axis for both ends of faceted plot</a>
+</div>
+<div class="spacer">
+	<a href="/q/43942002" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="/questions/43942002/geom-line-with-different-y-axis-scale?noredirect=1" class="question-hyperlink">geom_line with different y-axis scale</a>
+</div>
+<div class="spacer">
+	<a href="/q/28282996" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="/questions/28282996/add-second-y-scale-for-two-series-and-reduce-dates-on-x-axis-ggplot?noredirect=1" class="question-hyperlink">Add second y scale for two series and reduce dates on x axis - ggplot</a>
+</div>
+<div class="spacer">
+	<a href="/q/15851144" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="/questions/15851144/ggplot2-layering-two-different-plot-types-with-different-axes-on-the-same-pane?noredirect=1" class="question-hyperlink">ggplot2: Layering two different plot types, with different axes on the same panel.</a>
+</div>
+<div class="spacer">
+	<a href="/q/42183189" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">-2</div>
+	</a>
+	<a href="/questions/42183189/multiple-intraday-time-series-on-the-same-chart?noredirect=1" class="question-hyperlink">Multiple intraday time series on the same chart</a>
+</div>
+<div class="spacer">
+	<a href="/q/18269780" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="/questions/18269780/double-y-axis-in-ggplot2?noredirect=1" class="question-hyperlink">double y axis in ggplot2</a>
+</div>
+<div class="spacer">
+	<a href="/q/43403640" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="/questions/43403640/ggplot-r-2-y-axis?noredirect=1" class="question-hyperlink">ggplot R 2 y-axis</a>
+</div>
+<div class="spacer">
+	<a href="/q/36814880" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="/questions/36814880/two-axis-with-bar-and-line-r?noredirect=1" class="question-hyperlink">Two axis with bar and line R</a>
+</div>
+<div class="spacer">
+	<a href="/q/27679350" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">1</div>
+	</a>
+	<a href="/questions/27679350/how-to-combine-a-bar-graph-using-one-y-axis-and-a-line-graph-using-a-separate-y?noredirect=1" class="question-hyperlink">How to combine a bar graph using one y axis and a line graph using a separate Y axis in R?</a>
+</div>
+<div class="spacer">
+	<a href="/q/33271541" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="/questions/33271541/how-to-add-a-secondary-y-axis-in-ggplot?noredirect=1" class="question-hyperlink">How to add a secondary y axis in ggplot?</a>
+</div>					<div class="spacer more">
+				<a href="/questions/linked/3099219">see more linked questionsÅc</a>
+			</div>
+	</div>
+</div>
+
+                <div class="module sidebar-related">
+                    <h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer">
+<a href="/q/1249548" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">196</div></a><a href="/questions/1249548/side-by-side-plots-with-ggplot2" class="question-hyperlink">Side-by-side plots with ggplot2</a>
+</div>
+<div class="spacer">
+<a href="/q/1330989" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">389</div></a><a href="/questions/1330989/rotating-and-spacing-axis-labels-in-ggplot2" class="question-hyperlink">Rotating and spacing axis labels in ggplot2</a>
+</div>
+<div class="spacer">
+<a href="/q/16713346" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="/questions/16713346/stacked-and-beside-bar-plot-with-percentage-on-y-axis" class="question-hyperlink">Stacked and beside bar plot with percentage on y-axis</a>
+</div>
+<div class="spacer">
+<a href="/q/17499012" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">4</div></a><a href="/questions/17499012/plotting-a-third-variable-against-x-and-y-axis" class="question-hyperlink">Plotting a third variable against x and y axis</a>
+</div>
+<div class="spacer">
+<a href="/q/20041136" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">35</div></a><a href="/questions/20041136/avoid-ggplot-sorting-the-x-axis-while-plotting-geom-bar" class="question-hyperlink">Avoid ggplot sorting the x-axis while plotting geom_bar()</a>
+</div>
+<div class="spacer">
+<a href="/q/28420009" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="/questions/28420009/plotting-on-secondary-axis-with-ggplot" class="question-hyperlink">Plotting on secondary axis with ggplot</a>
+</div>
+<div class="spacer">
+<a href="/q/30420592" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">2</div></a><a href="/questions/30420592/r-qplot-plotting-two-facets-with-sums-on-the-y-axis-instead-of-counts" class="question-hyperlink">R qplot - plotting two facets with sums on the y-axis instead of counts</a>
+</div>
+<div class="spacer">
+<a href="/q/32081954" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="/questions/32081954/plotting-multiple-feature-on-y-axis-with-different-y-axis-scaling" class="question-hyperlink">plotting multiple feature on y axis with different y axis scaling</a>
+</div>
+<div class="spacer">
+<a href="/q/40177135" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="/questions/40177135/merge-two-plots-so-that-coloring-of-series-coincides-in-a-legend" class="question-hyperlink">Merge two plots so that coloring of series coincides in a legend</a>
+</div>
+<div class="spacer">
+<a href="/q/43942002" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="/questions/43942002/geom-line-with-different-y-axis-scale" class="question-hyperlink">geom_line with different y-axis scale</a>
+</div>
+                    </div>
+                </div>
+
+<div id="hot-network-questions" class="module tex2jax_ignore">
+    <h4>
+        <a href="https://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+<li>
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div>
+<a href="https://academia.stackexchange.com/questions/97334/should-one-avoid-using-the-phrase-note-that-in-math-writings" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Should one avoid using the phrase "note that" in math writings?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div>
+<a href="https://puzzling.stackexchange.com/questions/55950/68-coins-with-100-weighings" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    68 coins with 100 weighings
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div>
+<a href="https://codegolf.stackexchange.com/questions/145371/number-of-distinct-non-empty-subsequences-of-binary-expansion" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Number of distinct non-empty subsequences of binary expansion
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-matheducators" title="Mathematics Educators Stack Exchange"></div>
+<a href="https://matheducators.stackexchange.com/questions/12984/examples-of-basic-non-commutative-rings" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:548 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Examples of basic non-commutative rings
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div>
+<a href="https://codegolf.stackexchange.com/questions/145351/sum-the-means-of-the-two-integers" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Sum the means of the two integers
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div>
+<a href="https://worldbuilding.stackexchange.com/questions/94994/how-could-time-actually-be-speeding-up" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How could time actually be speeding up?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div>
+<a href="https://math.stackexchange.com/questions/2473466/cantor-set-hausdorff" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Cantor Set (Hausdorff)
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div>
+<a href="https://worldbuilding.stackexchange.com/questions/94993/how-could-mushroom-fungi-forests-be-possible" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How could mushroom/fungi forests be possible?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-interpersonal" title="Interpersonal Skills Stack Exchange"></div>
+<a href="https://interpersonal.stackexchange.com/questions/5391/how-to-join-in-when-people-are-gossiping" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:680 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to join in when people are gossiping?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div>
+<a href="https://english.stackexchange.com/questions/414434/term-for-lending-an-item-to-a-store-so-they-can-sell-it-on-your-behalf-for-a-fe" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Term for lending an item to a store so they can sell it on your behalf, for a fee
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-photo" title="Photography Stack Exchange"></div>
+<a href="https://photo.stackexchange.com/questions/93446/how-to-create-the-type-of-lighting-that-is-used-in-many-of-elena-shuminovas-pic" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:61 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to create the type of lighting that is used in many of Elena Shuminova's pictures?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div>
+<a href="https://tex.stackexchange.com/questions/396358/checking-for-empty-argument-in-meta-command" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    checking for empty argument in meta-command
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-interpersonal" title="Interpersonal Skills Stack Exchange"></div>
+<a href="https://interpersonal.stackexchange.com/questions/5362/how-to-avoid-wishing-my-coworker-on-her-birthday" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:680 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to avoid wishing my coworker on her birthday?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div>
+<a href="https://academia.stackexchange.com/questions/97383/appropriateness-of-dedicating-my-thesis-to-a-jewish-mathematician-who-died-in-a" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Appropriateness of dedicating my thesis to a Jewish mathematician who died in a concentration camp
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div>
+<a href="https://aviation.stackexchange.com/questions/44717/when-using-the-phonetic-alphabet-for-airways-should-we-say-uniform-or-upper" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When using the phonetic alphabet, for airways, should we say Uniform or Upper?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-skeptics" title="Skeptics Stack Exchange"></div>
+<a href="https://skeptics.stackexchange.com/questions/39695/are-female-surgeons-less-likely-to-kill-you" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:212 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are female surgeons less likely to kill you?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div>
+<a href="https://scifi.stackexchange.com/questions/171897/how-would-fred-and-george-know-if-someone-stole-something-from-their-shop" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How would Fred and George know if someone stole something from their shop?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div>
+<a href="https://english.stackexchange.com/questions/413534/is-there-a-word-phrase-to-describe-somebody-who-has-devoted-their-life-to-pract" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there a word/ phrase to describe somebody who has devoted their life to practising something but is still not very good at it?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div>
+<a href="https://academia.stackexchange.com/questions/97349/can-a-phd-supervisor-take-unpublished-ideas-from-a-students-dissertation" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can a PhD supervisor take unpublished ideas from a student's dissertation?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div>
+<a href="https://math.stackexchange.com/questions/2474093/are-there-any-crazy-totally-ordered-rings-without-infinities-infinitesimals" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are there any "crazy" totally ordered rings without infinities/infinitesimals?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-history" title="History Stack Exchange"></div>
+<a href="https://history.stackexchange.com/questions/41021/avoid-sleeping-on-your-back-breathe-in-toilet-smells-were-seen-as-precauti" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:324 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    ÅeAvoid sleeping on your backÅf &amp; Åebreathe in toilet smellsÅf were seen as precautions against the Black Death. Why did doctors think these would work?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div>
+<a href="https://rpg.stackexchange.com/questions/108375/what-does-phb-stand-for" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What does PHB stand for?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div>
+<a href="https://codereview.stackexchange.com/questions/177971/pong-game-written-on-c-using-sdl" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Pong game written on C++ using SDL
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div>
+<a href="https://english.stackexchange.com/questions/414213/another-word-for-theory-or-belief-that-doesnt-quite-rise-to-the-level-of-ei" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Another word for "theory" or "belief" that doesn't quite rise to the level of either. An atheist's "theory" of creation
+                </a>
+
+            </li>
+    </ul>
+<a href="#" class="show-more js-show-more js-gps-track" data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+            more hot questions
+        </a>
+</div>
+        </div>
+    
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="/feeds/question/3099219" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>    </div>
+<script>
+StackExchange.ready(function(){$.get('/posts/3099219/ivc/9b16');});
+</script><noscript>
+    <div><img src="/posts/3099219/ivc/9b16" class="dno" alt="" width="0" height="0"></div>
+</noscript>
+<div style="display:none" id="prettify-lang">lang-r</div>
+</div>
+
+
+        </div>
+    </div>
+
+    <footer id="footer" class="s-footer js-footer" role="contentinfo"><div class="-container">
+            <div class="g-row">
+                    <div class="-logo">
+
+                        <a href="https://stackoverflow.com"><svg aria-hidden="true" class="svg-icon native iconLogo" width="150" height="30" viewbox="0 0 150 30"><g><path d="M33.9 18.6l-1.7-.2c-1.3-.1-1.9-.6-1.9-1.6 0-1.1.8-1.8 2.4-1.8 1.1 0 2.1.3 2.8.8l1-1c-1-.8-2.3-1.1-3.8-1.1-2.3 0-3.9 1.2-3.9 3.1 0 1.8 1.1 2.7 3.2 2.9l1.8.2c1.2.1 1.8.6 1.8 1.6 0 1.3-1.1 1.9-2.8 1.9-1.3 0-2.5-.3-3.3-1.2l-1 1c1.2 1.1 2.6 1.5 4.4 1.5 2.6 0 4.3-1.2 4.3-3.2-.2-2-1.5-2.7-3.3-2.9zm13.3-4.8c-1.7 0-2.8.3-3.7 1.5l1 1c.6-.9 1.3-1.2 2.7-1.2 1.9 0 2.7.8 2.7 2.3v1h-3.2c-2.4 0-3.7 1.2-3.7 3.1 0 .8.3 1.6.8 2.2.7.7 1.5 1 3 1 1.4 0 2.2-.3 3.1-1.1v1h1.6v-7.2c-.1-2.4-1.5-3.6-4.3-3.6zm2.7 7c0 .9-.2 1.5-.5 1.8-.7.6-1.5.7-2.4.7-1.7 0-2.4-.6-2.4-1.8 0-1.2.8-1.9 2.4-1.9h3l-.1 1.2zm7.6-5.6c1 0 1.6.3 2.4 1.2l1-1c-1.1-1.2-2-1.6-3.5-1.6-2.7 0-4.7 1.8-4.7 5.5 0 3.6 2 5.5 4.7 5.5 1.5 0 2.4-.4 3.5-1.6l-1.1-1c-.8.9-1.4 1.2-2.4 1.2s-1.9-.4-2.5-1.2c-.5-.7-.7-1.5-.7-2.9 0-1.3.2-2.2.7-2.9.7-.8 1.6-1.2 2.6-1.2zm13.4-1.3H69l-4.8 4.7V9.1h-1.6v15.4h1.6v-3.9l1.9-1.9 3.6 5.8h1.9l-4.4-6.9 3.7-3.7zm7.3-.33c-1.6 0-2.7.6-3.4 1.4-1 1-1.3 2.3-1.3 4.3s.3 3.3 1.3 4.3c.7.7 1.8 1.4 3.4 1.4 1.6 0 2.8-.6 3.4-1.4 1-1 1.3-2.3 1.3-4.3s-.3-3.3-1.3-4.3c-.6-.8-1.7-1.4-3.4-1.4zm1.3 8.3c-.3.3-.7.5-1.3.5-.6 0-1-.2-1.3-.5-.6-.6-.6-1.6-.6-2.7 0-1.2.1-2.1.6-2.7.3-.3.7-.5 1.3-.5.6 0 1 .2 1.3.5.6.6.6 1.5.6 2.7.1 1.2 0 2.2-.6 2.7zm10.8-8.2l-2.2 6.9-2.3-6.9h-2.9l4.1 11.1h2.2l4.1-11.1h-3zm7.6-.1c-2.9 0-4.8 2-4.8 5.7 0 4.5 2.5 5.7 5.1 5.7 2 0 3.1-.6 4.2-1.7l-1.7-1.6c-.7.7-1.3 1-2.5 1-1.6 0-2.4-1-2.4-2.5h6.9v-1.2c0-3.2-1.7-5.4-4.8-5.4zm-2.1 4.6c0-.5.1-.8.3-1.2.3-.7.9-1.2 1.9-1.2.9 0 1.6.5 1.9 1.2.2.4.2.7.3 1.2h-4.4zm11-3.4v-1.1h-2.7v11.1h2.8v-6.7c0-1.4.9-2 1.8-2 .7 0 1 .2 1.5.7l2.1-2.1c-.8-.8-1.5-1-2.6-1-1.3-.1-2.3.4-2.9 1.1zm6.3-2.3v12.3h2.8v-8.8h2v-2.1h-2v-1.2c0-.6.3-1 1-1h1.1v-2.3h-1.6c-2.3 0-3.3 1.6-3.3 3.1zm16.2 1.1c-1.6 0-2.7.6-3.4 1.4-1 1-1.3 2.3-1.3 4.3s.3 3.3 1.3 4.3c.7.7 1.8 1.4 3.4 1.4 1.6 0 2.8-.6 3.4-1.4 1-1 1.3-2.3 1.3-4.3s-.3-3.3-1.3-4.3c-.6-.8-1.8-1.4-3.4-1.4zm1.3 8.3c-.3.3-.7.5-1.3.5-.6 0-1-.2-1.3-.5-.6-.6-.6-1.6-.6-2.7 0-1.2.1-2.1.6-2.7.3-.3.7-.5 1.3-.5.6 0 1 .2 1.3.5.6.6.6 1.5.6 2.7 0 1.2 0 2.2-.6 2.7zm16.5-8.2l-1.8 6.9-2.3-6.9h-2l-2.3 6.9-1.8-6.9H134l3.4 11.1h2.3l2.3-7 2.3 7h2.3l3.4-11.1h-2.9zm-25.1 7.7V9.27h-2.8v12.3c0 1.6 1 3.2 3.2 3.2h1.6v-2.3h-1c-.7 0-1-.4-1-1.1zM41.3 15.6l1.4-1.4h-3v-3.5h-1.6v11.1c0 1.6.9 2.9 2.7 2.9h1.1v-1.3h-.8c-1 0-1.5-.6-1.5-1.6v-6.1h1.7v-.1z" fill="#222426"></path><path fill="#BCBBBB" d="M21 27v-8h3v11H0V19h3v8z"></path><path d="M5.4 19.1l13.56 1.96.17-2.38-13.26-2.55-.47 2.97zm1.8-6.8l12 5.6 1.1-2.4-12-5.6-1.1 2.4zm3.4-5.9l10.2 8.5 1.7-2-10.2-8.5-1.7 2zM17.1.2L15 1.8l7.9 10.6 2.1-1.6L17.1.2zM5 25h14v-3H5v3z" fill="#F48024"></path></g></svg></a>
+                    </div>
+                
+                    <nav class="-nav js-category _visible" data-name="default"><h5 class="-title"><a href="https://stackoverflow.com" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 15})">Stack Overflow</a></h5>
+                        <ul class="-list">
+<li class="-item"><a href="/questions" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 16})">Questions</a></li>
+                                <li class="-item"><a href="https://stackoverflow.com/jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 17})">Jobs</a></li>
+                                <li class="-item"><a href="https://stackoverflow.com/jobs/directory/developer-jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 11})">Developer Jobs Directory</a></li>
+                                     <li class="-item"><a href="https://stackoverflow.com/jobs/salary" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 28})">Salary Calculator</a></li>
+                                                            <li class="-item"><a href="/help" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 3 })">Help</a></li>
+                                <li class="-item"><a onclick='StackExchange.switchMobile("on")' class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 12 })">Mobile</a></li>
+                        </ul></nav><nav class="-nav js-category _visible" data-name="default"><h5 class="-title"><a href="https://www.stackoverflowbusiness.com/?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-business-category" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 19 })">Stack Overflow<br> Business</a></h5>
+                        <ul class="-list">
+<li class="-item"><a href="https://www.stackoverflowbusiness.com/talent?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-talent" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 20 })">Talent</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/advertise?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-advertise" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 21 })">Ads</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/enterprise?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-enterprise" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 22 })">Enterprise</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/insights?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-insights" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 23 })">Insights</a></li>
+                        </ul></nav><nav class="-nav js-category _visible" data-name="default"><h5 class="-title"><a class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">Company</a></h5>
+                    <ul class="-list">
+<li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">About</a></li>
+                                                <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 27 })" href="https://stackoverflow.com/company/press">Press</a></li>
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 9 })" href="https://stackoverflow.com/company/work-here">Work Here</a></li>
+                        <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 7 })" href="https://stackexchange.com/legal">Legal</a></li>
+                        <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 8 })" href="https://stackexchange.com/legal/privacy-policy">Privacy Policy</a></li>
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 13 })" href="https://stackoverflow.com/company/contact">Contact Us</a></li>
+                    </ul></nav><div class="-network g-row">
+                    <a href="#" class="-back-trigger js-back"><svg aria-hidden="true" class="svg-icon iconArrowLeftAlt" width="18" height="18" viewbox="0 0 18 18"><path d="M10.58 16L12 14.59 6.4 9 12 3.41 10.57 2l-7 7z"></path></svg></a>
+                    <div>
+                        <h5 class="-title"><a href="https://stackexchange.com">Stack Exchange<br> Network</a></h5>
+                        <ul class="-list">
+<li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Technology">Technology</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Life / Arts">Life / Arts</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Culture / Recreation">Culture / Recreation</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Science">Science</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Other">Other</a></li>
+
+                        </ul>
+</div>
+                </div>
+                <nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                <li class="-item"><a href="https://serverfault.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="system and network administrators">Server Fault</a></li>
+                <li class="-item"><a href="https://superuser.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="computer enthusiasts and power users">Super User</a></li>
+                <li class="-item"><a href="https://webapps.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="power users of web applications">Web Applications</a></li>
+                <li class="-item"><a href="https://askubuntu.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                <li class="-item"><a href="https://webmasters.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="pro webmasters">Webmasters</a></li>
+                <li class="-item"><a href="https://gamedev.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and independent game developers">Game Development</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://tex.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                <li class="-item"><a href="https://softwareengineering.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professionals, academics, and students working within the systems development life cycle">Software Engineering</a></li>
+                <li class="-item"><a href="https://unix.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                <li class="-item"><a href="https://apple.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                <li class="-item"><a href="https://wordpress.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="WordPress developers and administrators">WordPress Development</a></li>
+                <li class="-item"><a href="https://gis.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                <li class="-item"><a href="https://electronics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://android.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                <li class="-item"><a href="https://security.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="information security professionals">Information Security</a></li>
+                <li class="-item"><a href="https://bitcoin.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Bitcoin crypto-currency enthusiasts">Bitcoin</a></li>
+                <li class="-item"><a href="https://dba.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                <li class="-item"><a href="https://drupal.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Drupal developers and administrators">Drupal Answers</a></li>
+                <li class="-item"><a href="https://sharepoint.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="SharePoint enthusiasts">SharePoint</a></li>
+                <li class="-item"><a href="https://ux.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="user experience researchers and experts">User Experience</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://mathematica.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Wolfram Mathematica">Mathematica</a></li>
+                <li class="-item"><a href="https://salesforce.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                <li class="-item"><a href="https://expressionengine.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="administrators, end users, developers and designers for ExpressionEngineR CMS">ExpressionEngineR Answers</a></li>
+                <li class="-item"><a href="https://pt.stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programadores profissionais e entusiastas">Stack Overflow em Portugues</a></li>
+                <li class="-item"><a href="https://blender.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who use Blender to create 3D graphics, animations, or games">Blender</a></li>
+                <li class="-item"><a href="https://networkengineering.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="network engineers">Network Engineering</a></li>
+                <li class="-item"><a href="https://crypto.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="software developers, mathematicians and others interested in cryptography">Cryptography</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://codereview.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="peer programmer code reviews">Code Review</a></li>
+                <li class="-item"><a href="https://magento.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of the Magento e-Commerce platform">Magento</a></li>
+                <li class="-item"><a href="https://softwarerecs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people seeking specific software recommendations">Software Recommendations</a></li>
+                <li class="-item"><a href="https://dsp.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="practitioners of the art and science of signal, image and video processing">Signal Processing</a></li>
+                <li class="-item"><a href="https://emacs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those using, extending or developing Emacs">Emacs</a></li>
+                <li class="-item"><a href="https://raspberrypi.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users and developers of hardware and software for Raspberry Pi">Raspberry Pi</a></li>
+                <li class="-item"><a href="https://ru.stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="ÑÅÑÇÑÄÑsÑÇÑpÑ}Ñ}ÑyÑÉÑÑÑÄÑr">Stack Overflow Ñ~Ñp ÑÇÑÖÑÉÑÉÑ{ÑÄÑ}</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://codegolf.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programming puzzle enthusiasts and code golfers">Programming Puzzles &amp; Code Golf</a></li>
+                <li class="-item"><a href="https://es.stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programadores y profesionales de la informatica">Stack Overflow en espanol</a></li>
+                <li class="-item"><a href="https://ethereum.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Ethereum, the decentralized application platform and smart contract enabled blockchain">Ethereum</a></li>
+                <li class="-item"><a href="https://datascience.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Data science professionals, Machine Learning specialists, and those interested in learning more about the field">Data Science</a></li>
+                <li class="-item"><a href="https://arduino.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="developers of open-source hardware and software that is compatible with Arduino">Arduino</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#technology" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (26)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Life / Arts"><ul class="-list">
+<li class="-item"><a href="https://photo.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                <li class="-item"><a href="https://scifi.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                <li class="-item"><a href="https://graphicdesign.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                <li class="-item"><a href="https://movies.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                <li class="-item"><a href="https://music.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="musicians, students, and enthusiasts">Music: Practice &amp; Theory</a></li>
+                <li class="-item"><a href="https://worldbuilding.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="writers/artists using science, geography and culture to construct imaginary worlds and settings">Worldbuilding</a></li>
+                <li class="-item"><a href="https://cooking.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Life / Arts"><ul class="-list">
+<li class="-item"><a href="https://diy.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="contractors and serious DIYers">Home Improvement</a></li>
+                <li class="-item"><a href="https://money.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                <li class="-item"><a href="https://academia.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="academics and those enrolled in higher education">Academia</a></li>
+                <li class="-item"><a href="https://law.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="legal professionals, students, and others with experience or interest in law">Law</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#lifearts" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (17)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Culture / Recreation"><ul class="-list">
+<li class="-item"><a href="https://english.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                <li class="-item"><a href="https://skeptics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="scientific skepticism">Skeptics</a></li>
+                <li class="-item"><a href="https://judaism.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                <li class="-item"><a href="https://travel.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="road warriors and seasoned travelers">Travel</a></li>
+                <li class="-item"><a href="https://christianity.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                <li class="-item"><a href="https://ell.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="speakers of other languages learning English">English Language Learners</a></li>
+                <li class="-item"><a href="https://japanese.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students, teachers, and linguists wanting to discuss the finer points of the Japanese language">Japanese Language</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Culture / Recreation"><ul class="-list">
+<li class="-item"><a href="https://gaming.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                <li class="-item"><a href="https://bicycles.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                <li class="-item"><a href="https://rpg.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                <li class="-item"><a href="https://anime.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="anime and manga fans">Anime &amp; Manga</a></li>
+                <li class="-item"><a href="https://puzzling.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those who create, solve, and study puzzles">Puzzling</a></li>
+                <li class="-item"><a href="https://mechanics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="mechanics and DIY enthusiast owners of cars, trucks, and motorcycles">Motor Vehicle Maintenance &amp; Repair</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#culturerecreation" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (32)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Science"><ul class="-list">
+<li class="-item"><a href="https://mathoverflow.net" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional mathematicians">MathOverflow</a></li>
+                <li class="-item"><a href="https://math.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                <li class="-item"><a href="https://stats.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                <li class="-item"><a href="https://cstheory.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                <li class="-item"><a href="https://physics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="active researchers, academics and students of physics">Physics</a></li>
+                <li class="-item"><a href="https://chemistry.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="scientists, academics, teachers and students">Chemistry</a></li>
+                <li class="-item"><a href="https://biology.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="biology researchers, academics, and students">Biology</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Science"><ul class="-list">
+<li class="-item"><a href="https://cs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students, researchers and practitioners of computer science">Computer Science</a></li>
+                <li class="-item"><a href="https://philosophy.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those interested in the study of the fundamental nature of knowledge, reality, and existence">Philosophy</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#science" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (10)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Other"><ul class="-list">
+<li class="-item"><a href="https://meta.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                <li class="-item"><a href="https://stackapps.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                <li class="-item"><a href="https://api.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programmatic interaction with Stack Exchange sites">API</a></li>
+                <li class="-item"><a href="https://data.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="querying Stack Exchange data using SQL">Data</a></li>
+                <li class="-item"><a href="https://area51.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                    </ul></nav><div class="-copyright g-row jc-end">
+                    <div class="g-column jc-sp-between">
+                        <ul class="-list">
+<li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link:4 })" href="https://stackoverflow.blog?blb=1">Blog</a></li>
+                            <li class="-item"><a href="https://www.facebook.com/officialstackoverflow/" class="-link">Facebook</a></li>
+                            <li class="-item"><a href="https://twitter.com/stackoverflow" class="-link">Twitter</a></li>
+                            <li class="-item"><a href="https://linkedin.com/company/stack-overflow" class="-link">LinkedIn</a></li>
+                        </ul>
+<div>
+                            <p>
+                                site design / logo c 2017 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license" class="-link">cc by-sa 3.0</a>
+                                with <a href="https://stackoverflow.blog/2009/06/25/attribution-required/" rel="license" class="-link">attribution required</a>.
+                                <span id="svnrev">rev 2017.10.15.27439</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                    </div>
+    </footer><noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled
+            <img src="https://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno">
+</div>
+    </noscript>
+        <script> setTimeout(function() { $("#adzerk-user-match").remove(); }, 2000);</script><script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-5620270-1');
+                ga('create', 'UA-5620270-59', {name: 'pageData', sampleRate: 5 });
+                ga('set', 'dimension2', '|r|ggplot2|');
+                ga('pageData.set', 'dimension2', '|r|ggplot2|');
+                ga('send', 'pageview');
+                ga('pageData.send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+                qc.async = true;
+                qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                s.parentNode.insertBefore(qc, s);
+                _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+                            var sc=document.createElement('script');
+                sc.async=true;
+                sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+                s.parentNode.insertBefore(sc, s);
+                _comscore.push({ c1: "2", c2: "17440561" });
+        })();
+
+    </script><script type="text/javascript">
+                
+                (function(appendChild) {
+                    Node.prototype.appendChild = function() {
+                        var parent = this;
+                        var newNode = arguments[0];
+                        if (parent.nodeName === 'HEAD'
+                            && newNode
+                            && newNode.nodeName === 'SCRIPT'
+                            && newNode.src) {
+                            
+                            window.setTimeout(function() {
+                                var result = newNode.src.match(/^https:\/\/maps\.googleapis\.com\/maps\/api\/place\/js\/(\w+)Service\./i) || [];
+                                var service = result[1];
+                                if (service) {
+                                    if (service === 'Autocompletion') service =  2;
+                                    else if (service === 'Place') service = 1;
+                                    else service = 0;
+                                    StackExchange.using('gps', function() {
+                                        StackExchange.gps.track('google_maps_places_api.call', { service: service });
+                                    });
+                                }
+                            }, 0);
+                        }
+                        return appendChild.apply(this, arguments);
+                    };
+                })(Node.prototype.appendChild);
+            </script>
+</body>
+</html>
+

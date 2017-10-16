@@ -1,0 +1,3094 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/QAPage">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Rolling median algorithm in C - Stack Overflow</title>
+<link rel="shortcut icon" href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+<link rel="apple-touch-icon image_src" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+<link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="/opensearch.xml">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:domain" content="stackoverflow.com">
+<meta property="og:image" itemprop="image primaryImageOfPage" content="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded">
+<meta name="twitter:title" property="og:title" itemprop="title name" content="Rolling median algorithm in C">
+<meta name="twitter:description" property="og:description" itemprop="description" content="I am currently working on an algorithm to implement a rolling median filter (analogous to a rolling mean filter) in C. From my search of the literature, there appear to be two reasonably efficient ...">
+<meta property="og:url" content="https://stackoverflow.com/questions/1309263/rolling-median-algorithm-in-c">
+<link rel="canonical" href="https://stackoverflow.com/questions/1309263/rolling-median-algorithm-in-c">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script><script src="https://cdn.sstatic.net/Js/stub.en.js?v=488af1c63e24"></script><link rel="stylesheet" type="text/css" href="https://cdn.sstatic.net/Sites/stackoverflow/all.css?v=e32bd0ed8f3d">
+<link rel="alternate" type="application/atom+xml" title="Feed for question 'Rolling median algorithm in C'" href="/feeds/question/1309263">
+<meta name="twitter:app:country" content="US">
+<meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+<meta name="twitter:app:id:iphone" content="871299723">
+<meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/1309263/rolling-median-algorithm-in-c">
+<meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+<meta name="twitter:app:id:ipad" content="871299723">
+<meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/1309263/rolling-median-algorithm-in-c">
+<meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+<meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/1309263/rolling-median-algorithm-in-c">
+<meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+<script>
+        
+            StackExchange.ready(function () {
+                                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:6,shownCommentCount:5,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:1309263});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '1309263');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text', true); });
+
+            });
+        </script><script>
+        StackExchange.init({"locale":"en","serverTime":1508129712,"routeName":"Questions/Show","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"childUrl":"https://meta.stackoverflow.com","enableSocialMediaInSharePopup":true,"protocol":"https"},"user":{"fkey":"3fbe17c969abd7bd85ae0c8423437465","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true,"canSeeNewHeaderDesign":true},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"story":{"minCompleteBodyLength":75,"likedTagsMaxLength":300,"dislikedTagsMaxLength":300},"jobPreferences":{"maxNumDeveloperRoles":2,"maxNumIndustries":4}}, {"site":{"allowImageUploads":true,"enableUserHovercards":true,"styleCode":true,"enableImgurHttps":true,"forceHttpsImages":true},"comments":{},"userProfile":{"openGraphAPIKey":"58740831ad23540e00c58987"},"tags":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true},"flags":{"allowRetractingFlags":true},"topBar":{"showNewFeatureNotice":true},"snippets":{"snippetsEnabled":true,"renderDomain":"stacksnippets.net"},"markdown":{"asteriskIntraWordEmphasis":true},"monitoring":{"clientTimingsAbsoluteTimeout":30000,"clientTimingsDebounceTimeout":1000}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"82df5476ff5e","js/moderator.en.js":"443faeebba5b","js/full-anon.en.js":"51fdc705af4d","js/full.en.js":"753996d5103d","js/wmd.en.js":"4ddd2413a296","js/third-party/jquery.autocomplete.min.js":"d3b8fa7fdf74","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"28e4c54a5378","js/help.en.js":"a56fdf9b9ff2","js/tageditor.en.js":"248fce004255","js/tageditornew.en.js":"ac8f784e112e","js/inline-tag-editing.en.js":"3e63a01fd39b","js/revisions.en.js":"7bea350562aa","js/review.en.js":"eb16e0be07b1","js/tagsuggestions.en.js":"b278f9a0b23b","js/post-validation.en.js":"4c792759c8f4","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"290bed8a1174","js/keyboard-shortcuts.en.js":"f6606752d1e8","js/external-editor.en.js":"ae2d26085224","js/adops.en.js":"9a6a7812a212","js/external-editor.en.js":"ae2d26085224","js/snippet-javascript.en.js":"4ceca4bd1d0a","js/snippet-javascript-codemirror.en.js":"9a2effee39fe"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script><script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script><noscript id="noscript-css"><style>body,.top-bar{margin-top:1.9em}</style></noscript>
+</head>
+<body class="question-page new-topbar">
+            <script async src="https://js-sec.indexww.com/ht/p/185901-159836282584097.js"></script><div id="notify-container"></div>
+    <div id="custom-header"></div>
+
+
+
+
+<header class="top-bar js-top-bar _fixed"><div class="-container">
+        <div class="-main">
+            
+                <a href="https://stackoverflow.com" class="-logo js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:8})">
+                   <span class="-img">Stack Overflow</span>
+                </a>
+
+                    <a class="-feature-notice
+                       unread-feature-notice
+                       " href="#" data-unread-class="unread-feature-notice" data-campaign="2017-09-19.DevSalaryCalculator" data-cookie="topbar-new-dsc" data-location="2" data-autopopup="true" data-end-date="1508410800000">
+                        <span>new</span>
+                    </a>
+                    <div class="topbar-dialog feature-notice-dialog js-feature-notice-dialog dno">
+                        <div class="dialog-content">
+                            <h4 class="bold">Stack Overflow Salary Calculator</h4>
+                            <p>Find out what developers like you are earning.</p>
+                            <a class="btn-secondary js-cta-button js-gps-track" href="/jobs/salary/?utm_source=so-owned&amp;utm_medium=hero&amp;utm_campaign=sal-calc" data-gps-track="new_feature.click({campaign: '2017-09-19.DevSalaryCalculator', location: 2, action: 2})">Calculate your salary now</a>
+                            <a class="icon-close js-close-button js-gps-track" title="Close and permanently remove this popup" data-gps-track="new_feature.click({campaign: '2017-09-19.DevSalaryCalculator', location: 2, action: 1})"><svg aria-hidden="true" class="svg-icon iconClear" width="18" height="18" viewbox="0 0 18 18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9z"></path></svg></a>
+                        </div>
+                    </div>
+            <nav class="navigation" role="navigation" aria-label="site navigation"><ol class="-list">
+<li class="-item _current">
+        <a id="nav-questions" href="/questions" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:true, location:2, destination:1})">Questions</a>
+    </li>
+    <li class="-item">
+        <a id="nav-jobs" href="/jobs?med=site-ui&amp;ref=jobs-tab" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:6})">Developer Jobs</a>
+    </li>
+    <li class="-item">
+        <a id="nav-tags" href="/tags" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:2})">Tags</a>
+    </li>
+    <li class="-item">
+        <a id="nav-users" href="/users" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:3})">Users</a>
+    </li>
+                </ol></nav>
+</div>
+        
+            <form id="search" action="/search" method="get" class="searchbar" autocomplete="off" role="search">
+                <input name="q" type="text" placeholder="SearchÅc" value="" tabindex="1" autocomplete="off" maxlength="240" class="f-input js-search-field"><button type="submit" aria-label="Search..." class="btn-topbar-primary js-search-submit"><svg aria-hidden="true" class="svg-icon iconSearch" width="18" height="18" viewbox="0 0 18 18"><path d="M12.86 11.32L18 16.5 16.5 18l-5.18-5.14v-.35a7 7 0 1 1 1.19-1.19h.35zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path></svg></button>
+            </form>
+
+        
+
+
+    
+
+<div class="-actions">
+    <nav class="secondary-nav"><div class="-dialog-container js-topbar-dialog-corral">
+
+
+    <div class="topbar-dialog siteSwitcher-dialog dno">
+        <div class="header">
+            <h3>
+<a href="https://stackoverflow.com">current community</a>
+            </h3>
+        </div>
+        <div class="modal-content current-site-container">
+            <ul class="current-site">
+<li>
+                            <div class="related-links">
+            <a href="https://stackoverflow.com/help" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:14 })">help</a>
+                    <a href="https://chat.stackoverflow.com" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+    <a href="https://stackoverflow.com" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="site_switcher.click({ item_type:3 })">
+        <div class="favicon favicon-stackoverflow site-icon" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                    </li>
+                    <li class="related-site">
+                            <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                        
+    <a href="https://meta.stackoverflow.com" class="site-link js-gps-track" data-id="552" data-gps-track="site.switch({ target_site:552, item_type:3 }),site_switcher.click({ item_type:4 })">
+        <div class="favicon favicon-stackoverflowmeta site-icon" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                    </li>
+            </ul>
+</div>
+
+        <div class="header" id="your-communities-header">
+            <h3>
+your communities            </h3>
+
+        </div>
+        <div class="modal-content" id="your-communities-section">
+
+                <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;amp;utm_source=stackoverflow.com&amp;amp;utm_medium=dev-story&amp;amp;utm_campaign=signup-redirect" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f1309263%2frolling-median-algorithm-in-c" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+                </div>
+        </div>
+
+        <div class="header">
+            <h3>
+<a href="https://stackexchange.com/sites">more stack exchange communities</a>
+            </h3>
+            <a href="https://stackoverflow.blog" class="fr">company blog</a>
+        </div>
+        <div class="modal-content">
+                <div class="child-content"></div>
+        </div>        
+    </div>
+                <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+<li>
+                        <a href="/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                        <li>
+                            <a href="https://meta.stackoverflow.com" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                                Meta
+                                <span class="item-summary">
+                                    Discuss the workings and policies of this site
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                                About Us
+                                <span class="item-summary">
+                                    Learn more about Stack Overflow the company
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.stackoverflowbusiness.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                                Business
+                                <span class="item-summary">
+                                    Learn more about hiring developers or posting ads with us
+                                </span>
+                            </a>
+                        </li>
+            </ul>
+</div>
+    </div>
+
+        </div>
+        <ol class="-list">
+<li class="-item"><a href="#" class="-link js-help-button" title="Help Center and other resources">
+        <svg aria-hidden="true" class="svg-icon iconHelp" width="18" height="18" viewbox="0 0 18 18"><path d="M9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1zm.81 12.13c-.02.71-.55 1.15-1.24 1.13-.66-.02-1.17-.49-1.15-1.2.02-.72.56-1.18 1.22-1.16.7.03 1.2.51 1.17 1.23zM11.77 8a5.8 5.8 0 0 1-1.02.91l-.53.37c-.26.2-.42.43-.5.69a4 4 0 0 0-.09.75c0 .05-.03.16-.18.16H7.88c-.16 0-.18-.1-.18-.15.03-.66.12-1.21.4-1.66a5.29 5.29 0 0 1 1.43-1.22c.16-.12.28-.25.38-.39a1.34 1.34 0 0 0 .02-1.71c-.24-.31-.51-.46-1.03-.46-.51 0-.8.26-1.02.6-.21.33-.18.73-.18 1.1H5.75c0-1.38.35-2.25 1.1-2.76.52-.35 1.17-.5 1.93-.5 1 0 1.79.18 2.49.71.64.5.98 1.18.98 2.12 0 .57-.2 1.05-.48 1.44z"></path></svg></a></li>
+                <li class="-item">
+        <a href="https://stackexchange.com" class="-link js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 171 Stack Exchange sites">
+            <svg aria-hidden="true" class="svg-icon iconStackExchange" width="18" height="18" viewbox="0 0 18 18"><path d="M1 13c0 1.1.9 2 2 2h8v3l3-3h1a2 2 0 0 0 2-2v-2H1v2zM15 1H3a2 2 0 0 0-2 2v2h16V3a2 2 0 0 0-2-2zM1 6h16v4H1V6z"></path></svg></a>
+    </li>
+
+        </ol></nav><div class="-ctas">
+                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f1309263%2frolling-median-algorithm-in-c" class="login-link btn-clear" rel="nofollow">Log In</a>
+                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;utm_source=stackoverflow.com&amp;utm_medium=dev-story&amp;utm_campaign=signup-redirect" class="login-link btn-topbar-primary" rel="nofollow">Sign Up</a>
+
+        </div>
+</div>
+    </div>
+</header><script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+        StackExchange.scrollPadding.setPaddingTop(60, 10);     </script><div class="container _full ">
+        
+
+
+        <div id="content" class="snippet-hidden">
+
+
+
+
+            
+
+<div itemscope itemtype="http://schema.org/Question">
+    <link itemprop="image" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+<div class="s-hero hero-container">
+    <div class="-container g-row jc-sp-between ai-center">
+        <div class="g-col6">
+            <h1 class="-title">Learn, Share, Build</h1>
+            <p class="-paragraph">Each month, over 50 million developers come to Stack Overflow to learn, share their knowledge, and build their careers.</p>
+            <p class="-paragraph">Join the worldÅfs largest developer community.</p>
+        </div>
+        
+        <div class="s-signup _hero g-col5">
+
+            <div id="openid-buttons" class="-social">
+                    <div class="major-provider btn _block _medium _google" data-provider="google" data-oauthserver="https://accounts.google.com/o/oauth2/auth" data-oauthversion="2.0">Google</div>
+                    <div class="major-provider btn _block _medium _facebook" data-provider="facebook" data-oauthserver="https://www.facebook.com/v2.0/dialog/oauth" data-oauthversion="2.0">Facebook</div>
+                            </div>
+
+
+            <small class="-divider text-centered">or</small>
+
+            <form id="login-form" action="/users/signup?ssrc=hero&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f1309263%2frolling-median-algorithm-in-c" method="POST">
+        
+                <input type="hidden" name="fkey" value="3fbe17c969abd7bd85ae0c8423437465"><input type="hidden" name="ssrc" value=""><input type="hidden" id="oauth_version" name="oauth_version"><input type="hidden" id="oauth_server" name="oauth_server"><div id="se-login-fields">
+
+                        <input type="hidden" name="legalLinksShown" value="1"><div class="input-group">
+                            <div class="g-row">
+                                <label for="display-name" class="g-col -fill">Display name</label>
+                                <div class="g-col">
+                                    <input id="display-name" name="inline-display-name" type="text" class="f-input" placeholder="J. Doe" data-error-my="right top" data-error-at="left center">
+</div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="g-row">
+                                <label for="email" class="g-col -fill">Email address</label>
+                                <div class="g-col">
+                                    <input id="email" name="inline-email" type="email" maxlength="100" class="f-input" placeholder="you@example.com" data-error-my="right top" data-error-at="left center">
+</div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="g-row">
+                                <label for="password" class="g-col -fill">Password</label>
+                                <div class="g-col">
+                                    <input id="password" name="inline-password" type="password" class="js-inline-signup f-input" placeholder="********" data-error-my="right top" data-error-at="left center">
+</div>
+                            </div>
+                        </div>
+
+                        <div class="button-group g-row ai-center jc-sp-between">
+                            <input id="submit-button" name="submit-button" class="btn-outlined -white _medium _block" type="button" value="Sign Up"><small class="g-col -policy js-terms">By registering, you agree to the <a href="https://stackexchange.com/legal/privacy-policy" name="privacy" target="_blank" class="-link">privacy policy</a> and <a href="https://stackexchange.com/legal/terms-of-service" name="tos" target="_blank" class="-link">terms of service</a>.</small>
+                        </div>
+                    </div>
+            </form>
+            <script>
+                StackExchange.ready(function () {
+                    StackExchange.InlineAuth.init();
+                })
+            </script>
+</div>
+
+            <a id="close" href="#" class="js-dismiss -dismiss" title="dismiss"><svg aria-hidden="true" class="svg-icon iconClear" width="18" height="18" viewbox="0 0 18 18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9z"></path></svg></a>
+    </div>
+</div>
+<script>
+    StackExchange.ready(function () {
+
+        var location = 0;
+        if ($("body").hasClass("questions-page")) {
+            location = 7;
+        } else if ($("body").hasClass("question-page")) {
+            location = 7;
+        } else if ($("body").hasClass("faq-page")) {
+            location = 5;
+        } else if ($("body").hasClass("home-page")) {
+            location = 6;
+        }
+        
+        $('#tell-me-more').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+            });
+        });
+        
+        $('.hero-container #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "minimize", location: location }, true);
+            });
+            
+            $.cookie("hero", "mini", { path: "/", expires: 365 });
+            $.ajax({
+                url: "/hero-mini",
+                success: function (data) {
+                    $(".hero-container").fadeOut("fast", function () {
+                        $(".hero-container").replaceWith(data);
+                        $("#herobox-mini").fadeIn("fast");
+                    });
+                }
+            });
+            return false;
+        });
+    });
+
+</script><div class="inner-content">
+        <div id="question-header">
+                <h1 itemprop="name"><a href="/questions/1309263/rolling-median-algorithm-in-c" class="question-hyperlink">Rolling median algorithm in C</a></h1>
+
+            
+<div class="aside-cta" role="navigation" aria-label="ask new question">
+    <a href="/questions/ask" class="btn-outlined">Ask Question</a>
+</div>
+        </div>
+            <div id="mainbar" role="main" aria-label="question and answers">
+
+            
+
+<div class="question" data-questionid="1309263" id="question">
+
+    <div id="clc-tlb" class="everyonelovesstackoverflow"></div>    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="1309263"><a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">98</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#">favorite</a>
+        <div class="favoritecount"><b>49</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>I am currently working on an algorithm to implement a rolling median filter (analogous to a rolling mean filter) in C. From my search of the literature, there appear to be two reasonably efficient ways to do it. The first is to sort the initial window of values, then perform a binary search to insert the new value and remove the existing one at each iteration.</p>
+
+<p>The second (from Hardle and Steiger, 1995, JRSS-C, Algorithm 296) builds a double-ended heap structure, with a maxheap on one end, a minheap on the other, and the median in the middle. This yields a linear-time algorithm instead of one that is O(n log n).</p>
+
+<p>Here is my problem: implementing the former is doable, but I need to run this on millions of time series, so efficiency matters a lot. The latter is proving very difficult to implement. I found code in the Trunmed.c file of the code for the stats package of R, but it is rather indecipherable.</p>
+
+<p>Does anyone know of a well-written C implementation for the linear time rolling median algorithm?</p>
+
+<p>Edit: Link to Trunmed.c code <a href="http://google.com/codesearch/p?hl=en&amp;sa=N&amp;cd=1&amp;ct=rc#mYw3h_Lb_e0/R-2.2.0/src/library/stats/src/Trunmed.c" rel="nofollow noreferrer">http://google.com/codesearch/p?hl=en&amp;sa=N&amp;cd=1&amp;ct=rc#mYw3h_Lb_e0/R-2.2.0/src/library/stats/src/Trunmed.c</a></p>
+    </div>
+    <div class="post-taglist">
+        <a href="/questions/tagged/c" class="post-tag" title="show questions tagged 'c'" rel="tag">c</a> <a href="/questions/tagged/algorithm" class="post-tag" title="show questions tagged 'algorithm'" rel="tag">algorithm</a> <a href="/questions/tagged/r" class="post-tag" title="show questions tagged 'r'" rel="tag">r</a> <a href="/questions/tagged/statistics" class="post-tag" title="show questions tagged 'statistics'" rel="tag">statistics</a> <a href="/questions/tagged/median" class="post-tag" title="show questions tagged 'median'" rel="tag">median</a> 
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/q/1309263" title="short permalink to this question" class="short-link" id="link-post-1309263">share</a><span class="lsep">|</span><a href="/posts/1309263/edit" class="suggest-edit-post" title="">improve this question</a>
+</div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/1309263/revisions" title="show all edits to this post">edited <span title="2017-07-13 21:25:36Z" class="relativetime">Jul 13 at 21:25</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/376138/pixelistik"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/2ff45dcc3874524bc53094d03fbb1f2c?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/376138/pixelistik">pixelistik</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">4,525</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="21 silver badges"><span class="badge2"></span><span class="badgecount">21</span></span><span title="36 bronze badges"><span class="badge3"></span><span class="badgecount">36</span></span>
+        </div>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2009-08-20 22:50:43Z" class="relativetime">Aug 20 '09 at 22:50</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/143141/awb"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/a6f2d776a4e533d2d86682ba5b24131e?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/143141/awb">AWB</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">663</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="6 silver badges"><span class="badge2"></span><span class="badgecount">6</span></span><span title="8 bronze badges"><span class="badge3"></span><span class="badgecount">8</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</div>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-1309263" class="comments ">
+		    <table><tbody data-remaining-comments-count="1" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-1141451" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Just implemented a moving mean... moving median is somewhat more tricky.  Try googling moving median.</span>
+                    <U+2013><U+00A0><a href="/users/134702/matt" title="14,420 reputation" class="comment-user">Matt</a>
+                <span class="comment-date" dir="ltr"><span title="2009-08-20 23:11:22Z" class="relativetime-clean">Aug 20 '09 at 23:11</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-1141506" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Tried google and google code search. It turned up the Trunmed.c code and an implementation in another language for a SGI port of the Trunmed code (from what I could tell). Also, the JRSS algorithm I cited is apparently the only one in the journal's series for which the original code was not archived.</span>
+                    <U+2013><U+00A0><a href="/users/143141/awb" title="663 reputation" class="comment-user owner">AWB</a>
+                <span class="comment-date" dir="ltr"><span title="2009-08-20 23:23:51Z" class="relativetime-clean">Aug 20 '09 at 23:23</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-1141689" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">How many numbers do you have in each time series? Even with a million of them, if you only have a few thousand numbers, it might not take longer than a minute or two to run (if your code is written efficiently).</span>
+                    <U+2013><U+00A0><a href="/users/2567/dana-the-sane" title="10,392 reputation" class="comment-user">Dana the Sane</a>
+                <span class="comment-date" dir="ltr"><span title="2009-08-21 00:37:41Z" class="relativetime-clean">Aug 21 '09 at 0:37</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-1189919" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">13</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">how is the two heaps solution linear? it's O(n log k) where k is the window size because the heap's delete is O(log k).</span>
+                    <U+2013><U+00A0><a href="/users/40916/yairchu" title="13,793 reputation" class="comment-user">yairchu</a>
+                <span class="comment-date" dir="ltr"><span title="2009-08-30 09:51:30Z" class="relativetime-clean">Aug 30 '09 at 9:51</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-35479612" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">3</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Some implementations and comparisons: <a href="https://github.com/suomela/median-filter" rel="nofollow noreferrer">github.com/suomela/median-filter</a></span>
+                    <U+2013><U+00A0><a href="/users/383299/jukka-suomela" title="5,438 reputation" class="comment-user">Jukka Suomela</a>
+                <span class="comment-date" dir="ltr"><span title="2014-04-21 11:24:37Z" class="relativetime-clean">Apr 21 '14 at 11:24</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-1309263" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments."></a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>1</b> more comment</a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+            <div id="answers">
+
+                <a name="tab-top"></a>
+                <div id="answers-header">
+                    <div class="subheader answers-subheader">
+                        <h2>
+                                12 Answers
+                                <span style="display:none;" itemprop="answerCount">12</span>
+                        </h2>
+                        <div>
+                            <div id="tabs">
+        <a href="/questions/1309263/rolling-median-algorithm-in-c?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+            active</a>
+        <a href="/questions/1309263/rolling-median-algorithm-in-c?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+            oldest</a>
+        <a class="youarehere" href="/questions/1309263/rolling-median-algorithm-in-c?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+            votes</a>
+</div>
+                        </div>
+                    </div>    
+                </div>    
+
+
+
+
+  
+<a name="1309562"></a>
+<div id="answer-1309562" class="answer" data-answerid="1309562" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="1309562"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">22</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I have looked at R's <code>src/library/stats/src/Trunmed.c</code> a few times as I wanted something similar too in a standalone C++ class / C subroutine. Note that this are actually two implementations in one, see <code>src/library/stats/man/runmed.Rd</code> (the source of the help file) which says</p>
+
+<pre><code>\details{
+  Apart from the end values, the result \code{y = runmed(x, k)} simply has
+  \code{y[j] = median(x[(j-k2):(j+k2)])} (k = 2*k2+1), computed very
+  efficiently.
+
+  The two algorithms are internally entirely different:
+  \describe{
+    \item{"Turlach"}{is the Hardle-Steiger
+      algorithm (see Ref.) as implemented by Berwin Turlach.
+      A tree algorithm is used, ensuring performance \eqn{O(n \log
+        k)}{O(n * log(k))} where \code{n &lt;- length(x)} which is
+      asymptotically optimal.}
+    \item{"Stuetzle"}{is the (older) Stuetzle-Friedman implementation
+      which makes use of median \emph{updating} when one observation
+      enters and one leaves the smoothing window.  While this performs as
+      \eqn{O(n \times k)}{O(n * k)} which is slower asymptotically, it is
+      considerably faster for small \eqn{k} or \eqn{n}.}
+  }
+}
+</code></pre>
+
+<p>It would be nice to see this re-used in a more standalone fashion. Are you volunteering?  I can help with some of the R bits.</p>
+
+<p><em>Edit 1</em>: Besides the link to the older version of Trunmed.c above, here are current SVN copies of</p>
+
+<ul>
+<li>
+<a href="http://svn.r-project.org/R/trunk/src/library/stats/src/Srunmed.c" rel="noreferrer"><code>Srunmed.c</code></a> (for the Stuetzle version)</li>
+<li>
+<a href="http://svn.r-project.org/R/trunk/src/library/stats/src/Trunmed.c" rel="noreferrer"><code>Trunmed.c</code></a> (for the Turlach version)</li>
+<li>
+<a href="http://svn.r-project.org/R/trunk/src/library/stats/R/runmed.R" rel="noreferrer"><code>runmed.R</code></a> for the R function calling these</li>
+</ul>
+<p><em>Edit 2</em>: Ryan Tibshirani has some C and Fortran code on <a href="http://www.stat.cmu.edu/~ryantibs/median/" rel="noreferrer">fast median binning</a> which may be a suitable starting point for a windowed approach.</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/1309562" title="short permalink to this answer" class="short-link" id="link-post-1309562">share</a><span class="lsep">|</span><a href="/posts/1309562/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/1309562/revisions" title="show all edits to this post">edited <span title="2014-12-12 17:05:21Z" class="relativetime">Dec 12 '14 at 17:05</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/980833/josh-obrien"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/1e253bbe2b531090dd01a6c248107c89?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/980833/josh-obrien">Josh O'Brien</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 112,404" dir="ltr">112k</span><span title="12 gold badges"><span class="badge1"></span><span class="badgecount">12</span></span><span title="224 silver badges"><span class="badge2"></span><span class="badgecount">224</span></span><span title="333 bronze badges"><span class="badge3"></span><span class="badgecount">333</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2009-08-21 00:41:30Z" class="relativetime">Aug 21 '09 at 0:41</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/143305/dirk-eddelbuettel"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/ND9qC.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/143305/dirk-eddelbuettel">Dirk Eddelbuettel</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 241,470" dir="ltr">241k</span><span title="29 gold badges"><span class="badge1"></span><span class="badgecount">29</span></span><span title="447 silver badges"><span class="badge2"></span><span class="badgecount">447</span></span><span title="554 bronze badges"><span class="badge3"></span><span class="badgecount">554</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-1309562" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-1145143" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Thanks Dirk. Once I get a clean solution, I am planning on releasing it under GPL. I would be interested in setting up a R and Python interfaces as well.</span>
+                    <U+2013><U+00A0><a href="/users/143141/awb" title="663 reputation" class="comment-user owner">AWB</a>
+                <span class="comment-date" dir="ltr"><span title="2009-08-21 15:45:18Z" class="relativetime-clean">Aug 21 '09 at 15:45</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-9716635" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">7</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@AWB What ended up happening with this idea? Did you incorporate your solution into a package?</span>
+                    <U+2013><U+00A0><a href="/users/815646/xu-wang" title="3,664 reputation" class="comment-user">Xu Wang</a>
+                <span class="comment-date" dir="ltr"><span title="2011-10-31 02:50:23Z" class="relativetime-clean">Oct 31 '11 at 2:50</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-1309562" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+<div id="clc-mlb" class="everyonelovesstackoverflow"></div>
+  
+<a name="11228573"></a>
+<div id="answer-11228573" class="answer" data-answerid="11228573" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="11228573"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">15</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I couldn't find a modern implementation of a c++ data structure with order-statistic so ended up implementing both ideas in top coders link suggested by MAK ( <a href="http://www.topcoder.com/tc?module=Static&amp;d1=match_editorials&amp;d2=srm310">Match Editorial</a>: scroll down to FloatingMedian).</p>
+
+<h2>Two multisets</h2>
+
+<p>The first idea partitions the data into two data structures (heaps, multisets etc) with O(ln N) per insert/delete does not allow the quantile to be changed dynamically without a large cost. I.e. we can have a rolling median, or a rolling 75% but not both at the same time.</p>
+
+<h2>Segment tree</h2>
+
+<p>The second idea uses a segment tree which is O(ln N) for insert/deletions/queries but is more flexible. Best of all the "N" is the size of your data range. So if your rolling median has a window of a million items, but your data varies from 1..65536, then only 16 operations are required per movement of the rolling window of 1 million!!</p>
+
+<p>The c++ code is similar to what Denis posted above ("Here's a simple algorithm for quantized data")</p>
+
+<h2>GNU Order Statistic Trees</h2>
+
+<p>Just before giving up, I found that stdlibc++ contains order statistic trees!!!</p>
+
+<p>These have two critical operations:</p>
+
+<pre><code>iter = tree.find_by_order(value)
+order = tree.order_of_key(value)
+</code></pre>
+
+<p>See <a href="http://gcc.gnu.org/onlinedocs/libstdc++/manual/policy_based_data_structures_test.html">libstdc++ manual policy_based_data_structures_test</a> (search for "split and join").</p>
+
+<p>I have wrapped the tree for use in a convenience header for compilers supporting c++0x/c++11 style partial typedefs:</p>
+
+<pre><code>#if !defined(GNU_ORDER_STATISTIC_SET_H)
+#define GNU_ORDER_STATISTIC_SET_H
+#include &lt;ext/pb_ds/assoc_container.hpp&gt;
+#include &lt;ext/pb_ds/tree_policy.hpp&gt;
+
+// A red-black tree table storing ints and their order
+// statistics. Note that since the tree uses
+// tree_order_statistics_node_update as its update policy, then it
+// includes its methods by_order and order_of_key.
+template &lt;typename T&gt;
+using t_order_statistic_set = __gnu_pbds::tree&lt;
+                                  T,
+                                  __gnu_pbds::null_type,
+                                  std::less&lt;T&gt;,
+                                  __gnu_pbds::rb_tree_tag,
+                                  // This policy updates nodes'  metadata for order statistics.
+                                  __gnu_pbds::tree_order_statistics_node_update&gt;;
+
+#endif //GNU_ORDER_STATISTIC_SET_H
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/11228573" title="short permalink to this answer" class="short-link" id="link-post-11228573">share</a><span class="lsep">|</span><a href="/posts/11228573/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2012-06-27 14:31:53Z" class="relativetime">Jun 27 '12 at 14:31</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/579584/leo-goodstadt"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/ade72a0462f91c7eea1e2d6a0a096ba7?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/579584/leo-goodstadt">Leo Goodstadt</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1,188</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="11 silver badges"><span class="badge2"></span><span class="badgecount">11</span></span><span title="16 bronze badges"><span class="badge3"></span><span class="badgecount">16</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-11228573" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-14756092" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Actually, the libstdc++ extension containers do <i>not</i> allow for multiple values !by design! As suggested by my name above (t_order_statistic_set), multiple values are merged.   So, they need a bit more work for our purposes :-(</span>
+                    <U+2013><U+00A0><a href="/users/579584/leo-goodstadt" title="1,188 reputation" class="comment-user">Leo Goodstadt</a>
+                <span class="comment-date" dir="ltr"><span title="2012-06-27 18:26:52Z" class="relativetime-clean">Jun 27 '12 at 18:26</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-14756371" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">We need to 1) make a map of values to count (instead of sets) 2) the branch sizes should reflect the count of the keys  (libstdc++-v3/include/ext/pb_ds/detail/tree_policy/order_sta<U+200C><U+200B>tistics_imp.hpp) inherit from the tree, and 3) overload insert() to increase the count / call update_to_top() if the value is already present 4) overload erase() to decrease the count / call update_to_top() if the value is not unique (See libstdc++-v3/include/ext/pb_ds/detail/rb_tree_map_/rb_tree_.<U+200C><U+200B>hpp)  Any volunteers??</span>
+                    <U+2013><U+00A0><a href="/users/579584/leo-goodstadt" title="1,188 reputation" class="comment-user">Leo Goodstadt</a>
+                <span class="comment-date" dir="ltr"><span title="2012-06-27 18:37:44Z" class="relativetime-clean">Jun 27 '12 at 18:37</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-11228573" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="5971248"></a>
+<div id="answer-5971248" class="answer" data-answerid="5971248" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="5971248"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">11</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I've done a <a href="http://ideone.com/XPbl6" rel="nofollow noreferrer">C implementation</a><a href="https://gist.github.com/ashelly/5665911" rel="nofollow noreferrer"> here</a>.  A few more details are in this question: <a href="https://stackoverflow.com/questions/5527437/rolling-median-in-c-turlach-implementation">Rolling median in C - Turlach implementation</a>.</p>
+
+<p>Sample usage:</p>
+
+<pre><code>int main(int argc, char* argv[])
+{
+   int i,v;
+   Mediator* m = MediatorNew(15);
+
+   for (i=0;i&lt;30;i++)
+   {
+      v = rand()&amp;127;
+      printf("Inserting %3d \n",v);
+      MediatorInsert(m,v);
+      v=MediatorMedian(m);
+      printf("Median = %3d.\n\n",v);
+      ShowTree(m);
+   }
+}
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/5971248" title="short permalink to this answer" class="short-link" id="link-post-5971248">share</a><span class="lsep">|</span><a href="/posts/5971248/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/5971248/revisions" title="show all edits to this post">edited <span title="2017-05-23 11:46:50Z" class="relativetime">May 23 at 11:46</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/-1/community"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/a007be5a61f6aa8f3e85ae2fc18dd66e?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/-1/community">Community</a><span class="mod-flair" title="moderator"><U+2666></span>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2011-05-11 22:15:01Z" class="relativetime">May 11 '11 at 22:15</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/10396/ashelly"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/ddbfebb47432f6599da361df6a135c7c?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/10396/ashelly">AShelly</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 23,541" dir="ltr">23.5k</span><span title="9 gold badges"><span class="badge1"></span><span class="badgecount">9</span></span><span title="62 silver badges"><span class="badge2"></span><span class="badgecount">62</span></span><span title="114 bronze badges"><span class="badge3"></span><span class="badgecount">114</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-5971248" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-9907177" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">4</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Great, fast and clear implementation based on min-median-max heap. Very good work.</span>
+                    <U+2013><U+00A0><a href="/users/125407/johannes-rudolph" title="26,209 reputation" class="comment-user">Johannes Rudolph</a>
+                <span class="comment-date" dir="ltr"><span title="2011-11-10 17:05:04Z" class="relativetime-clean">Nov 10 '11 at 17:05</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-50780442" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">How can I find Java version of this solution?</span>
+                    <U+2013><U+00A0><a href="/users/4723778/hengameh" title="413 reputation" class="comment-user">Hengameh</a>
+                <span class="comment-date" dir="ltr"><span title="2015-07-14 09:49:09Z" class="relativetime-clean">Jul 14 '15 at 9:49</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-5971248" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="1625442"></a>
+<div id="answer-1625442" class="answer" data-answerid="1625442" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="1625442"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">8</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Here's a simple algorithm for quantized data (months later):</p>
+
+<pre><code>""" median1.py: moving median 1d for quantized, e.g. 8-bit data
+
+Method: cache the median, so that wider windows are faster.
+    The code is simple -- no heaps, no trees.
+
+Keywords: median filter, moving median, running median, numpy, scipy
+
+See Perreault + Hebert, Median Filtering in Constant Time, 2007,
+    http://nomis80.org/ctmf.html: nice 6-page paper and C code,
+    mainly for 2d images
+
+Example:
+    y = medians( x, window=window, nlevel=nlevel )
+    uses:
+    med = Median1( nlevel, window, counts=np.bincount( x[0:window] ))
+    med.addsub( +, - )  -- see the picture in Perreault
+    m = med.median()  -- using cached m, summ
+
+How it works:
+    picture nlevel=8, window=3 -- 3 1s in an array of 8 counters:
+        counts: . 1 . . 1 . 1 .
+        sums:   0 1 1 1 2 2 3 3
+                        ^ sums[3] &lt; 2 &lt;= sums[4] &lt;=&gt; median 4
+        addsub( 0, 1 )  m, summ stay the same
+        addsub( 5, 1 )  slide right
+        addsub( 5, 6 )  slide left
+
+Updating `counts` in an `addsub` is trivial, updating `sums` is not.
+But we can cache the previous median `m` and the sum to m `summ`.
+The less often the median changes, the faster;
+so fewer levels or *wider* windows are faster.
+(Like any cache, run time varies a lot, depending on the input.)
+
+See also:
+    scipy.signal.medfilt -- runtime roughly ~ window size
+    http://stackoverflow.com/questions/1309263/rolling-median-algorithm-in-c
+
+"""
+
+from __future__ import division
+import numpy as np  # bincount, pad0
+
+__date__ = "2009-10-27 oct"
+__author_email__ = "denis-bz-py at t-online dot de"
+
+
+#...............................................................................
+class Median1:
+    """ moving median 1d for quantized, e.g. 8-bit data """
+
+    def __init__( s, nlevel, window, counts ):
+        s.nlevel = nlevel  # &gt;= len(counts)
+        s.window = window  # == sum(counts)
+        s.half = (window // 2) + 1  # odd or even
+        s.setcounts( counts )
+
+    def median( s ):
+        """ step up or down until sum cnt to m-1 &lt; half &lt;= sum to m """
+        if s.summ - s.cnt[s.m] &lt; s.half &lt;= s.summ:
+            return s.m
+        j, sumj = s.m, s.summ
+        if sumj &lt;= s.half:
+            while j &lt; s.nlevel - 1:
+                j += 1
+                sumj += s.cnt[j]
+                # print "j sumj:", j, sumj
+                if sumj - s.cnt[j] &lt; s.half &lt;= sumj:  break
+        else:
+            while j &gt; 0:
+                sumj -= s.cnt[j]
+                j -= 1
+                # print "j sumj:", j, sumj
+                if sumj - s.cnt[j] &lt; s.half &lt;= sumj:  break
+        s.m, s.summ = j, sumj
+        return s.m
+
+    def addsub( s, add, sub ):
+        s.cnt[add] += 1
+        s.cnt[sub] -= 1
+        assert s.cnt[sub] &gt;= 0, (add, sub)
+        if add &lt;= s.m:
+            s.summ += 1
+        if sub &lt;= s.m:
+            s.summ -= 1
+
+    def setcounts( s, counts ):
+        assert len(counts) &lt;= s.nlevel, (len(counts), s.nlevel)
+        if len(counts) &lt; s.nlevel:
+            counts = pad0__( counts, s.nlevel )  # numpy array / list
+        sumcounts = sum(counts)
+        assert sumcounts == s.window, (sumcounts, s.window)
+        s.cnt = counts
+        s.slowmedian()
+
+    def slowmedian( s ):
+        j, sumj = -1, 0
+        while sumj &lt; s.half:
+            j += 1
+            sumj += s.cnt[j]
+        s.m, s.summ = j, sumj
+
+    def __str__( s ):
+        return ("median %d: " % s.m) + \
+            "".join([ (" ." if c == 0 else "%2d" % c) for c in s.cnt ])
+
+#...............................................................................
+def medianfilter( x, window, nlevel=256 ):
+    """ moving medians, y[j] = median( x[j:j+window] )
+        -&gt; a shorter list, len(y) = len(x) - window + 1
+    """
+    assert len(x) &gt;= window, (len(x), window)
+    # np.clip( x, 0, nlevel-1, out=x )
+        # cf http://scipy.org/Cookbook/Rebinning
+    cnt = np.bincount( x[0:window] )
+    med = Median1( nlevel=nlevel, window=window, counts=cnt )
+    y = (len(x) - window + 1) * [0]
+    y[0] = med.median()
+    for j in xrange( len(x) - window ):
+        med.addsub( x[j+window], x[j] )
+        y[j+1] = med.median()
+    return y  # list
+    # return np.array( y )
+
+def pad0__( x, tolen ):
+    """ pad x with 0 s, numpy array or list """
+    n = tolen - len(x)
+    if n &gt; 0:
+        try:
+            x = np.r_[ x, np.zeros( n, dtype=x[0].dtype )]
+        except NameError:
+            x += n * [0]
+    return x
+
+#...............................................................................
+if __name__ == "__main__":
+    Len = 10000
+    window = 3
+    nlevel = 256
+    period = 100
+
+    np.set_printoptions( 2, threshold=100, edgeitems=10 )
+    # print medians( np.arange(3), 3 )
+
+    sinwave = (np.sin( 2 * np.pi * np.arange(Len) / period )
+        + 1) * (nlevel-1) / 2
+    x = np.asarray( sinwave, int )
+    print "x:", x
+    for window in ( 3, 31, 63, 127, 255 ):
+        if window &gt; Len:  continue
+        print "medianfilter: Len=%d window=%d nlevel=%d:" % (Len, window, nlevel)
+            y = medianfilter( x, window=window, nlevel=nlevel )
+        print np.array( y )
+
+# end median1.py
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/1625442" title="short permalink to this answer" class="short-link" id="link-post-1625442">share</a><span class="lsep">|</span><a href="/posts/1625442/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/1625442/revisions" title="show all edits to this post">edited <span title="2009-10-27 13:01:10Z" class="relativetime">Oct 27 '09 at 13:01</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2009-10-26 15:20:28Z" class="relativetime">Oct 26 '09 at 15:20</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/86643/denis"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/5cde796edbeef363a96d8493dc4ce77c?s=32&amp;d=identicon&amp;r=PG&amp;f=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/86643/denis">denis</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 12,360" dir="ltr">12.4k</span><span title="5 gold badges"><span class="badge1"></span><span class="badgecount">5</span></span><span title="44 silver badges"><span class="badge2"></span><span class="badgecount">44</span></span><span title="61 bronze badges"><span class="badge3"></span><span class="badgecount">61</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-1625442" class="comments  dno">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr>
+<td></td>
+<td></td>
+</tr></tbody></table>
+</div>
+
+        <div id="comments-link-1625442" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="7485717"></a>
+<div id="answer-7485717" class="answer" data-answerid="7485717" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="7485717"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">6</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I use this incremental median estimator:</p>
+
+<pre><code>median += eta * sgn(sample - median)
+</code></pre>
+
+<p>which has the same form as the more common mean estimator:</p>
+
+<pre><code>mean += eta * (sample - mean)
+</code></pre>
+
+<p>Here <em>eta</em> is a small learning rate parameter (e.g. 0.001), and <em>sgn</em>() is the signum function which returns one of {-1, 0, 1}. (Use a constant <em>eta</em> like this if the data is non-stationary and you want to track changes over time; otherwise, for stationary sources use something like <em>eta</em>=1/n to converge, where n is the number of samples seen so far.)</p>
+
+<p>Also, I modified the median estimator to make it work for arbitrary quantiles. In general, a quantile function (http://en.wikipedia.org/wiki/Quantile_function) tells you the value that divides the data into two fractions: p and 1-p. The following estimates this value incrementally:</p>
+
+<pre><code>quantile += eta * (sgn(sample - quantile) + 2.0 * p - 1.0)
+</code></pre>
+
+<p>The value p should be within [0,1]. This essentially shifts the sgn() function's symmetrical output {-1,0,1} to lean toward one side, partitioning the data samples into two unequally-sized bins (fractions p and 1-p of the data are less than/greater than the quantile estimate, respectively). Note that for p=0.5, this reduces to the median estimator.</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/7485717" title="short permalink to this answer" class="short-link" id="link-post-7485717">share</a><span class="lsep">|</span><a href="/posts/7485717/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2011-09-20 13:13:06Z" class="relativetime">Sep 20 '11 at 13:13</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/259795/tyler-streeter"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/7kPjd.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/259795/tyler-streeter">Tyler Streeter</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">810</span><span title="8 silver badges"><span class="badge2"></span><span class="badgecount">8</span></span><span title="13 bronze badges"><span class="badge3"></span><span class="badgecount">13</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-7485717" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-21332491" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Cool, Here's a modification that adjusts 'eta' based on the running mean...(mean is used as a rough estimate of the median so it converges on big values at the same rate it converges on tiny values). i.e. eta is tuned automatically.  <a href="http://stackoverflow.com/questions/11482529/median-filter-super-efficient-implementation/15150968#15150968" title="median filter super efficient implementation">stackoverflow.com/questions/11482529/Åc</a></span>
+                    <U+2013><U+00A0><a href="/users/64078/jeff-mcclintock" title="708 reputation" class="comment-user">Jeff McClintock</a>
+                <span class="comment-date" dir="ltr"><span title="2013-03-01 05:25:59Z" class="relativetime-clean">Mar 1 '13 at 5:25</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-52259819" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">For a similar technique, see this paper on frugal streaming: <a href="http://arxiv.org/pdf/1407.1121v1.pdf" rel="nofollow noreferrer">arxiv.org/pdf/1407.1121v1.pdf</a>    It can estimate any quartile and adapts to changes in the mean. It requires that you only store two values: last estimate and direction of last adjustment (+1 or -1). The algorithm is simple to implement. I find that the error is within 5% about 97% of the time.</span>
+                    <U+2013><U+00A0><a href="/users/127251/paul-chernoch" title="2,669 reputation" class="comment-user">Paul Chernoch</a>
+                <span class="comment-date" dir="ltr"><span title="2015-08-24 16:31:23Z" class="relativetime-clean">Aug 24 '15 at 16:31</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-7485717" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="42323708"></a>
+<div id="answer-42323708" class="answer" data-answerid="42323708" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="42323708"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Rolling median can be found by maintaining two partitions of numbers.</p>
+
+<p>For maintaining partitions use Min Heap and Max Heap.</p>
+
+<p><em>Max Heap will contain numbers smaller than equal to median.</em></p>
+
+<p><em>Min Heap will contain numbers greater than equal to median.</em></p>
+
+<p><strong>Balancing Constraint:</strong>
+   if total number of elements are even then both heap should have equal elements.</p>
+
+<p>if total number of elements are odd then Max Heap will have one more element than Min Heap.</p>
+
+<p><strong>Median Element:</strong> If Both partitions has equal number of elements then median will be half of sum of max element from first partition and min element from second partition.</p>
+
+<p>Otherwise median will be max element from first partition.</p>
+
+<pre>
+Algorithm-
+1- Take two Heap(1 Min Heap and 1 Max Heap)
+   Max Heap will contain first half number of elements
+   Min Heap will contain second half number of elements
+
+2- Compare new number from stream with top of Max Heap, 
+   if it is smaller or equal add that number in max heap. 
+   Otherwise add number in Min Heap.
+
+3- if min Heap has more elements than Max Heap 
+   then remove top element of Min Heap and add in Max Heap.
+   if max Heap has more than one element than in Min Heap 
+   then remove top element of Max Heap and add in Min Heap.
+
+4- If Both heaps has equal number of elements then
+   median will be half of sum of max element from Max Heap and min element from Min Heap.
+   Otherwise median will be max element from the first partition.
+</pre>
+
+<pre><code>public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        RunningMedianHeaps s = new RunningMedianHeaps();
+        int n = in.nextInt();
+        for(int a_i=0; a_i &lt; n; a_i++){
+            printMedian(s,in.nextInt());
+        }
+        in.close();       
+    }
+
+    public static void printMedian(RunningMedianHeaps s, int nextNum){
+            s.addNumberInHeap(nextNum);
+            System.out.printf("%.1f\n",s.getMedian());
+    }
+}
+
+class RunningMedianHeaps{
+    PriorityQueue&lt;Integer&gt; minHeap = new PriorityQueue&lt;Integer&gt;();
+    PriorityQueue&lt;Integer&gt; maxHeap = new PriorityQueue&lt;Integer&gt;(Comparator.reverseOrder());
+
+    public double getMedian() {
+
+        int size = minHeap.size() + maxHeap.size();     
+        if(size % 2 == 0)
+            return (maxHeap.peek()+minHeap.peek())/2.0;
+        return maxHeap.peek()*1.0;
+    }
+
+    private void balanceHeaps() {
+        if(maxHeap.size() &lt; minHeap.size())
+        {
+            maxHeap.add(minHeap.poll());
+        }   
+        else if(maxHeap.size() &gt; 1+minHeap.size())
+        {
+            minHeap.add(maxHeap.poll());
+        }
+    }
+
+    public void addNumberInHeap(int num) {
+        if(maxHeap.size()==0 || num &lt;= maxHeap.peek())
+        {
+            maxHeap.add(num);
+        }
+        else
+        {
+            minHeap.add(num);
+        }
+        balanceHeaps();
+    }
+}
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/42323708" title="short permalink to this answer" class="short-link" id="link-post-42323708">share</a><span class="lsep">|</span><a href="/posts/42323708/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/42323708/revisions" title="show all edits to this post">edited <span title="2017-06-19 04:47:18Z" class="relativetime">Jun 19 at 4:47</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2017-02-19 04:41:08Z" class="relativetime">Feb 19 at 4:41</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/3897179/harshit"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/743c61d9d5204bea2d18e8ccfea83dbb?s=32&amp;d=identicon&amp;r=PG&amp;f=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/3897179/harshit">Harshit</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">31</span><span title="5 bronze badges"><span class="badge3"></span><span class="badgecount">5</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-42323708" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-71800798" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Its not clear to me how much benefit a third Java answer provides for a C question. You should ask a new question, and then supply your Java answer in that question.</span>
+                    <U+2013><U+00A0><a href="/users/608639/jww" title="44,613 reputation" class="comment-user">jww</a>
+                <span class="comment-date" dir="ltr"><span title="2017-02-19 05:06:13Z" class="relativetime-clean">Feb 19 at 5:06</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-75209626" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">logic died after reading this 'then remove top element of Min Heap and add in Min Heap.' .At least have the courtesy to read the algo before posting</span>
+                    <U+2013><U+00A0><a href="/users/3646917/cyclotron3x3" title="1,207 reputation" class="comment-user">Cyclotron3x3</a>
+                <span class="comment-date" dir="ltr"><span title="2017-05-21 07:17:39Z" class="relativetime-clean">May 21 at 7:17</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-42323708" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="1309815"></a>
+<div id="answer-1309815" class="answer" data-answerid="1309815" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="1309815"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>If you have the ability to reference values as a function of points in time, you could sample values with replacement, applying <a href="http://www.uvm.edu/~dhowell/StatPages/Resampling/BootstMedians/bootstrapping_medians.html" rel="nofollow noreferrer">bootstrapping</a> to generate a bootstrapped median value within confidence intervals. This may let you calculate an approximated median with greater efficiency than constantly sorting incoming values into a data structure.</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/1309815" title="short permalink to this answer" class="short-link" id="link-post-1309815">share</a><span class="lsep">|</span><a href="/posts/1309815/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2009-08-21 02:26:48Z" class="relativetime">Aug 21 '09 at 2:26</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/19410/alex-reynolds"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/175f1d55c73ce5cb1d071dc4d0f1a333?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/19410/alex-reynolds">Alex Reynolds</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 62,743" dir="ltr">62.7k</span><span title="43 gold badges"><span class="badge1"></span><span class="badgecount">43</span></span><span title="195 silver badges"><span class="badge2"></span><span class="badgecount">195</span></span><span title="278 bronze badges"><span class="badge3"></span><span class="badgecount">278</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-1309815" class="comments  dno">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr>
+<td></td>
+<td></td>
+</tr></tbody></table>
+</div>
+
+        <div id="comments-link-1309815" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="9477542"></a>
+<div id="answer-9477542" class="answer" data-answerid="9477542" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="9477542"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>For those who need a running median in Java...PriorityQueue is your friend. O(log N) insert, O(1) current median, and O(N) remove. If you know the distribution of your data you can do a lot better than this. </p>
+
+<pre><code>public class RunningMedian {
+  // Two priority queues, one of reversed order.
+  PriorityQueue&lt;Integer&gt; lower = new PriorityQueue&lt;Integer&gt;(10,
+          new Comparator&lt;Integer&gt;() {
+              public int compare(Integer arg0, Integer arg1) {
+                  return (arg0 &lt; arg1) ? 1 : arg0 == arg1 ? 0 : -1;
+              }
+          }), higher = new PriorityQueue&lt;Integer&gt;();
+
+  public void insert(Integer n) {
+      if (lower.isEmpty() &amp;&amp; higher.isEmpty())
+          lower.add(n);
+      else {
+          if (n &lt;= lower.peek())
+              lower.add(n);
+          else
+              higher.add(n);
+          rebalance();
+      }
+  }
+
+  void rebalance() {
+      if (lower.size() &lt; higher.size() - 1)
+          lower.add(higher.remove());
+      else if (higher.size() &lt; lower.size() - 1)
+          higher.add(lower.remove());
+  }
+
+  public Integer getMedian() {
+      if (lower.isEmpty() &amp;&amp; higher.isEmpty())
+          return null;
+      else if (lower.size() == higher.size())
+          return (lower.peek() + higher.peek()) / 2;
+      else
+          return (lower.size() &lt; higher.size()) ? higher.peek() : lower
+                  .peek();
+  }
+
+  public void remove(Integer n) {
+      if (lower.remove(n) || higher.remove(n))
+          rebalance();
+  }
+}
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/9477542" title="short permalink to this answer" class="short-link" id="link-post-9477542">share</a><span class="lsep">|</span><a href="/posts/9477542/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/9477542/revisions" title="show all edits to this post">edited <span title="2012-02-29 18:32:59Z" class="relativetime">Feb 29 '12 at 18:32</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-02-28 06:41:21Z" class="relativetime">Feb 28 '12 at 6:41</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/150474/ross-judson"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/88392d0eff82357d3d22e2bc616f1883?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/150474/ross-judson">Ross Judson</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1,063</span><span title="5 silver badges"><span class="badge2"></span><span class="badgecount">5</span></span><span title="10 bronze badges"><span class="badge3"></span><span class="badgecount">10</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-9477542" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-14748965" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">c++ has order statistic trees from gnu in an extension to the standard library. See my post below.</span>
+                    <U+2013><U+00A0><a href="/users/579584/leo-goodstadt" title="1,188 reputation" class="comment-user">Leo Goodstadt</a>
+                <span class="comment-date" dir="ltr"><span title="2012-06-27 14:33:17Z" class="relativetime-clean">Jun 27 '12 at 14:33</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-50780985" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I think your code is not put here correctly. There are some incomplete parts there like: <code>}), higher = new PriorityQueue&lt;Integer&gt;();</code> or <code>new PriorityQueue&lt;Integer&gt;(10,</code>. I couldn't run the code.</span>
+                    <U+2013><U+00A0><a href="/users/4723778/hengameh" title="413 reputation" class="comment-user">Hengameh</a>
+                <span class="comment-date" dir="ltr"><span title="2015-07-14 10:03:55Z" class="relativetime-clean">Jul 14 '15 at 10:03</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-58755051" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Hengameh Java ends statements with semicolons -- line breaks don't matter at all.  You must have copied it incorrectly.</span>
+                    <U+2013><U+00A0><a href="/users/507761/matthew-read" title="447 reputation" class="comment-user">Matthew Read</a>
+                <span class="comment-date" dir="ltr"><span title="2016-02-21 06:20:34Z" class="relativetime-clean">Feb 21 '16 at 6:20</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-71800784" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">You should ask a new question, and then supply your Java answer in that question.</span>
+                    <U+2013><U+00A0><a href="/users/608639/jww" title="44,613 reputation" class="comment-user">jww</a>
+                <span class="comment-date" dir="ltr"><span title="2017-02-19 05:05:13Z" class="relativetime-clean">Feb 19 at 5:05</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-9477542" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="30332804"></a>
+<div id="answer-30332804" class="answer" data-answerid="30332804" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="30332804"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>It is maybe worth pointing out that there is a special case which has a simple exact solution:  when all the values in the stream are integers within a (relatively) small defined range.  For instance, assume they must all lie between 0 and 1023.  In this case just define an array of 1024 elements and a count, and clear all of these values.  For each value in the stream increment the corresponding bin and the count.  After the stream ends find the bin which contains the count/2 highest value - easily accomplished by adding successive bins starting from 0.  Using the same method the value of an arbitrary rank order may be found.  (There is a minor complication if detecting bin saturation and "upgrading" the size of the storage bins to a larger type during a run will be needed.) </p>
+
+<p>This special case may seem artificial, but in practice it is very common.  It can also be applied as an approximation for real numbers if they lie within a range and a "good enough" level of precision is known.  This would hold for pretty much any set of measurements on a group of "real world" objects.  For instance, the heights or weights of a group of people.  Not a big enough set?  It would work just as well for the lengths or weights of all the (individual) bacteria on the planet - assuming somebody could supply the data!</p>
+
+<p>It looks like I misread the original - which seems like it wants a sliding window median instead of the just the median of a very long stream.  This approach still works for that.  Load the first N stream values for the initial window, then for the N+1th stream value increment the corresponding bin while decrementing the bin corresponding to the 0th stream value.  It is necessary in this case to retain the last N values to allow the decrement, which can be done efficiently by cyclically addressing an array of size N.  Since the position of the median can only change by -2,-1,0,1,2 on each step of the sliding window, it isn't necessary to sum all the bins up to the median on each step, just adjust the "median pointer" depending upon which side(s) bins were modified.   For instance, if both the new value and the one being removed fall below the current median then it doesn't change (offset = 0). The method breaks down when N becomes too large to hold conveniently in memory.</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/30332804" title="short permalink to this answer" class="short-link" id="link-post-30332804">share</a><span class="lsep">|</span><a href="/posts/30332804/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/30332804/revisions" title="show all edits to this post">edited <span title="2015-05-20 05:03:28Z" class="relativetime">May 20 '15 at 5:03</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-05-19 17:55:44Z" class="relativetime">May 19 '15 at 17:55</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1332108/mathog"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/6e039f80e0a2ff6b7df67e065c5d2a8b?s=32&amp;d=identicon&amp;r=PG&amp;f=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1332108/mathog">mathog</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">57</span><span title="8 bronze badges"><span class="badge3"></span><span class="badgecount">8</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-30332804" class="comments  dno">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr>
+<td></td>
+<td></td>
+</tr></tbody></table>
+</div>
+
+        <div id="comments-link-30332804" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="16185516"></a>
+<div id="answer-16185516" class="answer" data-answerid="16185516" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="16185516"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Here is one that can be used when exact output is not important (for display purposes etc.)
+You need totalcount and lastmedian, plus the newvalue.</p>
+
+<pre><code>{
+totalcount++;
+newmedian=lastmedian+(newvalue&gt;lastmedian?1:-1)*(lastmedian==0?newvalue: lastmedian/totalcount*2);
+}
+</code></pre>
+
+<p>Produces quite exact results for things like page_display_time. </p>
+
+<p>Rules: the input stream needs to be smooth on the order of page display time, big in count (&gt;30 etc), and have a non zero median.</p>
+
+<p>Example: 
+page load time, 800 items, 10ms...3000ms, average 90ms, real median:11ms</p>
+
+<p>After 30 inputs, medians error is generally &lt;=20% (9ms..12ms), and gets less and less. 
+After 800 inputs, the error is +-2%.</p>
+
+<p>Another thinker with a similar solution is here: <a href="https://stackoverflow.com/questions/11482529/median-filter-super-efficient-implementation/15150968#15150968">Median Filter Super efficient implementation</a></p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/16185516" title="short permalink to this answer" class="short-link" id="link-post-16185516">share</a><span class="lsep">|</span><a href="/posts/16185516/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/16185516/revisions" title="show all edits to this post">edited <span title="2017-05-23 12:25:55Z" class="relativetime">May 23 at 12:25</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/-1/community"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/a007be5a61f6aa8f3e85ae2fc18dd66e?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/-1/community">Community</a><span class="mod-flair" title="moderator"><U+2666></span>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-04-24 07:06:41Z" class="relativetime">Apr 24 '13 at 7:06</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1544304/johan"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/0fa7a9ec340a55effc7b3b0c0e4361b9?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1544304/johan">Johan</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">417</span><span title="4 silver badges"><span class="badge2"></span><span class="badgecount">4</span></span><span title="10 bronze badges"><span class="badge3"></span><span class="badgecount">10</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-16185516" class="comments  dno">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr>
+<td></td>
+<td></td>
+</tr></tbody></table>
+</div>
+
+        <div id="comments-link-16185516" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="38811467"></a>
+<div id="answer-38811467" class="answer" data-answerid="38811467" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="38811467"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">-1</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Here is the java implementation</p>
+
+<pre><code>package MedianOfIntegerStream;
+
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.TreeSet;
+
+
+public class MedianOfIntegerStream {
+
+    public Set&lt;Integer&gt; rightMinSet;
+    public Set&lt;Integer&gt; leftMaxSet;
+    public int numOfElements;
+
+    public MedianOfIntegerStream() {
+        rightMinSet = new TreeSet&lt;Integer&gt;();
+        leftMaxSet = new TreeSet&lt;Integer&gt;(new DescendingComparator());
+        numOfElements = 0;
+    }
+
+    public void addNumberToStream(Integer num) {
+        leftMaxSet.add(num);
+
+        Iterator&lt;Integer&gt; iterMax = leftMaxSet.iterator();
+        Iterator&lt;Integer&gt; iterMin = rightMinSet.iterator();
+        int maxEl = iterMax.next();
+        int minEl = 0;
+        if (iterMin.hasNext()) {
+            minEl = iterMin.next();
+        }
+
+        if (numOfElements % 2 == 0) {
+            if (numOfElements == 0) {
+                numOfElements++;
+                return;
+            } else if (maxEl &gt; minEl) {
+                iterMax.remove();
+
+                if (minEl != 0) {
+                    iterMin.remove();
+                }
+                leftMaxSet.add(minEl);
+                rightMinSet.add(maxEl);
+            }
+        } else {
+
+            if (maxEl != 0) {
+                iterMax.remove();
+            }
+
+            rightMinSet.add(maxEl);
+        }
+        numOfElements++;
+    }
+
+    public Double getMedian() {
+        if (numOfElements % 2 != 0)
+            return new Double(leftMaxSet.iterator().next());
+        else
+            return (leftMaxSet.iterator().next() + rightMinSet.iterator().next()) / 2.0;
+    }
+
+    private class DescendingComparator implements Comparator&lt;Integer&gt; {
+        @Override
+        public int compare(Integer o1, Integer o2) {
+            return o2 - o1;
+        }
+    }
+
+    public static void main(String[] args) {
+        MedianOfIntegerStream streamMedian = new MedianOfIntegerStream();
+
+        streamMedian.addNumberToStream(1);
+        System.out.println(streamMedian.getMedian()); // should be 1
+
+        streamMedian.addNumberToStream(5);
+        streamMedian.addNumberToStream(10);
+        streamMedian.addNumberToStream(12);
+        streamMedian.addNumberToStream(2);
+        System.out.println(streamMedian.getMedian()); // should be 5
+
+        streamMedian.addNumberToStream(3);
+        streamMedian.addNumberToStream(8);
+        streamMedian.addNumberToStream(9);
+        System.out.println(streamMedian.getMedian()); // should be 6.5
+    }
+}
+</code></pre>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/38811467" title="short permalink to this answer" class="short-link" id="link-post-38811467">share</a><span class="lsep">|</span><a href="/posts/38811467/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2016-08-07 06:15:13Z" class="relativetime">Aug 7 '16 at 6:15</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/802050/m-sach"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/b64ecf035c26728e5e3635b940d2cd38?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/802050/m-sach">M Sach</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 13,940" dir="ltr">13.9k</span><span title="49 gold badges"><span class="badge1"></span><span class="badgecount">49</span></span><span title="157 silver badges"><span class="badge2"></span><span class="badgecount">157</span></span><span title="251 bronze badges"><span class="badge3"></span><span class="badgecount">251</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-38811467" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"><tr id="comment-71800791" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">You should ask a new question, and then supply your Java answer in that question.</span>
+                    <U+2013><U+00A0><a href="/users/608639/jww" title="44,613 reputation" class="comment-user">jww</a>
+                <span class="comment-date" dir="ltr"><span title="2017-02-19 05:05:49Z" class="relativetime-clean">Feb 19 at 5:05</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr></tbody></table>
+</div>
+
+        <div id="comments-link-38811467" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="1309786"></a>
+<div id="answer-1309786" class="answer downvoted-answer" data-answerid="1309786" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="1309786"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">-4</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>If you just require a smoothed average a quick/easy way is to multiply the latest value by x and the average value by (1-x) then add them. This then becomes the new average.</p>
+
+<p>edit: Not what the user asked for and not as statistically valid but good enough for a lot of uses.<br>
+I'll leave it in here (in spite of the downvotes) for search!</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/1309786" title="short permalink to this answer" class="short-link" id="link-post-1309786">share</a><span class="lsep">|</span><a href="/posts/1309786/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/1309786/revisions" title="show all edits to this post">edited <span title="2009-11-27 19:38:49Z" class="relativetime">Nov 27 '09 at 19:38</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2009-08-21 02:13:07Z" class="relativetime">Aug 21 '09 at 2:13</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/10897/martin-beckett"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/csXHX.png?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/10897/martin-beckett">Martin Beckett</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 74,817" dir="ltr">74.8k</span><span title="18 gold badges"><span class="badge1"></span><span class="badgecount">18</span></span><span title="154 silver badges"><span class="badge2"></span><span class="badgecount">154</span></span><span title="228 bronze badges"><span class="badge3"></span><span class="badgecount">228</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-1309786" class="comments ">
+		    <table><tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-1143921" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This calculates the mean. He wants the median. Also, he is calculating the median of a sliding window of values, not of the entire set.</span>
+                    <U+2013><U+00A0><a href="/users/35881/a-levy" title="10,337 reputation" class="comment-user">A. Levy</a>
+                <span class="comment-date" dir="ltr"><span title="2009-08-21 12:51:23Z" class="relativetime-clean">Aug 21 '09 at 12:51</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-1144705" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This calculates a running average of a window of values with a decay constant depending on X - it's very useful where performance matters and you can't be bothered doing a kalman filter. I put it in so search can find it.</span>
+                    <U+2013><U+00A0><a href="/users/10897/martin-beckett" title="74,817 reputation" class="comment-user">Martin Beckett</a>
+                <span class="comment-date" dir="ltr"><span title="2009-08-21 14:48:20Z" class="relativetime-clean">Aug 21 '09 at 14:48</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-1493257" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This is what I also immediately thought of, having implemented such a filter as a very basic and cheap lowpass-filter for an audio app.</span>
+                    <U+2013><U+00A0><a href="/users/191492/james-morris" title="3,390 reputation" class="comment-user">James Morris</a>
+                <span class="comment-date" dir="ltr"><span title="2009-10-26 15:30:37Z" class="relativetime-clean">Oct 26 '09 at 15:30</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-1309786" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh.">add a comment</a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+                    <div class="question-status">
+        <h2>                    <b>protected</b> by <a href="/users/608639/jww">jww</a> <span dir="ltr"><span title="2017-02-19 05:08:01Z" class="relativetime">Feb 19 at 5:08</span></span>
+</h2>
+        <p>
+Thank you for your interest in this question. 
+Because it has attracted low-quality or spam answers that had to be removed, posting an answer now requires 10 <a href="/help/whats-reputation">reputation</a> on this site (the <a href="/help/privileges/new-user">association bonus does not count</a>).
+<br><br>
+Would you like to answer one of these <a href="/unanswered?fromProtectedNotice=true">unanswered questions</a> instead?
+</p>
+    </div>
+
+
+
+
+
+                        <h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?                            Browse other questions tagged <a href="/questions/tagged/c" class="post-tag" title="show questions tagged 'c'" rel="tag">c</a> <a href="/questions/tagged/algorithm" class="post-tag" title="show questions tagged 'algorithm'" rel="tag">algorithm</a> <a href="/questions/tagged/r" class="post-tag" title="show questions tagged 'r'" rel="tag">r</a> <a href="/questions/tagged/statistics" class="post-tag" title="show questions tagged 'statistics'" rel="tag">statistics</a> <a href="/questions/tagged/median" class="post-tag" title="show questions tagged 'median'" rel="tag">median</a>  or <a href="/questions/ask">ask your own question</a>.                        </h2>
+            </div>
+        </div>
+                <div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">
+                            <div class="module question-stats">
+                    <table id="qinfo">
+<tr>
+<td>
+                                <p class="label-key">asked</p>
+                            </td>
+                            <td style="padding-left: 10px">
+                                <p class="label-key" title="2009-08-20 22:50:43Z"><b>8 years, 1 month ago</b></p>
+                            </td>
+                        </tr>
+<tr>
+<td>
+                                <p class="label-key">viewed</p>
+                            </td>
+
+                            <td style="padding-left: 10px">
+                                <p class="label-key">
+                                    <b>35,865 times</b>
+                                </p>
+                            </td>
+                        </tr>
+<tr>
+<td>
+                                    <p class="label-key">active</p>
+                                </td>
+                                <td style="padding-left: 10px">
+                                    <p class="label-key"><b><a href="?lastactivity" class="lastactivity-link" title="2017-07-13 21:25:36Z">3 months ago</a></b></p>
+                                </td>
+                            </tr>
+</table>
+</div>
+                        
+            <div id="clc-tsb" class="everyonelovesstackoverflow"></div>
+            <div id="hireme"></div>
+                <script>var clc={options:{svc:'dfp'}};</script><script>;window.clc=window.clc||{},window.clc.init=window.clc.init||function(a){var b=window,c=b.document;try{if("function"!=typeof[].indexOf||!window.addEventListener||!a.allowed)return;var d=new RegExp(a.allowed);if(!d.test(location.hostname))return;if(b.clc.options)for(var e in b.clc.options)a[e]=b.clc.options[e];b.clc.cmd="undefined"==typeof b.clc.cmd?[]:b.clc.cmd,b.clc.autoload=b.clc.autoload||function(){"function"==typeof b.clc.load?b.clc.load():b.clc.cmd.push(function(a){a.load()})};var f=a.wv;if(c.hidden&&f)return void c.addEventListener("visibilitychange",function b(){c.hidden||(window.clc.init(a),c.removeEventListener("visibilitychange",b))});b.clc.options=a,a.al&&b.clc.autoload();var g=c.createElement("script");g.async=!0,g.src=a.lib,c.body.appendChild(g)}catch(a){}},window.clc.loadDisplayAds=window.clc.loadDisplayAds||function(){function a(b){b.style.height=b.style.maxHeight=b.style.minHeight="auto",b.style.display="IFRAME"===b.tagName?"none":"block",[].forEach.call(b.children,a)}function b(a){new Image().src="https://"+e+"/stalled.gif?"+a}var c=window,d=c.document,e="clc.stackoverflow.com",f={slots:{lb:[[728,90]],mlb:[[728,90]],sb:[[300,250],[300,600]],"tag-sponsorship":[[730,135]]},ids:{"dfp-tlb":"lb","dfp-mlb":"mlb","dfp-tsb":"sb","dfp-tag":"tag-sponsorship","clc-tlb":"lb","clc-mlb":"mlb","clc-tsb":"sb"}},g=/^\/tags\//.test(location.pathname)||/^\/questions\/tagged\//.test(location.pathname)?"tag-pages":"question-pages",h=location.hostname;/^clc\./.test(location.hostname)&&(h="test/dev.stackoverflow.com");return function(e){var i=(e&&0<e.length?e:Object.keys(f.ids)).map(function(a){return d.getElementById(a)}).filter(function(a){return!!a&&/^\s*$/.test(a.innerHTML)}).map(function(a){return a.id});if(0!==i.length){c.googletag=c.googletag||{},c.googletag.cmd=c.googletag.cmd||[],c.googletag.cmd.push(function(){var e=c.googletag,j=d.createElement("div");j.className="adsbox",j.id="clc-abd",j.style.position="absolute",j.style.pointerEvents="none",j.innerHTML="&nbsp;",d.body.appendChild(j);var k=e.pubads();k.enableSingleRequest(),k.addEventListener("slotRenderEnded",function(c){var e=c.serviceName,f=c.slot,g=c.lineItemId;try{var h=f.getSlotElementId(),i=[];h||i.push("id=0");var j=d.getElementById(h);if(!h||j?j.hasAttribute("data-clc-stalled")&&i.push("st=1"):i.push("el=0"),0!==i.length)return void b(i.join("&"));-1===[4385506061,4386578282,4386579572].indexOf(g)?j.setAttribute("data-clc-prefilled","true"):a(j),j.setAttribute("data-clc-ready","true")}catch(a){var k=d.getElementById("dfp-tsb")||d.getElementById("clc-tsb");k&&k.setAttribute("data-clc-ready","true"),b("e=1")}});var l=c.dfp_targeting||{};l&&Object.keys(l).forEach(function(a){e.pubads().setTargeting(a,l[a])});for(var m=0,n=i;m<n.length;m++){var o=n[m],p=f.ids[o],q=f.slots[p],r="/"+"248424177"+"/"+h+"/"+p+"/"+g,s=e.defineSlot(r,q,o);("tag-sponsorship"===p||"sb"==p)&&s.setCollapseEmptyDiv(!0,!0),s.addService(k),!1}e.enableServices();for(var o,t=0,u=i;t<u.length;t++)o=u[t],e.display(o)});var j=d.createElement("script");j.async=!0,j.src="https://www.googletagservices.com/tag/js/gpt.js",document.body.appendChild(j)}}}(),window.clc.init.call(null, {"lib":"https://cdn.sstatic.net/clc/clc.min.js?v=f7d8d49c545b","u":"https://clc.stackoverflow.com/markup.js","wa":true,"kt":2000,"tto":true,"h":"clc.stackoverflow.com","allowed":"^(((talent\\.)?stackoverflow)|(blog\\.codinghorror)|(serverfault|askubuntu)|([^\\.]+\\.stackexchange))\\.com$","wv":true,"al":false});</script><script>
+window.clc_request='AhoQgBVSFNUIAAAAAE_6EwACAAAAAgAAAAAhAAAAfGN8YWxnb3JpdGhtfHJ8c3RhdGlzdGljc3xtZWRpYW58AMGxmpd0UdLu8TQ';                    clc.autoload();
+                var dfp_targeting={Registered:['false'],'so-tag':['c','algorithm','r','statistics','median']};                            </script><div style="margin-bottom: 10px;">
+        
+
+<script>
+    StackExchange.ready(function () {
+        StackExchange.newsletterAd.init();
+    });
+</script><div id="newsletter-ad">
+        <p id="newsletter-ad-header">Get the <b>weekly newsletter!</b> In it, you'll get:</p>
+        <ul>
+<li>The week's top questions and answers</li>
+            <li>Important community announcements</li>
+            <li>Questions that need answers</li>
+        </ul>
+<div id="newsletter-signup-container"><input id="newsletter-signup" type="button" value="Sign up for the newsletter"></div>
+    <p id="newsletter-preview-container">see an <a href="https://stackexchange.com/newsletters/newsletter?site=stackoverflow.com" id="newsletter-preview">example newsletter</a></p>
+    <div class="dno">
+        
+<p class="privacy-policy-agreement">
+By subscribing, you agree to the <a href="https://stackexchange.com/legal/privacy-policy" name="privacy" target="_blank">privacy policy</a> and <a href="https://stackexchange.com/legal/terms-of-service" name="tos" target="_blank">terms of service</a>.</p>
+<input type="hidden" name="legalLinksShown" value="1">
+</div>
+</div>
+
+    </div>
+
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+
+<div class="spacer">
+	<a href="/q/10657503" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted large">191</div>
+	</a>
+	<a href="/questions/10657503/find-running-median-from-a-stream-of-integers?noredirect=1" class="question-hyperlink">Find running median from a stream of integers</a>
+</div>
+<div class="spacer">
+	<a href="/q/15319561" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">20</div>
+	</a>
+	<a href="/questions/15319561/how-to-implement-a-median-heap?noredirect=1" class="question-hyperlink">How to implement a Median-heap</a>
+</div>
+<div class="spacer">
+	<a href="/q/11676476" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">42</div>
+	</a>
+	<a href="/questions/11676476/r-data-table-sliding-window?noredirect=1" class="question-hyperlink">R data.table sliding window</a>
+</div>
+<div class="spacer">
+	<a href="/q/9841416" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">11</div>
+	</a>
+	<a href="/questions/9841416/find-median-in-a-fixed-size-moving-window-along-a-long-sequence-of-data?noredirect=1" class="question-hyperlink">find median in a fixed-size moving window along a long sequence of data</a>
+</div>
+<div class="spacer">
+	<a href="/q/5527437" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">13</div>
+	</a>
+	<a href="/questions/5527437/rolling-median-in-c-turlach-implementation?noredirect=1" class="question-hyperlink">Rolling median in C - Turlach implementation</a>
+</div>
+<div class="spacer">
+	<a href="/q/12150472" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">6</div>
+	</a>
+	<a href="/questions/12150472/using-data-table-to-speed-up-rollapply?noredirect=1" class="question-hyperlink">using data.table to speed up rollapply</a>
+</div>
+<div class="spacer">
+	<a href="/q/11482529" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">5</div>
+	</a>
+	<a href="/questions/11482529/median-filter-super-efficient-implementation?noredirect=1" class="question-hyperlink">Median Filter Super efficient implementation</a>
+</div>
+<div class="spacer">
+	<a href="/q/9931706" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">2</div>
+	</a>
+	<a href="/questions/9931706/sliding-window-function-in-r?noredirect=1" class="question-hyperlink">Sliding window function in R</a>
+</div>
+<div class="spacer">
+	<a href="/q/9868757" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">5</div>
+	</a>
+	<a href="/questions/9868757/using-scipy-weave-inline-for-fast-2d-median-filtering?noredirect=1" class="question-hyperlink">Using scipy.weave.inline for fast 2D median filtering</a>
+</div>
+<div class="spacer">
+	<a href="/q/38910945" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">8</div>
+	</a>
+	<a href="/questions/38910945/pixel-wise-median-of-sequence-of-cvmats?noredirect=1" class="question-hyperlink">Pixel-wise median of sequence of cv::Mat's</a>
+</div>					<div class="spacer more">
+				<a href="/questions/linked/1309263">see more linked questionsÅc</a>
+			</div>
+	</div>
+</div>
+
+                <div class="module sidebar-related">
+                    <h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer">
+<a href="/q/263400" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">1095</div></a><a href="/questions/263400/what-is-the-best-algorithm-for-an-overridden-system-object-gethashcode" class="question-hyperlink">What is the best algorithm for an overridden System.Object.GetHashCode?</a>
+</div>
+<div class="spacer">
+<a href="/q/1058813" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">75</div></a><a href="/questions/1058813/on-line-iterator-algorithms-for-estimating-statistical-median-mode-skewnes" class="question-hyperlink">ÅgOn-lineÅh (iterator) algorithms for estimating statistical median, mode, skewness, kurtosis?</a>
+</div>
+<div class="spacer">
+<a href="/q/1291152" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">151</div></a><a href="/questions/1291152/simple-way-to-calculate-median-with-mysql" class="question-hyperlink">Simple way to calculate median with MySQL</a>
+</div>
+<div class="spacer">
+<a href="/q/4201292" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">33</div></a><a href="/questions/4201292/on-algorithm-to-find-the-median-of-a-collection-of-numbers" class="question-hyperlink">O(n) algorithm to find the median of a collection of numbers</a>
+</div>
+<div class="spacer">
+<a href="/q/5527437" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">13</div></a><a href="/questions/5527437/rolling-median-in-c-turlach-implementation" class="question-hyperlink">Rolling median in C - Turlach implementation</a>
+</div>
+<div class="spacer">
+<a href="/q/9489061" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">51</div></a><a href="/questions/9489061/understanding-median-of-medians-algorithm" class="question-hyperlink">Understanding Ågmedian of mediansÅh algorithm</a>
+</div>
+<div class="spacer">
+<a href="/q/10168686" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">1223</div></a><a href="/questions/10168686/image-processing-algorithm-improvement-for-coca-cola-can-recognition" class="question-hyperlink">Image Processing: Algorithm Improvement for 'Coca-Cola Can' Recognition</a>
+</div>
+<div class="spacer">
+<a href="/q/10657503" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted large">191</div></a><a href="/questions/10657503/find-running-median-from-a-stream-of-integers" class="question-hyperlink">Find running median from a stream of integers</a>
+</div>
+<div class="spacer">
+<a href="/q/12545795" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">11</div></a><a href="/questions/12545795/explanation-of-the-median-of-medians-algorithm" class="question-hyperlink">Explanation of the Median of Medians algorithm</a>
+</div>
+<div class="spacer">
+<a href="/q/22342854" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">1664</div></a><a href="/questions/22342854/what-is-the-optimal-algorithm-for-the-game-2048" class="question-hyperlink">What is the optimal algorithm for the game 2048?</a>
+</div>
+                    </div>
+                </div>
+
+<div id="hot-network-questions" class="module tex2jax_ignore">
+    <h4>
+        <a href="https://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+<li>
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div>
+<a href="https://worldbuilding.stackexchange.com/questions/94966/scientific-naming-conventions-for-alien-creatures" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Scientific Naming Conventions for Alien Creatures
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div>
+<a href="https://mathematica.stackexchange.com/questions/157876/how-to-exchange-axes-in-a-3d-plot-from-left-to-right-handed-coordinate-system" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to exchange axes in a 3d plot (from left- to right-handed coordinate system)
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-space" title="Space Exploration Stack Exchange"></div>
+<a href="https://space.stackexchange.com/questions/23396/how-much-thrust-needed-to-move-6-000kg-from-leo-to-lunar-orbit" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:508 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How much thrust needed to move 6,000KG from LEO to Lunar Orbit?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div>
+<a href="https://travel.stackexchange.com/questions/103718/what-do-these-white-blocks-mean-at-an-intersection" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What do these white blocks mean at an intersection?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div>
+<a href="https://worldbuilding.stackexchange.com/questions/94900/how-fast-could-earth-orbit-the-sun-without-its-orbit-changing" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How fast could earth orbit the sun without its orbit changing?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-softwareengineering" title="Software Engineering Stack Exchange"></div>
+<a href="https://softwareengineering.stackexchange.com/questions/359027/is-it-bad-practice-to-write-code-that-relies-on-compiler-optimizations" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:131 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it bad practice to write code that relies on compiler optimizations?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-politics" title="Politics Stack Exchange"></div>
+<a href="https://politics.stackexchange.com/questions/25348/in-the-us-why-is-nationalism-equated-with-racism" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:475 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    In the US why is nationalism equated with racism?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div>
+<a href="https://travel.stackexchange.com/questions/103733/what-are-the-steps-to-claim-recheck-baggage-on-international-layover-via-non-par" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What are the steps to claim/recheck baggage on international layover via non-partner connecting airline?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-ethereum" title="Ethereum Stack Exchange"></div>
+<a href="https://ethereum.stackexchange.com/questions/28542/please-help-me-understand-beginner-data" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:642 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Please help me understand beginner data
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div>
+<a href="https://math.stackexchange.com/questions/2472789/is-there-a-simple-example-showing-that-uncorrelated-random-variables-need-not" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there a *simple* example showing that uncorrelated random variables need not be independent?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-photo" title="Photography Stack Exchange"></div>
+<a href="https://photo.stackexchange.com/questions/93446/how-to-create-the-type-of-lighting-that-is-used-in-many-of-elena-shuminovas-pic" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:61 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to create the type of lighting that is used in many of Elena Shuminova's pictures?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-parenting" title="Parenting Stack Exchange"></div>
+<a href="https://parenting.stackexchange.com/questions/32093/should-children-be-encouraged-to-get-themselves-or-their-clothes-dirty" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:228 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Should children be encouraged to get themselves or their clothes dirty?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-bicycles" title="Bicycles Stack Exchange"></div>
+<a href="https://bicycles.stackexchange.com/questions/50551/what-is-the-foam-tube-on-the-top-of-bmx-frame-for" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:126 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is the foam tube on the top of bmx frame for?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div>
+<a href="https://rpg.stackexchange.com/questions/108383/how-important-is-it-increase-primary-ability-scores-quickly-to-20-to-remain-at" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How important is it increase primary ability scores quickly to 20 to remain at "party level"?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div>
+<a href="https://english.stackexchange.com/questions/413534/is-there-a-word-phrase-to-describe-somebody-who-has-devoted-their-life-to-pract" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there a word/ phrase to describe somebody who has devoted their life to practising something but is still not very good at it?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div>
+<a href="https://academia.stackexchange.com/questions/97106/dismissed-from-phd-due-to-disability-related-misconduct-how-to-answer-question" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Dismissed from PhD due to disability-related misconduct: how to answer question about dismissal?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div>
+<a href="https://codereview.stackexchange.com/questions/177971/pong-game-written-on-c-using-sdl" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Pong game written on C++ using SDL
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-interpersonal" title="Interpersonal Skills Stack Exchange"></div>
+<a href="https://interpersonal.stackexchange.com/questions/5203/how-should-my-wife-handle-an-engaged-admirer-and-his-fiancee" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:680 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How should my wife handle an engaged admirer and his fiancee?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-apple" title="Ask Different"></div>
+<a href="https://apple.stackexchange.com/questions/302294/can-viruses-travel-through-pictures-i-took-with-my-smartphone" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:118 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can viruses travel through pictures I took with my smartphone?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-gamedev" title="Game Development Stack Exchange"></div>
+<a href="https://gamedev.stackexchange.com/questions/149541/when-is-the-time-to-consider-performance" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:53 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When is the time to consider performance?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-interpersonal" title="Interpersonal Skills Stack Exchange"></div>
+<a href="https://interpersonal.stackexchange.com/questions/5362/how-to-avoid-wishing-my-coworker-on-her-birthday" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:680 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to avoid wishing my coworker on her birthday?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div>
+<a href="https://aviation.stackexchange.com/questions/44641/why-might-an-airliner-fly-a-large-u-turn-before-landing" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why might an airliner fly a large U-turn before landing?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div>
+<a href="https://academia.stackexchange.com/questions/97349/can-a-phd-supervisor-take-unpublished-ideas-from-a-students-dissertation" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can a PhD supervisor take unpublished ideas from a student's dissertation?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div>
+<a href="https://tex.stackexchange.com/questions/396358/checking-for-empty-argument-in-meta-command" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    checking for empty argument in meta-command
+                </a>
+
+            </li>
+    </ul>
+<a href="#" class="show-more js-show-more js-gps-track" data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+            more hot questions
+        </a>
+</div>
+        </div>
+    
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="/feeds/question/1309263" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>    </div>
+<script>
+StackExchange.ready(function(){$.get('/posts/1309263/ivc/9a56');});
+</script><noscript>
+    <div><img src="/posts/1309263/ivc/9a56" class="dno" alt="" width="0" height="0"></div>
+</noscript>
+<div style="display:none" id="prettify-lang">default</div>
+</div>
+
+
+        </div>
+    </div>
+
+    <footer id="footer" class="s-footer js-footer" role="contentinfo"><div class="-container">
+            <div class="g-row">
+                    <div class="-logo">
+
+                        <a href="https://stackoverflow.com"><svg aria-hidden="true" class="svg-icon native iconLogo" width="150" height="30" viewbox="0 0 150 30"><g><path d="M33.9 18.6l-1.7-.2c-1.3-.1-1.9-.6-1.9-1.6 0-1.1.8-1.8 2.4-1.8 1.1 0 2.1.3 2.8.8l1-1c-1-.8-2.3-1.1-3.8-1.1-2.3 0-3.9 1.2-3.9 3.1 0 1.8 1.1 2.7 3.2 2.9l1.8.2c1.2.1 1.8.6 1.8 1.6 0 1.3-1.1 1.9-2.8 1.9-1.3 0-2.5-.3-3.3-1.2l-1 1c1.2 1.1 2.6 1.5 4.4 1.5 2.6 0 4.3-1.2 4.3-3.2-.2-2-1.5-2.7-3.3-2.9zm13.3-4.8c-1.7 0-2.8.3-3.7 1.5l1 1c.6-.9 1.3-1.2 2.7-1.2 1.9 0 2.7.8 2.7 2.3v1h-3.2c-2.4 0-3.7 1.2-3.7 3.1 0 .8.3 1.6.8 2.2.7.7 1.5 1 3 1 1.4 0 2.2-.3 3.1-1.1v1h1.6v-7.2c-.1-2.4-1.5-3.6-4.3-3.6zm2.7 7c0 .9-.2 1.5-.5 1.8-.7.6-1.5.7-2.4.7-1.7 0-2.4-.6-2.4-1.8 0-1.2.8-1.9 2.4-1.9h3l-.1 1.2zm7.6-5.6c1 0 1.6.3 2.4 1.2l1-1c-1.1-1.2-2-1.6-3.5-1.6-2.7 0-4.7 1.8-4.7 5.5 0 3.6 2 5.5 4.7 5.5 1.5 0 2.4-.4 3.5-1.6l-1.1-1c-.8.9-1.4 1.2-2.4 1.2s-1.9-.4-2.5-1.2c-.5-.7-.7-1.5-.7-2.9 0-1.3.2-2.2.7-2.9.7-.8 1.6-1.2 2.6-1.2zm13.4-1.3H69l-4.8 4.7V9.1h-1.6v15.4h1.6v-3.9l1.9-1.9 3.6 5.8h1.9l-4.4-6.9 3.7-3.7zm7.3-.33c-1.6 0-2.7.6-3.4 1.4-1 1-1.3 2.3-1.3 4.3s.3 3.3 1.3 4.3c.7.7 1.8 1.4 3.4 1.4 1.6 0 2.8-.6 3.4-1.4 1-1 1.3-2.3 1.3-4.3s-.3-3.3-1.3-4.3c-.6-.8-1.7-1.4-3.4-1.4zm1.3 8.3c-.3.3-.7.5-1.3.5-.6 0-1-.2-1.3-.5-.6-.6-.6-1.6-.6-2.7 0-1.2.1-2.1.6-2.7.3-.3.7-.5 1.3-.5.6 0 1 .2 1.3.5.6.6.6 1.5.6 2.7.1 1.2 0 2.2-.6 2.7zm10.8-8.2l-2.2 6.9-2.3-6.9h-2.9l4.1 11.1h2.2l4.1-11.1h-3zm7.6-.1c-2.9 0-4.8 2-4.8 5.7 0 4.5 2.5 5.7 5.1 5.7 2 0 3.1-.6 4.2-1.7l-1.7-1.6c-.7.7-1.3 1-2.5 1-1.6 0-2.4-1-2.4-2.5h6.9v-1.2c0-3.2-1.7-5.4-4.8-5.4zm-2.1 4.6c0-.5.1-.8.3-1.2.3-.7.9-1.2 1.9-1.2.9 0 1.6.5 1.9 1.2.2.4.2.7.3 1.2h-4.4zm11-3.4v-1.1h-2.7v11.1h2.8v-6.7c0-1.4.9-2 1.8-2 .7 0 1 .2 1.5.7l2.1-2.1c-.8-.8-1.5-1-2.6-1-1.3-.1-2.3.4-2.9 1.1zm6.3-2.3v12.3h2.8v-8.8h2v-2.1h-2v-1.2c0-.6.3-1 1-1h1.1v-2.3h-1.6c-2.3 0-3.3 1.6-3.3 3.1zm16.2 1.1c-1.6 0-2.7.6-3.4 1.4-1 1-1.3 2.3-1.3 4.3s.3 3.3 1.3 4.3c.7.7 1.8 1.4 3.4 1.4 1.6 0 2.8-.6 3.4-1.4 1-1 1.3-2.3 1.3-4.3s-.3-3.3-1.3-4.3c-.6-.8-1.8-1.4-3.4-1.4zm1.3 8.3c-.3.3-.7.5-1.3.5-.6 0-1-.2-1.3-.5-.6-.6-.6-1.6-.6-2.7 0-1.2.1-2.1.6-2.7.3-.3.7-.5 1.3-.5.6 0 1 .2 1.3.5.6.6.6 1.5.6 2.7 0 1.2 0 2.2-.6 2.7zm16.5-8.2l-1.8 6.9-2.3-6.9h-2l-2.3 6.9-1.8-6.9H134l3.4 11.1h2.3l2.3-7 2.3 7h2.3l3.4-11.1h-2.9zm-25.1 7.7V9.27h-2.8v12.3c0 1.6 1 3.2 3.2 3.2h1.6v-2.3h-1c-.7 0-1-.4-1-1.1zM41.3 15.6l1.4-1.4h-3v-3.5h-1.6v11.1c0 1.6.9 2.9 2.7 2.9h1.1v-1.3h-.8c-1 0-1.5-.6-1.5-1.6v-6.1h1.7v-.1z" fill="#222426"></path><path fill="#BCBBBB" d="M21 27v-8h3v11H0V19h3v8z"></path><path d="M5.4 19.1l13.56 1.96.17-2.38-13.26-2.55-.47 2.97zm1.8-6.8l12 5.6 1.1-2.4-12-5.6-1.1 2.4zm3.4-5.9l10.2 8.5 1.7-2-10.2-8.5-1.7 2zM17.1.2L15 1.8l7.9 10.6 2.1-1.6L17.1.2zM5 25h14v-3H5v3z" fill="#F48024"></path></g></svg></a>
+                    </div>
+                
+                    <nav class="-nav js-category _visible" data-name="default"><h5 class="-title"><a href="https://stackoverflow.com" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 15})">Stack Overflow</a></h5>
+                        <ul class="-list">
+<li class="-item"><a href="/questions" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 16})">Questions</a></li>
+                                <li class="-item"><a href="https://stackoverflow.com/jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 17})">Jobs</a></li>
+                                <li class="-item"><a href="https://stackoverflow.com/jobs/directory/developer-jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 11})">Developer Jobs Directory</a></li>
+                                     <li class="-item"><a href="https://stackoverflow.com/jobs/salary" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 28})">Salary Calculator</a></li>
+                                                            <li class="-item"><a href="/help" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 3 })">Help</a></li>
+                                <li class="-item"><a onclick='StackExchange.switchMobile("on")' class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 12 })">Mobile</a></li>
+                        </ul></nav><nav class="-nav js-category _visible" data-name="default"><h5 class="-title"><a href="https://www.stackoverflowbusiness.com/?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-business-category" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 19 })">Stack Overflow<br> Business</a></h5>
+                        <ul class="-list">
+<li class="-item"><a href="https://www.stackoverflowbusiness.com/talent?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-talent" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 20 })">Talent</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/advertise?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-advertise" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 21 })">Ads</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/enterprise?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-enterprise" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 22 })">Enterprise</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/insights?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-insights" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 23 })">Insights</a></li>
+                        </ul></nav><nav class="-nav js-category _visible" data-name="default"><h5 class="-title"><a class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">Company</a></h5>
+                    <ul class="-list">
+<li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">About</a></li>
+                                                <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 27 })" href="https://stackoverflow.com/company/press">Press</a></li>
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 9 })" href="https://stackoverflow.com/company/work-here">Work Here</a></li>
+                        <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 7 })" href="https://stackexchange.com/legal">Legal</a></li>
+                        <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 8 })" href="https://stackexchange.com/legal/privacy-policy">Privacy Policy</a></li>
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 13 })" href="https://stackoverflow.com/company/contact">Contact Us</a></li>
+                    </ul></nav><div class="-network g-row">
+                    <a href="#" class="-back-trigger js-back"><svg aria-hidden="true" class="svg-icon iconArrowLeftAlt" width="18" height="18" viewbox="0 0 18 18"><path d="M10.58 16L12 14.59 6.4 9 12 3.41 10.57 2l-7 7z"></path></svg></a>
+                    <div>
+                        <h5 class="-title"><a href="https://stackexchange.com">Stack Exchange<br> Network</a></h5>
+                        <ul class="-list">
+<li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Technology">Technology</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Life / Arts">Life / Arts</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Culture / Recreation">Culture / Recreation</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Science">Science</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Other">Other</a></li>
+
+                        </ul>
+</div>
+                </div>
+                <nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                <li class="-item"><a href="https://serverfault.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="system and network administrators">Server Fault</a></li>
+                <li class="-item"><a href="https://superuser.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="computer enthusiasts and power users">Super User</a></li>
+                <li class="-item"><a href="https://webapps.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="power users of web applications">Web Applications</a></li>
+                <li class="-item"><a href="https://askubuntu.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                <li class="-item"><a href="https://webmasters.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="pro webmasters">Webmasters</a></li>
+                <li class="-item"><a href="https://gamedev.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and independent game developers">Game Development</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://tex.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                <li class="-item"><a href="https://softwareengineering.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professionals, academics, and students working within the systems development life cycle">Software Engineering</a></li>
+                <li class="-item"><a href="https://unix.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                <li class="-item"><a href="https://apple.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                <li class="-item"><a href="https://wordpress.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="WordPress developers and administrators">WordPress Development</a></li>
+                <li class="-item"><a href="https://gis.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                <li class="-item"><a href="https://electronics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://android.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                <li class="-item"><a href="https://security.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="information security professionals">Information Security</a></li>
+                <li class="-item"><a href="https://bitcoin.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Bitcoin crypto-currency enthusiasts">Bitcoin</a></li>
+                <li class="-item"><a href="https://dba.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                <li class="-item"><a href="https://drupal.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Drupal developers and administrators">Drupal Answers</a></li>
+                <li class="-item"><a href="https://sharepoint.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="SharePoint enthusiasts">SharePoint</a></li>
+                <li class="-item"><a href="https://ux.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="user experience researchers and experts">User Experience</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://mathematica.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Wolfram Mathematica">Mathematica</a></li>
+                <li class="-item"><a href="https://salesforce.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                <li class="-item"><a href="https://expressionengine.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="administrators, end users, developers and designers for ExpressionEngineR CMS">ExpressionEngineR Answers</a></li>
+                <li class="-item"><a href="https://pt.stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programadores profissionais e entusiastas">Stack Overflow em Portugues</a></li>
+                <li class="-item"><a href="https://blender.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who use Blender to create 3D graphics, animations, or games">Blender</a></li>
+                <li class="-item"><a href="https://networkengineering.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="network engineers">Network Engineering</a></li>
+                <li class="-item"><a href="https://crypto.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="software developers, mathematicians and others interested in cryptography">Cryptography</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://codereview.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="peer programmer code reviews">Code Review</a></li>
+                <li class="-item"><a href="https://magento.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of the Magento e-Commerce platform">Magento</a></li>
+                <li class="-item"><a href="https://softwarerecs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people seeking specific software recommendations">Software Recommendations</a></li>
+                <li class="-item"><a href="https://dsp.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="practitioners of the art and science of signal, image and video processing">Signal Processing</a></li>
+                <li class="-item"><a href="https://emacs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those using, extending or developing Emacs">Emacs</a></li>
+                <li class="-item"><a href="https://raspberrypi.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users and developers of hardware and software for Raspberry Pi">Raspberry Pi</a></li>
+                <li class="-item"><a href="https://ru.stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="ÑÅÑÇÑÄÑsÑÇÑpÑ}Ñ}ÑyÑÉÑÑÑÄÑr">Stack Overflow Ñ~Ñp ÑÇÑÖÑÉÑÉÑ{ÑÄÑ}</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://codegolf.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programming puzzle enthusiasts and code golfers">Programming Puzzles &amp; Code Golf</a></li>
+                <li class="-item"><a href="https://es.stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programadores y profesionales de la informatica">Stack Overflow en espanol</a></li>
+                <li class="-item"><a href="https://ethereum.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Ethereum, the decentralized application platform and smart contract enabled blockchain">Ethereum</a></li>
+                <li class="-item"><a href="https://datascience.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Data science professionals, Machine Learning specialists, and those interested in learning more about the field">Data Science</a></li>
+                <li class="-item"><a href="https://arduino.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="developers of open-source hardware and software that is compatible with Arduino">Arduino</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#technology" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (26)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Life / Arts"><ul class="-list">
+<li class="-item"><a href="https://photo.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                <li class="-item"><a href="https://scifi.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                <li class="-item"><a href="https://graphicdesign.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                <li class="-item"><a href="https://movies.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                <li class="-item"><a href="https://music.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="musicians, students, and enthusiasts">Music: Practice &amp; Theory</a></li>
+                <li class="-item"><a href="https://worldbuilding.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="writers/artists using science, geography and culture to construct imaginary worlds and settings">Worldbuilding</a></li>
+                <li class="-item"><a href="https://cooking.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Life / Arts"><ul class="-list">
+<li class="-item"><a href="https://diy.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="contractors and serious DIYers">Home Improvement</a></li>
+                <li class="-item"><a href="https://money.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                <li class="-item"><a href="https://academia.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="academics and those enrolled in higher education">Academia</a></li>
+                <li class="-item"><a href="https://law.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="legal professionals, students, and others with experience or interest in law">Law</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#lifearts" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (17)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Culture / Recreation"><ul class="-list">
+<li class="-item"><a href="https://english.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                <li class="-item"><a href="https://skeptics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="scientific skepticism">Skeptics</a></li>
+                <li class="-item"><a href="https://judaism.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                <li class="-item"><a href="https://travel.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="road warriors and seasoned travelers">Travel</a></li>
+                <li class="-item"><a href="https://christianity.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                <li class="-item"><a href="https://ell.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="speakers of other languages learning English">English Language Learners</a></li>
+                <li class="-item"><a href="https://japanese.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students, teachers, and linguists wanting to discuss the finer points of the Japanese language">Japanese Language</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Culture / Recreation"><ul class="-list">
+<li class="-item"><a href="https://gaming.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                <li class="-item"><a href="https://bicycles.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                <li class="-item"><a href="https://rpg.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                <li class="-item"><a href="https://anime.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="anime and manga fans">Anime &amp; Manga</a></li>
+                <li class="-item"><a href="https://puzzling.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those who create, solve, and study puzzles">Puzzling</a></li>
+                <li class="-item"><a href="https://mechanics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="mechanics and DIY enthusiast owners of cars, trucks, and motorcycles">Motor Vehicle Maintenance &amp; Repair</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#culturerecreation" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (32)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Science"><ul class="-list">
+<li class="-item"><a href="https://mathoverflow.net" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional mathematicians">MathOverflow</a></li>
+                <li class="-item"><a href="https://math.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                <li class="-item"><a href="https://stats.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                <li class="-item"><a href="https://cstheory.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                <li class="-item"><a href="https://physics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="active researchers, academics and students of physics">Physics</a></li>
+                <li class="-item"><a href="https://chemistry.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="scientists, academics, teachers and students">Chemistry</a></li>
+                <li class="-item"><a href="https://biology.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="biology researchers, academics, and students">Biology</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Science"><ul class="-list">
+<li class="-item"><a href="https://cs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students, researchers and practitioners of computer science">Computer Science</a></li>
+                <li class="-item"><a href="https://philosophy.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those interested in the study of the fundamental nature of knowledge, reality, and existence">Philosophy</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#science" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (10)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Other"><ul class="-list">
+<li class="-item"><a href="https://meta.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                <li class="-item"><a href="https://stackapps.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                <li class="-item"><a href="https://api.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programmatic interaction with Stack Exchange sites">API</a></li>
+                <li class="-item"><a href="https://data.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="querying Stack Exchange data using SQL">Data</a></li>
+                <li class="-item"><a href="https://area51.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                    </ul></nav><div class="-copyright g-row jc-end">
+                    <div class="g-column jc-sp-between">
+                        <ul class="-list">
+<li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link:4 })" href="https://stackoverflow.blog?blb=1">Blog</a></li>
+                            <li class="-item"><a href="https://www.facebook.com/officialstackoverflow/" class="-link">Facebook</a></li>
+                            <li class="-item"><a href="https://twitter.com/stackoverflow" class="-link">Twitter</a></li>
+                            <li class="-item"><a href="https://linkedin.com/company/stack-overflow" class="-link">LinkedIn</a></li>
+                        </ul>
+<div>
+                            <p>
+                                site design / logo c 2017 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license" class="-link">cc by-sa 3.0</a>
+                                with <a href="https://stackoverflow.blog/2009/06/25/attribution-required/" rel="license" class="-link">attribution required</a>.
+                                <span id="svnrev">rev 2017.10.15.27439</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                    </div>
+    </footer><noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled
+            <img src="https://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno">
+</div>
+    </noscript>
+        <script> setTimeout(function() { $("#adzerk-user-match").remove(); }, 2000);</script><script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-5620270-1');
+                ga('create', 'UA-5620270-59', {name: 'pageData', sampleRate: 5 });
+                ga('set', 'dimension2', '|c|algorithm|r|statistics|median|');
+                ga('pageData.set', 'dimension2', '|c|algorithm|r|statistics|median|');
+                ga('send', 'pageview');
+                ga('pageData.send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+                qc.async = true;
+                qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                s.parentNode.insertBefore(qc, s);
+                _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+                            var sc=document.createElement('script');
+                sc.async=true;
+                sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+                s.parentNode.insertBefore(sc, s);
+                _comscore.push({ c1: "2", c2: "17440561" });
+        })();
+
+    </script><script type="text/javascript">
+                
+                (function(appendChild) {
+                    Node.prototype.appendChild = function() {
+                        var parent = this;
+                        var newNode = arguments[0];
+                        if (parent.nodeName === 'HEAD'
+                            && newNode
+                            && newNode.nodeName === 'SCRIPT'
+                            && newNode.src) {
+                            
+                            window.setTimeout(function() {
+                                var result = newNode.src.match(/^https:\/\/maps\.googleapis\.com\/maps\/api\/place\/js\/(\w+)Service\./i) || [];
+                                var service = result[1];
+                                if (service) {
+                                    if (service === 'Autocompletion') service =  2;
+                                    else if (service === 'Place') service = 1;
+                                    else service = 0;
+                                    StackExchange.using('gps', function() {
+                                        StackExchange.gps.track('google_maps_places_api.call', { service: service });
+                                    });
+                                }
+                            }, 0);
+                        }
+                        return appendChild.apply(this, arguments);
+                    };
+                })(Node.prototype.appendChild);
+            </script>
+</body>
+</html>
+

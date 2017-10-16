@@ -1,0 +1,2377 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/QAPage">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>r - data.table vs dplyr: can one do something well the other can't or does poorly? - Stack Overflow</title>
+<link rel="shortcut icon" href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+<link rel="apple-touch-icon image_src" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+<link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="/opensearch.xml">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:domain" content="stackoverflow.com">
+<meta property="og:image" itemprop="image primaryImageOfPage" content="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded">
+<meta name="twitter:title" property="og:title" itemprop="title name" content="data.table vs dplyr: can one do something well the other can't or does poorly?">
+<meta name="twitter:description" property="og:description" itemprop="description" content="Overview
+
+I'm relatively familiar with data.table, not so much with dplyr.  I've read through some dplyr vignettes and examples that have popped up on SO, and so far my conclusions are that:
+data....">
+<meta property="og:url" content="https://stackoverflow.com/questions/21435339/data-table-vs-dplyr-can-one-do-something-well-the-other-cant-or-does-poorly">
+<link rel="canonical" href="https://stackoverflow.com/questions/21435339/data-table-vs-dplyr-can-one-do-something-well-the-other-cant-or-does-poorly">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script><script src="https://cdn.sstatic.net/Js/stub.en.js?v=488af1c63e24"></script><link rel="stylesheet" type="text/css" href="https://cdn.sstatic.net/Sites/stackoverflow/all.css?v=e32bd0ed8f3d">
+<link rel="alternate" type="application/atom+xml" title="Feed for question 'data.table vs dplyr: can one do something well the other can't or does poorly?'" href="/feeds/question/21435339">
+<meta name="twitter:app:country" content="US">
+<meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+<meta name="twitter:app:id:iphone" content="871299723">
+<meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/21435339/data-table-vs-dplyr-can-one-do-something-well-the-other-cant-or-does-poorly">
+<meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+<meta name="twitter:app:id:ipad" content="871299723">
+<meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/21435339/data-table-vs-dplyr-can-one-do-something-well-the-other-cant-or-does-poorly">
+<meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+<meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/21435339/data-table-vs-dplyr-can-one-do-something-well-the-other-cant-or-does-poorly">
+<meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+<script>
+        
+            StackExchange.ready(function () {
+                                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:26,shownCommentCount:5,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:21435339});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '21435339');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text', true); });
+
+            });
+        </script><script>
+        StackExchange.init({"locale":"en","serverTime":1508128966,"routeName":"Questions/Show","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"childUrl":"https://meta.stackoverflow.com","enableSocialMediaInSharePopup":true,"protocol":"https"},"user":{"fkey":"3fbe17c969abd7bd85ae0c8423437465","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true,"canSeeNewHeaderDesign":true},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"story":{"minCompleteBodyLength":75,"likedTagsMaxLength":300,"dislikedTagsMaxLength":300},"jobPreferences":{"maxNumDeveloperRoles":2,"maxNumIndustries":4}}, {"site":{"allowImageUploads":true,"enableUserHovercards":true,"styleCode":true,"enableImgurHttps":true,"forceHttpsImages":true},"comments":{},"userProfile":{"openGraphAPIKey":"58740831ad23540e00c58987"},"tags":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true},"flags":{"allowRetractingFlags":true},"topBar":{"showNewFeatureNotice":true},"snippets":{"snippetsEnabled":true,"renderDomain":"stacksnippets.net"},"markdown":{"asteriskIntraWordEmphasis":true},"monitoring":{"clientTimingsAbsoluteTimeout":30000,"clientTimingsDebounceTimeout":1000}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"82df5476ff5e","js/moderator.en.js":"443faeebba5b","js/full-anon.en.js":"51fdc705af4d","js/full.en.js":"753996d5103d","js/wmd.en.js":"4ddd2413a296","js/third-party/jquery.autocomplete.min.js":"d3b8fa7fdf74","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"28e4c54a5378","js/help.en.js":"a56fdf9b9ff2","js/tageditor.en.js":"248fce004255","js/tageditornew.en.js":"ac8f784e112e","js/inline-tag-editing.en.js":"3e63a01fd39b","js/revisions.en.js":"7bea350562aa","js/review.en.js":"eb16e0be07b1","js/tagsuggestions.en.js":"b278f9a0b23b","js/post-validation.en.js":"4c792759c8f4","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"290bed8a1174","js/keyboard-shortcuts.en.js":"f6606752d1e8","js/external-editor.en.js":"ae2d26085224","js/adops.en.js":"9a6a7812a212","js/external-editor.en.js":"ae2d26085224","js/snippet-javascript.en.js":"4ceca4bd1d0a","js/snippet-javascript-codemirror.en.js":"9a2effee39fe"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script><script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script><noscript id="noscript-css"><style>body,.top-bar{margin-top:1.9em}</style></noscript>
+</head>
+<body class="question-page new-topbar">
+            <script async src="https://js-sec.indexww.com/ht/p/185901-159836282584097.js"></script><div id="notify-container"></div>
+    <div id="custom-header"></div>
+
+
+
+
+<header class="top-bar js-top-bar _fixed"><div class="-container">
+        <div class="-main">
+            
+                <a href="https://stackoverflow.com" class="-logo js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:8})">
+                   <span class="-img">Stack Overflow</span>
+                </a>
+
+                    <a class="-feature-notice
+                       unread-feature-notice
+                       " href="#" data-unread-class="unread-feature-notice" data-campaign="2017-09-19.DevSalaryCalculator" data-cookie="topbar-new-dsc" data-location="2" data-autopopup="true" data-end-date="1508410800000">
+                        <span>new</span>
+                    </a>
+                    <div class="topbar-dialog feature-notice-dialog js-feature-notice-dialog dno">
+                        <div class="dialog-content">
+                            <h4 class="bold">Stack Overflow Salary Calculator</h4>
+                            <p>Find out what developers like you are earning.</p>
+                            <a class="btn-secondary js-cta-button js-gps-track" href="/jobs/salary/?utm_source=so-owned&amp;utm_medium=hero&amp;utm_campaign=sal-calc" data-gps-track="new_feature.click({campaign: '2017-09-19.DevSalaryCalculator', location: 2, action: 2})">Calculate your salary now</a>
+                            <a class="icon-close js-close-button js-gps-track" title="Close and permanently remove this popup" data-gps-track="new_feature.click({campaign: '2017-09-19.DevSalaryCalculator', location: 2, action: 1})"><svg aria-hidden="true" class="svg-icon iconClear" width="18" height="18" viewbox="0 0 18 18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9z"></path></svg></a>
+                        </div>
+                    </div>
+            <nav class="navigation" role="navigation" aria-label="site navigation"><ol class="-list">
+<li class="-item _current">
+        <a id="nav-questions" href="/questions" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:true, location:2, destination:1})">Questions</a>
+    </li>
+    <li class="-item">
+        <a id="nav-jobs" href="/jobs?med=site-ui&amp;ref=jobs-tab" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:6})">Developer Jobs</a>
+    </li>
+    <li class="-item">
+        <a id="nav-tags" href="/tags" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:2})">Tags</a>
+    </li>
+    <li class="-item">
+        <a id="nav-users" href="/users" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:3})">Users</a>
+    </li>
+                </ol></nav>
+</div>
+        
+            <form id="search" action="/search" method="get" class="searchbar" autocomplete="off" role="search">
+                <input name="q" type="text" placeholder="SearchÅc" value="" tabindex="1" autocomplete="off" maxlength="240" class="f-input js-search-field"><button type="submit" aria-label="Search..." class="btn-topbar-primary js-search-submit"><svg aria-hidden="true" class="svg-icon iconSearch" width="18" height="18" viewbox="0 0 18 18"><path d="M12.86 11.32L18 16.5 16.5 18l-5.18-5.14v-.35a7 7 0 1 1 1.19-1.19h.35zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path></svg></button>
+            </form>
+
+        
+
+
+    
+
+<div class="-actions">
+    <nav class="secondary-nav"><div class="-dialog-container js-topbar-dialog-corral">
+
+
+    <div class="topbar-dialog siteSwitcher-dialog dno">
+        <div class="header">
+            <h3>
+<a href="https://stackoverflow.com">current community</a>
+            </h3>
+        </div>
+        <div class="modal-content current-site-container">
+            <ul class="current-site">
+<li>
+                            <div class="related-links">
+            <a href="https://stackoverflow.com/help" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:14 })">help</a>
+                    <a href="https://chat.stackoverflow.com" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+    <a href="https://stackoverflow.com" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="site_switcher.click({ item_type:3 })">
+        <div class="favicon favicon-stackoverflow site-icon" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                    </li>
+                    <li class="related-site">
+                            <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                        
+    <a href="https://meta.stackoverflow.com" class="site-link js-gps-track" data-id="552" data-gps-track="site.switch({ target_site:552, item_type:3 }),site_switcher.click({ item_type:4 })">
+        <div class="favicon favicon-stackoverflowmeta site-icon" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                    </li>
+            </ul>
+</div>
+
+        <div class="header" id="your-communities-header">
+            <h3>
+your communities            </h3>
+
+        </div>
+        <div class="modal-content" id="your-communities-section">
+
+                <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;amp;utm_source=stackoverflow.com&amp;amp;utm_medium=dev-story&amp;amp;utm_campaign=signup-redirect" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f21435339%2fdata-table-vs-dplyr-can-one-do-something-well-the-other-cant-or-does-poorly" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+                </div>
+        </div>
+
+        <div class="header">
+            <h3>
+<a href="https://stackexchange.com/sites">more stack exchange communities</a>
+            </h3>
+            <a href="https://stackoverflow.blog" class="fr">company blog</a>
+        </div>
+        <div class="modal-content">
+                <div class="child-content"></div>
+        </div>        
+    </div>
+                <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+<li>
+                        <a href="/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                        <li>
+                            <a href="https://meta.stackoverflow.com" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                                Meta
+                                <span class="item-summary">
+                                    Discuss the workings and policies of this site
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                                About Us
+                                <span class="item-summary">
+                                    Learn more about Stack Overflow the company
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.stackoverflowbusiness.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                                Business
+                                <span class="item-summary">
+                                    Learn more about hiring developers or posting ads with us
+                                </span>
+                            </a>
+                        </li>
+            </ul>
+</div>
+    </div>
+
+        </div>
+        <ol class="-list">
+<li class="-item"><a href="#" class="-link js-help-button" title="Help Center and other resources">
+        <svg aria-hidden="true" class="svg-icon iconHelp" width="18" height="18" viewbox="0 0 18 18"><path d="M9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1zm.81 12.13c-.02.71-.55 1.15-1.24 1.13-.66-.02-1.17-.49-1.15-1.2.02-.72.56-1.18 1.22-1.16.7.03 1.2.51 1.17 1.23zM11.77 8a5.8 5.8 0 0 1-1.02.91l-.53.37c-.26.2-.42.43-.5.69a4 4 0 0 0-.09.75c0 .05-.03.16-.18.16H7.88c-.16 0-.18-.1-.18-.15.03-.66.12-1.21.4-1.66a5.29 5.29 0 0 1 1.43-1.22c.16-.12.28-.25.38-.39a1.34 1.34 0 0 0 .02-1.71c-.24-.31-.51-.46-1.03-.46-.51 0-.8.26-1.02.6-.21.33-.18.73-.18 1.1H5.75c0-1.38.35-2.25 1.1-2.76.52-.35 1.17-.5 1.93-.5 1 0 1.79.18 2.49.71.64.5.98 1.18.98 2.12 0 .57-.2 1.05-.48 1.44z"></path></svg></a></li>
+                <li class="-item">
+        <a href="https://stackexchange.com" class="-link js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 171 Stack Exchange sites">
+            <svg aria-hidden="true" class="svg-icon iconStackExchange" width="18" height="18" viewbox="0 0 18 18"><path d="M1 13c0 1.1.9 2 2 2h8v3l3-3h1a2 2 0 0 0 2-2v-2H1v2zM15 1H3a2 2 0 0 0-2 2v2h16V3a2 2 0 0 0-2-2zM1 6h16v4H1V6z"></path></svg></a>
+    </li>
+
+        </ol></nav><div class="-ctas">
+                <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f21435339%2fdata-table-vs-dplyr-can-one-do-something-well-the-other-cant-or-does-poorly" class="login-link btn-clear" rel="nofollow">Log In</a>
+                    <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;utm_source=stackoverflow.com&amp;utm_medium=dev-story&amp;utm_campaign=signup-redirect" class="login-link btn-topbar-primary" rel="nofollow">Sign Up</a>
+
+        </div>
+</div>
+    </div>
+</header><script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+        StackExchange.scrollPadding.setPaddingTop(60, 10);     </script><div class="container _full ">
+        
+
+
+        <div id="content" class="snippet-hidden">
+
+
+
+
+            
+
+<div itemscope itemtype="http://schema.org/Question">
+    <link itemprop="image" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+<div class="s-hero hero-container">
+    <div class="-container g-row jc-sp-between ai-center">
+        <div class="g-col6">
+            <h1 class="-title">Learn, Share, Build</h1>
+            <p class="-paragraph">Each month, over 50 million developers come to Stack Overflow to learn, share their knowledge, and build their careers.</p>
+            <p class="-paragraph">Join the worldÅfs largest developer community.</p>
+        </div>
+        
+        <div class="s-signup _hero g-col5">
+
+            <div id="openid-buttons" class="-social">
+                    <div class="major-provider btn _block _medium _google" data-provider="google" data-oauthserver="https://accounts.google.com/o/oauth2/auth" data-oauthversion="2.0">Google</div>
+                    <div class="major-provider btn _block _medium _facebook" data-provider="facebook" data-oauthserver="https://www.facebook.com/v2.0/dialog/oauth" data-oauthversion="2.0">Facebook</div>
+                            </div>
+
+
+            <small class="-divider text-centered">or</small>
+
+            <form id="login-form" action="/users/signup?ssrc=hero&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f21435339%2fdata-table-vs-dplyr-can-one-do-something-well-the-other-cant-or-does-poorly" method="POST">
+        
+                <input type="hidden" name="fkey" value="3fbe17c969abd7bd85ae0c8423437465"><input type="hidden" name="ssrc" value=""><input type="hidden" id="oauth_version" name="oauth_version"><input type="hidden" id="oauth_server" name="oauth_server"><div id="se-login-fields">
+
+                        <input type="hidden" name="legalLinksShown" value="1"><div class="input-group">
+                            <div class="g-row">
+                                <label for="display-name" class="g-col -fill">Display name</label>
+                                <div class="g-col">
+                                    <input id="display-name" name="inline-display-name" type="text" class="f-input" placeholder="J. Doe" data-error-my="right top" data-error-at="left center">
+</div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="g-row">
+                                <label for="email" class="g-col -fill">Email address</label>
+                                <div class="g-col">
+                                    <input id="email" name="inline-email" type="email" maxlength="100" class="f-input" placeholder="you@example.com" data-error-my="right top" data-error-at="left center">
+</div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="g-row">
+                                <label for="password" class="g-col -fill">Password</label>
+                                <div class="g-col">
+                                    <input id="password" name="inline-password" type="password" class="js-inline-signup f-input" placeholder="********" data-error-my="right top" data-error-at="left center">
+</div>
+                            </div>
+                        </div>
+
+                        <div class="button-group g-row ai-center jc-sp-between">
+                            <input id="submit-button" name="submit-button" class="btn-outlined -white _medium _block" type="button" value="Sign Up"><small class="g-col -policy js-terms">By registering, you agree to the <a href="https://stackexchange.com/legal/privacy-policy" name="privacy" target="_blank" class="-link">privacy policy</a> and <a href="https://stackexchange.com/legal/terms-of-service" name="tos" target="_blank" class="-link">terms of service</a>.</small>
+                        </div>
+                    </div>
+            </form>
+            <script>
+                StackExchange.ready(function () {
+                    StackExchange.InlineAuth.init();
+                })
+            </script>
+</div>
+
+            <a id="close" href="#" class="js-dismiss -dismiss" title="dismiss"><svg aria-hidden="true" class="svg-icon iconClear" width="18" height="18" viewbox="0 0 18 18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9z"></path></svg></a>
+    </div>
+</div>
+<script>
+    StackExchange.ready(function () {
+
+        var location = 0;
+        if ($("body").hasClass("questions-page")) {
+            location = 7;
+        } else if ($("body").hasClass("question-page")) {
+            location = 7;
+        } else if ($("body").hasClass("faq-page")) {
+            location = 5;
+        } else if ($("body").hasClass("home-page")) {
+            location = 6;
+        }
+        
+        $('#tell-me-more').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+            });
+        });
+        
+        $('.hero-container #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "minimize", location: location }, true);
+            });
+            
+            $.cookie("hero", "mini", { path: "/", expires: 365 });
+            $.ajax({
+                url: "/hero-mini",
+                success: function (data) {
+                    $(".hero-container").fadeOut("fast", function () {
+                        $(".hero-container").replaceWith(data);
+                        $("#herobox-mini").fadeIn("fast");
+                    });
+                }
+            });
+            return false;
+        });
+    });
+
+</script><div class="inner-content">
+        <div id="question-header">
+                <h1 itemprop="name"><a href="/questions/21435339/data-table-vs-dplyr-can-one-do-something-well-the-other-cant-or-does-poorly" class="question-hyperlink">data.table vs dplyr: can one do something well the other can't or does poorly?</a></h1>
+
+            
+<div class="aside-cta" role="navigation" aria-label="ask new question">
+    <a href="/questions/ask" class="btn-outlined">Ask Question</a>
+</div>
+        </div>
+            <div id="mainbar" role="main" aria-label="question and answers">
+
+            
+
+<div class="question" data-questionid="21435339" id="question">
+
+    <div id="dfp-tlb" class="everyonelovesstackoverflow"></div>    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="21435339"><a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">461</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#">favorite</a>
+        <div class="favoritecount"><b>379</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<h3>Overview</h3>
+
+<p>I'm relatively familiar with <code>data.table</code>, not so much with <code>dplyr</code>.  I've read through some <a href="http://rpubs.com/hadley/dplyr-intro" rel="noreferrer"><code>dplyr</code> vignettes</a> and examples that have popped up on SO, and so far my conclusions are that:</p>
+
+<ol>
+<li>
+<code>data.table</code> and <code>dplyr</code> are comparable in speed, except when there are many (i.e. &gt;10-100K) groups, and in some other circumstances (see benchmarks below)</li>
+<li>
+<code>dplyr</code> has more accessible syntax</li>
+<li>
+<code>dplyr</code> abstracts (or will) potential DB interactions</li>
+<li>There are some minor functionality differences (see "Examples/Usage" below)</li>
+</ol>
+<p>In my mind 2. doesn't bear much weight because I am fairly familiar with it <code>data.table</code>, though I understand that for users new to both it will be a big factor.  I would like to avoid an argument about which is more intuitive, as that is irrelevant for my specific question asked from the perspective of someone already familiar with <code>data.table</code>.  I also would like to avoid a discussion about how "more intuitive" leads to faster analysis (certainly true, but again, not what I'm most interested about here).</p>
+
+<h3>Question</h3>
+
+<p>What I want to know is:</p>
+
+<ol>
+<li>Are there analytical tasks that are a lot easier to code with one or the other package for people familiar with the packages (i.e. some combination of keystrokes required vs. required level of esotericism, where less of each is a good thing).</li>
+<li>Are there analytical tasks that are performed substantially (i.e. more than 2x) more efficiently in one package vs. another.</li>
+</ol>
+<p>One <a href="https://stackoverflow.com/questions/21421004/how-to-cumulatively-add-values-in-one-vector-in-r">recent SO question</a> got me thinking about this a bit more, because up until that point I didn't think <code>dplyr</code> would offer much beyond what I can already do in <code>data.table</code>.  Here is the <code>dplyr</code> solution (data at end of Q):</p>
+
+<pre><code>dat %.%
+  group_by(name, job) %.%
+  filter(job != "Boss" | year == min(year)) %.%
+  mutate(cumu_job2 = cumsum(job2))
+</code></pre>
+
+<p>Which was much better than my hack attempt at a <code>data.table</code> solution.  That said, good <code>data.table</code> solutions are also pretty good (thanks Jean-Robert, Arun, and note here I favored single statement over the strictly most optimal solution):</p>
+
+<pre><code>setDT(dat)[,
+  .SD[job != "Boss" | year == min(year)][, cumjob := cumsum(job2)], 
+  by=list(id, job)
+]
+</code></pre>
+
+<p>The syntax for the latter may seem very esoteric, but it actually is pretty straightforward if you're used to <code>data.table</code> (i.e. doesn't use some of the more esoteric tricks).</p>
+
+<p>Ideally what I'd like to see is some good examples were the <code>dplyr</code> or <code>data.table</code> way is substantially more concise or performs substantially better.</p>
+
+<h3>Examples</h3>
+
+Usage
+
+<ul>
+<li>
+<code>dplyr</code> does not allow grouped operations that return arbitrary number of rows (from <strong><a href="https://stackoverflow.com/questions/21737815/grouped-operations-that-result-in-length-not-equal-to-1-or-length-of-group-in-dp">eddi's question</a></strong>, note: this looks like it will be implemented in <strong><a href="https://github.com/hadley/dplyr/issues/154" rel="noreferrer">dplyr 0.5</a></strong>, also, @beginneR shows a potential work-around using <code>do</code> in the answer to @eddi's question).</li>
+<li>
+<code>data.table</code> supports <strong><a href="https://stackoverflow.com/questions/12030932/rolling-joins-data-table-in-r">rolling joins</a></strong> (thanks @dholstius) as well as <strong><a href="https://stackoverflow.com/questions/23371747/range-join-data-frames-specific-date-column-with-date-ranges-intervals-in-r/23377309#23377309">overlap joins</a></strong>
+</li>
+<li>
+<code>data.table</code> internally optimises expressions of the form <code>DT[col == value]</code> or <code>DT[col %in% values]</code> for <em>speed</em> through <em>automatic indexing</em> which uses <em>binary search</em> while using the same base R syntax. <a href="https://gist.github.com/arunsrinivasan/dacb9d1cac301de8d9ff" rel="noreferrer">See here</a> for some more details and a tiny benchmark.</li>
+<li>
+<code>dplyr</code> offers standard evaluation versions of functions (e.g. <code>regroup</code>, <code>summarize_each_</code>) that can simplify the programmatic use of <code>dplyr</code> (note programmatic use of <code>data.table</code> is definitely possible, just requires some careful though, substitution/quoting, etc, at least to my knowledge)</li>
+</ul>
+
+Benchmarks
+
+<ul>
+<li>I ran <strong><a href="http://www.brodieg.com/?p=7" rel="noreferrer">my own benchmarks</a></strong> and found both packages to be comparable in "split apply combine" style analysis, except when there are very large numbers of groups (&gt;100K) at which point <code>data.table</code> becomes substantially faster.</li>
+<li>@Arun ran some <strong><a href="https://gist.github.com/arunsrinivasan/db6e1ce05227f120a2c9" rel="noreferrer">benchmarks on joins</a></strong>, showing that <code>data.table</code> scales better than <code>dplyr</code> as the number of groups increase (updated with recent enhancements in both packages and recent version of R).  Also, a benchmark when trying to get <strong><a href="https://stackoverflow.com/questions/23668593/using-fastmatch-package-in-r/23680560?noredirect=1#comment36389040_23680560">unique values</a></strong> has <code>data.table</code> ~6x faster.</li>
+<li>(Unverified) has <code>data.table</code> 75% faster on larger versions of a group/apply/sort while <code>dplyr</code> was 40% faster on the smaller ones (<strong><a href="https://stackoverflow.com/questions/21477525/fast-frequency-and-percentage-table-with-dplyr/">another SO question from comments</a></strong>, thanks danas).</li>
+<li>Matt, the main author of <code>data.table</code>, has <a href="https://github.com/Rdatatable/data.table/wiki/Benchmarks-%3A-Grouping" rel="noreferrer"><strong>benchmarked grouping operations on <code>data.table</code>, <code>dplyr</code> and python <code>pandas</code> on up to 2 billion rows (~100GB in RAM)</strong></a>.</li>
+<li>An <strong><a href="http://www.r-statistics.com/2013/09/a-speed-test-comparison-of-plyr-data-table-and-dplyr/" rel="noreferrer">older benchmark on 80K groups</a></strong> has <code>data.table</code> ~8x faster</li>
+</ul>
+<h3>Data</h3>
+
+<p>This is for the first example I showed in the question section.</p>
+
+<pre><code>dat &lt;- structure(list(id = c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 2L, 2L, 
+2L, 2L, 2L, 2L, 2L, 2L), name = c("Jane", "Jane", "Jane", "Jane", 
+"Jane", "Jane", "Jane", "Jane", "Bob", "Bob", "Bob", "Bob", "Bob", 
+"Bob", "Bob", "Bob"), year = c(1980L, 1981L, 1982L, 1983L, 1984L, 
+1985L, 1986L, 1987L, 1985L, 1986L, 1987L, 1988L, 1989L, 1990L, 
+1991L, 1992L), job = c("Manager", "Manager", "Manager", "Manager", 
+"Manager", "Manager", "Boss", "Boss", "Manager", "Manager", "Manager", 
+"Boss", "Boss", "Boss", "Boss", "Boss"), job2 = c(1L, 1L, 1L, 
+1L, 1L, 1L, 0L, 0L, 1L, 1L, 1L, 0L, 0L, 0L, 0L, 0L)), .Names = c("id", 
+"name", "year", "job", "job2"), class = "data.frame", row.names = c(NA, 
+-16L))
+</code></pre>
+    </div>
+    <div class="post-taglist">
+        <a href="/questions/tagged/r" class="post-tag" title="show questions tagged 'r'" rel="tag">r</a> <a href="/questions/tagged/data.table" class="post-tag" title="show questions tagged 'data.table'" rel="tag">data.table</a> <a href="/questions/tagged/dplyr" class="post-tag" title="show questions tagged 'dplyr'" rel="tag">dplyr</a> 
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/q/21435339" title="short permalink to this question" class="short-link" id="link-post-21435339">share</a><span class="lsep">|</span><a href="/posts/21435339/edit" class="suggest-edit-post" title="">improve this question</a>
+</div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/21435339/revisions" title="show all edits to this post">edited <span title="2017-05-23 12:18:28Z" class="relativetime">May 23 at 12:18</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/-1/community"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/a007be5a61f6aa8f3e85ae2fc18dd66e?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/-1/community">Community</a><span class="mod-flair" title="moderator"><U+2666></span>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span>
+        </div>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info user-hover">
+    <div class="user-action-time">
+        asked <span title="2014-01-29 15:21:45Z" class="relativetime">Jan 29 '14 at 15:21</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/2725969/brodieg"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/dd0ba634b331444f6268c96abb8b8a92?s=32&amp;d=identicon&amp;r=PG&amp;f=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/2725969/brodieg">BrodieG</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 33,758" dir="ltr">33.8k</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="48 silver badges"><span class="badge2"></span><span class="badgecount">48</span></span><span title="79 bronze badges"><span class="badge3"></span><span class="badgecount">79</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</div>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-21435339" class="comments ">
+		    <table><tbody data-remaining-comments-count="21" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-32342937" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">7</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">The solution that's similar in reading to the <code>dplyr</code> one is: <code>as.data.table(dat)[, .SD[job != "Boss" | year == min(year)][, cumjob := cumsum(job2)], by = list(name, job)]</code></span>
+                    <U+2013><U+00A0><a href="/users/817778/eddi" title="37,301 reputation" class="comment-user">eddi</a>
+                <span class="comment-date" dir="ltr"><span title="2014-01-29 16:12:17Z" class="relativetime-clean">Jan 29 '14 at 16:12</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-32343104" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">7</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">For #1 both <code>dplyr</code> and <code>data.table</code> teams are working on benchmarks, so an answer will be there at some point. #2 (syntax) imO is strictly false, but that clearly ventures into opinion territory, so I'm voting to close as well.</span>
+                    <U+2013><U+00A0><a href="/users/817778/eddi" title="37,301 reputation" class="comment-user">eddi</a>
+                <span class="comment-date" dir="ltr"><span title="2014-01-29 16:16:00Z" class="relativetime-clean">Jan 29 '14 at 16:16</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-32343561" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">10</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">well, again imO, the set of problems that are more cleanly expressed in <code>(d)plyr</code> has measure 0</span>
+                    <U+2013><U+00A0><a href="/users/817778/eddi" title="37,301 reputation" class="comment-user">eddi</a>
+                <span class="comment-date" dir="ltr"><span title="2014-01-29 16:26:53Z" class="relativetime-clean">Jan 29 '14 at 16:26</span></span>
+                        <span class="edited-yes" title="this comment was edited 2 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-32355895" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="hot">15</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@BrodieG the one thing that really bugs me about both <code>dplyr</code> and <code>plyr</code> with regards to syntax and is basically the main reason why I dislike their syntax, is that I have to learn way too many (read more than 1) extra functions (with names that <i>still</i> don't make sense for me), remember what they do, what arguments they take, etc. That has always been a huge turn off for me from plyr-philosophy.</span>
+                    <U+2013><U+00A0><a href="/users/817778/eddi" title="37,301 reputation" class="comment-user">eddi</a>
+                <span class="comment-date" dir="ltr"><span title="2014-01-29 21:48:30Z" class="relativetime-clean">Jan 29 '14 at 21:48</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-32357862" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="supernova">31</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@eddi [tongue-in-cheek] the one thing that really bugs me about data.table syntax is that I have to learn how way too many function arguments interact, and what cryptic shortcuts mean (e.g. <code>.SD</code>). [seriously] I think these are legitimate design differences that will appeal to different people</span>
+                    <U+2013><U+00A0><a href="/users/16632/hadley" title="66,061 reputation" class="comment-user">hadley</a>
+                <span class="comment-date" dir="ltr"><span title="2014-01-29 22:53:45Z" class="relativetime-clean">Jan 29 '14 at 22:53</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-21435339" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments."></a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>21</b> more comments</a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+            <div id="answers">
+
+                <a name="tab-top"></a>
+                <div id="answers-header">
+                    <div class="subheader answers-subheader">
+                        <h2>
+                                3 Answers
+                                <span style="display:none;" itemprop="answerCount">3</span>
+                        </h2>
+                        <div>
+                            <div id="tabs">
+        <a href="/questions/21435339/data-table-vs-dplyr-can-one-do-something-well-the-other-cant-or-does-poorly?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+            active</a>
+        <a href="/questions/21435339/data-table-vs-dplyr-can-one-do-something-well-the-other-cant-or-does-poorly?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+            oldest</a>
+        <a class="youarehere" href="/questions/21435339/data-table-vs-dplyr-can-one-do-something-well-the-other-cant-or-does-poorly?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+            votes</a>
+</div>
+                        </div>
+                    </div>    
+                </div>    
+
+
+
+
+  
+<a name="27718317"></a>
+<div id="answer-27718317" class="answer accepted-answer" data-answerid="27718317" itemscope itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="27718317"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">306</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+<div class="bounty-award-container"><span class="bounty-award" title="This answer has been awarded bounties worth 200 reputation by Roland">+200</span></div>
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>We need to cover at least these aspects to provide a comprehensive answer/comparison (in no particular order of importance): <code>Speed</code>, <code>Memory usage</code>, <code>Syntax</code> and <code>Features</code>.</p>
+
+<p>My intent is to cover each one of these as clearly as possible from data.table perspective.</p>
+
+<blockquote>
+  <p>Note: unless explicitly mentioned otherwise, by referring to dplyr, we refer to dplyr's data.frame interface whose internals are in C++ using Rcpp.</p>
+</blockquote>
+
+<hr>
+<p>The data.table syntax is consistent in its form - <code>DT[i, j, by]</code>. To keep <code>i</code>, <code>j</code> and <code>by</code> together is by design. By keeping related operations together, it allows to <em>easily optimise</em> operations for <em>speed</em> and more importantly <em>memory usage</em>, and also provide some <em>powerful features</em>, all while maintaining the consistency in syntax.</p>
+
+<h3>1. Speed</h3>
+
+<p>Quite a few benchmarks (though mostly on grouping operations) have been added to the question already showing data.table gets <em>faster</em> than dplyr as the number of groups and/or rows to group by increase, including <a href="https://github.com/Rdatatable/data.table/wiki/Benchmarks-%3A-Grouping" rel="nofollow noreferrer">benchmarks by Matt</a> on grouping from <em>10 million to 2 billion rows</em> (100GB in RAM) on <em>100 - 10 million groups</em> and varying grouping columns, which also compares <code>pandas</code>.</p>
+
+<p>On benchmarks, it would be great to cover these remaining aspects as well:</p>
+
+<ul>
+<li><p>Grouping operations involving a <em>subset of rows</em> - i.e., <code>DT[x &gt; val, sum(y), by = z]</code> type operations.</p></li>
+<li><p>Benchmark other operations such as <em>update</em> and <em>joins</em>.</p></li>
+<li><p>Also benchmark <em>memory footprint</em> for each operation in addition to runtime.</p></li>
+</ul>
+<h3>2. Memory usage</h3>
+
+<ol>
+<li>
+<p>Operations involving <code>filter()</code> or <code>slice()</code> in dplyr can be memory inefficient (on both data.frames and data.tables). <a href="https://stackoverflow.com/a/27520688/559784">See this post</a>. </p>
+
+<blockquote>
+  <p>Note that <a href="https://stackoverflow.com/questions/27511604/dplyr-on-data-table-am-i-really-using-data-table/27520688#comment43492306_27520688">Hadley's comment</a> talks about <em>speed</em> (that dplyr is plentiful fast for him), whereas the major concern here is <em>memory</em>.</p>
+</blockquote>
+</li>
+<li>
+<p>data.table interface at the moment allows one to modify/update columns <em>by reference</em> (note that we don't need to re-assign the result back to a variable).</p>
+
+<pre><code># sub-assign by reference, updates 'y' in-place
+DT[x &gt;= 1L, y := NA]
+</code></pre>
+
+<p>But dplyr <em>will never</em> update by reference. The dplyr equivalent would be (note that the result needs to be re-assigned):</p>
+
+<pre><code># copies the entire 'y' column
+ans &lt;- DF %&gt;% mutate(y = replace(y, which(x &gt;= 1L), NA))
+</code></pre>
+
+<p>A concern for this is <a href="http://en.wikipedia.org/wiki/Referential_transparency_(computer_science)" rel="nofollow noreferrer"><em>referential transparency</em></a>. Updating a data.table object by reference, especially within a function may not be always desirable. But this is an incredibly useful feature: see <a href="https://stackoverflow.com/a/24070527/559784">this</a> and <a href="https://stackoverflow.com/q/7235657/559784">this</a> posts for interesting cases. And we want to keep it.</p>
+
+<p>Therefore we are working towards exporting <code>shallow()</code> function in data.table that will provide the user with <em>both possibilities</em>. For example, if it is desirable to not modify the input data.table within a function, one can then do:</p>
+
+<pre><code>foo &lt;- function(DT) {
+    DT = shallow(DT)          ## shallow copy DT
+    DT[, newcol := 1L]        ## does not affect the original DT 
+    DT[x &gt; 2L, newcol := 2L]  ## no need to copy (internally), as this column exists only in shallow copied DT
+    DT[x &gt; 2L, x := 3L]       ## have to copy (like base R / dplyr does always); otherwise original DT will 
+                              ## also get modified.
+}
+</code></pre>
+
+<p>By not using <code>shallow()</code>, the old functionality is retained:</p>
+
+<pre><code>bar &lt;- function(DT) {
+    DT[, newcol := 1L]        ## old behaviour, original DT gets updated by reference
+    DT[x &gt; 2L, x := 3L]       ## old behaviour, update column x in original DT.
+}
+</code></pre>
+
+<p>By creating a <em>shallow copy</em> using <code>shallow()</code>, we understand that you don't want to modify the original object. We take care of everything internally to ensure that while also ensuring to copy columns you modify <em>only when it is absolutely necessary</em>. When implemented, this should settle the <em>referential transparency</em> issue altogether while providing the user with both possibilties.</p>
+
+<blockquote>
+  <p>Also, once <code>shallow()</code> is exported dplyr's data.table interface should avoid almost all copies. So those who prefer dplyr's syntax can use it with data.tables.  </p>
+  
+  <p>But it will still lack many features that data.table provides, including (sub)-assignment by reference.</p>
+</blockquote>
+</li>
+<li>
+<p>Aggregate while joining:</p>
+
+<p>Suppose you have two data.tables as follows:</p>
+
+<pre><code>DT1 = data.table(x=c(1,1,1,1,2,2,2,2), y=c("a", "a", "b", "b"), z=1:8, key=c("x", "y"))
+#    x y z
+# 1: 1 a 1
+# 2: 1 a 2
+# 3: 1 b 3
+# 4: 1 b 4
+# 5: 2 a 5
+# 6: 2 a 6
+# 7: 2 b 7
+# 8: 2 b 8
+DT2 = data.table(x=1:2, y=c("a", "b"), mul=4:3, key=c("x", "y"))
+#    x y mul
+# 1: 1 a   4
+# 2: 2 b   3
+</code></pre>
+
+<p>And you would like to get <code>sum(z) * mul</code> for each row in <code>DT2</code> while joining by columns <code>x,y</code>. We can either:</p>
+
+<ul>
+<li>
+<p>1) aggregate <code>DT1</code> to get <code>sum(z)</code>, 2) perform a join and 3) multiply (or)</p>
+
+<pre><code># data.table way
+DT1[, .(z = sum(z)), keyby = .(x,y)][DT2][, z := z*mul][]
+
+# dplyr equivalent
+DF1 %&gt;% group_by(x, y) %&gt;% summarise(z = sum(z)) %&gt;% 
+    right_join(DF2) %&gt;% mutate(z = z * mul)
+</code></pre>
+</li>
+<li>
+<p>2) do it all in one go (using <code>by = .EACHI</code> feature):</p>
+
+<pre><code>DT1[DT2, list(z=sum(z) * mul), by = .EACHI]
+</code></pre>
+</li>
+</ul>
+<p>What is the advantage?</p>
+
+<ul>
+<li><p>We don't have to allocate memory for the intermediate result.</p></li>
+<li><p>We don't have to group/hash twice (one for aggregation and other for joining).</p></li>
+<li><p>And more importantly, the operation what we wanted to perform is clear by looking at <code>j</code> in (2).</p></li>
+</ul>
+<p>Check <a href="https://stackoverflow.com/a/27004566/559784">this post</a> for a detailed explanation of <code>by = .EACHI</code>. No intermediate results are materialised, and the join+aggregate is performed all in one go. </p>
+
+<p>Have a look at <a href="https://stackoverflow.com/a/27061800/559784">this</a>, <a href="https://stackoverflow.com/a/26453795/559784">this</a> and <a href="https://stackoverflow.com/q/27466284/559784">this</a> posts for real usage scenarios.</p>
+
+<p>In <code>dplyr</code> you would have to <a href="https://gist.github.com/arunsrinivasan/b14441829e7f484fdf58" rel="nofollow noreferrer">join and aggregate or aggregate first and then join</a>, neither of which are as efficient, in terms of memory (which in turn translates to speed).</p>
+</li>
+<li>
+<p>Update and joins:</p>
+
+<p>Consider the data.table code shown below:</p>
+
+<pre><code>DT1[DT2, col := i.mul]
+</code></pre>
+
+<p>adds/updates <code>DT1</code>'s column <code>col</code> with <code>mul</code> from <code>DT2</code> on those rows where <code>DT2</code>'s key column matches <code>DT1</code>. I don't think there is an exact equivalent of this operation in <code>dplyr</code>, i.e., without avoiding a <code>*_join</code> operation, which would have to copy the entire <code>DT1</code> just to add a new column to it, which is unnecessary.</p>
+
+<p>Check <a href="https://stackoverflow.com/a/26720434/559784">this post</a> for a real usage scenario. </p>
+</li>
+</ol>
+<blockquote>
+  <p>To summarise, it is important to realise that every bit of optimisation matters. As <a href="http://en.wikipedia.org/wiki/Grace_Hopper" rel="nofollow noreferrer"><strong>Grace Hopper</strong></a> would say, <a href="http://highscalability.com/blog/2012/3/1/grace-hopper-to-programmers-mind-your-nanoseconds.html" rel="nofollow noreferrer"><strong>Mind your nanoseconds</strong></a>!</p>
+</blockquote>
+
+<h3>3. Syntax</h3>
+
+<p>Let's now look at <em>syntax</em>. Hadley commented <a href="https://news.ycombinator.com/item?id=8795778" rel="nofollow noreferrer">here</a>:</p>
+
+<blockquote>
+  <p>Data tables are extremely fast but I think their concision makes it <em>harder to learn</em> and <em>code that uses it is harder to read after you have written it</em> ...</p>
+</blockquote>
+
+<p>I find this remark pointless because it is very subjective. What we can perhaps try is to contrast <em>consistency in syntax</em>. We will compare data.table and dplyr syntax side-by-side. </p>
+
+<p>We will work with the dummy data shown below:</p>
+
+<pre><code>DT = data.table(x=1:10, y=11:20, z=rep(1:2, each=5))
+DF = as.data.frame(DT)
+</code></pre>
+
+<ol>
+<li>
+<p>Basic aggregation/update operations. </p>
+
+<pre><code># case (a)
+DT[, sum(y), by = z]                       ## data.table syntax
+DF %&gt;% group_by(z) %&gt;% summarise(sum(y)) ## dplyr syntax
+DT[, y := cumsum(y), by = z]
+ans &lt;- DF %&gt;% group_by(z) %&gt;% mutate(y = cumsum(y))
+
+# case (b)
+DT[x &gt; 2, sum(y), by = z]
+DF %&gt;% filter(x&gt;2) %&gt;% group_by(z) %&gt;% summarise(sum(y))
+DT[x &gt; 2, y := cumsum(y), by = z]
+ans &lt;- DF %&gt;% group_by(z) %&gt;% mutate(y = replace(y, which(x &gt; 2), cumsum(y)))
+
+# case (c)
+DT[, if(any(x &gt; 5L)) y[1L]-y[2L] else y[2L], by = z]
+DF %&gt;% group_by(z) %&gt;% summarise(if (any(x &gt; 5L)) y[1L] - y[2L] else y[2L])
+DT[, if(any(x &gt; 5L)) y[1L] - y[2L], by = z]
+DF %&gt;% group_by(z) %&gt;% filter(any(x &gt; 5L)) %&gt;% summarise(y[1L] - y[2L])
+</code></pre>
+
+<ul>
+<li><p>data.table syntax is compact and dplyr's quite verbose. Things are more or less equivalent in case (a). </p></li>
+<li>
+<p>In case (b), we had to use <code>filter()</code> in dplyr while <em>summarising</em>. But while <em>updating</em>, we had to move the logic inside <code>mutate()</code>. In data.table however, we express both operations with the same logic - operate on rows where <code>x &gt; 2</code>, but in first case, get <code>sum(y)</code>, whereas in the second case update those rows for <code>y</code> with its cumulative sum.</p>
+
+<p>This is what we mean when we say the <code>DT[i, j, by]</code> form <em>is consistent</em>.</p>
+</li>
+<li>
+<p>Similarly in case (c), when we have <code>if-else</code> condition, we are able to express the logic <em>"as-is"</em> in both data.table and dplyr. However, if we would like to return just those rows where the <code>if</code> condition satisfies and skip otherwise, we cannot use <code>summarise()</code> directly (AFAICT). We have to <code>filter()</code> first and then summarise because <code>summarise()</code> always expects a <em>single value</em>. </p>
+
+<p>While it returns the same result, using <code>filter()</code> here makes the actual operation less obvious.</p>
+
+<p>It might very well be possible to use <code>filter()</code> in the first case as well (does not seem obvious to me), but my point is that we should not have to.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Aggregation / update on multiple columns</p>
+
+<pre><code># case (a)
+DT[, lapply(.SD, sum), by = z]                     ## data.table syntax
+DF %&gt;% group_by(z) %&gt;% summarise_each(funs(sum)) ## dplyr syntax
+DT[, (cols) := lapply(.SD, sum), by = z]
+ans &lt;- DF %&gt;% group_by(z) %&gt;% mutate_each(funs(sum))
+
+# case (b)
+DT[, c(lapply(.SD, sum), lapply(.SD, mean)), by = z]
+DF %&gt;% group_by(z) %&gt;% summarise_each(funs(sum, mean))
+
+# case (c)
+DT[, c(.N, lapply(.SD, sum)), by = z]     
+DF %&gt;% group_by(z) %&gt;% summarise_each(funs(n(), mean))
+</code></pre>
+
+<ul>
+<li><p>In case (a), the codes are more or less equivalent. data.table uses familiar base function <code>lapply()</code>, whereas <code>dplyr</code> introduces <code>*_each()</code> along with a bunch of functions to <code>funs()</code>. </p></li>
+<li><p>data.table's <code>:=</code> requires column names to be provided, whereas dplyr generates it automatically.</p></li>
+<li><p>In case (b), dplyr's syntax is relatively straightforward. Improving aggregations/updates on multiple functions is on data.table's list.</p></li>
+<li><p>In case (c) though, dplyr would return <code>n()</code> as many times as many columns, instead of just once. In data.table, all we need to do is to return a list in <code>j</code>. Each element of the list will become a column in the result. So, we can use, once again, the familiar base function <code>c()</code> to concatenate <code>.N</code> to a <code>list</code> which returns a <code>list</code>.</p></li>
+</ul>
+<blockquote>
+  <p>Note: Once again, in data.table, all we need to do is return a list in <code>j</code>. Each element of the list will become a column in result. You can use <code>c()</code>, <code>as.list()</code>, <code>lapply()</code>, <code>list()</code> etc... base functions to accomplish this, without having to learn any new functions.</p>
+  
+  <p>You will need to learn just the special variables - <code>.N</code> and <code>.SD</code> at least. The equivalent in dplyr are <code>n()</code> and <code>.</code></p>
+</blockquote>
+</li>
+<li>
+<p>Joins</p>
+
+<p>dplyr provides separate functions for each type of join where as data.table allows joins using the same syntax <code>DT[i, j, by]</code> (and with reason). It also provides an equivalent <code>merge.data.table()</code> function as an alternative.</p>
+
+<pre><code>setkey(DT1, x, y)
+
+# 1. normal join
+DT1[DT2]            ## data.table syntax
+left_join(DT2, DT1) ## dplyr syntax
+
+# 2. select columns while join    
+DT1[DT2, .(z, i.mul)]
+left_join(select(DT2, x, y, mul), select(DT1, x, y, z))
+
+# 3. aggregate while join
+DT1[DT2, .(sum(z) * i.mul), by = .EACHI]
+DF1 %&gt;% group_by(x, y) %&gt;% summarise(z = sum(z)) %&gt;% 
+    inner_join(DF2) %&gt;% mutate(z = z*mul) %&gt;% select(-mul)
+
+# 4. update while join
+DT1[DT2, z := cumsum(z) * i.mul, by = .EACHI]
+??
+
+# 5. rolling join
+DT1[DT2, roll = -Inf]
+??
+
+# 6. other arguments to control output
+DT1[DT2, mult = "first"]
+??
+</code></pre>
+
+<ul>
+<li><p>Some might find a separate function for each joins much nicer (left, right, inner, anti, semi etc), whereas as others might like data.table's <code>DT[i, j, by]</code>, or <code>merge()</code> which is similar to base R. </p></li>
+<li><p>However dplyr joins do just that. Nothing more. Nothing less. </p></li>
+<li><p>data.tables can select columns while joining (2), and in dplyr you will need to <code>select()</code> first on both data.frames before to join as shown above. Otherwise you would materialiase the join with unnecessary columns only to remove them later and that is inefficient.</p></li>
+<li><p>data.tables can <em>aggregate while joining</em> (3) and also <em>update while joining</em> (4), using <code>by = .EACHI</code> feature. Why materialse the entire join result to add/update just a few columns?</p></li>
+<li><p>data.table is capable of <em>rolling joins</em> (5) - roll <a href="https://stackoverflow.com/a/18915708/559784">forward, LOCF</a>, <a href="https://stackoverflow.com/a/23342851/559784">roll backward, NOCB</a>, <a href="https://stackoverflow.com/a/27763960/559784">nearest</a>.</p></li>
+<li><p>data.table also has <code>mult =</code> argument which selects <em>first</em>, <em>last</em> or <em>all</em> matches (6).</p></li>
+<li><p>data.table has <a href="https://stackoverflow.com/a/23087759/559784"><code>allow.cartesian = TRUE</code></a> argument to protect from accidental invalid joins.</p></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+  <p>Once again, the syntax is consistent with <code>DT[i, j, by]</code> with additional arguments allowing for controlling the output further.</p>
+</blockquote>
+
+<ol start="4">
+<li>
+<p><code>do()</code>...</p>
+
+<p>dplyr's summarise is specially designed for functions that return a single value. If your function returns multiple/unequal values, you will have to resort to <code>do()</code>. You have to know beforehand about all your functions return value. </p>
+
+<pre><code>DT[, list(x[1], y[1]), by = z]                 ## data.table syntax
+DF %&gt;% group_by(z) %&gt;% summarise(x[1], y[1]) ## dplyr syntax
+DT[, list(x[1:2], y[1]), by = z]
+DF %&gt;% group_by(z) %&gt;% do(data.frame(.$x[1:2], .$y[1]))
+
+DT[, quantile(x, 0.25), by = z]
+DF %&gt;% group_by(z) %&gt;% summarise(quantile(x, 0.25))
+DT[, quantile(x, c(0.25, 0.75)), by = z]
+DF %&gt;% group_by(z) %&gt;% do(data.frame(quantile(.$x, c(0.25, 0.75))))
+
+DT[, as.list(summary(x)), by = z]
+DF %&gt;% group_by(z) %&gt;% do(data.frame(as.list(summary(.$x))))
+</code></pre>
+
+<ul>
+<li><p><code>.SD</code>'s equivalent is <code>.</code></p></li>
+<li><p>In data.table, you can throw pretty much anything in <code>j</code> - the only thing to remember is for it to return a list so that each element of the list gets converted to a column.</p></li>
+<li><p>In dplyr, cannot do that. Have to resort to <code>do()</code> depending on how sure you are as to whether your function would always return a single value. And it is quite slow. </p></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+  <p>Once again, data.table's syntax is consistent with <code>DT[i, j, by]</code>. We can just keep throwing expressions in <code>j</code> without having to worry about these things.</p>
+</blockquote>
+
+<p>Have a look at <a href="https://stackoverflow.com/q/27695278/559784">this SO question</a> and <a href="https://stackoverflow.com/q/16878905/559784">this one</a>. I wonder if it would be possible to express the answer as straightforward using dplyr's syntax...</p>
+
+<blockquote>
+  <p>To summarise, I have particularly highlighted <em>several</em> instances where dplyr's syntax is either inefficient, limited or fails to make operations straightforward. This is particularly because data.table gets quite a bit of backlash about "harder to read/learn" syntax (like the one pasted/linked above). Most posts that cover dplyr talk about most straightforward operations. And that is great. But it is important to realise its syntax and feature limitations as well, and I am yet to see a post on it.</p>
+  
+  <p>data.table has its quirks as well (some of which I have pointed out that we are attempting to fix). We are also attempting to improve data.table's joins as I have highlighted <a href="https://stackoverflow.com/a/27615377/559784">here</a>. </p>
+  
+  <p>But one should also consider the number of features that dplyr lacks in comparison to data.table.</p>
+</blockquote>
+
+<h3>4. Features</h3>
+
+<p>I have pointed out most of the features <a href="https://stackoverflow.com/a/27520688/559784">here</a> and also in this post. In addition:</p>
+
+<ul>
+<li><p><strong>fread</strong> - fast file reader has been available for a long time now.</p></li>
+<li><p><strong>fwrite</strong> - NEW in the current devel, v1.9.7, a <em>parallelised</em> fast file writer is now available. See <a href="http://blog.h2o.ai/2016/04/fast-csv-writing-for-r/" rel="nofollow noreferrer">this post</a> for a detailed explanation on the implementation and <a href="https://github.com/Rdatatable/data.table/issues/1664" rel="nofollow noreferrer">#1664</a> for keeping track of further developments.</p></li>
+<li><p><a href="https://gist.github.com/arunsrinivasan/dacb9d1cac301de8d9ff" rel="nofollow noreferrer">Automatic indexing</a> - another handy feature to optimise base R syntax as is, internally.</p></li>
+<li><p><strong>Ad-hoc grouping</strong>: <code>dplyr</code> automatically sorts the results by grouping variables during <code>summarise()</code>, which may not be always desirable.</p></li>
+<li><p>Numerous advantages in data.table joins (for speed / memory efficiency and syntax) mentioned above.</p></li>
+<li><p><strong>Non-equi joins</strong>: is a NEW feature available from v1.9.7+. It allows joins using other operators <code>&lt;=, &lt;, &gt;, &gt;=</code> along with all other advantages of data.table joins.</p></li>
+<li><p><a href="https://github.com/Rdatatable/data.table/wiki/talks/EARL2014_OverlapRangeJoin_Arun.pdf" rel="nofollow noreferrer">Overlapping range joins</a> was implemented in data.table recently. Check <a href="https://stackoverflow.com/a/25655497/559784">this post</a> for an overview with benchmarks. </p></li>
+<li><p><code>setorder()</code> function in data.table that allows really fast reordering of data.tables by reference.</p></li>
+<li><p>dplyr provides <a href="http://cran.r-project.org/web/packages/dplyr/vignettes/databases.html" rel="nofollow noreferrer">interface to databases</a> using the same syntax, which data.table does not at the moment.</p></li>
+<li><p><code>data.table</code> provides faster equivalents of <em>set operations</em> from v1.9.7+ (written by Jan Gorecki) - <code>fsetdiff</code>, <code>fintersect</code>, <code>funion</code> and <code>fsetequal</code> with additional <code>all</code> argument (as in SQL).</p></li>
+<li><p>data.table loads cleanly with no masking warnings and has a mechanism described <a href="https://stackoverflow.com/a/10529888/403310">here</a> for <code>[.data.frame</code> compatibility when passed to any R package. dplyr changes base functions <code>filter</code>, <code>lag</code> and <code>[</code> which can cause problems; e.g. <a href="https://stackoverflow.com/a/35057612/403310">here</a> and <a href="https://stackoverflow.com/a/35329418/403310">here</a>.</p></li>
+</ul>
+<hr>
+<p>Finally:</p>
+
+<ul>
+<li><p>On databases - there is no reason why data.table cannot provide similar interface, but this is not a priority now. It might get bumped up if users would very much like that feature.. not sure.</p></li>
+<li>
+<p>On parallelism - Everything is difficult, until someone goes ahead and does it. Of course it will take effort (being thread safe). </p>
+
+<ul>
+<li>Progress is being made currently (in v1.9.7 devel) towards parallelising known time consuming parts for incremental performance gains using <code>OpenMP</code>.</li>
+</ul>
+</li>
+</ul>
+</div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/27718317" title="short permalink to this answer" class="short-link" id="link-post-27718317">share</a><span class="lsep">|</span><a href="/posts/27718317/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/27718317/revisions" title="show all edits to this post">edited <span title="2017-10-12 08:15:30Z" class="relativetime">Oct 12 at 8:15</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info">
+    <div class="user-details">
+        <span class="community-wiki" title="This post is community owned as of Dec 31 '14 at 8:27. Votes do not generate reputation, and it can be edited by users with 100 rep">
+            community wiki
+        </span>
+    </div>
+<br><div class="user-details">
+        <a id="history-27718317" href="/posts/27718317/revisions" title="show revision history for this post">
+        26 revs, 4 users 93%<br></a><a href="/users/559784">Arun</a>
+        
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-27718317" class="comments ">
+		    <table><tbody data-remaining-comments-count="11" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-43856204" class="comment ">
+<td>
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <U+00A0><U+00A0>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">... So what you're doing (somewhat implicitly) is a subset of rows and that's what <code>filter</code> is made for, in dplyr.</span>
+                    <U+2013><U+00A0><a href="/users/3521006/docendo-discimus" title="40,259 reputation" class="comment-user">docendo discimus</a>
+                <span class="comment-date" dir="ltr"><span title="2014-12-31 14:09:54Z" class="relativetime-clean">Dec 31 '14 at 14:09</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-43986063" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">6</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@bluefeet: I don't think you did the rest of us any great service by moving that discussion to chat. I was under the impression that Arun was one of the developers and this might have resulted in useful insights.</span>
+                    <U+2013><U+00A0><a href="/users/1855677/42" title="185,553 reputation" class="comment-user">42-</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-05 21:20:06Z" class="relativetime-clean">Jan 5 '15 at 21:20</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-43986694" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">When I went to chat using your link, it appeared that all of the material following the comment starting "You should use a filter".. was gone. Am I missing something about the SO-chat mechanism?</span>
+                    <U+2013><U+00A0><a href="/users/1855677/42" title="185,553 reputation" class="comment-user">42-</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-05 21:39:03Z" class="relativetime-clean">Jan 5 '15 at 21:39</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-44050978" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">5</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I think that every where where you are using assignment by reference (<code>:=</code>), <code>dplyr</code> equivalent should be also using <code>&lt;-</code> as in <code>DF &lt;- DF %&gt;% mutate...</code> instead of just <code>DF %&gt;% mutate...</code></span>
+                    <U+2013><U+00A0><a href="/users/3001626/david-arenburg" title="70,704 reputation" class="comment-user">David Arenburg</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-07 15:21:29Z" class="relativetime-clean">Jan 7 '15 at 15:21</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-44297003" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">3</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Regarding the syntax. I believe the <code>dplyr</code> can be easier for users who used to <code>plyr</code> syntax, but <code>data.table</code> can be easier for users who used to query languages syntax like <code>SQL</code>, and the relational algebra behind it, which is all about the tabular data transformation. @Arun you should note that <b>set operators</b> are very easy do-able by wrapping <code>data.table</code> function and of course brings significant speedup.</span>
+                    <U+2013><U+00A0><a href="/users/2490497/jangorecki" title="6,509 reputation" class="comment-user">jangorecki</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-14 19:33:26Z" class="relativetime-clean">Jan 14 '15 at 19:33</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-27718317" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh."></a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>11</b> more comments</a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+<div id="dfp-mlb" class="everyonelovesstackoverflow"></div>
+  
+<a name="27840349"></a>
+<div id="answer-27840349" class="answer" data-answerid="27840349" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="27840349"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">257</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Here's my attempt at a comprehensive answer from the dplyr perspective,
+following the broad outline of Arun's answer (but somewhat rearranged
+based on differing priorities).</p>
+
+<h2>Syntax</h2>
+
+<p>There is some subjectivity to syntax, but I stand by my statement that
+the concision of data.table makes it harder to learn and harder to read.
+This is partly because dplyr is solving a much easier problem!</p>
+
+<p>One really important thing that dplyr does for you is that it
+<em>constrains</em> your options. I claim that most single table problems can
+be solved with just five key verbs filter, select, mutate, arrange and
+summarise, along with "by group" adverb. That constraint is big help
+when you're learning data manipulation, because it helps order your
+thinking about the problem. In dplyr, each of these verbs is mapped to a
+single function. Each function does one job, and is easy to understand
+in isolation.</p>
+
+<p>You create complexity by piping these simple operations together with
+<code>%&gt;%</code>. Here's an example from one of the posts Arun <a href="https://stackoverflow.com/questions/27511604/">linked
+to</a>:</p>
+
+<pre><code>diamonds %&gt;%
+  filter(cut != "Fair") %&gt;%
+  group_by(cut) %&gt;%
+  summarize(
+    AvgPrice = mean(price),
+    MedianPrice = as.numeric(median(price)),
+    Count = n()
+  ) %&gt;%
+  arrange(desc(Count))
+</code></pre>
+
+<p>Even if you've never seen dplyr before (or even R!), you can still get
+the gist of what's happening because the functions are all English
+verbs. The disadvantage of English verbs is that they require more typing than
+<code>[</code>, but I think that can be largely mitigated by better autocomplete.</p>
+
+<p>Here's the equivalent data.table code:</p>
+
+<pre><code>diamondsDT &lt;- data.table(diamonds)
+diamondsDT[
+  cut != "Fair", 
+  .(AvgPrice = mean(price),
+    MedianPrice = as.numeric(median(price)),
+    Count = .N
+  ), 
+  by = cut
+][ 
+  order(-Count) 
+]
+</code></pre>
+
+<p>It's harder to follow this code unless you're already familiar with
+data.table. (I also couldn't figure out how to indent the repeated <code>[</code>
+in a way that looks good to my eye). Personally, when I look at code I
+wrote 6 months ago, it's like looking at a code written by a stranger,
+so I've come to prefer straightforward, if verbose, code.</p>
+
+<p>Two other minor factors that I think slightly decrease readibility:</p>
+
+<ul>
+<li><p>Since almost every data table operation uses <code>[</code> you need additional
+context to figure out what's happening. For example, is <code>x[y]</code>
+joining two data tables or extracting columns from a data frame?
+This is only a small issue, because in well-written code the
+variable names should suggest what's happening.</p></li>
+<li><p>I like that <code>group_by()</code> is a separate operation in dplyr. It
+fundamentally changes the computation so I think should be obvious
+when skimming the code, and it's easier to spot <code>group_by()</code> than
+the <code>by</code> argument to <code>[.data.table</code>.</p></li>
+</ul>
+<p>I also like that the <a href="https://github.com/smbache/magrittr" rel="noreferrer">the pipe</a>
+isn't just limited to just one package. You can start by tidying your
+data with
+<a href="http://blog.rstudio.org/2014/07/22/introducing-tidyr/" rel="noreferrer">tidyr</a>, and
+finish up with a plot in <a href="http://ggvis.rstudio.com" rel="noreferrer">ggvis</a>. And you're
+not limited to the packages that I write - anyone can write a function
+that forms a seamless part of a data manipulation pipe. In fact, I
+rather prefer the previous data.table code rewritten with <code>%&gt;%</code>:</p>
+
+<pre><code>diamonds %&gt;% 
+  data.table() %&gt;% 
+  .[cut != "Fair", 
+    .(AvgPrice = mean(price),
+      MedianPrice = as.numeric(median(price)),
+      Count = .N
+    ), 
+    by = cut
+  ] %&gt;% 
+  .[order(-Count)]
+</code></pre>
+
+<p>And the idea of piping with <code>%&gt;%</code> is not limited to just data frames and
+is easily generalised to other contexts: <a href="http://rstudio.github.io/dygraphs/" rel="noreferrer">interactive web
+graphics</a>, <a href="https://github.com/hadley/rvest" rel="noreferrer">web
+scraping</a>,
+<a href="https://github.com/ropensci/gistr" rel="noreferrer">gists</a>, <a href="https://github.com/smbache/ensurer" rel="noreferrer">run-time
+contracts</a>, ...)</p>
+
+<h2>Memory and performance</h2>
+
+<p>I've lumped these together, because, to me, they're not that important.
+Most R users work with well under 1 million rows of data, and dplyr is
+sufficiently fast enough for that size of data that you're not aware of
+processing time. We optimise dplyr for expressiveness on medium data;
+feel free to use data.table for raw speed on bigger data.</p>
+
+<p>The flexibilty of dplyr also means that you can easily tweak performance
+characteristcs using the same syntax. If the performance of dplyr with
+the data frame backend is not good enough for you, you can use the
+data.table backend (albeit a somewhat restricted set of functionality).
+If the data you're working with doesn't fit in memory, then you can use
+a database backend.</p>
+
+<p>All that said, dplyr performance will get better in the long-term. We'll
+definitely implement some of the great ideas of data.table like radix
+ordering and using the same index for joins &amp; filters. We're also
+working on parallelisation so we can take advantage of multiple cores.</p>
+
+<h2>Features</h2>
+
+<p>A few things that we're planning to work on in 2015:</p>
+
+<ul>
+<li><p>the fastread package, to make it easy to get files off disk and in
+to memory, analgous to <code>fread()</code>.</p></li>
+<li><p>More flexible joins, including support for non-equi-joins.</p></li>
+<li><p>More flexible grouping like bootstrap samples, rollups and more</p></li>
+</ul>
+<p>I'm also investing time into improving R's <a href="https://github.com/rstats-db/DBI" rel="noreferrer">database
+connectors</a>, the ability to talk to
+<a href="https://github.com/hadley/httr" rel="noreferrer">web apis</a>, and making it easier to
+<a href="https://github.com/hadley/rvest" rel="noreferrer">scrape html pages</a>.</p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/27840349" title="short permalink to this answer" class="short-link" id="link-post-27840349">share</a><span class="lsep">|</span><a href="/posts/27840349/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/27840349/revisions" title="show all edits to this post">edited <span title="2017-05-23 12:26:36Z" class="relativetime">May 23 at 12:26</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/-1/community"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/a007be5a61f6aa8f3e85ae2fc18dd66e?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/-1/community">Community</a><span class="mod-flair" title="moderator"><U+2666></span>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2015-01-08 12:39:02Z" class="relativetime">Jan 8 '15 at 12:39</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/16632/hadley"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/7ba164f40a50bc23dbb2aa825fb7bc16?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/16632/hadley">hadley</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score 66,061" dir="ltr">66.1k</span><span title="17 gold badges"><span class="badge1"></span><span class="badgecount">17</span></span><span title="131 silver badges"><span class="badge2"></span><span class="badgecount">131</span></span><span title="196 bronze badges"><span class="badge3"></span><span class="badgecount">196</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-27840349" class="comments ">
+		    <table><tbody data-remaining-comments-count="8" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-44084764" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="hot">18</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Just a side note, I do agree with many of your arguments (although I prefer the <code>data.table</code> syntax myself), but you can easily use <code>%&gt;%</code> in order to pipe <code>data.table</code> operations if you don't like <code>[</code> style. <code>%&gt;%</code> is not specific to <code>dplyr</code>, rather comes from a separate package (which you happen to be the co-author of too), so I'm not sure I understand what are you trying to say in most of your <b>Syntax</b> paragraph.</span>
+                    <U+2013><U+00A0><a href="/users/3001626/david-arenburg" title="70,704 reputation" class="comment-user">David Arenburg</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-08 12:54:57Z" class="relativetime-clean">Jan 8 '15 at 12:54</span></span>
+                        <span class="edited-yes" title="this comment was edited 3 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-44086110" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">7</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@DavidArenburg good point. I've re-written syntax to hopefully make more clear what my main points are, and to highlight that you can use <code>%&gt;%</code> with data.table</span>
+                    <U+2013><U+00A0><a href="/users/16632/hadley" title="66,061 reputation" class="comment-user">hadley</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-08 13:28:22Z" class="relativetime-clean">Jan 8 '15 at 13:28</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-44086572" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">5</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Thanks Hadley, this is a useful perspective.  Re indenting I typically do <code>DT[\n\texpression\n][\texpression\n]</code> (<b><a href="https://gist.github.com/brodieG/85271ef3de82509ad036" rel="nofollow noreferrer">gist</a></b>) which actually works pretty well.  I'm keeping Arun's answer as the answer as he more directly answers my specific questions which are not so much about the accessibility of syntax, but I think this a good answer for people trying to get a general feel for the differences / commonalities between <code>dplyr</code> and <code>data.table</code>.</span>
+                    <U+2013><U+00A0><a href="/users/2725969/brodieg" title="33,758 reputation" class="comment-user owner">BrodieG</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-08 13:39:29Z" class="relativetime-clean">Jan 8 '15 at 13:39</span></span>
+                        <span class="edited-yes" title="this comment was edited 3 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-44751223" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="hot">19</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Why working on fastread when there is already <code>fread()</code>? Wouldn't time be spent better on improving fread() or working on other (underdeveloped) things?</span>
+                    <U+2013><U+00A0><a href="/users/511399/edi" title="9,282 reputation" class="comment-user">EDi</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-28 12:17:19Z" class="relativetime-clean">Jan 28 '15 at 12:17</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-55449254" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">8</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Anecdote about syntax preferences. Our firm has recently had around half a dozen new analysts come on board. They were complete novices in R and were introduced to it by some old-hands (with around 3+ years' experience). It took them about 1-2 weeks to use <code>dplyr</code> without supervision. The old-hands still come asking about <code>data.table</code> syntax...</span>
+                    <U+2013><U+00A0><a href="/users/1664978/hugh" title="4,679 reputation" class="comment-user">Hugh</a>
+                <span class="comment-date" dir="ltr"><span title="2015-11-21 10:42:18Z" class="relativetime-clean">Nov 21 '15 at 10:42</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-27840349" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh."></a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>8</b> more comments</a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+
+  
+<a name="26962904"></a>
+<div id="answer-26962904" class="answer" data-answerid="26962904" itemscope itemtype="http://schema.org/Answer">
+    <table>
+<tr>
+<td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="26962904"><a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">37</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<h2>In direct response to the <em>Question Title</em>...</h2>
+
+<h3>
+<code>dplyr</code> <em>definitely</em> does things that <code>data.table</code> can not.</h3>
+
+<p>Your point #3</p>
+
+<blockquote>
+  <p>dplyr abstracts (or will) potential DB interactions</p>
+</blockquote>
+
+<p>is a direct answer to your own question but isn't elevated to a high enough level. <code>dplyr</code> is truly an extendable front-end to multiple data storage mechanisms where as <code>data.table</code> is an extension to a single one.</p>
+
+<p>Look at <code>dplyr</code> as a back-end agnostic interface, with all of the targets using the same grammer, where you can extend the targets and handlers at will. <code>data.table</code> is, from the <code>dplyr</code> perspective, one of those targets.</p>
+
+<p>You will never (I hope) see a day that <code>data.table</code> attempts to translate your queries to create SQL statements that operate with on-disk or networked data stores.</p>
+
+<h3><em><code>dplyr</code> can possibly do things <code>data.table</code> will not or might not do as well.</em></h3>
+
+<p>Based on the design of working in-memory, <code>data.table</code> could have a much more difficult time extending itself into parallel processing of queries than <code>dplyr</code>.</p>
+
+<hr>
+<h2>In response to the in-body questions...</h2>
+
+<h3><em>Usage</em></h3>
+
+<blockquote>
+  <p><sub><sup>Are there analytical tasks that are a lot easier to code with one or the other package <em>for people familiar with the packages</em> (i.e. some combination of keystrokes required vs. required level of esotericism, where less of each is a good thing).</sup></sub></p>
+</blockquote>
+
+<p>This may seem like a punt but the real answer is no. People <em>familiar</em> with tools seem to use the either the one most familiar to them or the one that is actually the right one for the job at hand. With that being said, sometimes you want to present a particular readability, sometimes a level of performance, and when you have need for a high enough level of both you may just need another tool to go along with what you already have to make clearer abstractions.</p>
+
+<h3><em>Performance</em></h3>
+
+<blockquote>
+  <p><sup><sub>Are there analytical tasks that are performed substantially (i.e. more than 2x) more efficiently in one package vs. another.</sub></sup></p>
+</blockquote>
+
+<p>Again, no.  <code>data.table</code> excels at being efficient in everything <em>it</em> does where <code>dplyr</code> gets the burden of being limited in some respects to the underlying data store and registered handlers.</p>
+
+<p>This means when you run into a performance issue with <code>data.table</code> you can be pretty sure it is in your query function and if it <em>is</em> actually a bottleneck with <code>data.table</code> then you've won yourself the joy of filing a report. This is also true when <code>dplyr</code> is using <code>data.table</code> as the back-end; you <em>may</em> see <em>some</em> overhead from <code>dplyr</code> but odds are it is your query.</p>
+
+<p>When <code>dplyr</code> has performance issues with back-ends you can get around them by registering a function for hybrid evaluation or (in the case of databases) manipulating the generated query prior to execution.</p>
+
+<p>Also see the accepted answer to <a href="https://stackoverflow.com/questions/16153947/when-is-plyr-better-than-data-table/16154157#16154157">when is plyr better than data.table?</a></p>
+    </div>
+    <table class="fw"><tr>
+<td class="vt">
+<div class="post-menu">
+<a href="/a/26962904" title="short permalink to this answer" class="short-link" id="link-post-26962904">share</a><span class="lsep">|</span><a href="/posts/26962904/edit" class="suggest-edit-post" title="">improve this answer</a>
+</div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/26962904/revisions" title="show all edits to this post">edited <span title="2017-05-23 12:02:56Z" class="relativetime">May 23 at 12:02</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/-1/community"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/a007be5a61f6aa8f3e85ae2fc18dd66e?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/-1/community">Community</a><span class="mod-flair" title="moderator"><U+2666></span>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">1</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2014-11-16 22:39:36Z" class="relativetime">Nov 16 '14 at 22:39</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/173985/thell"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/b3b8b941e18e9fb3cf7fae49e71f718c?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/173985/thell">Thell</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">4,828</span><span title="22 silver badges"><span class="badge2"></span><span class="badgecount">22</span></span><span title="52 bronze badges"><span class="badge3"></span><span class="badgecount">52</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr></table>
+</td>
+        </tr>
+<tr>
+<td class="votecell"></td>
+    <td>
+	    <div id="comments-26962904" class="comments ">
+		    <table><tbody data-remaining-comments-count="2" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+<tr id="comment-43200181" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Cant dplyr wrap a data.table with tbl_dt? Why not just get the best of both worlds?</span>
+                    <U+2013><U+00A0><a href="/users/150050/aaa90210" title="2,754 reputation" class="comment-user">aaa90210</a>
+                <span class="comment-date" dir="ltr"><span title="2014-12-09 09:08:49Z" class="relativetime-clean">Dec 9 '14 at 9:08</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-43977178" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="warm">13</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">You forget to mention the reverse statement <i>"data.table definitely does things that dplyr can not"</i> which is also true.</span>
+                    <U+2013><U+00A0><a href="/users/2490497/jangorecki" title="6,509 reputation" class="comment-user">jangorecki</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-05 16:26:37Z" class="relativetime-clean">Jan 5 '15 at 16:26</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-43983344" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="hot">21</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Arun answer explains it well. Most important (in terms of performance) would be fread, update by reference, rolling joins, overlapping joins. I believe there are no any package (not only dplyr) which can compete with those features. A nice example can be last slide from <a href="https://github.com/Rdatatable/data.table/wiki/talks/EARL2014_OverlapRangeJoin_Arun.pdf" rel="nofollow noreferrer">this</a> presentation.</span>
+                    <U+2013><U+00A0><a href="/users/2490497/jangorecki" title="6,509 reputation" class="comment-user">jangorecki</a>
+                <span class="comment-date" dir="ltr"><span title="2015-01-05 19:46:42Z" class="relativetime-clean">Jan 5 '15 at 19:46</span></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-69060748" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">3</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Totally, data.table is why I still use R. Otherwise I'd would use pandas. It's even better/faster than pandas.</span>
+                    <U+2013><U+00A0><a href="/users/2238226/marbel" title="3,779 reputation" class="comment-user">marbel</a>
+                <span class="comment-date" dir="ltr"><span title="2016-12-02 04:01:37Z" class="relativetime-clean">Dec 2 '16 at 4:01</span></span>
+                        <span class="edited-yes" title="this comment was edited 2 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+<tr id="comment-70007800" class="comment ">
+<td class="comment-actions">
+            <table><tbody><tr>
+<td class=" comment-score">
+                                <span title="number of 'useful comment' votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                <U+00A0>
+                        </td>
+                    </tr></tbody></table>
+</td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I like data.table because of its simplicity and resemblance to SQL syntax structure. My job involves doing very intense ad hoc data analysis and graphics everyday for statistical modeling, and I really need tool simple enough to do complicated things. Now I can reduce my toolkit to only data.table for data and lattice for graph in my everyday job. Give an example I can even do operations like this: $DT[group==1,y_hat:=predict(fit1,data=.SD),]$, which is really neat and I consider it as an great advantage from SQL in classic R environment.</span>
+                    <U+2013><U+00A0><a href="/users/1687200/xappppp" title="88 reputation" class="comment-user">xappppp</a>
+                <span class="comment-date" dir="ltr"><span title="2016-12-30 21:06:16Z" class="relativetime-clean">Dec 30 '16 at 21:06</span></span>
+                        <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+</tbody></table>
+</div>
+
+        <div id="comments-link-26962904" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like Åg+1Åh or ÅgthanksÅh."></a><span class="js-link-separator dno"><U+00A0>|<U+00A0></span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>2</b> more comments</a>
+        </div>         
+    </td>
+</tr>
+</table>
+</div>
+                    <div class="question-status">
+        <h2>                    <b>protected</b> by <a href="/users/3001626/david-arenburg">David Arenburg</a> <span dir="ltr"><span title="2015-01-12 09:47:27Z" class="relativetime">Jan 12 '15 at 9:47</span></span>
+</h2>
+        <p>
+Thank you for your interest in this question. 
+Because it has attracted low-quality or spam answers that had to be removed, posting an answer now requires 10 <a href="/help/whats-reputation">reputation</a> on this site (the <a href="/help/privileges/new-user">association bonus does not count</a>).
+<br><br>
+Would you like to answer one of these <a href="/unanswered?fromProtectedNotice=true">unanswered questions</a> instead?
+</p>
+    </div>
+
+
+
+
+
+                        <h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?                            Browse other questions tagged <a href="/questions/tagged/r" class="post-tag" title="show questions tagged 'r'" rel="tag">r</a> <a href="/questions/tagged/data.table" class="post-tag" title="show questions tagged 'data.table'" rel="tag">data.table</a> <a href="/questions/tagged/dplyr" class="post-tag" title="show questions tagged 'dplyr'" rel="tag">dplyr</a>  or <a href="/questions/ask">ask your own question</a>.                        </h2>
+            </div>
+        </div>
+                <div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">
+                            <div class="module question-stats">
+                    <table id="qinfo">
+<tr>
+<td>
+                                <p class="label-key">asked</p>
+                            </td>
+                            <td style="padding-left: 10px">
+                                <p class="label-key" title="2014-01-29 15:21:45Z"><b>3 years, 8 months ago</b></p>
+                            </td>
+                        </tr>
+<tr>
+<td>
+                                <p class="label-key">viewed</p>
+                            </td>
+
+                            <td style="padding-left: 10px">
+                                <p class="label-key">
+                                    <b>61,211 times</b>
+                                </p>
+                            </td>
+                        </tr>
+<tr>
+<td>
+                                    <p class="label-key">active</p>
+                                </td>
+                                <td style="padding-left: 10px">
+                                    <p class="label-key"><b><a href="?lastactivity" class="lastactivity-link" title="2017-10-12 08:15:30Z">3 days ago</a></b></p>
+                                </td>
+                            </tr>
+</table>
+</div>
+                        
+            <div id="dfp-tsb" class="everyonelovesstackoverflow"></div>
+            <div id="hireme"></div>
+                <script>var clc={options:{svc:'dfp'}};</script><script>;window.clc=window.clc||{},window.clc.init=window.clc.init||function(a){var b=window,c=b.document;try{if("function"!=typeof[].indexOf||!window.addEventListener||!a.allowed)return;var d=new RegExp(a.allowed);if(!d.test(location.hostname))return;if(b.clc.options)for(var e in b.clc.options)a[e]=b.clc.options[e];b.clc.cmd="undefined"==typeof b.clc.cmd?[]:b.clc.cmd,b.clc.autoload=b.clc.autoload||function(){"function"==typeof b.clc.load?b.clc.load():b.clc.cmd.push(function(a){a.load()})};var f=a.wv;if(c.hidden&&f)return void c.addEventListener("visibilitychange",function b(){c.hidden||(window.clc.init(a),c.removeEventListener("visibilitychange",b))});b.clc.options=a,a.al&&b.clc.autoload();var g=c.createElement("script");g.async=!0,g.src=a.lib,c.body.appendChild(g)}catch(a){}},window.clc.loadDisplayAds=window.clc.loadDisplayAds||function(){function a(b){b.style.height=b.style.maxHeight=b.style.minHeight="auto",b.style.display="IFRAME"===b.tagName?"none":"block",[].forEach.call(b.children,a)}function b(a){new Image().src="https://"+e+"/stalled.gif?"+a}var c=window,d=c.document,e="clc.stackoverflow.com",f={slots:{lb:[[728,90]],mlb:[[728,90]],sb:[[300,250],[300,600]],"tag-sponsorship":[[730,135]]},ids:{"dfp-tlb":"lb","dfp-mlb":"mlb","dfp-tsb":"sb","dfp-tag":"tag-sponsorship","clc-tlb":"lb","clc-mlb":"mlb","clc-tsb":"sb"}},g=/^\/tags\//.test(location.pathname)||/^\/questions\/tagged\//.test(location.pathname)?"tag-pages":"question-pages",h=location.hostname;/^clc\./.test(location.hostname)&&(h="test/dev.stackoverflow.com");return function(e){var i=(e&&0<e.length?e:Object.keys(f.ids)).map(function(a){return d.getElementById(a)}).filter(function(a){return!!a&&/^\s*$/.test(a.innerHTML)}).map(function(a){return a.id});if(0!==i.length){c.googletag=c.googletag||{},c.googletag.cmd=c.googletag.cmd||[],c.googletag.cmd.push(function(){var e=c.googletag,j=d.createElement("div");j.className="adsbox",j.id="clc-abd",j.style.position="absolute",j.style.pointerEvents="none",j.innerHTML="&nbsp;",d.body.appendChild(j);var k=e.pubads();k.enableSingleRequest(),k.addEventListener("slotRenderEnded",function(c){var e=c.serviceName,f=c.slot,g=c.lineItemId;try{var h=f.getSlotElementId(),i=[];h||i.push("id=0");var j=d.getElementById(h);if(!h||j?j.hasAttribute("data-clc-stalled")&&i.push("st=1"):i.push("el=0"),0!==i.length)return void b(i.join("&"));-1===[4385506061,4386578282,4386579572].indexOf(g)?j.setAttribute("data-clc-prefilled","true"):a(j),j.setAttribute("data-clc-ready","true")}catch(a){var k=d.getElementById("dfp-tsb")||d.getElementById("clc-tsb");k&&k.setAttribute("data-clc-ready","true"),b("e=1")}});var l=c.dfp_targeting||{};l&&Object.keys(l).forEach(function(a){e.pubads().setTargeting(a,l[a])});for(var m=0,n=i;m<n.length;m++){var o=n[m],p=f.ids[o],q=f.slots[p],r="/"+"248424177"+"/"+h+"/"+p+"/"+g,s=e.defineSlot(r,q,o);("tag-sponsorship"===p||"sb"==p)&&s.setCollapseEmptyDiv(!0,!0),s.addService(k),!1}e.enableServices();for(var o,t=0,u=i;t<u.length;t++)o=u[t],e.display(o)});var j=d.createElement("script");j.async=!0,j.src="https://www.googletagservices.com/tag/js/gpt.js",document.body.appendChild(j)}}}(),window.clc.init.call(null, {"lib":"https://cdn.sstatic.net/clc/clc.min.js?v=f7d8d49c545b","u":"https://clc.stackoverflow.com/markup.js","wa":true,"kt":2000,"tto":true,"h":"clc.stackoverflow.com","allowed":"^(((talent\\.)?stackoverflow)|(blog\\.codinghorror)|(serverfault|askubuntu)|([^\\.]+\\.stackexchange))\\.com$","wv":true,"al":false});</script><script>
+window.clc_request='AkMSHllQFNUIAAAAAMsTRwECAAAAAgAAAAAUAAAAfHJ8ZGF0YS50YWJsZXxkcGx5cnwALbh_lx3l-Kgtyw';                    clc.autoload();
+                var dfp_targeting={Registered:['false'],'so-tag':['r','data.table','dplyr']};                                    clc.loadDisplayAds();
+            </script><div class="module" id="chat-feature">
+
+    <h4><a href="http://chat.stackoverflow.com" id="h-chat-link">Visit Chat</a></h4>
+    <div class="related" id="ad502-rooms"></div>
+    <script>
+    // <!--
+        StackExchange.ready(
+        function () {
+            var options = {
+                chatUrl: 'http://chat.stackoverflow.com',
+                reloadUrl: '/api/recent-chat',
+                preloadData: {"activeUsers":35,"activeRooms":25,"rooms":[{"name":"JavaScript","id":17,"lastPost":1508124013,"posts":4295226,"users":[{"name":"Mosho","id":345257,"emailhash":"!https://i.stack.imgur.com/j05a6.png?s=128\u0026g=1","lastPost":1508124013},{"name":"hsimah","id":203093,"emailhash":"!https://i.stack.imgur.com/0uzAY.jpg?s=128\u0026g=1","lastPost":1508118790},{"name":"david","id":423491,"emailhash":"998e7a4ffb7d648a4832787d60fd62a3","lastPost":1508118672},{"name":"Tavo","id":3356058,"emailhash":"!https://i.stack.imgur.com/QB7N5.png?s=128\u0026g=1","lastPost":1508116016},{"name":"Sterling Archer","id":774078,"emailhash":"!https://i.stack.imgur.com/WvDon.jpg?s=128\u0026g=1","lastPost":1508113044},{"name":"Caprica Six","id":1839506,"emailhash":"!https://i.stack.imgur.com/Sej2t.jpg?s=128\u0026g=1","lastPost":1508112555},{"name":"phenomnomnominal","id":1386166,"emailhash":"7ea079654bb159fdaa4043834688f57d","lastPost":1508106796}],"messages":[{"date":1508124013,"user":"Mosho","userid":345257}],"singleImage":false,"tags":["ecmascript","ecmascript-6","flowchart","javascript","nodejs"]},{"name":"SO Close Vote Reviewers","id":41570,"lastPost":1508124725,"posts":771751,"users":[{"name":"EJoshuaS","id":4032703,"emailhash":"!https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=128","lastPost":1508124725},{"name":"FireAlarm","id":6373379,"emailhash":"!https://i.stack.imgur.com/YQ7SJ.jpg?s=128\u0026g=1","lastPost":1508124175},{"name":"SmokeDetector","id":3735529,"emailhash":"!https://i.stack.imgur.com/m9xyh.jpg?s=128\u0026g=1","lastPost":1508120572},{"name":"Makyen","id":3773011,"emailhash":"268909707f084cf82523e616dd9df570","lastPost":1508120004},{"name":"Jean-Francois Fabre","id":6451573,"emailhash":"!https://i.stack.imgur.com/zE16s.jpg?s=128\u0026g=1","lastPost":1508119224},{"name":"TylerH","id":2756409,"emailhash":"!https://i.stack.imgur.com/UIrGI.jpg?s=128\u0026g=1","lastPost":1508112180},{"name":"Martin James","id":758133,"emailhash":"!https://i.stack.imgur.com/W8X5E.jpg?s=128\u0026g=1","lastPost":1508110246}],"messages":[{"date":1508124725,"user":"EJoshuaS","userid":4032703}],"singleImage":false,"tags":["discussion","moderation","review"]}]} 
+            };
+
+            StackExchange.chatAd.init(options);
+        });
+    // -->
+    </script>
+</div>
+
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+
+<div class="spacer">
+	<a href="/q/38236499" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="/questions/38236499/what-is-the-equivalent-of-dplyr-mutate-and-summarise-in-data-table?noredirect=1" class="question-hyperlink">What is the equivalent of dplyr mutate and summarise in data table?</a>
+</div>
+<div class="spacer">
+	<a href="/q/1660124" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted large">173</div>
+	</a>
+	<a href="/questions/1660124/how-to-sum-a-variable-by-group?noredirect=1" class="question-hyperlink">How to sum a variable by group?</a>
+</div>
+<div class="spacer">
+	<a href="/q/7235657" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">87</div>
+	</a>
+	<a href="/questions/7235657/fastest-way-to-replace-nas-in-a-large-data-table?noredirect=1" class="question-hyperlink">Fastest way to replace NAs in a large data.table</a>
+</div>
+<div class="spacer">
+	<a href="/q/21295936" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">64</div>
+	</a>
+	<a href="/questions/21295936/can-dplyr-summarise-over-several-variables-without-listing-each-one?noredirect=1" class="question-hyperlink">Can dplyr summarise over several variables without listing each one?</a>
+</div>
+<div class="spacer">
+	<a href="/q/27511604" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">56</div>
+	</a>
+	<a href="/questions/27511604/dplyr-on-data-table-am-i-really-using-data-table?noredirect=1" class="question-hyperlink">dplyr on data.table, am I really using data.table?</a>
+</div>
+<div class="spacer">
+	<a href="/q/10527072" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">49</div>
+	</a>
+	<a href="/questions/10527072/using-data-table-package-inside-my-own-package?noredirect=1" class="question-hyperlink">Using data.table package inside my own package</a>
+</div>
+<div class="spacer">
+	<a href="/q/27004002" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">40</div>
+	</a>
+	<a href="/questions/27004002/eachi-in-data-table?noredirect=1" class="question-hyperlink">.EACHI in data.table</a>
+</div>
+<div class="spacer">
+	<a href="/q/24480031" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">27</div>
+	</a>
+	<a href="/questions/24480031/roll-join-with-start-end-window?noredirect=1" class="question-hyperlink">roll join with start/end window</a>
+</div>
+<div class="spacer">
+	<a href="/q/21421004" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">9</div>
+	</a>
+	<a href="/questions/21421004/how-to-cumulatively-add-values-in-one-vector-in-r?noredirect=1" class="question-hyperlink">how to cumulatively add values in one vector in R</a>
+</div>
+<div class="spacer">
+	<a href="/q/12030932" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">39</div>
+	</a>
+	<a href="/questions/12030932/rolling-joins-data-table-in-r?noredirect=1" class="question-hyperlink">rolling joins data.table in R</a>
+</div>					<div class="spacer more">
+				<a href="/questions/linked/21435339">see more linked questionsÅc</a>
+			</div>
+	</div>
+</div>
+
+                <div class="module sidebar-related">
+                    <h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer">
+<a href="/q/19552104" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">5</div></a><a href="/questions/19552104/can-i-make-this-dplyr-data-table-task-faster" class="question-hyperlink">Can I make this dplyr + data.table task faster?</a>
+</div>
+<div class="spacer">
+<a href="/q/21129134" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">8</div></a><a href="/questions/21129134/calculate-between-columns-in-data-table-or-dplyr" class="question-hyperlink">Calculate between columns in data.table or dplyr?</a>
+</div>
+<div class="spacer">
+<a href="/q/21295936" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">64</div></a><a href="/questions/21295936/can-dplyr-summarise-over-several-variables-without-listing-each-one" class="question-hyperlink">Can dplyr summarise over several variables without listing each one?</a>
+</div>
+<div class="spacer">
+<a href="/q/27511604" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">56</div></a><a href="/questions/27511604/dplyr-on-data-table-am-i-really-using-data-table" class="question-hyperlink">dplyr on data.table, am I really using data.table?</a>
+</div>
+<div class="spacer">
+<a href="/q/28052822" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">10</div></a><a href="/questions/28052822/working-with-pairs-of-related-columns-dplyr-tidyr-data-table" class="question-hyperlink">Working with pairs of related columns (dplyr, tidyr, data.table)</a>
+</div>
+<div class="spacer">
+<a href="/q/29280752" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">1</div></a><a href="/questions/29280752/how-can-i-get-full-join-in-dplyr-to-preserve-data-tables" class="question-hyperlink">How can I get full_join in dplyr to preserve data.tables?</a>
+</div>
+<div class="spacer">
+<a href="/q/29632083" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">3</div></a><a href="/questions/29632083/how-does-dplyrdo-work-with-data-table" class="question-hyperlink">How does dplyr::do work with data.table</a>
+</div>
+<div class="spacer">
+<a href="/q/30250608" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">1</div></a><a href="/questions/30250608/loading-data-table-and-dplyr-one-after-other-gives-errors" class="question-hyperlink">Loading Data.Table and dplyr one after other gives errors</a>
+</div>
+<div class="spacer">
+<a href="/q/31852294" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">18</div></a><a href="/questions/31852294/how-to-speed-up-subset-by-groups" class="question-hyperlink">How to speed up subset by groups</a>
+</div>
+<div class="spacer">
+<a href="/q/33507868" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">8</div></a><a href="/questions/33507868/is-there-a-dplyr-equivalent-to-data-tablerleid" class="question-hyperlink">Is there a dplyr equivalent to data.table::rleid?</a>
+</div>
+                    </div>
+                </div>
+
+<div id="hot-network-questions" class="module tex2jax_ignore">
+    <h4>
+        <a href="https://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+<li>
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div>
+<a href="https://aviation.stackexchange.com/questions/44717/when-using-the-phonetic-alphabet-for-airways-should-we-say-uniform-or-upper" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When using the phonetic alphabet, for airways, should we say Uniform or Upper?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-german" title="German Language Stack Exchange"></div>
+<a href="https://german.stackexchange.com/questions/39682/when-asked-arbeitest-du-morgen-how-can-one-know-if-hes-asked-about-the-day" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:253 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When asked "Arbeitest du morgen?", how can one know if he's asked about the day or the action
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div>
+<a href="https://scifi.stackexchange.com/questions/171918/1950s-short-story-about-using-radar-to-see-into-the-past-and-filming-historic-ev" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    1950s short story about using radar to see into the past and filming historic events
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div>
+<a href="https://rpg.stackexchange.com/questions/108375/what-does-phb-stand-for" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What does PHB stand for?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div>
+<a href="https://workplace.stackexchange.com/questions/100816/co-work-knows-a-small-fact-about-me-and-blowing-it-out-of-proportion" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Co-Work knows a small fact about me and blowing it out of proportion
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div>
+<a href="https://academia.stackexchange.com/questions/97106/dismissed-from-phd-due-to-disability-related-misconduct-how-to-answer-question" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Dismissed from PhD due to disability-related misconduct: how to answer question about dismissal?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div>
+<a href="https://physics.stackexchange.com/questions/362780/how-were-the-navier-stokes-equations-found-in-the-first-place-if-we-cant-solve" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How were the Navier-Stokes equations found in the first place if we can't solve them?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div>
+<a href="https://security.stackexchange.com/questions/171055/how-did-google-know-i-looked-something-up" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How did Google know I looked something up?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div>
+<a href="https://english.stackexchange.com/questions/414434/term-for-lending-an-item-to-a-store-so-they-can-sell-it-on-your-behalf-for-a-fe" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Term for lending an item to a store so they can sell it on your behalf, for a fee
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div>
+<a href="https://english.stackexchange.com/questions/413955/what-do-you-call-it-when-a-scam-artist-modifies-the-contents-of-a-document-to-de" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What do you call it when a scam artist modifies the contents of a document to deceive other people?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-chemistry" title="Chemistry Stack Exchange"></div>
+<a href="https://chemistry.stackexchange.com/questions/84229/how-does-water-evaporate-completely-when-at-room-temperature" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:431 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How does water evaporate completely when at room temperature?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-parenting" title="Parenting Stack Exchange"></div>
+<a href="https://parenting.stackexchange.com/questions/32093/should-children-be-encouraged-to-get-themselves-or-their-clothes-dirty" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:228 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Should children be encouraged to get themselves or their clothes dirty?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div>
+<a href="https://travel.stackexchange.com/questions/103733/what-are-the-steps-to-claim-recheck-baggage-on-international-layover-via-non-par" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What are the steps to claim/recheck baggage on international layover via non-partner connecting airline?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-gamedev" title="Game Development Stack Exchange"></div>
+<a href="https://gamedev.stackexchange.com/questions/149541/when-is-the-time-to-consider-performance" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:53 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When is the time to consider performance?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-interpersonal" title="Interpersonal Skills Stack Exchange"></div>
+<a href="https://interpersonal.stackexchange.com/questions/5388/how-to-politely-communicate-to-your-manager-that-what-they-did-upset-you-and-ask" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:680 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to politely communicate to your manager that what they did upset you and ask that it doesn't happen again?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-interpersonal" title="Interpersonal Skills Stack Exchange"></div>
+<a href="https://interpersonal.stackexchange.com/questions/5391/how-to-join-in-when-people-are-gossiping" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:680 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to join in when people are gossiping?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-interpersonal" title="Interpersonal Skills Stack Exchange"></div>
+<a href="https://interpersonal.stackexchange.com/questions/5326/how-to-approach-my-spouse-about-their-weight-gain" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:680 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to approach my spouse about their weight gain?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div>
+<a href="https://electronics.stackexchange.com/questions/334568/getting-two-or-one-and-a-half-outputs-from-a-single-pin" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Getting two (or, one and a half) outputs from a single pin
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div>
+<a href="https://worldbuilding.stackexchange.com/questions/94800/mental-condition-that-spreads-through-social-contact" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Mental condition that spreads through social contact
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-bicycles" title="Bicycles Stack Exchange"></div>
+<a href="https://bicycles.stackexchange.com/questions/50551/what-is-the-foam-tube-on-the-top-of-bmx-frame-for" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:126 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is the foam tube on the top of bmx frame for?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-interpersonal" title="Interpersonal Skills Stack Exchange"></div>
+<a href="https://interpersonal.stackexchange.com/questions/5398/how-to-deal-with-anxiety-control-issues-in-relationship" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:680 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to deal with anxiety/control issues in relationship
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div>
+<a href="https://english.stackexchange.com/questions/414213/another-word-for-theory-or-belief-that-doesnt-quite-rise-to-the-level-of-ei" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Another word for "theory" or "belief" that doesn't quite rise to the level of either. An atheist's "theory" of creation
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div>
+<a href="https://mathematica.stackexchange.com/questions/157852/fill-the-data-of-an-association-based-on-a-list" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Fill the data of an Association based on a list
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div>
+<a href="https://puzzling.stackexchange.com/questions/55950/68-coins-with-100-weighings" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    68 coins with 100 weighings
+                </a>
+
+            </li>
+    </ul>
+<a href="#" class="show-more js-show-more js-gps-track" data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+            more hot questions
+        </a>
+</div>
+        </div>
+    
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="/feeds/question/21435339" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>    </div>
+<script>
+StackExchange.ready(function(){$.get('/posts/21435339/ivc/9b16');});
+</script><noscript>
+    <div><img src="/posts/21435339/ivc/9b16" class="dno" alt="" width="0" height="0"></div>
+</noscript>
+<div style="display:none" id="prettify-lang">lang-r</div>
+</div>
+
+
+        </div>
+    </div>
+
+    <footer id="footer" class="s-footer js-footer" role="contentinfo"><div class="-container">
+            <div class="g-row">
+                    <div class="-logo">
+
+                        <a href="https://stackoverflow.com"><svg aria-hidden="true" class="svg-icon native iconLogo" width="150" height="30" viewbox="0 0 150 30"><g><path d="M33.9 18.6l-1.7-.2c-1.3-.1-1.9-.6-1.9-1.6 0-1.1.8-1.8 2.4-1.8 1.1 0 2.1.3 2.8.8l1-1c-1-.8-2.3-1.1-3.8-1.1-2.3 0-3.9 1.2-3.9 3.1 0 1.8 1.1 2.7 3.2 2.9l1.8.2c1.2.1 1.8.6 1.8 1.6 0 1.3-1.1 1.9-2.8 1.9-1.3 0-2.5-.3-3.3-1.2l-1 1c1.2 1.1 2.6 1.5 4.4 1.5 2.6 0 4.3-1.2 4.3-3.2-.2-2-1.5-2.7-3.3-2.9zm13.3-4.8c-1.7 0-2.8.3-3.7 1.5l1 1c.6-.9 1.3-1.2 2.7-1.2 1.9 0 2.7.8 2.7 2.3v1h-3.2c-2.4 0-3.7 1.2-3.7 3.1 0 .8.3 1.6.8 2.2.7.7 1.5 1 3 1 1.4 0 2.2-.3 3.1-1.1v1h1.6v-7.2c-.1-2.4-1.5-3.6-4.3-3.6zm2.7 7c0 .9-.2 1.5-.5 1.8-.7.6-1.5.7-2.4.7-1.7 0-2.4-.6-2.4-1.8 0-1.2.8-1.9 2.4-1.9h3l-.1 1.2zm7.6-5.6c1 0 1.6.3 2.4 1.2l1-1c-1.1-1.2-2-1.6-3.5-1.6-2.7 0-4.7 1.8-4.7 5.5 0 3.6 2 5.5 4.7 5.5 1.5 0 2.4-.4 3.5-1.6l-1.1-1c-.8.9-1.4 1.2-2.4 1.2s-1.9-.4-2.5-1.2c-.5-.7-.7-1.5-.7-2.9 0-1.3.2-2.2.7-2.9.7-.8 1.6-1.2 2.6-1.2zm13.4-1.3H69l-4.8 4.7V9.1h-1.6v15.4h1.6v-3.9l1.9-1.9 3.6 5.8h1.9l-4.4-6.9 3.7-3.7zm7.3-.33c-1.6 0-2.7.6-3.4 1.4-1 1-1.3 2.3-1.3 4.3s.3 3.3 1.3 4.3c.7.7 1.8 1.4 3.4 1.4 1.6 0 2.8-.6 3.4-1.4 1-1 1.3-2.3 1.3-4.3s-.3-3.3-1.3-4.3c-.6-.8-1.7-1.4-3.4-1.4zm1.3 8.3c-.3.3-.7.5-1.3.5-.6 0-1-.2-1.3-.5-.6-.6-.6-1.6-.6-2.7 0-1.2.1-2.1.6-2.7.3-.3.7-.5 1.3-.5.6 0 1 .2 1.3.5.6.6.6 1.5.6 2.7.1 1.2 0 2.2-.6 2.7zm10.8-8.2l-2.2 6.9-2.3-6.9h-2.9l4.1 11.1h2.2l4.1-11.1h-3zm7.6-.1c-2.9 0-4.8 2-4.8 5.7 0 4.5 2.5 5.7 5.1 5.7 2 0 3.1-.6 4.2-1.7l-1.7-1.6c-.7.7-1.3 1-2.5 1-1.6 0-2.4-1-2.4-2.5h6.9v-1.2c0-3.2-1.7-5.4-4.8-5.4zm-2.1 4.6c0-.5.1-.8.3-1.2.3-.7.9-1.2 1.9-1.2.9 0 1.6.5 1.9 1.2.2.4.2.7.3 1.2h-4.4zm11-3.4v-1.1h-2.7v11.1h2.8v-6.7c0-1.4.9-2 1.8-2 .7 0 1 .2 1.5.7l2.1-2.1c-.8-.8-1.5-1-2.6-1-1.3-.1-2.3.4-2.9 1.1zm6.3-2.3v12.3h2.8v-8.8h2v-2.1h-2v-1.2c0-.6.3-1 1-1h1.1v-2.3h-1.6c-2.3 0-3.3 1.6-3.3 3.1zm16.2 1.1c-1.6 0-2.7.6-3.4 1.4-1 1-1.3 2.3-1.3 4.3s.3 3.3 1.3 4.3c.7.7 1.8 1.4 3.4 1.4 1.6 0 2.8-.6 3.4-1.4 1-1 1.3-2.3 1.3-4.3s-.3-3.3-1.3-4.3c-.6-.8-1.8-1.4-3.4-1.4zm1.3 8.3c-.3.3-.7.5-1.3.5-.6 0-1-.2-1.3-.5-.6-.6-.6-1.6-.6-2.7 0-1.2.1-2.1.6-2.7.3-.3.7-.5 1.3-.5.6 0 1 .2 1.3.5.6.6.6 1.5.6 2.7 0 1.2 0 2.2-.6 2.7zm16.5-8.2l-1.8 6.9-2.3-6.9h-2l-2.3 6.9-1.8-6.9H134l3.4 11.1h2.3l2.3-7 2.3 7h2.3l3.4-11.1h-2.9zm-25.1 7.7V9.27h-2.8v12.3c0 1.6 1 3.2 3.2 3.2h1.6v-2.3h-1c-.7 0-1-.4-1-1.1zM41.3 15.6l1.4-1.4h-3v-3.5h-1.6v11.1c0 1.6.9 2.9 2.7 2.9h1.1v-1.3h-.8c-1 0-1.5-.6-1.5-1.6v-6.1h1.7v-.1z" fill="#222426"></path><path fill="#BCBBBB" d="M21 27v-8h3v11H0V19h3v8z"></path><path d="M5.4 19.1l13.56 1.96.17-2.38-13.26-2.55-.47 2.97zm1.8-6.8l12 5.6 1.1-2.4-12-5.6-1.1 2.4zm3.4-5.9l10.2 8.5 1.7-2-10.2-8.5-1.7 2zM17.1.2L15 1.8l7.9 10.6 2.1-1.6L17.1.2zM5 25h14v-3H5v3z" fill="#F48024"></path></g></svg></a>
+                    </div>
+                
+                    <nav class="-nav js-category _visible" data-name="default"><h5 class="-title"><a href="https://stackoverflow.com" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 15})">Stack Overflow</a></h5>
+                        <ul class="-list">
+<li class="-item"><a href="/questions" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 16})">Questions</a></li>
+                                <li class="-item"><a href="https://stackoverflow.com/jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 17})">Jobs</a></li>
+                                <li class="-item"><a href="https://stackoverflow.com/jobs/directory/developer-jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 11})">Developer Jobs Directory</a></li>
+                                     <li class="-item"><a href="https://stackoverflow.com/jobs/salary" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 28})">Salary Calculator</a></li>
+                                                            <li class="-item"><a href="/help" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 3 })">Help</a></li>
+                                <li class="-item"><a onclick='StackExchange.switchMobile("on")' class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 12 })">Mobile</a></li>
+                        </ul></nav><nav class="-nav js-category _visible" data-name="default"><h5 class="-title"><a href="https://www.stackoverflowbusiness.com/?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-business-category" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 19 })">Stack Overflow<br> Business</a></h5>
+                        <ul class="-list">
+<li class="-item"><a href="https://www.stackoverflowbusiness.com/talent?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-talent" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 20 })">Talent</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/advertise?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-advertise" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 21 })">Ads</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/enterprise?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-enterprise" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 22 })">Enterprise</a></li>
+                            <li class="-item"><a href="https://www.stackoverflowbusiness.com/insights?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation&amp;utm_term=sotob2b-footer-insights" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 23 })">Insights</a></li>
+                        </ul></nav><nav class="-nav js-category _visible" data-name="default"><h5 class="-title"><a class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">Company</a></h5>
+                    <ul class="-list">
+<li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">About</a></li>
+                                                <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 27 })" href="https://stackoverflow.com/company/press">Press</a></li>
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 9 })" href="https://stackoverflow.com/company/work-here">Work Here</a></li>
+                        <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 7 })" href="https://stackexchange.com/legal">Legal</a></li>
+                        <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 8 })" href="https://stackexchange.com/legal/privacy-policy">Privacy Policy</a></li>
+                            <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 13 })" href="https://stackoverflow.com/company/contact">Contact Us</a></li>
+                    </ul></nav><div class="-network g-row">
+                    <a href="#" class="-back-trigger js-back"><svg aria-hidden="true" class="svg-icon iconArrowLeftAlt" width="18" height="18" viewbox="0 0 18 18"><path d="M10.58 16L12 14.59 6.4 9 12 3.41 10.57 2l-7 7z"></path></svg></a>
+                    <div>
+                        <h5 class="-title"><a href="https://stackexchange.com">Stack Exchange<br> Network</a></h5>
+                        <ul class="-list">
+<li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Technology">Technology</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Life / Arts">Life / Arts</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Culture / Recreation">Culture / Recreation</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Science">Science</a></li>
+                            <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Other">Other</a></li>
+
+                        </ul>
+</div>
+                </div>
+                <nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                <li class="-item"><a href="https://serverfault.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="system and network administrators">Server Fault</a></li>
+                <li class="-item"><a href="https://superuser.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="computer enthusiasts and power users">Super User</a></li>
+                <li class="-item"><a href="https://webapps.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="power users of web applications">Web Applications</a></li>
+                <li class="-item"><a href="https://askubuntu.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                <li class="-item"><a href="https://webmasters.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="pro webmasters">Webmasters</a></li>
+                <li class="-item"><a href="https://gamedev.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and independent game developers">Game Development</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://tex.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                <li class="-item"><a href="https://softwareengineering.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professionals, academics, and students working within the systems development life cycle">Software Engineering</a></li>
+                <li class="-item"><a href="https://unix.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                <li class="-item"><a href="https://apple.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                <li class="-item"><a href="https://wordpress.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="WordPress developers and administrators">WordPress Development</a></li>
+                <li class="-item"><a href="https://gis.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                <li class="-item"><a href="https://electronics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://android.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                <li class="-item"><a href="https://security.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="information security professionals">Information Security</a></li>
+                <li class="-item"><a href="https://bitcoin.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Bitcoin crypto-currency enthusiasts">Bitcoin</a></li>
+                <li class="-item"><a href="https://dba.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                <li class="-item"><a href="https://drupal.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Drupal developers and administrators">Drupal Answers</a></li>
+                <li class="-item"><a href="https://sharepoint.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="SharePoint enthusiasts">SharePoint</a></li>
+                <li class="-item"><a href="https://ux.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="user experience researchers and experts">User Experience</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://mathematica.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Wolfram Mathematica">Mathematica</a></li>
+                <li class="-item"><a href="https://salesforce.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                <li class="-item"><a href="https://expressionengine.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="administrators, end users, developers and designers for ExpressionEngineR CMS">ExpressionEngineR Answers</a></li>
+                <li class="-item"><a href="https://pt.stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programadores profissionais e entusiastas">Stack Overflow em Portugues</a></li>
+                <li class="-item"><a href="https://blender.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who use Blender to create 3D graphics, animations, or games">Blender</a></li>
+                <li class="-item"><a href="https://networkengineering.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="network engineers">Network Engineering</a></li>
+                <li class="-item"><a href="https://crypto.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="software developers, mathematicians and others interested in cryptography">Cryptography</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://codereview.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="peer programmer code reviews">Code Review</a></li>
+                <li class="-item"><a href="https://magento.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of the Magento e-Commerce platform">Magento</a></li>
+                <li class="-item"><a href="https://softwarerecs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people seeking specific software recommendations">Software Recommendations</a></li>
+                <li class="-item"><a href="https://dsp.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="practitioners of the art and science of signal, image and video processing">Signal Processing</a></li>
+                <li class="-item"><a href="https://emacs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those using, extending or developing Emacs">Emacs</a></li>
+                <li class="-item"><a href="https://raspberrypi.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users and developers of hardware and software for Raspberry Pi">Raspberry Pi</a></li>
+                <li class="-item"><a href="https://ru.stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="ÑÅÑÇÑÄÑsÑÇÑpÑ}Ñ}ÑyÑÉÑÑÑÄÑr">Stack Overflow Ñ~Ñp ÑÇÑÖÑÉÑÉÑ{ÑÄÑ}</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+<li class="-item"><a href="https://codegolf.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programming puzzle enthusiasts and code golfers">Programming Puzzles &amp; Code Golf</a></li>
+                <li class="-item"><a href="https://es.stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programadores y profesionales de la informatica">Stack Overflow en espanol</a></li>
+                <li class="-item"><a href="https://ethereum.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="users of Ethereum, the decentralized application platform and smart contract enabled blockchain">Ethereum</a></li>
+                <li class="-item"><a href="https://datascience.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Data science professionals, Machine Learning specialists, and those interested in learning more about the field">Data Science</a></li>
+                <li class="-item"><a href="https://arduino.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="developers of open-source hardware and software that is compatible with Arduino">Arduino</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#technology" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (26)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Life / Arts"><ul class="-list">
+<li class="-item"><a href="https://photo.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                <li class="-item"><a href="https://scifi.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                <li class="-item"><a href="https://graphicdesign.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                <li class="-item"><a href="https://movies.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                <li class="-item"><a href="https://music.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="musicians, students, and enthusiasts">Music: Practice &amp; Theory</a></li>
+                <li class="-item"><a href="https://worldbuilding.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="writers/artists using science, geography and culture to construct imaginary worlds and settings">Worldbuilding</a></li>
+                <li class="-item"><a href="https://cooking.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Life / Arts"><ul class="-list">
+<li class="-item"><a href="https://diy.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="contractors and serious DIYers">Home Improvement</a></li>
+                <li class="-item"><a href="https://money.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                <li class="-item"><a href="https://academia.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="academics and those enrolled in higher education">Academia</a></li>
+                <li class="-item"><a href="https://law.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="legal professionals, students, and others with experience or interest in law">Law</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#lifearts" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (17)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Culture / Recreation"><ul class="-list">
+<li class="-item"><a href="https://english.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                <li class="-item"><a href="https://skeptics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="scientific skepticism">Skeptics</a></li>
+                <li class="-item"><a href="https://judaism.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                <li class="-item"><a href="https://travel.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="road warriors and seasoned travelers">Travel</a></li>
+                <li class="-item"><a href="https://christianity.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                <li class="-item"><a href="https://ell.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="speakers of other languages learning English">English Language Learners</a></li>
+                <li class="-item"><a href="https://japanese.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students, teachers, and linguists wanting to discuss the finer points of the Japanese language">Japanese Language</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Culture / Recreation"><ul class="-list">
+<li class="-item"><a href="https://gaming.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                <li class="-item"><a href="https://bicycles.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                <li class="-item"><a href="https://rpg.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                <li class="-item"><a href="https://anime.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="anime and manga fans">Anime &amp; Manga</a></li>
+                <li class="-item"><a href="https://puzzling.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those who create, solve, and study puzzles">Puzzling</a></li>
+                <li class="-item"><a href="https://mechanics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="mechanics and DIY enthusiast owners of cars, trucks, and motorcycles">Motor Vehicle Maintenance &amp; Repair</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#culturerecreation" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (32)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Science"><ul class="-list">
+<li class="-item"><a href="https://mathoverflow.net" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="professional mathematicians">MathOverflow</a></li>
+                <li class="-item"><a href="https://math.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                <li class="-item"><a href="https://stats.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                <li class="-item"><a href="https://cstheory.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                <li class="-item"><a href="https://physics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="active researchers, academics and students of physics">Physics</a></li>
+                <li class="-item"><a href="https://chemistry.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="scientists, academics, teachers and students">Chemistry</a></li>
+                <li class="-item"><a href="https://biology.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="biology researchers, academics, and students">Biology</a></li>
+                    </ul></nav><nav class="-nav js-category" data-name="Science"><ul class="-list">
+<li class="-item"><a href="https://cs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="students, researchers and practitioners of computer science">Computer Science</a></li>
+                <li class="-item"><a href="https://philosophy.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="those interested in the study of the fundamental nature of knowledge, reality, and existence">Philosophy</a></li>
+                            <li class="-item">
+                    <a href="https://stackexchange.com/sites#science" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 26 })">
+                        <strong>
+                            more (10)
+                        </strong>
+                    </a>
+                </li>
+        </ul></nav><nav class="-nav js-category" data-name="Other"><ul class="-list">
+<li class="-item"><a href="https://meta.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                <li class="-item"><a href="https://stackapps.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                <li class="-item"><a href="https://api.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="programmatic interaction with Stack Exchange sites">API</a></li>
+                <li class="-item"><a href="https://data.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="querying Stack Exchange data using SQL">Data</a></li>
+                <li class="-item"><a href="https://area51.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 2, link: 25 })" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                    </ul></nav><div class="-copyright g-row jc-end">
+                    <div class="g-column jc-sp-between">
+                        <ul class="-list">
+<li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link:4 })" href="https://stackoverflow.blog?blb=1">Blog</a></li>
+                            <li class="-item"><a href="https://www.facebook.com/officialstackoverflow/" class="-link">Facebook</a></li>
+                            <li class="-item"><a href="https://twitter.com/stackoverflow" class="-link">Twitter</a></li>
+                            <li class="-item"><a href="https://linkedin.com/company/stack-overflow" class="-link">LinkedIn</a></li>
+                        </ul>
+<div>
+                            <p>
+                                site design / logo c 2017 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license" class="-link">cc by-sa 3.0</a>
+                                with <a href="https://stackoverflow.blog/2009/06/25/attribution-required/" rel="license" class="-link">attribution required</a>.
+                                <span id="svnrev">rev 2017.10.15.27439</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                    </div>
+    </footer><noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled
+            <img src="https://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno">
+</div>
+    </noscript>
+        <script> setTimeout(function() { $("#adzerk-user-match").remove(); }, 2000);</script><script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-5620270-1');
+                ga('create', 'UA-5620270-59', {name: 'pageData', sampleRate: 5 });
+                ga('set', 'dimension2', '|r|data.table|dplyr|');
+                ga('pageData.set', 'dimension2', '|r|data.table|dplyr|');
+                ga('send', 'pageview');
+                ga('pageData.send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+                qc.async = true;
+                qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                s.parentNode.insertBefore(qc, s);
+                _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+                            var sc=document.createElement('script');
+                sc.async=true;
+                sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+                s.parentNode.insertBefore(sc, s);
+                _comscore.push({ c1: "2", c2: "17440561" });
+        })();
+
+    </script><script type="text/javascript">
+                
+                (function(appendChild) {
+                    Node.prototype.appendChild = function() {
+                        var parent = this;
+                        var newNode = arguments[0];
+                        if (parent.nodeName === 'HEAD'
+                            && newNode
+                            && newNode.nodeName === 'SCRIPT'
+                            && newNode.src) {
+                            
+                            window.setTimeout(function() {
+                                var result = newNode.src.match(/^https:\/\/maps\.googleapis\.com\/maps\/api\/place\/js\/(\w+)Service\./i) || [];
+                                var service = result[1];
+                                if (service) {
+                                    if (service === 'Autocompletion') service =  2;
+                                    else if (service === 'Place') service = 1;
+                                    else service = 0;
+                                    StackExchange.using('gps', function() {
+                                        StackExchange.gps.track('google_maps_places_api.call', { service: service });
+                                    });
+                                }
+                            }, 0);
+                        }
+                        return appendChild.apply(this, arguments);
+                    };
+                })(Node.prototype.appendChild);
+            </script>
+</body>
+</html>
+
